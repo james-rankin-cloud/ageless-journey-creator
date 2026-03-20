@@ -4,7 +4,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import ChatBot from "./ChatBot";
 import FloatingBookNow from "./FloatingBookNow";
-import CtaBanner from "./CtaBanner";
 
 export default function Layout() {
   const { pathname } = useLocation();
@@ -19,7 +18,6 @@ export default function Layout() {
       <main className="min-h-screen">
         <Outlet />
       </main>
-      <CtaBanner />
       <Footer />
       <ChatBot />
       <FloatingBookNow />
