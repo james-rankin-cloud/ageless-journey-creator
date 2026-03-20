@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import Hero from "@/components/Hero";
 import Reviews from "@/components/Reviews";
 import HomeTeaser from "@/components/HomeTeaser";
+import VisitUs from "@/components/VisitUs";
 
 export default function HomePage() {
   const jsonLd = {

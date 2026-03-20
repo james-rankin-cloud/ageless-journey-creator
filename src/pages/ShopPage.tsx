@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { ExternalLink, ShieldCheck, Star, Heart, Sparkles, Award, Truck } from "lucide-react";
+import { ExternalLink, ShieldCheck, Star, Heart, Sparkles, Award, Truck, Check } from "lucide-react";
 
 import mask1 from "@/assets/mask-product-1.jpeg";
 import mask2 from "@/assets/mask-product-2.jpeg";
@@ -14,41 +14,68 @@ const heroImages = [mask1, mask2, mask3, mask4];
 const bundles = [
   {
     name: "Red Light Glow Bundle",
-    badge: "Most Popular",
+    badge: "Popular • Clinically Proven Combo",
+    highlight: "Perfect after in-clinic treatments",
     savings: "Save 15% when bundled",
-    items: ["Omnilux Contour Mask", "CE Ferulic Serum", "Bio Cellulose Sheet Mask"],
-    desc: "The perfect combo after in-clinic treatments. Extend your glow at home with clinical-grade red light therapy and our best-selling serum.",
-    image: mask2,
-    hasImage: true,
+    items: [
+      "Omnilux Contour Face Mask",
+      "CE Ferulic Serum (30 ml)",
+      "10× Bio Cellulose Sheet Masks",
+      "Step-by-step guide",
+      "15% bundle discount",
+    ],
+    desc: "Our most popular at-home combo. Extend your in-clinic glow with medical-grade red light therapy, our best-selling antioxidant serum, and hydrating sheet masks.",
+    images: [mask2, mask1],
   },
   {
     name: "Skin Renewal Kit",
-    badge: "Staff Pick",
-    items: ["Phyto A+ Brightening Treatment", "HA Intensifier", "Physical Fusion SPF 50", "Epidermal Repair"],
-    desc: "A complete daily regimen for radiant, protected skin. Medical-grade actives our aestheticians trust for post-treatment recovery.",
-    hasImage: false,
+    badge: "Staff Pick • Best for Recovery",
+    highlight: "Ideal for post-treatment skin",
+    items: [
+      "Phyto A+ Brightening Treatment",
+      "HA Intensifier (30 ml)",
+      "Physical Fusion SPF 50",
+      "Epidermal Repair cream",
+    ],
+    desc: "A complete daily regimen for radiant, protected skin. Medical-grade actives our aestheticians trust for post-treatment recovery and daily protection.",
+    images: [mask4],
   },
   {
     name: "Collagen Boost Pack",
-    badge: "Anti-Aging",
-    items: ["Dermal Collagen Powder", "Cleansing Complex", "Active Peel Singles"],
-    desc: "Build collagen from the inside out. Combine our clinical peel with daily collagen supplementation for visible firmness.",
-    hasImage: false,
+    badge: "Anti-Aging • Visible Firmness",
+    highlight: "Build collagen from the inside out",
+    items: [
+      "Dermal Collagen Powder (30 servings)",
+      "Cleansing Complex",
+      "Active Peel Singles (6-pack)",
+    ],
+    desc: "Combine our clinical peel with daily collagen supplementation for visible firmness. Perfect as a standalone routine or paired with in-clinic microneedling.",
+    images: [],
   },
   {
     name: "Energy & Recovery Bundle",
-    badge: "Biohacking",
-    items: ["Lipo Matrix", "Omnilux Mask Combo", "P-TIOX Serum"],
-    desc: "Recover faster and feel energized. Pairs perfectly with our IV therapy and biohacking treatments.",
-    image: mask3,
-    hasImage: true,
+    badge: "Biohacking • Peak Performance",
+    highlight: "Pairs perfectly with IV therapy",
+    savings: "Save 10% when bundled",
+    items: [
+      "Lipo Matrix supplement",
+      "Omnilux Mask Combo (Face + Neck)",
+      "P-TIOX Serum (30 ml)",
+    ],
+    desc: "Recover faster and feel energized. Designed to complement our biohacking and IV therapy treatments for those who want peak performance at home.",
+    images: [mask3, mask4],
   },
   {
     name: "Hormone Support Essentials",
-    badge: "Wellness",
-    items: ["Dermal Collagen Powder", "Curated Supplement Stack"],
-    desc: "Support your hormone balancing protocol at home with physician-selected supplements and daily collagen.",
-    hasImage: false,
+    badge: "Wellness • Physician-Selected",
+    highlight: "Support your BHRT protocol at home",
+    items: [
+      "Dermal Collagen Powder (30 servings)",
+      "Curated Supplement Stack",
+      "Wellness tracking journal",
+    ],
+    desc: "Support your hormone balancing protocol at home with physician-selected supplements and daily collagen. Designed for clients on BHRT programs.",
+    images: [],
   },
 ];
 
@@ -80,7 +107,6 @@ export default function ShopPage() {
             </p>
           </motion.div>
 
-          {/* Featured product */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -88,7 +114,6 @@ export default function ShopPage() {
             className="relative bg-gradient-to-br from-secondary via-card to-accent rounded-3xl overflow-hidden border border-border/40"
           >
             <div className="grid lg:grid-cols-2 gap-0">
-              {/* Image grid */}
               <div className="grid grid-cols-2 gap-2 p-4 lg:p-6">
                 {heroImages.map((img, i) => (
                   <motion.div
@@ -108,7 +133,6 @@ export default function ShopPage() {
                 ))}
               </div>
 
-              {/* Info */}
               <div className="flex flex-col justify-center p-8 lg:p-12">
                 <div className="flex flex-wrap gap-2 mb-4">
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wide">
@@ -186,15 +210,17 @@ export default function ShopPage() {
                 transition={{ duration: 0.5, delay: i * 0.08, ease }}
                 className="bg-card rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 border border-border/40 flex flex-col"
               >
-                {b.hasImage && b.image && (
-                  <div className="relative h-56 overflow-hidden">
-                    <img
-                      src={b.image}
-                      alt={b.name}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
+                {/* Image collage */}
+                {b.images.length > 0 && (
+                  <div className="relative overflow-hidden">
+                    <div className={`grid ${b.images.length > 1 ? "grid-cols-2" : "grid-cols-1"} gap-1`}>
+                      {b.images.map((img, j) => (
+                        <div key={j} className="h-52 overflow-hidden">
+                          <img src={img} alt={`${b.name} product ${j + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                        </div>
+                      ))}
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent pointer-events-none" />
                     {b.savings && (
                       <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold shadow-md">
                         {b.savings}
@@ -204,32 +230,38 @@ export default function ShopPage() {
                 )}
 
                 <div className="p-7 flex flex-col flex-1">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="px-2.5 py-0.5 rounded-full bg-accent text-xs font-bold text-foreground uppercase tracking-wide">
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span className="px-2.5 py-1 rounded-full bg-accent text-xs font-bold text-foreground tracking-wide">
                       {b.badge}
                     </span>
+                    {b.highlight && (
+                      <span className="text-xs text-primary font-semibold">{b.highlight}</span>
+                    )}
                   </div>
 
                   <h3 className="font-bold text-foreground text-xl mb-2">{b.name}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{b.desc}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-5">{b.desc}</p>
 
-                  <ul className="space-y-1.5 mb-6">
-                    {b.items.map((item) => (
-                      <li key={item} className="text-sm text-foreground flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="mb-6">
+                    <p className="text-xs font-bold uppercase tracking-widest text-foreground mb-3">Everything You Get</p>
+                    <ul className="space-y-2">
+                      {b.items.map((item) => (
+                        <li key={item} className="text-sm text-foreground flex items-start gap-2.5">
+                          <Check className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
                   <div className="mt-auto">
                     <a
                       href={SQUARE_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold shadow-md shadow-primary/15 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
+                      className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/15 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97] text-sm"
                     >
-                      Shop on Our Store <ExternalLink className="h-3.5 w-3.5" />
+                      Shop on Our Store <ExternalLink className="h-4 w-4" />
                     </a>
                   </div>
                 </div>
