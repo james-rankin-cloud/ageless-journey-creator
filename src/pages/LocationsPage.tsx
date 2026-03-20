@@ -212,19 +212,19 @@ export default function LocationsPage() {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      <section className="pt-32 pb-24 bg-wellness-warm">
+      <section className="pt-36 pb-28 bg-wellness-warm">
         <div className="container mx-auto section-padding">
           {/* Header */}
-          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Our Clinics</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-[1.1]">
-              Serving British Columbia for Over a Decade
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="text-center max-w-2xl mx-auto mb-16">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">Our Clinics</p>
+            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-foreground mb-5 leading-[1.08] tracking-tight">
+              Serving British Columbia<br className="hidden md:block" /> for Over a Decade
             </h1>
-            <p className="text-muted-foreground text-lg leading-relaxed">Three beautiful clinics, one exceptional standard of care.</p>
+            <p className="text-muted-foreground text-lg leading-relaxed max-w-lg mx-auto">Three beautiful clinics, one exceptional standard of care.</p>
           </motion.div>
 
           {/* Location tabs */}
-          <div className="grid md:grid-cols-3 gap-5 mb-16">
+          <div className="grid md:grid-cols-3 gap-6 mb-20">
             {(Object.keys(locationData) as Location[]).map((key, i) => {
               const loc = locationData[key];
               return (
@@ -234,16 +234,16 @@ export default function LocationsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.1, ease }}
                   onClick={() => setActive(key)}
-                  className={`text-left rounded-2xl p-7 transition-all duration-300 ${
+                  className={`text-left rounded-3xl p-8 transition-all duration-300 ${
                     active === key
-                      ? "bg-primary text-primary-foreground shadow-xl shadow-primary/20 scale-[1.02]"
-                      : "bg-card text-foreground border border-border/40 hover:shadow-lg"
+                      ? "bg-primary text-primary-foreground shadow-2xl shadow-primary/25 scale-[1.02]"
+                      : "bg-card text-foreground border border-border/30 hover:shadow-xl hover:border-primary/20"
                   }`}
                 >
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${active === key ? "bg-primary-foreground/20" : "bg-primary/10"}`}>
-                    <span className={`text-xl font-bold ${active === key ? "text-primary-foreground" : "text-primary"}`}>{loc.initial}</span>
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 ${active === key ? "bg-primary-foreground/20" : "bg-primary/10"}`}>
+                    <span className={`text-2xl font-bold ${active === key ? "text-primary-foreground" : "text-primary"}`}>{loc.initial}</span>
                   </div>
-                  <h3 className="text-lg font-bold mb-1">{loc.name}</h3>
+                  <h3 className="text-xl font-bold mb-2">{loc.name}</h3>
                   <p className={`text-sm leading-relaxed ${active === key ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{loc.address}</p>
                 </motion.button>
               );
@@ -253,42 +253,42 @@ export default function LocationsPage() {
           {/* Team at Location */}
           <AnimatePresence mode="wait">
             <motion.div key={active} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.4, ease }}>
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Team at {locationData[active].name}</h2>
-              <p className="text-muted-foreground mb-10 max-w-xl">Our expert aestheticians and clinicians are specially trained for the treatments offered at this location.</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3 tracking-tight">Team at {locationData[active].name}</h2>
+              <p className="text-muted-foreground mb-12 max-w-xl text-lg leading-relaxed">Our expert aestheticians and clinicians are specially trained for the treatments offered at this location.</p>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-20">
                 {filteredTeam.map((member, i) => (
                   <motion.div
                     key={member.name}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: i * 0.06, ease }}
+                    transition={{ duration: 0.45, delay: i * 0.07, ease }}
                     onClick={() => setSelectedMember(member)}
-                    className="bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer group border border-border/30"
+                    className="bg-card rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-1 transition-all duration-400 cursor-pointer group border border-border/20"
                   >
-                    <div className="aspect-square overflow-hidden bg-muted">
-                      <img src={member.img} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" />
+                    <div className="aspect-[4/5] overflow-hidden bg-muted">
+                      <img src={member.img} alt={member.name} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.05]" loading="lazy" />
                     </div>
-                    <div className="p-5">
-                      <h3 className="font-bold text-foreground text-sm">{member.name}</h3>
-                      <p className="text-xs text-muted-foreground mt-1">{member.role}</p>
+                    <div className="p-6">
+                      <h3 className="font-bold text-foreground text-base mb-1">{member.name}</h3>
+                      <p className="text-sm text-primary font-medium">{member.role}</p>
                     </div>
                   </motion.div>
                 ))}
               </div>
 
               {/* Services at Location */}
-              <div className="bg-card rounded-2xl border border-border/30 p-8 md:p-10">
-                <h3 className="text-xl font-bold text-foreground mb-6">Services Available at {locationData[active].name}</h3>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="bg-card rounded-3xl border border-border/20 p-10 md:p-12 shadow-sm">
+                <h3 className="text-2xl font-bold text-foreground mb-8 tracking-tight">Services Available at {locationData[active].name}</h3>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
                   {services.map((s) => {
                     const Icon = treatmentIcons[s] || Sparkles;
                     return (
-                      <div key={s} className="flex items-center gap-3 p-3 rounded-xl bg-accent/30">
-                        <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                          <Icon className="h-4 w-4 text-primary" />
+                      <div key={s} className="flex items-center gap-4 p-4 rounded-2xl bg-accent/30 hover:bg-accent/50 transition-colors duration-200">
+                        <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                          <Icon className="h-5 w-5 text-primary" />
                         </div>
-                        <span className="text-sm font-medium text-foreground">{s}</span>
+                        <span className="text-sm font-semibold text-foreground">{s}</span>
                       </div>
                     );
                   })}
@@ -309,58 +309,58 @@ export default function LocationsPage() {
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, ease }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-card rounded-2xl shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto"
+              className="bg-card rounded-3xl shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto"
             >
               <div className="relative">
-                <button onClick={() => setSelectedMember(null)} className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors">
+                <button onClick={() => setSelectedMember(null)} className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-background/80 backdrop-blur-sm flex items-center justify-center hover:bg-background transition-colors">
                   <X className="h-4 w-4 text-foreground" />
                 </button>
 
                 <div className="flex flex-col md:flex-row">
                   <div className="md:w-2/5 aspect-square md:aspect-auto bg-muted shrink-0">
-                    <img src={selectedMember.img} alt={selectedMember.name} className="w-full h-full object-cover md:rounded-l-2xl" />
+                    <img src={selectedMember.img} alt={selectedMember.name} className="w-full h-full object-cover md:rounded-l-3xl" />
                   </div>
 
-                  <div className="flex-1 p-6 md:p-8 space-y-5">
+                  <div className="flex-1 p-7 md:p-9 space-y-6">
                     <div>
                       <h2 className="text-xl font-bold text-foreground">{selectedMember.name}</h2>
-                      <p className="text-sm text-primary font-semibold">{selectedMember.role}</p>
+                      <p className="text-sm text-primary font-semibold mt-1">{selectedMember.role}</p>
                     </div>
 
                     {/* Social */}
-                    <div className="flex gap-2">
+                    <div className="flex gap-2.5">
                       {selectedMember.instagram ? (
-                        <a href={selectedMember.instagram} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-accent flex items-center justify-center hover:bg-accent/70 transition-colors">
-                          <Instagram className="h-3.5 w-3.5 text-accent-foreground" />
+                        <a href={selectedMember.instagram} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-accent flex items-center justify-center hover:bg-accent/70 transition-colors">
+                          <Instagram className="h-4 w-4 text-accent-foreground" />
                         </a>
                       ) : (
-                        <span className="w-8 h-8 rounded-full bg-accent/50 flex items-center justify-center"><Instagram className="h-3.5 w-3.5 text-muted-foreground/50" /></span>
+                        <span className="w-9 h-9 rounded-full bg-accent/50 flex items-center justify-center"><Instagram className="h-4 w-4 text-muted-foreground/50" /></span>
                       )}
                       {selectedMember.linkedin ? (
-                        <a href={selectedMember.linkedin} target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-accent flex items-center justify-center hover:bg-accent/70 transition-colors">
-                          <Linkedin className="h-3.5 w-3.5 text-accent-foreground" />
+                        <a href={selectedMember.linkedin} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-accent flex items-center justify-center hover:bg-accent/70 transition-colors">
+                          <Linkedin className="h-4 w-4 text-accent-foreground" />
                         </a>
                       ) : (
-                        <span className="w-8 h-8 rounded-full bg-accent/50 flex items-center justify-center"><Linkedin className="h-3.5 w-3.5 text-muted-foreground/50" /></span>
+                        <span className="w-9 h-9 rounded-full bg-accent/50 flex items-center justify-center"><Linkedin className="h-4 w-4 text-muted-foreground/50" /></span>
                       )}
                     </div>
 
                     {/* Bio */}
                     <div>
-                      <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-1.5">My Journey at Ageless Living</h3>
+                      <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">My Journey at Ageless Living</h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">{selectedMember.bio}</p>
                     </div>
 
                     {/* Services */}
                     {selectedMember.treatments.length > 0 && (
                       <div>
-                        <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">Services I Provide</h3>
-                        <ul className="space-y-1.5">
+                        <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2.5">Services I Provide</h3>
+                        <ul className="space-y-2">
                           {selectedMember.treatments.map((t) => {
                             const Icon = treatmentIcons[t] || Sparkles;
                             return (
-                              <li key={t} className="flex items-center gap-2.5 text-sm text-foreground">
-                                <div className="w-6 h-6 rounded-md bg-primary/10 flex items-center justify-center shrink-0"><Icon className="h-3 w-3 text-primary" /></div>
+                              <li key={t} className="flex items-center gap-3 text-sm text-foreground">
+                                <div className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0"><Icon className="h-3.5 w-3.5 text-primary" /></div>
                                 {t}
                               </li>
                             );
@@ -370,7 +370,7 @@ export default function LocationsPage() {
                     )}
 
                     {/* Availability */}
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2.5 text-sm text-muted-foreground">
                       <Clock className="h-4 w-4 text-primary" />
                       <span>{selectedMember.availability}</span>
                     </div>
@@ -380,7 +380,7 @@ export default function LocationsPage() {
                       <Link
                         to="/book"
                         onClick={() => setSelectedMember(null)}
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97] w-full justify-center"
+                        className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97] w-full justify-center text-sm"
                       >
                         Book with {selectedMember.name.split(",")[0].split(" ")[0]} <ArrowRight className="h-4 w-4" />
                       </Link>
