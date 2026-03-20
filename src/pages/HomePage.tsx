@@ -31,6 +31,7 @@ export default function HomePage() {
       <Hero />
       <Reviews />
       <HomeTeaser />
+      <VisitUs />
     </>
   );
 }
