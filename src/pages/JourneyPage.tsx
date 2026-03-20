@@ -12,7 +12,7 @@ const steps = [
 ];
 
 export default function JourneyPage() {
-  const [videoPlaying, setVideoPlaying] = useState(false);
+  // Video placeholder — replace with real YouTube IDs when available
 
   return (
     <>
