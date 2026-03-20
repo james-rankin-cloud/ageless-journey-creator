@@ -45,7 +45,7 @@ export default function VisitUs() {
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">{loc.address}</p>
               <div className="flex items-center justify-center gap-1 mb-5">
                 {Array.from({ length: 5 }).map((_, j) => (
-                  <Star key={j} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                  <Star key={j} className="h-4 w-4 text-amber-400 fill-amber-400" />
                 ))}
                 <span className="text-sm font-semibold text-foreground ml-1.5">{loc.rating}</span>
                 <span className="text-xs text-muted-foreground ml-1">({loc.reviews} reviews)</span>
