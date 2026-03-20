@@ -1,29 +1,20 @@
 import { motion } from "framer-motion";
 import { Star, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImg from "@/assets/hero-clinic.jpg";
 import icon from "@/assets/ageless-icon.png";
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-wellness-cream">
-      {/* Background image */}
       <div className="absolute inset-0">
-        <img
-          src={heroImg}
-          alt="Ageless Living™ Wellness Centre interior"
-          className="w-full h-full object-cover"
-          loading="eager"
-        />
+        <img src={heroImg} alt="Ageless Living™ Wellness Centre interior" className="w-full h-full object-cover" loading="eager" />
         <div className="absolute inset-0 bg-gradient-to-r from-card/95 via-card/80 to-card/30" />
       </div>
 
       <div className="relative container mx-auto section-padding pt-32 pb-20">
         <div className="max-w-2xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <motion.div initial={{ opacity: 0, y: 20, filter: "blur(4px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
             <img src={icon} alt="" className="h-12 w-12 mb-6" aria-hidden />
           </motion.div>
 
@@ -52,21 +43,14 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           >
-            <a
-              href="#journey"
-              className="px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
-            >
-              Start Your Journey
-            </a>
-            <a
-              href="#booking"
-              className="px-8 py-3.5 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 active:scale-[0.97]"
-            >
+            <Link to="/treatments" className="px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]">
+              Explore Treatments
+            </Link>
+            <Link to="/book" className="px-8 py-3.5 rounded-full border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-primary-foreground transition-all duration-200 active:scale-[0.97]">
               Book Now
-            </a>
+            </Link>
           </motion.div>
 
-          {/* Trust bar */}
           <motion.div
             className="mt-12 flex flex-wrap items-center gap-6 text-sm text-muted-foreground"
             initial={{ opacity: 0 }}
