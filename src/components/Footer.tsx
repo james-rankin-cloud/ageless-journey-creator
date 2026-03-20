@@ -31,7 +31,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-14 lg:gap-16 mb-20">
           {/* Brand */}
           <div className="space-y-6">
-            <img src={logo} alt="Ageless Living™" className="h-10 brightness-0 invert" />
+            <img src={logo} alt="Ageless Living™" className="h-10" />
             <p className="text-sm leading-[1.9] text-white/50 max-w-xs">
               Modern treatments, expert guidance, and a commitment to helping you live better — at any age.
             </p>
