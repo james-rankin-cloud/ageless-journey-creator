@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Bot, User } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -11,13 +12,15 @@ const quickReplies = [
 ];
 
 const autoResponses: Record<string, string> = {
-  fatigue: "Great question! Our **Biohacking** program with IV NAD+ and our **Hormone Balancing** assessment are both excellent for fighting fatigue. Many clients see improvements within their first few sessions. Would you like to [book a consultation](#booking)?",
-  hormone: "We offer comprehensive hormone testing at all three locations. The process starts with a blood panel, followed by a personalized bio-identical hormone restoration plan. [Book your assessment here](#booking)!",
-  energy: "For better energy, I'd recommend starting with our **Biohacking** program — IV therapy, NAD+, and peptide protocols designed to optimize your cellular performance. [Schedule a consultation](#booking) to get started!",
-  weight: "Our **Health Weight** program combines metabolic testing, nutrition science, and ongoing clinician support. It's medically supervised for lasting results. [Learn more & book](#booking).",
+  fatigue: "Great question! Our **Biohacking** program with IV NAD+ and our **Hormone Balancing** assessment are both excellent for fighting fatigue. Many clients see improvements within their first few sessions. Would you like to [book a consultation](/book)?",
+  hormone: "We offer comprehensive hormone testing at all three locations. The process starts with a blood panel, followed by a personalized bio-identical hormone restoration plan. [Book your assessment here](/book)!",
+  energy: "For better energy, I'd recommend starting with our **Biohacking** program — IV therapy, NAD+, and peptide protocols designed to optimize your cellular performance. [Schedule a consultation](/book) to get started!",
+  weight: "Our **Health Weight** program combines metabolic testing, nutrition science, and ongoing clinician support. It's medically supervised for lasting results. [Learn more & book](/book).",
   location: "We have three locations across BC:\n\n• **Langley** — 20689 Fraser Hwy\n• **Victoria** — 740 Hillside Ave #120\n• **Kelowna** — 1708 Dolphin Ave #101\n\nAll open Mon–Fri, 9am–5pm!",
-  book: "You can book directly through our Jane App integration! Just head to the [Book Now](#booking) section above, select your location and preferred clinician, and you're all set.",
-  skin: "Our **Skin Rejuvenation** treatments include laser therapy, medical-grade skincare protocols, and aesthetic treatments tailored to your skin type. [Book a skin consultation](#booking)!",
+  book: "You can book directly on our [Book Now](/book) page! Select your location, choose your services, pick a clinician, and confirm your appointment.",
+  skin: "Our **Skin Rejuvenation** treatments include laser therapy, medical-grade skincare protocols, and aesthetic treatments tailored to your skin type. [Book a skin consultation](/book)!",
+  bundle: "We have at-home bundles that match our in-clinic services! Check out our [Shop page](/shop) for Energy Boost, Skin Renewal, and Hormone Support bundles — all available on our secure Square store.",
+  product: "We only endorse products we trust in clinic. Visit our [Shop page](/shop) to browse our curated collections on Square.",
 };
 
 function getResponse(input: string): string {
@@ -25,13 +28,14 @@ function getResponse(input: string): string {
   for (const [key, val] of Object.entries(autoResponses)) {
     if (lower.includes(key)) return val;
   }
-  return "Thanks for reaching out! I'd love to help. For detailed questions about treatments or booking, I recommend speaking with our team directly. You can [book a consultation](#booking) or call any of our locations. Is there anything specific I can help with?";
+  return "Thanks for reaching out! I'd love to help. For detailed questions about treatments or booking, I recommend speaking with our team directly. You can [book a consultation](/book) or call any of our locations. Is there anything specific I can help with?";
 }
 
 export default function ChatBot() {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Hi! 👋 I'm your Ageless Living™ AI assistant. Ask me about treatments, booking, or our locations — I'm here to help you start your wellness journey!" },
+    { role: "assistant", content: "Hi! 👋 I'm your Ageless Living™ AI assistant. Ask me about treatments, booking, bundles, or our locations — I'm here to help you start your wellness journey!" },
   ]);
   const [input, setInput] = useState("");
 
@@ -45,9 +49,20 @@ export default function ChatBot() {
     }, 600);
   };
 
+  const handleLinkClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === "A") {
+      const href = target.getAttribute("href");
+      if (href && href.startsWith("/")) {
+        e.preventDefault();
+        setOpen(false);
+        navigate(href);
+      }
+    }
+  };
+
   return (
     <>
-      {/* Floating button */}
       <motion.button
         onClick={() => setOpen(!open)}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-xl shadow-primary/30 flex items-center justify-center hover:shadow-primary/40 transition-shadow duration-200 active:scale-95"
@@ -58,7 +73,6 @@ export default function ChatBot() {
         {open ? <X className="h-5 w-5" /> : <MessageCircle className="h-5 w-5" />}
       </motion.button>
 
-      {/* Chat panel */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -69,7 +83,6 @@ export default function ChatBot() {
             className="fixed bottom-24 right-6 z-50 w-[360px] max-w-[calc(100vw-3rem)] bg-card rounded-2xl shadow-2xl border border-border overflow-hidden flex flex-col"
             style={{ height: 480 }}
           >
-            {/* Header */}
             <div className="px-5 py-4 bg-primary text-primary-foreground flex items-center gap-3">
               <Bot className="h-5 w-5" />
               <div>
@@ -78,8 +91,7 @@ export default function ChatBot() {
               </div>
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3" onClick={handleLinkClick}>
               {messages.map((m, i) => (
                 <div key={i} className={`flex gap-2 ${m.role === "user" ? "justify-end" : ""}`}>
                   {m.role === "assistant" && (
@@ -109,7 +121,6 @@ export default function ChatBot() {
               ))}
             </div>
 
-            {/* Quick replies */}
             {messages.length <= 1 && (
               <div className="px-4 pb-2 flex flex-wrap gap-2">
                 {quickReplies.map((q) => (
@@ -124,7 +135,6 @@ export default function ChatBot() {
               </div>
             )}
 
-            {/* Input */}
             <div className="px-4 py-3 border-t border-border flex gap-2">
               <input
                 value={input}
