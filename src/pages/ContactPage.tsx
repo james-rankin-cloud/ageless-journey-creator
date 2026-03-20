@@ -35,8 +35,8 @@ export default function ContactPage() {
   return (
     <>
       <Helmet>
-        <title>Contact | Ageless Living™ — Visit Our Locations</title>
-        <meta name="description" content="Find Ageless Living™ Wellness Centre in Langley, Victoria, or Kelowna. Get directions, call us, or drop by — we'd love to welcome you." />
+        <title>Contact | Ageless Living™ — Our Locations in BC</title>
+        <meta name="description" content="Find Ageless Living™ Wellness Centre in Langley, Victoria, or Kelowna. Get directions or give us a call." />
       </Helmet>
 
       <section className="pt-32 pb-24 bg-card">
@@ -49,10 +49,10 @@ export default function ContactPage() {
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Contact Us</p>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-[1.1]">
-              Visit Us in Person
+              Our Locations
             </h1>
             <p className="text-muted-foreground leading-relaxed text-lg">
-              Three locations across British Columbia, ready to welcome you.
+              Three locations across British Columbia.
             </p>
           </motion.div>
 
@@ -112,16 +112,6 @@ export default function ContactPage() {
               </motion.div>
             ))}
           </div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="text-center text-sm text-muted-foreground mt-14"
-          >
-            Call or visit us — we'd love to welcome you in person.
-          </motion.p>
         </div>
       </section>
     </>
