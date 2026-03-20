@@ -1,19 +1,54 @@
 import { Helmet } from "react-helmet-async";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, User, Check, ChevronRight, LogIn, Clock } from "lucide-react";
+import { Calendar, User, Check, ChevronRight, LogIn, Clock, ChevronDown } from "lucide-react";
 
 type Location = "langley" | "kelowna" | "victoria";
 
-const services = [
-  "Initial Consultation",
-  "Hormone Balancing Assessment",
-  "Skin Rejuvenation Treatment",
-  "Biohacking / IV Therapy",
-  "Health Weight Program",
+const mainServices = [
+  "Skin Rejuvenation",
+  "Hormone Balancing",
+  "Biohacking",
+  "Health Weight",
   "Follow-up Appointment",
-  "Aesthetic Treatment",
+  "Initial Consultation",
 ];
+
+const subServiceMap: Record<string, { name: string; locationNote?: string }[]> = {
+  "Skin Rejuvenation": [
+    { name: "Botox / Dysport" },
+    { name: "Cosmetic Dermal Filler" },
+    { name: "Customized UltraFacial" },
+    { name: "Laser & IPL/BBL Photorejuvenation" },
+    { name: "The Perfect Derma™ Peel" },
+    { name: "Medical Microneedling" },
+    { name: "Belkyra™" },
+    { name: "Dermaplaning" },
+  ],
+  "Biohacking": [
+    { name: "Red Light Therapy (PBM)", locationNote: "Kelowna only" },
+    { name: "IV Therapy" },
+    { name: "Hyperbaric Oxygen Therapy (HBOT)", locationNote: "Kelowna only" },
+    { name: "Neurointegrator", locationNote: "Kelowna only" },
+    { name: "Brain Tap", locationNote: "Kelowna only" },
+    { name: "Far Infrared Sauna", locationNote: "Kelowna only" },
+    { name: "NuCalm", locationNote: "Kelowna only" },
+    { name: "PEMF Therapy", locationNote: "Kelowna only" },
+  ],
+  "Hormone Balancing": [
+    { name: "Bio-Identical Hormone Replacement (BHRT)" },
+    { name: "Comprehensive Blood Panels" },
+    { name: "Thyroid Optimization" },
+    { name: "Testosterone Therapy" },
+    { name: "Progesterone & Estrogen Protocols" },
+  ],
+  "Health Weight": [
+    { name: "GLP-1 Support (Semaglutide)" },
+    { name: "Metabolic Testing" },
+    { name: "InBody Composition Analysis" },
+    { name: "Nutritional Counseling" },
+  ],
+};
 
 const cliniciansByLocation: Record<Location, { name: string; specialty: string; img: string; avail: string[] }[]> = {
   langley: [
@@ -36,16 +71,15 @@ const cliniciansByLocation: Record<Location, { name: string; specialty: string; 
   ],
 };
 
-// Generate realistic available time slots
 function generateSlots(day: number) {
   const slots = ["9:00 AM", "9:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM", "3:00 PM", "3:30 PM", "4:00 PM"];
-  // Pseudo-random removal based on day to simulate real availability
   return slots.filter((_, i) => (i + day) % 3 !== 0);
 }
 
 export default function BookNowPage() {
   const [location, setLocation] = useState<Location>("langley");
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const [selectedMain, setSelectedMain] = useState<string | null>(null);
+  const [selectedSubs, setSelectedSubs] = useState<string[]>([]);
   const [selectedClinician, setSelectedClinician] = useState<string | null>(null);
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
@@ -53,7 +87,6 @@ export default function BookNowPage() {
 
   const clinicians = cliniciansByLocation[location];
 
-  // Generate next 14 available dates
   const availableDates = useMemo(() => {
     const dates: Date[] = [];
     const now = new Date();
@@ -65,16 +98,32 @@ export default function BookNowPage() {
     return dates;
   }, []);
 
-  const toggleService = (s: string) => {
-    setSelectedServices((prev) => prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s]);
+  const selectMain = (s: string) => {
+    if (selectedMain === s) {
+      setSelectedMain(null);
+      setSelectedSubs([]);
+    } else {
+      setSelectedMain(s);
+      setSelectedSubs([]);
+    }
   };
 
-  const step = confirmed ? 5 : selectedTime ? 4 : selectedDate !== null ? 3 : selectedServices.length > 0 ? 2 : 1;
+  const toggleSub = (sub: string) => {
+    setSelectedSubs((prev) => prev.includes(sub) ? prev.filter((x) => x !== sub) : [...prev, sub]);
+  };
 
+  const hasSelection = selectedMain !== null;
+  const subOptions = selectedMain ? subServiceMap[selectedMain] : undefined;
+
+  const step = confirmed ? 5 : selectedTime ? 4 : selectedDate !== null ? 3 : hasSelection ? 2 : 1;
   const handleConfirm = () => setConfirmed(true);
 
   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  const summaryServices = selectedSubs.length > 0
+    ? `${selectedMain} — ${selectedSubs.join(", ")}`
+    : selectedMain || "";
 
   return (
     <>
@@ -130,37 +179,80 @@ export default function BookNowPage() {
               </div>
             </div>
 
-            {/* Step 2: Services */}
+            {/* Step 2: Main Service + Sub-services */}
             <div className="mb-10">
               <h2 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
                 <span className={`w-7 h-7 rounded-full text-xs font-bold flex items-center justify-center ${step >= 2 ? "bg-primary text-primary-foreground" : "bg-secondary text-muted-foreground"}`}>2</span>
-                Choose Service(s)
+                Choose Service
               </h2>
               <div className="grid sm:grid-cols-2 gap-3">
-                {services.map((s) => (
+                {mainServices.map((s) => (
                   <button
                     key={s}
-                    onClick={() => toggleService(s)}
+                    onClick={() => selectMain(s)}
                     className={`flex items-center gap-3 p-4 rounded-xl text-left text-sm font-medium transition-all duration-200 active:scale-[0.97] ${
-                      selectedServices.includes(s)
+                      selectedMain === s
                         ? "bg-accent border-2 border-primary text-foreground shadow-sm"
                         : "bg-card border-2 border-border text-muted-foreground hover:border-primary/40"
                     }`}
                   >
-                    <div className={`w-5 h-5 rounded border-2 flex items-center justify-center shrink-0 transition-colors ${
-                      selectedServices.includes(s) ? "bg-primary border-primary" : "border-border"
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-colors ${
+                      selectedMain === s ? "bg-primary border-primary" : "border-border"
                     }`}>
-                      {selectedServices.includes(s) && <Check className="h-3 w-3 text-primary-foreground" />}
+                      {selectedMain === s && <Check className="h-3 w-3 text-primary-foreground" />}
                     </div>
-                    {s}
+                    <span className="flex-1">{s}</span>
+                    {subServiceMap[s] && <ChevronDown className={`h-4 w-4 transition-transform ${selectedMain === s ? "rotate-180 text-primary" : "text-muted-foreground"}`} />}
                   </button>
                 ))}
               </div>
+
+              {/* Sub-services */}
+              <AnimatePresence>
+                {subOptions && subOptions.length > 0 && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="mt-4 p-5 rounded-2xl bg-accent/40 border border-border/30">
+                      <p className="text-sm font-semibold text-foreground mb-3 flex items-center gap-1.5">
+                        <ChevronRight className="h-3.5 w-3.5 text-primary" />
+                        Select specific {selectedMain} services (optional)
+                      </p>
+                      <div className="grid sm:grid-cols-2 gap-2">
+                        {subOptions.map((sub) => (
+                          <button
+                            key={sub.name}
+                            onClick={() => toggleSub(sub.name)}
+                            className={`flex items-center gap-2.5 p-3 rounded-xl text-left text-sm transition-all duration-200 active:scale-[0.98] ${
+                              selectedSubs.includes(sub.name)
+                                ? "bg-card border-2 border-primary shadow-sm"
+                                : "bg-card/50 border-2 border-transparent hover:border-border"
+                            }`}
+                          >
+                            <div className={`w-4 h-4 rounded border-2 flex items-center justify-center shrink-0 ${
+                              selectedSubs.includes(sub.name) ? "bg-primary border-primary" : "border-border"
+                            }`}>
+                              {selectedSubs.includes(sub.name) && <Check className="h-2.5 w-2.5 text-primary-foreground" />}
+                            </div>
+                            <span className="flex-1 text-foreground">{sub.name}</span>
+                            {sub.locationNote && (
+                              <span className="text-[10px] px-2 py-0.5 rounded-full bg-primary/10 text-primary font-medium shrink-0">{sub.locationNote}</span>
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             {/* Step 3: Clinician + Date */}
             <AnimatePresence>
-              {selectedServices.length > 0 && (
+              {hasSelection && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
@@ -172,7 +264,6 @@ export default function BookNowPage() {
                     Preferred Clinician &amp; Date
                   </h2>
 
-                  {/* Clinician cards */}
                   <p className="text-sm text-muted-foreground mb-3">Choose a clinician (optional — select "Any Available" for first opening)</p>
                   <div className="grid sm:grid-cols-2 gap-3 mb-6">
                     <button
@@ -205,7 +296,6 @@ export default function BookNowPage() {
                     ))}
                   </div>
 
-                  {/* Date picker */}
                   <p className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
                     <Calendar className="h-4 w-4 text-primary" /> Select a Date
                   </p>
@@ -271,7 +361,7 @@ export default function BookNowPage() {
                     <h2 className="text-lg font-bold text-foreground mb-4">Booking Summary</h2>
                     <div className="space-y-2 text-sm mb-6">
                       <p><strong className="text-foreground">Location:</strong> <span className="text-muted-foreground">{location.charAt(0).toUpperCase() + location.slice(1)}</span></p>
-                      <p><strong className="text-foreground">Services:</strong> <span className="text-muted-foreground">{selectedServices.join(", ")}</span></p>
+                      <p><strong className="text-foreground">Services:</strong> <span className="text-muted-foreground">{summaryServices}</span></p>
                       <p><strong className="text-foreground">Clinician:</strong> <span className="text-muted-foreground">{selectedClinician || "Any Available"}</span></p>
                       <p><strong className="text-foreground">Date:</strong> <span className="text-muted-foreground">{selectedDate !== null && availableDates[selectedDate] ? availableDates[selectedDate].toLocaleDateString("en-CA", { weekday: "long", month: "long", day: "numeric" }) : ""}</span></p>
                       <p><strong className="text-foreground">Time:</strong> <span className="text-muted-foreground">{selectedTime}</span></p>
@@ -303,7 +393,7 @@ export default function BookNowPage() {
                     <p className="text-muted-foreground mb-6">You'll receive a confirmation email shortly with all the details.</p>
                     <div className="bg-card rounded-xl p-4 text-sm text-left space-y-1 max-w-sm mx-auto">
                       <p><strong>{location.charAt(0).toUpperCase() + location.slice(1)}</strong></p>
-                      <p>{selectedServices.join(", ")}</p>
+                      <p>{summaryServices}</p>
                       <p>{selectedClinician || "Any Available Clinician"}</p>
                       <p>{selectedDate !== null && availableDates[selectedDate] ? availableDates[selectedDate].toLocaleDateString("en-CA", { weekday: "long", month: "long", day: "numeric" }) : ""} at {selectedTime}</p>
                     </div>

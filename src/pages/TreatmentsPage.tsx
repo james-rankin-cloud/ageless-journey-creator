@@ -1,49 +1,92 @@
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, MessageSquare, ClipboardList, Stethoscope, Heart, X, Sparkles, Zap, Shield } from "lucide-react";
+import { ArrowRight, MessageSquare, ClipboardList, Stethoscope, Heart, X, Sparkles, MapPin, Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import skinImg from "@/assets/treatment-skin.jpg";
 import hormoneImg from "@/assets/treatment-hormone.jpg";
 import biohackingImg from "@/assets/treatment-biohacking.jpg";
 import weightImg from "@/assets/treatment-weight.jpg";
 
-const treatments = [
+interface SubService {
+  name: string;
+  desc: string;
+  locations: string;
+}
+
+interface Treatment {
+  title: string;
+  desc: string;
+  img: string;
+  subServices: SubService[];
+  processText?: string;
+  youtubeId: string;
+  videoTitle: string;
+}
+
+const treatments: Treatment[] = [
   {
     title: "Skin Rejuvenation",
     desc: "Advanced aesthetic treatments to restore your skin's youthful glow. From laser therapy to medical-grade skincare protocols tailored to your unique needs.",
     img: skinImg,
-    detailBenefits: "Reduce wrinkles, sun damage, acne scars, and uneven tone. Our clinicians use a combination of microneedling, chemical peels, IPL photofacials, and medical-grade skincare to reveal smoother, brighter skin.",
-    helps: "Fine lines & wrinkles, hyperpigmentation, acne scarring, dull or uneven skin tone, loss of elasticity",
-    technologies: "SkinPen Microneedling, IPL Photofacial, VI Peel, SkinCeuticals Professional Protocols, LED Light Therapy",
-    aestheticianNote: "Your aesthetician will assess your skin's condition, design a phased treatment plan, and adjust products and sessions based on how your skin responds over time.",
+    youtubeId: "ysqJNnXbS0E",
+    videoTitle: "Skin Rejuvenation at Ageless Living",
+    subServices: [
+      { name: "Botox / Dysport", desc: "When performed by our certified and experienced clinical injectors, cosmetic injections can be one of the simplest and most effective ways to take years off your appearance.", locations: "Victoria, Langley, Kelowna" },
+      { name: "Cosmetic Dermal Filler", desc: "Smooth away lines and restore volume quickly and easily with cosmetic dermal fillers. Enhance and contour areas such as cheeks, lips, chin, and jawline. We offer treatments with Restylane®, Revanesse®, PRP, and Sculptra®.", locations: "Victoria, Langley, Kelowna" },
+      { name: "Customized UltraFacial", desc: "Our Victoria and Langley locations offer customized HydraFacials, while our Kelowna location offers customized AquaFirme Facials.", locations: "Victoria, Langley, Kelowna" },
+      { name: "Laser & IPL/BBL Photorejuvenation", desc: "All our locations offer medical-grade laser treatments to reduce sun damage, redness, unwanted hair, and improve skin texture. Our Victoria and Langley locations offer IPL treatments with an ICON® laser, while our Kelowna location provides BBL treatments with a Sciton® laser.", locations: "Victoria, Langley, Kelowna" },
+      { name: "The Perfect Derma™ Peel", desc: "The Perfect Derma™️ Peel is a powerful glutathione peel treatment designed to completely resurface the skin. This system targets stubborn acne, scarring, melasma, and deep hyperpigmentation.", locations: "Victoria, Langley, Kelowna" },
+      { name: "Medical Microneedling", desc: "Medical Microneedling Collagen Induction Therapy introduces controlled micro-injury into the skin, triggering a wound healing response and the release of natural growth factors. Skin texture issues are dramatically improved with a series of treatments.", locations: "Victoria, Langley, Kelowna" },
+      { name: "Belkyra™", desc: "BELKYRA™️ is an injectable used to reduce the fat in the submental area (double chin). It contains a synthetic form of deoxycholic acid, which destroys fat cells when injected.", locations: "Victoria, Langley, Kelowna" },
+      { name: "Dermaplaning", desc: "Dermaplaning is a manual exfoliation technique that removes dead skin cells and vellus hair (peach fuzz) to reveal smoother, brighter skin and enhance product absorption.", locations: "Victoria, Langley, Kelowna" },
+    ],
   },
   {
     title: "Hormone Balancing",
     desc: "Comprehensive hormone testing and bio-identical hormone restoration to reclaim your energy, mood, and vitality at any stage of life.",
     img: hormoneImg,
-    detailBenefits: "Restore hormonal balance using bio-identical hormone replacement therapy (BHRT). Our physicians run comprehensive panels and customize dosing to address fatigue, weight gain, mood swings, and low libido.",
-    helps: "Fatigue & low energy, weight gain, mood instability, low libido, perimenopause & menopause symptoms, andropause",
-    technologies: "Bio-Identical Hormone Replacement Therapy (BHRT), Comprehensive Blood Panels, Thyroid Optimization, Testosterone Therapy, Progesterone & Estrogen Protocols",
-    aestheticianNote: "Our clinicians monitor your hormone levels through regular testing and adjust your protocol as your body responds, ensuring safe and effective results.",
+    youtubeId: "K7XdYmVmJ0A",
+    videoTitle: "Hormones — Ageless Living Episode 27",
+    processText: "The Ageless Living philosophy is deeply rooted in education. We believe that the best outcomes happen when patients understand the why behind their treatment — not just the what. During your initial consultation, we take the time to explain the science of hormone optimization, how imbalances affect your health, and what personalized restoration looks like for you.\n\nPhysician Consult: Our physician conducts a comprehensive health assessment, reviews your detailed bloodwork panel, and identifies hormonal imbalances affecting your energy, mood, weight, sleep, and vitality. Together, you'll design a bio-identical hormone replacement therapy (BHRT) protocol customized to your unique biology.\n\nNutritionist Consultation: Our nutritional practitioner works alongside your physician to create a dietary and supplement plan that supports your hormonal restoration — optimizing gut health, metabolism, and long-term wellness.\n\nFollow Up: Your hormone levels are closely monitored through regular testing. Our clinicians adjust your protocol as your body responds, ensuring safe, effective, and lasting results at every stage of your journey.",
+    subServices: [
+      { name: "Bio-Identical Hormone Replacement (BHRT)", desc: "Customized hormone protocols using bio-identical hormones to restore balance, energy, and vitality.", locations: "Victoria, Langley, Kelowna" },
+      { name: "Comprehensive Blood Panels", desc: "Detailed lab testing to identify hormonal imbalances and guide treatment decisions.", locations: "Victoria, Langley, Kelowna" },
+      { name: "Thyroid Optimization", desc: "Targeted thyroid assessment and treatment to support metabolism and energy levels.", locations: "Victoria, Langley, Kelowna" },
+      { name: "Testosterone Therapy", desc: "Evidence-based testosterone restoration for men and women experiencing low T symptoms.", locations: "Victoria, Langley, Kelowna" },
+      { name: "Progesterone & Estrogen Protocols", desc: "Balanced hormonal support for perimenopause, menopause, and overall hormonal health.", locations: "Victoria, Langley, Kelowna" },
+    ],
   },
   {
     title: "Biohacking",
     desc: "Cutting-edge IV therapy, NAD+, peptides, and longevity protocols designed to optimize your body's performance and slow the aging process.",
     img: biohackingImg,
-    detailBenefits: "Push beyond conventional wellness with IV nutrient therapy, NAD+ infusions, peptide protocols, and advanced longevity strategies used by top-performing athletes and executives.",
-    helps: "Low energy & brain fog, slow recovery, aging & cellular decline, immune support, athletic performance optimization",
-    technologies: "IV Nutrient Therapy, NAD+ Infusions, Peptide Therapy (BPC-157, CJC/Ipamorelin), Glutathione Drips, Vitamin Injections",
-    aestheticianNote: "Your clinician will build a personalized biohacking stack based on your bloodwork, goals, and lifestyle — adjusting frequency and dosing for peak results.",
+    youtubeId: "ysqJNnXbS0E",
+    videoTitle: "Biohacking & Red Light Therapy at Ageless Living",
+    subServices: [
+      { name: "Photobiomodulation (PBM) / Red Light Therapy", desc: "Clinically proven light therapy that stimulates cellular repair, reduces inflammation, boosts collagen, and accelerates healing at the mitochondrial level.", locations: "Kelowna" },
+      { name: "IV Therapy", desc: "Medical-grade intravenous nutrient infusions tailored to your goals — from energy and immunity to recovery and anti-aging. Includes vitamin drips, glutathione, and custom formulations.", locations: "Victoria, Langley, Kelowna" },
+      { name: "Hyperbaric Oxygen Therapy (HBOT)", desc: "Pressurized oxygen therapy that enhances circulation, promotes tissue repair, and supports brain health and athletic recovery.", locations: "Kelowna" },
+      { name: "Neurointegrator", desc: "Advanced neurofeedback technology that helps retrain brain patterns, improve focus, reduce stress, and support mental clarity.", locations: "Kelowna" },
+      { name: "Brain Tap", desc: "Guided audio-visual entrainment sessions designed to reduce stress, enhance sleep quality, and boost cognitive performance.", locations: "Kelowna" },
+      { name: "Far Infrared Sauna", desc: "Deep-penetrating infrared heat therapy for detoxification, muscle recovery, circulation, and relaxation.", locations: "Kelowna" },
+      { name: "NuCalm", desc: "A patented neuroscience-based system that naturally reduces stress and improves recovery by guiding your brain into deep relaxation without drugs.", locations: "Kelowna" },
+      { name: "PEMF (Pulsed Electromagnetic Field Therapy)", desc: "Non-invasive electromagnetic therapy that stimulates cellular repair, reduces pain, and accelerates healing.", locations: "Kelowna" },
+    ],
   },
   {
     title: "Health Weight",
     desc: "Medically supervised weight management combining nutrition science, metabolic testing, and ongoing clinician support for lasting results.",
     img: weightImg,
-    detailBenefits: "Achieve sustainable weight loss with medical supervision, metabolic testing, GLP-1 medication support, and nutrition coaching. Our programs address the root cause — not just the symptoms.",
-    helps: "Stubborn weight, metabolic plateau, insulin resistance, emotional eating patterns, post-pregnancy weight",
-    technologies: "GLP-1 Receptor Agonists (Semaglutide), Metabolic Testing, InBody Composition Analysis, Nutritional Counseling, Meal Planning",
-    aestheticianNote: "Our nutritional practitioners and physicians work together to create a plan that fits your lifestyle, adjusting medications and diet as you progress toward your goal.",
+    youtubeId: "K7XdYmVmJ0A",
+    videoTitle: "Health Weight & Longevity at Ageless Living",
+    processText: "Your weight is a direct function of your diet and metabolism. At Ageless Living, we understand that lasting weight management requires more than willpower — it requires medical insight, metabolic understanding, and ongoing professional support.\n\nWhat makes Ageless Living different? Our program is unique and medically-based. We don't believe in one-size-fits-all diets or trendy shortcuts. Instead, our physicians and nutritional practitioners work together to identify the root causes of weight gain — from hormonal imbalances and insulin resistance to metabolic slowdown and stress — and address them with evidence-based solutions.\n\nWhat is Health Weight? Health Weight is our comprehensive, medically supervised weight management program that combines GLP-1 receptor agonist support (Semaglutide), metabolic testing, InBody composition analysis, nutritional counseling, and personalized meal planning. Every step is guided by our clinical team, with regular check-ins and adjustments to keep you progressing toward your goals safely and sustainably.",
+    subServices: [
+      { name: "GLP-1 Receptor Agonists (Semaglutide)", desc: "Physician-prescribed medication that supports appetite regulation and sustainable weight loss.", locations: "Victoria, Langley, Kelowna" },
+      { name: "Metabolic Testing", desc: "Comprehensive metabolic assessment to understand your body's calorie needs and fat-burning efficiency.", locations: "Victoria, Langley, Kelowna" },
+      { name: "InBody Composition Analysis", desc: "Advanced body composition scanning to track lean mass, fat mass, and hydration over time.", locations: "Victoria, Langley, Kelowna" },
+      { name: "Nutritional Counseling", desc: "Personalized dietary guidance from our clinical nutritionists tailored to your metabolic profile and goals.", locations: "Victoria, Langley, Kelowna" },
+    ],
   },
 ];
 
@@ -57,7 +100,8 @@ const planSteps = [
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function TreatmentsPage() {
-  const [selectedTreatment, setSelectedTreatment] = useState<typeof treatments[0] | null>(null);
+  const [selectedTreatment, setSelectedTreatment] = useState<Treatment | null>(null);
+  const [videoPlaying, setVideoPlaying] = useState(false);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -102,7 +146,7 @@ export default function TreatmentsPage() {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease }}
                 className="group rounded-2xl overflow-hidden bg-card shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-pointer"
-                onClick={() => setSelectedTreatment(t)}
+                onClick={() => { setSelectedTreatment(t); setVideoPlaying(false); }}
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img src={t.img} alt={t.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy" />
@@ -145,12 +189,13 @@ export default function TreatmentsPage() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 24, scale: 0.97 }}
               transition={{ duration: 0.3, ease }}
-              className="bg-card rounded-3xl shadow-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto"
+              className="bg-card rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative h-56 sm:h-64 overflow-hidden rounded-t-3xl">
+              {/* Header image */}
+              <div className="relative h-48 sm:h-56 overflow-hidden rounded-t-3xl">
                 <img src={selectedTreatment.img} alt={selectedTreatment.title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
                 <button
                   onClick={() => setSelectedTreatment(null)}
                   className="absolute top-4 right-4 w-10 h-10 rounded-full bg-card/80 backdrop-blur-md flex items-center justify-center hover:bg-card transition-colors"
@@ -162,45 +207,84 @@ export default function TreatmentsPage() {
                 </div>
               </div>
 
-              <div className="p-6 md:p-8 space-y-6">
+              <div className="p-6 md:p-8 space-y-8">
+                {/* Process text if available */}
+                {selectedTreatment.processText && (
+                  <div>
+                    <div className="flex items-center gap-2 mb-3">
+                      <Stethoscope className="h-4 w-4 text-primary" />
+                      <h4 className="text-sm font-bold uppercase tracking-widest text-primary">The Process</h4>
+                    </div>
+                    <div className="text-sm text-muted-foreground leading-relaxed space-y-3">
+                      {selectedTreatment.processText.split("\n\n").map((p, i) => (
+                        <p key={i}>{p}</p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Sub-services */}
                 <div>
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center gap-2 mb-4">
                     <Sparkles className="h-4 w-4 text-primary" />
-                    <h4 className="text-sm font-bold uppercase tracking-widest text-primary">Benefits</h4>
+                    <h4 className="text-sm font-bold uppercase tracking-widest text-primary">Services Included</h4>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{selectedTreatment.detailBenefits}</p>
-                </div>
-
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Zap className="h-4 w-4 text-primary" />
-                    <h4 className="text-sm font-bold uppercase tracking-widest text-primary">What It Helps</h4>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedTreatment.helps.split(", ").map((item) => (
-                      <span key={item} className="px-3 py-1 rounded-full bg-accent text-xs font-medium text-foreground">{item}</span>
+                  <div className="space-y-3">
+                    {selectedTreatment.subServices.map((sub) => (
+                      <div key={sub.name} className="bg-accent/40 rounded-2xl p-5 border border-border/20">
+                        <h5 className="font-bold text-foreground text-sm mb-1.5">{sub.name}</h5>
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-2">{sub.desc}</p>
+                        <div className="flex items-center gap-1.5 text-xs text-primary font-medium">
+                          <MapPin className="h-3 w-3" />
+                          Available at: {sub.locations}
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </div>
 
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Shield className="h-4 w-4 text-primary" />
-                    <h4 className="text-sm font-bold uppercase tracking-widest text-primary">Technologies & Methods</h4>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedTreatment.technologies.split(", ").map((tech) => (
-                      <span key={tech} className="px-3 py-1.5 rounded-full bg-secondary text-xs font-medium text-foreground border border-border/40">{tech}</span>
-                    ))}
-                  </div>
-                </div>
-
+                {/* Aesthetician note */}
                 <div className="bg-accent/50 rounded-2xl p-5 border border-border/30">
                   <div className="flex items-center gap-2 mb-2">
                     <Stethoscope className="h-4 w-4 text-primary" />
                     <h4 className="text-sm font-bold text-foreground">How Our Aestheticians Guide You</h4>
                   </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{selectedTreatment.aestheticianNote}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Your clinician will assess your unique needs, design a phased treatment plan, and adjust your protocol based on how your body responds — ensuring safe, effective, and lasting results.
+                  </p>
+                </div>
+
+                {/* YouTube Video */}
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Play className="h-4 w-4 text-primary" />
+                    <h4 className="text-sm font-bold uppercase tracking-widest text-primary">Watch & Learn</h4>
+                  </div>
+                  <div className="rounded-2xl overflow-hidden bg-muted aspect-video relative">
+                    {videoPlaying ? (
+                      <iframe
+                        src={`https://www.youtube.com/embed/${selectedTreatment.youtubeId}?autoplay=1&rel=0`}
+                        title={selectedTreatment.videoTitle}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="w-full h-full absolute inset-0"
+                      />
+                    ) : (
+                      <button onClick={() => setVideoPlaying(true)} className="w-full h-full relative group">
+                        <img
+                          src={`https://img.youtube.com/vi/${selectedTreatment.youtubeId}/hqdefault.jpg`}
+                          alt={selectedTreatment.videoTitle}
+                          className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-foreground/20 flex items-center justify-center group-hover:bg-foreground/30 transition-colors">
+                          <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg">
+                            <Play className="h-7 w-7 ml-1" />
+                          </div>
+                        </div>
+                        <p className="absolute bottom-4 left-4 text-sm font-semibold text-white drop-shadow-lg">{selectedTreatment.videoTitle}</p>
+                      </button>
+                    )}
+                  </div>
                 </div>
 
                 <Link
