@@ -261,29 +261,17 @@ export default function TreatmentsPage() {
                     <h4 className="text-sm font-bold uppercase tracking-widest text-primary">Watch & Learn</h4>
                   </div>
                   <div className="rounded-2xl overflow-hidden bg-muted aspect-video relative">
-                    {videoPlaying ? (
-                      <iframe
-                        src={`https://www.youtube.com/embed/${selectedTreatment.youtubeId}?autoplay=1&rel=0`}
-                        title={selectedTreatment.videoTitle}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="w-full h-full absolute inset-0"
-                      />
-                    ) : (
-                      <button onClick={() => setVideoPlaying(true)} className="w-full h-full relative group">
-                        <img
-                          src={`https://img.youtube.com/vi/${selectedTreatment.youtubeId}/hqdefault.jpg`}
-                          alt={selectedTreatment.videoTitle}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-foreground/20 flex items-center justify-center group-hover:bg-foreground/30 transition-colors">
-                          <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg">
-                            <Play className="h-7 w-7 ml-1" />
-                          </div>
-                        </div>
-                        <p className="absolute bottom-4 left-4 text-sm font-semibold text-white drop-shadow-lg">{selectedTreatment.videoTitle}</p>
-                      </button>
-                    )}
+                    <img
+                      src={selectedTreatment.img}
+                      alt={selectedTreatment.videoTitle}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-foreground/40 flex flex-col items-center justify-center gap-3">
+                      <div className="w-16 h-16 rounded-full bg-primary/80 flex items-center justify-center shadow-lg">
+                        <Play className="h-7 w-7 text-primary-foreground ml-1" fill="currentColor" />
+                      </div>
+                      <span className="text-white font-semibold text-sm tracking-wide bg-black/30 px-4 py-1.5 rounded-full backdrop-blur-sm">Video Coming Soon</span>
+                    </div>
                   </div>
                 </div>
 

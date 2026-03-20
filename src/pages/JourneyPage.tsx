@@ -12,7 +12,7 @@ const steps = [
 ];
 
 export default function JourneyPage() {
-  const [videoPlaying, setVideoPlaying] = useState(false);
+  // Video placeholder — replace with real YouTube IDs when available
 
   return (
     <>
@@ -102,31 +102,17 @@ export default function JourneyPage() {
           >
             <div className="bg-card rounded-2xl overflow-hidden shadow-lg border border-border/30">
               <div className="relative aspect-video bg-muted">
-                {videoPlaying ? (
-                  <iframe
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0"
-                    title="Ageless Living — Client Transformation Journey"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                  />
-                ) : (
-                  <button
-                    onClick={() => setVideoPlaying(true)}
-                    className="w-full h-full relative group"
-                  >
-                    <img
-                      src="https://agelessliving.com/wp-content/uploads/2022/06/ageless-langley-clinic-768x512.jpg"
-                      alt="Ageless Living clinic"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-foreground/30 group-hover:bg-foreground/40 transition-colors duration-300 flex items-center justify-center">
-                      <div className="w-20 h-20 rounded-full bg-primary/90 flex items-center justify-center shadow-2xl shadow-primary/40 group-hover:scale-110 transition-transform duration-300">
-                        <Play className="h-8 w-8 text-primary-foreground ml-1" fill="currentColor" />
-                      </div>
-                    </div>
-                  </button>
-                )}
+                <img
+                  src="https://agelessliving.com/wp-content/uploads/2022/06/ageless-langley-clinic-768x512.jpg"
+                  alt="Ageless Living clinic"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-foreground/40 flex flex-col items-center justify-center gap-4">
+                  <div className="w-20 h-20 rounded-full bg-primary/80 flex items-center justify-center shadow-2xl">
+                    <Play className="h-8 w-8 text-primary-foreground ml-1" fill="currentColor" />
+                  </div>
+                  <span className="text-white font-semibold text-lg tracking-wide bg-black/30 px-5 py-2 rounded-full backdrop-blur-sm">Video Coming Soon</span>
+                </div>
               </div>
               <div className="p-6 text-center">
                 <p className="text-sm text-muted-foreground mb-4">
