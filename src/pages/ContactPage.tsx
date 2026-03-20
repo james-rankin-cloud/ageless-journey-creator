@@ -1,89 +1,127 @@
 import { Helmet } from "react-helmet-async";
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Mail, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Navigation } from "lucide-react";
 
 const locations = [
-  { name: "Langley", address: "20689 Fraser Hwy, Langley, BC V3A 4G4", phone: "(604) 427-0120" },
-  { name: "Victoria", address: "740 Hillside Ave #120, Victoria, BC V8T 1Z4", phone: "(250) 590-5321" },
-  { name: "Kelowna", address: "1708 Dolphin Ave #101, Kelowna, BC V1Y 9S4", phone: "(250) 868-9289" },
+  {
+    name: "Langley",
+    address: "415-20178 96th Ave, Langley, BC V1M 0B2",
+    phone: "+1 (236) 326-6830",
+    email: "langley@agelessliving.ca",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2614.0!2d-122.6586!3d49.1784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDnCsDEwJzQyLjIiTiAxMjLCsDM5JzMxLjAiVw!5e0!3m2!1sen!2sca!4v1",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=415-20178+96th+Ave,+Langley,+BC+V1M+0B2",
+  },
+  {
+    name: "Victoria",
+    address: "1-101 Burnside Rd W, Victoria, BC V9A 1B7",
+    phone: "+1 (250) 590-5787",
+    email: "wellness@agelessliving.ca",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2647.0!2d-123.3774!3d48.4450!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDI2JzQyLjAiTiAxMjPCsDIyJzM4LjYiVw!5e0!3m2!1sen!2sca!4v1",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=1-101+Burnside+Rd+W,+Victoria,+BC+V9A+1B7",
+  },
+  {
+    name: "Kelowna",
+    address: "102-3320 Richter Street, Kelowna, BC V1W 4V5",
+    phone: "+1 (778) 760-9827",
+    email: "kelowna@agelessliving.ca",
+    mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2564.0!2d-119.4960!3d49.8710!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDnCsDUyJzE1LjYiTiAxMTnCsDI5JzQ1LjYiVw!5e0!3m2!1sen!2sca!4v1",
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=102-3320+Richter+Street,+Kelowna,+BC+V1W+4V5",
+  },
 ];
 
+const ease = [0.16, 1, 0.3, 1] as const;
+
 export default function ContactPage() {
-  const [formState, setFormState] = useState({ name: "", email: "", message: "", location: "Langley" });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
   return (
     <>
       <Helmet>
-        <title>Contact | Ageless Living™ — Get in Touch</title>
-        <meta name="description" content="Contact Ageless Living™ Wellness Centre. Reach us at our Langley, Victoria, or Kelowna locations." />
+        <title>Contact | Ageless Living™ — Visit Our Locations</title>
+        <meta name="description" content="Find Ageless Living™ Wellness Centre in Langley, Victoria, or Kelowna. Get directions, call us, or drop by — we'd love to welcome you." />
       </Helmet>
 
       <section className="pt-32 pb-24 bg-card">
         <div className="container mx-auto section-padding">
-          <div className="grid lg:grid-cols-2 gap-16">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Contact Us</p>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-[1.1]">Let's Start a Conversation</h1>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease }}
+            className="max-w-2xl mb-14"
+          >
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Contact Us</p>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-[1.1]">
+              Visit Us in Person
+            </h1>
+            <p className="text-muted-foreground leading-relaxed text-lg">
+              Three locations across British Columbia, ready to welcome you.
+            </p>
+          </motion.div>
 
-              {submitted ? (
-                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="bg-accent rounded-2xl p-8 text-center">
-                  <p className="text-lg font-bold text-foreground mb-2">Thank you!</p>
-                  <p className="text-muted-foreground">We've received your message and will get back to you shortly.</p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <input type="text" placeholder="Your Name" required value={formState.name} onChange={(e) => setFormState({ ...formState, name: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-border bg-card text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30" />
-                  <input type="email" placeholder="Email Address" required value={formState.email} onChange={(e) => setFormState({ ...formState, email: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-border bg-card text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30" />
-                  <select value={formState.location} onChange={(e) => setFormState({ ...formState, location: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-border bg-card text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30">
-                    {locations.map((l) => <option key={l.name}>{l.name}</option>)}
-                  </select>
-                  <textarea placeholder="Your Message" rows={4} required value={formState.message} onChange={(e) => setFormState({ ...formState, message: e.target.value })} className="w-full px-4 py-3 rounded-xl border border-border bg-card text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none" />
-                  <button type="submit" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]">
-                    <Send className="h-4 w-4" /> Send Message
-                  </button>
-                </form>
-              )}
-            </motion.div>
+          <div className="space-y-10">
+            {locations.map((loc, i) => (
+              <motion.div
+                key={loc.name}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease }}
+                className="bg-secondary rounded-3xl overflow-hidden border border-border/40"
+              >
+                <div className="grid lg:grid-cols-2 gap-0">
+                  {/* Info */}
+                  <div className="p-8 lg:p-10 flex flex-col justify-center">
+                    <h2 className="text-2xl font-bold text-foreground mb-5">{loc.name}</h2>
+                    <div className="space-y-3 mb-6">
+                      <p className="flex items-start gap-3 text-sm text-muted-foreground">
+                        <MapPin className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                        {loc.address}
+                      </p>
+                      <a href={`tel:${loc.phone.replace(/[^+\d]/g, "")}`} className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
+                        <Phone className="h-4 w-4 text-primary shrink-0" />
+                        {loc.phone}
+                      </a>
+                      <a href={`mailto:${loc.email}`} className="flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors">
+                        <Mail className="h-4 w-4 text-primary shrink-0" />
+                        {loc.email}
+                      </a>
+                    </div>
+                    <a
+                      href={loc.directionsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold shadow-md shadow-primary/15 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97] w-fit text-sm"
+                    >
+                      <Navigation className="h-4 w-4" /> Get Directions
+                    </a>
+                  </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-6"
-            >
-              <h2 className="text-xl font-bold text-foreground">Our Locations</h2>
-              {locations.map((l) => (
-                <div key={l.name} className="bg-secondary rounded-2xl p-6">
-                  <h3 className="font-bold text-foreground mb-3">{l.name}</h3>
-                  <div className="space-y-2 text-sm text-muted-foreground">
-                    <p className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" />{l.address}</p>
-                    <p className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" />{l.phone}</p>
-                    <p className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" />info@agelessliving.com</p>
+                  {/* Map */}
+                  <div className="h-64 lg:h-auto min-h-[280px]">
+                    <iframe
+                      src={loc.mapSrc}
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title={`Google Maps - ${loc.name} location`}
+                      className="w-full h-full"
+                    />
                   </div>
                 </div>
-              ))}
-
-              <div className="bg-accent rounded-2xl p-6">
-                <h3 className="font-bold text-foreground mb-2">Stay in the Loop</h3>
-                <p className="text-sm text-muted-foreground mb-4">Get wellness tips and exclusive offers.</p>
-                <div className="flex gap-2">
-                  <input type="email" placeholder="your@email.com" className="flex-1 px-4 py-2.5 rounded-xl border border-border bg-card text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30" />
-                  <button className="px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold active:scale-95 transition-transform">Subscribe</button>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            ))}
           </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-center text-sm text-muted-foreground mt-14"
+          >
+            Call or visit us — we'd love to welcome you in person.
+          </motion.p>
         </div>
       </section>
     </>
