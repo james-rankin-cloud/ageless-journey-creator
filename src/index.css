@@ -80,9 +80,6 @@
     @apply px-4 sm:px-6 lg:px-8;
   }
 
-  .font-accent {
-    font-family: 'Inter', system-ui, sans-serif;
-  }
 
   .text-gradient {
     @apply bg-clip-text text-transparent;
