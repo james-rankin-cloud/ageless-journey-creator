@@ -327,7 +327,7 @@ export default function BookNowPage() {
                     Available Times
                   </h2>
                   <div className="flex flex-wrap gap-2">
-                    {generateSlots(selectedDate).map((slot) => (
+                    {generateSlots(selectedDate ? selectedDate.getDate() : 1).map((slot) => (
                       <button
                         key={slot}
                         onClick={() => { setSelectedTime(slot); setConfirmed(false); }}
@@ -358,14 +358,14 @@ export default function BookNowPage() {
                       <p><strong className="text-foreground">Location:</strong> <span className="text-muted-foreground">{location.charAt(0).toUpperCase() + location.slice(1)}</span></p>
                       <p><strong className="text-foreground">Services:</strong> <span className="text-muted-foreground">{summaryServices}</span></p>
                       <p><strong className="text-foreground">Clinician:</strong> <span className="text-muted-foreground">{selectedClinician || "Any Available"}</span></p>
-                      <p><strong className="text-foreground">Date:</strong> <span className="text-muted-foreground">{selectedDate !== null && availableDates[selectedDate] ? availableDates[selectedDate].toLocaleDateString("en-CA", { weekday: "long", month: "long", day: "numeric" }) : ""}</span></p>
+                      <p><strong className="text-foreground">Date:</strong> <span className="text-muted-foreground">{selectedDate ? format(selectedDate, "EEEE, MMMM d") : ""}</span></p>
                       <p><strong className="text-foreground">Time:</strong> <span className="text-muted-foreground">{selectedTime}</span></p>
                     </div>
                     <button
                       onClick={handleConfirm}
-                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
+                      className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
                     >
-                      <Calendar className="h-4 w-4" /> Confirm Booking <ChevronRight className="h-4 w-4" />
+                      <CalendarIcon className="h-4 w-4" /> Confirm Booking <ChevronRight className="h-4 w-4" />
                     </button>
                   </div>
                 </motion.div>
@@ -390,7 +390,7 @@ export default function BookNowPage() {
                       <p><strong>{location.charAt(0).toUpperCase() + location.slice(1)}</strong></p>
                       <p>{summaryServices}</p>
                       <p>{selectedClinician || "Any Available Clinician"}</p>
-                      <p>{selectedDate !== null && availableDates[selectedDate] ? availableDates[selectedDate].toLocaleDateString("en-CA", { weekday: "long", month: "long", day: "numeric" }) : ""} at {selectedTime}</p>
+                      <p>{selectedDate ? format(selectedDate, "EEEE, MMMM d") : ""} at {selectedTime}</p>
                     </div>
                   </div>
                 </motion.div>
