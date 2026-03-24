@@ -222,7 +222,7 @@ export default function ShopPage() {
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent pointer-events-none" />
                     {b.savings && (
-                      <span className="absolute top-4 right-4 px-3 py-1 bg-primary text-primary-foreground text-xs font-bold shadow-md">
+                      <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold shadow-md">
                         {b.savings}
                       </span>
                     )}

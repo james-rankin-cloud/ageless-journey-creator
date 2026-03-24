@@ -170,7 +170,7 @@ export default function TreatmentsPage() {
                     <Link
                       to="/book"
                       onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-foreground text-xs font-semibold shadow-lg hover:bg-primary/90 transition-all duration-200 active:scale-[0.97]"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-primary text-primary-foreground text-xs font-semibold shadow-lg hover:bg-primary/90 transition-all duration-200 active:scale-[0.97]"
                     >
                       Book Now
                     </Link>
