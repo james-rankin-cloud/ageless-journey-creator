@@ -137,7 +137,7 @@ export default function TreatmentsPage() {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 gap-5">
             {treatments.map((t, i) => (
               <motion.div
                 key={t.title}
@@ -145,23 +145,22 @@ export default function TreatmentsPage() {
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease }}
-                className="group rounded-lg overflow-hidden bg-card shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+                className="group relative rounded-lg overflow-hidden cursor-pointer aspect-[5/4]"
                 onClick={() => { setSelectedTreatment(t); setVideoPlaying(false); }}
               >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img src={t.img} alt={t.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy" />
-                </div>
-                <div className="p-4">
-                   <h2 className="text-sm font-bold text-foreground mb-1">{t.title}</h2>
-                  <p className="text-xs text-muted-foreground leading-relaxed mb-3 line-clamp-3">{t.desc}</p>
-                  <div className="flex items-center justify-between">
-                    <button className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-3 transition-all duration-200">
-                      Learn How This Helps You <ArrowRight className="h-4 w-4" />
-                    </button>
+                <img src={t.img} alt={t.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-2">
+                  <h2 className="text-xl font-bold text-white">{t.title}</h2>
+                  <p className="text-sm text-white/75 leading-relaxed line-clamp-2">{t.desc}</p>
+                  <div className="flex items-center justify-between mt-2">
+                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/90 group-hover:gap-3 transition-all duration-200">
+                      Learn More <ArrowRight className="h-4 w-4" />
+                    </span>
                     <Link
                       to="/book"
                       onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 px-5 py-2 rounded-md bg-primary text-primary-foreground text-xs font-semibold shadow-md hover:shadow-lg transition-all duration-200 active:scale-[0.97]"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-white text-foreground text-xs font-semibold shadow-lg hover:bg-primary hover:text-primary-foreground transition-all duration-200 active:scale-[0.97]"
                     >
                       Book Now
                     </Link>
