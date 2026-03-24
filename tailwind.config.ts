@@ -67,7 +67,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["DM Sans", "system-ui", "sans-serif"],
+        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
