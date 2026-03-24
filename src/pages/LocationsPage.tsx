@@ -263,7 +263,7 @@ export default function LocationsPage() {
           </motion.div>
 
           {/* Location tabs */}
-          <div className="grid md:grid-cols-3 gap-6 mb-20">
+          <div className="flex flex-wrap justify-center gap-4 mb-20">
             {(Object.keys(locationData) as Location[]).map((key, i) => {
               const loc = locationData[key];
               return (
@@ -273,17 +273,14 @@ export default function LocationsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.1, ease }}
                   onClick={() => setActive(key)}
-                  className={`text-left rounded-3xl p-8 lg:p-10 transition-all duration-300 ${
+                  className={`text-left rounded-lg px-6 py-5 transition-all duration-300 min-w-[220px] ${
                     active === key
-                      ? "bg-primary text-primary-foreground shadow-2xl shadow-primary/25 scale-[1.02]"
-                      : "bg-card text-foreground border border-border/30 hover:shadow-xl hover:border-primary/20"
+                      ? "bg-primary text-primary-foreground shadow-xl shadow-primary/25"
+                      : "bg-card text-foreground border border-border/30 hover:shadow-lg hover:border-primary/20"
                   }`}
                 >
-                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${active === key ? "bg-primary-foreground/20" : "bg-primary/10"}`}>
-                    <span className={`text-2xl font-bold ${active === key ? "text-primary-foreground" : "text-primary"}`}>{loc.initial}</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">{loc.name}</h3>
-                  <p className={`text-sm leading-relaxed ${active === key ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{loc.address}</p>
+                  <h3 className="text-lg font-bold mb-1">{loc.name}</h3>
+                  <p className={`text-xs leading-relaxed ${active === key ? "text-primary-foreground/70" : "text-muted-foreground"}`}>{loc.address}</p>
                 </motion.button>
               );
             })}
@@ -328,7 +325,7 @@ export default function LocationsPage() {
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3 tracking-tight">Meet the Team at {locationData[active].name}</h2>
                 <p className="text-muted-foreground mb-12 max-w-xl text-lg leading-relaxed">Our expert aestheticians and clinicians are specially trained for the treatments offered at this location.</p>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {filteredTeam.map((member, i) => (
                     <motion.div
                       key={member.name}
@@ -336,14 +333,14 @@ export default function LocationsPage() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.45, delay: i * 0.07, ease }}
                       onClick={() => setSelectedMember(member)}
-                      className="bg-card rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-400 cursor-pointer group border border-border/20"
+                      className="bg-card rounded-lg overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group border border-border/20"
                     >
-                      <div className="aspect-[4/5] overflow-hidden bg-muted">
-                        <img src={member.img} alt={member.name} className="w-full h-full object-cover transition-transform duration-600 group-hover:scale-[1.05]" loading="lazy" />
+                      <div className="aspect-square overflow-hidden bg-muted">
+                        <img src={member.img} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]" loading="lazy" />
                       </div>
-                      <div className="p-7">
-                        <h3 className="font-bold text-foreground text-base mb-1.5">{member.name}</h3>
-                        <p className="text-sm text-primary font-medium">{member.role}</p>
+                      <div className="p-5">
+                        <h3 className="font-bold text-foreground text-sm mb-1">{member.name}</h3>
+                        <p className="text-xs text-primary font-medium">{member.role}</p>
                       </div>
                     </motion.div>
                   ))}
