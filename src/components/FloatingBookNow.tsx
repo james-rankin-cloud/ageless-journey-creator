@@ -12,7 +12,7 @@ export default function FloatingBookNow() {
     >
       <Link
         to="/book"
-        className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold shadow-xl shadow-primary/25 hover:shadow-primary/35 transition-all duration-200 active:scale-[0.97]"
+        className="inline-flex items-center gap-2 px-5 py-3 bg-primary text-primary-foreground text-sm font-semibold shadow-xl shadow-primary/25 hover:shadow-primary/35 transition-all duration-200 active:scale-[0.97]"
       >
         <Calendar className="h-4 w-4" />
         Book Now
