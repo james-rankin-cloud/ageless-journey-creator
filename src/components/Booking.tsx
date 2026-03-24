@@ -129,7 +129,7 @@ export default function Booking() {
               href="https://ageless.janeapp.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
             >
               <Calendar className="h-4 w-4" />
               {selectedStaff ? `Book with ${selectedStaff.split(" ")[0]}` : "Book on Jane App"}

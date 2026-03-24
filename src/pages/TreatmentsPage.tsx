@@ -287,7 +287,7 @@ export default function TreatmentsPage() {
                 <Link
                   to="/book"
                   onClick={() => setSelectedTreatment(null)}
-                  className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
+                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
                 >
                   Book This Treatment <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -343,7 +343,7 @@ export default function TreatmentsPage() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-center mt-14"
           >
-            <Link to="/book" className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]">
+            <Link to="/book" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]">
               Start Your Plan <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>
