@@ -370,8 +370,8 @@ export default function LocationsPage() {
                 </button>
 
                 <div className="flex flex-col md:flex-row">
-                  <div className="md:w-2/5 shrink-0 flex items-start justify-center p-6 md:p-8 bg-muted">
-                    <img src={selectedMember.img} alt={selectedMember.name} className="w-full max-w-[280px] aspect-square object-cover rounded-2xl" />
+                  <div className="md:w-2/5 shrink-0 bg-muted flex items-center justify-center p-4">
+                    <img src={selectedMember.img} alt={selectedMember.name} className="w-full max-w-[360px] aspect-square object-cover rounded-2xl" />
                   </div>
 
                   <div className="flex-1 p-8 md:p-10 space-y-7">
