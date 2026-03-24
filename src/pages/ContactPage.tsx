@@ -88,7 +88,7 @@ export default function ContactPage() {
                       href={loc.directionsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold shadow-md shadow-primary/15 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97] w-fit text-sm"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold shadow-md shadow-primary/15 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97] w-fit text-sm"
                     >
                       <Navigation className="h-4 w-4" /> Get Directions
                     </a>

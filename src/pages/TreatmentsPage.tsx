@@ -137,7 +137,7 @@ export default function TreatmentsPage() {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-5">
+          <div className="grid sm:grid-cols-2 gap-6">
             {treatments.map((t, i) => (
               <motion.div
                 key={t.title}
@@ -145,22 +145,32 @@ export default function TreatmentsPage() {
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease }}
-                className="group relative rounded-lg overflow-hidden cursor-pointer aspect-[5/4]"
+                className="group relative rounded-lg overflow-hidden cursor-pointer"
                 onClick={() => { setSelectedTreatment(t); setVideoPlaying(false); }}
               >
-                <img src={t.img} alt={t.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col gap-2">
-                  <h2 className="text-xl font-bold text-white">{t.title}</h2>
-                  <p className="text-sm text-white/75 leading-relaxed line-clamp-2">{t.desc}</p>
-                  <div className="flex items-center justify-between mt-2">
-                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/90 group-hover:gap-3 transition-all duration-200">
-                      Learn More <ArrowRight className="h-4 w-4" />
+                <div className="relative aspect-[16/9]">
+                  <img src={t.img} alt={t.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h2 className="text-xl font-bold text-white mb-1">{t.title}</h2>
+                  </div>
+                </div>
+                <div className="bg-card p-6 space-y-3">
+                  <p className="text-sm text-muted-foreground leading-relaxed">{t.desc}</p>
+                  <div className="flex flex-wrap gap-2 text-xs text-primary font-medium">
+                    {t.subServices.slice(0, 4).map((sub) => (
+                      <span key={sub.name} className="bg-accent px-2.5 py-1 rounded-sm">{sub.name}</span>
+                    ))}
+                    {t.subServices.length > 4 && <span className="bg-accent px-2.5 py-1 rounded-sm">+{t.subServices.length - 4} more</span>}
+                  </div>
+                  <div className="flex items-center justify-between pt-2">
+                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-3 transition-all duration-200">
+                      View Details <ArrowRight className="h-4 w-4" />
                     </span>
                     <Link
                       to="/book"
                       onClick={(e) => e.stopPropagation()}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-white text-foreground text-xs font-semibold shadow-lg hover:bg-primary hover:text-primary-foreground transition-all duration-200 active:scale-[0.97]"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-foreground text-xs font-semibold shadow-lg hover:bg-primary/90 transition-all duration-200 active:scale-[0.97]"
                     >
                       Book Now
                     </Link>
@@ -277,7 +287,7 @@ export default function TreatmentsPage() {
                 <Link
                   to="/book"
                   onClick={() => setSelectedTreatment(null)}
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
+                  className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
                 >
                   Book This Treatment <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -333,7 +343,7 @@ export default function TreatmentsPage() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-center mt-14"
           >
-            <Link to="/book" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]">
+            <Link to="/book" className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]">
               Start Your Plan <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>

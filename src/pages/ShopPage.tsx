@@ -168,7 +168,7 @@ export default function ShopPage() {
                   href={SQUARE_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/35 transition-all duration-200 active:scale-[0.97] w-fit text-base"
+                  className="inline-flex items-center gap-2.5 px-8 py-4 bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/35 transition-all duration-200 active:scale-[0.97] w-fit text-base"
                 >
                   Shop on Our Store <ExternalLink className="h-4 w-4" />
                 </a>
@@ -222,7 +222,7 @@ export default function ShopPage() {
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent pointer-events-none" />
                     {b.savings && (
-                      <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold shadow-md">
+                      <span className="absolute top-4 right-4 px-3 py-1 bg-primary text-primary-foreground text-xs font-bold shadow-md">
                         {b.savings}
                       </span>
                     )}
@@ -259,7 +259,7 @@ export default function ShopPage() {
                       href={SQUARE_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/15 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97] text-sm"
+                      className="inline-flex items-center gap-2.5 px-7 py-3.5 bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/15 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97] text-sm"
                     >
                       Shop on Our Store <ExternalLink className="h-4 w-4" />
                     </a>

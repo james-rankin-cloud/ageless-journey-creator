@@ -67,7 +67,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+        sans: ["Cormorant Garamond", "Georgia", "Times New Roman", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

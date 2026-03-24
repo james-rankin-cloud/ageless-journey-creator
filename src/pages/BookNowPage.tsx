@@ -1,8 +1,9 @@
 import { Helmet } from "react-helmet-async";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, User, Check, ChevronRight, LogIn, Clock, ChevronDown } from "lucide-react";
-
+import { Calendar as CalendarIcon, User, Check, ChevronRight, LogIn, Clock, ChevronDown } from "lucide-react";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
 type Location = "langley" | "kelowna" | "victoria";
 
 const mainServices = [
@@ -81,22 +82,14 @@ export default function BookNowPage() {
   const [selectedMain, setSelectedMain] = useState<string | null>(null);
   const [selectedSubs, setSelectedSubs] = useState<string[]>([]);
   const [selectedClinician, setSelectedClinician] = useState<string | null>(null);
-  const [selectedDate, setSelectedDate] = useState<number | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [confirmed, setConfirmed] = useState(false);
 
   const clinicians = cliniciansByLocation[location];
 
-  const availableDates = useMemo(() => {
-    const dates: Date[] = [];
-    const now = new Date();
-    for (let i = 1; dates.length < 14; i++) {
-      const d = new Date(now);
-      d.setDate(now.getDate() + i);
-      if (d.getDay() !== 0 && d.getDay() !== 6) dates.push(d);
-    }
-    return dates;
-  }, []);
+
+
 
   const selectMain = (s: string) => {
     if (selectedMain === s) {
@@ -115,7 +108,7 @@ export default function BookNowPage() {
   const hasSelection = selectedMain !== null;
   const subOptions = selectedMain ? subServiceMap[selectedMain] : undefined;
 
-  const step = confirmed ? 5 : selectedTime ? 4 : selectedDate !== null ? 3 : hasSelection ? 2 : 1;
+  const step = confirmed ? 5 : selectedTime ? 4 : selectedDate ? 3 : hasSelection ? 2 : 1;
   const handleConfirm = () => setConfirmed(true);
 
   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -297,22 +290,16 @@ export default function BookNowPage() {
                   </div>
 
                   <p className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
-                    <Calendar className="h-4 w-4 text-primary" /> Select a Date
+                    <CalendarIcon className="h-4 w-4 text-primary" /> Select a Date
                   </p>
-                  <div className="flex gap-2 overflow-x-auto pb-2 -mx-2 px-2">
-                    {availableDates.map((d, i) => (
-                      <button
-                        key={i}
-                        onClick={() => { setSelectedDate(i); setSelectedTime(null); setConfirmed(false); }}
-                        className={`flex flex-col items-center px-4 py-3 rounded-xl text-sm transition-all duration-200 shrink-0 active:scale-[0.97] ${
-                          selectedDate === i ? "bg-primary text-primary-foreground shadow-md" : "bg-secondary text-muted-foreground hover:text-foreground"
-                        }`}
-                      >
-                        <span className="text-xs font-medium">{dayNames[d.getDay()]}</span>
-                        <span className="text-lg font-bold">{d.getDate()}</span>
-                        <span className="text-xs">{monthNames[d.getMonth()]}</span>
-                      </button>
-                    ))}
+                  <div className="bg-card rounded-lg border border-border p-2 inline-block">
+                    <Calendar
+                      mode="single"
+                      selected={selectedDate}
+                      onSelect={(d) => { setSelectedDate(d); setSelectedTime(null); setConfirmed(false); }}
+                      disabled={(date) => date < new Date() || date.getDay() === 0 || date.getDay() === 6}
+                      className="pointer-events-auto"
+                    />
                   </div>
                 </motion.div>
               )}
@@ -332,7 +319,7 @@ export default function BookNowPage() {
                     Available Times
                   </h2>
                   <div className="flex flex-wrap gap-2">
-                    {generateSlots(selectedDate).map((slot) => (
+                    {generateSlots(selectedDate ? selectedDate.getDate() : 1).map((slot) => (
                       <button
                         key={slot}
                         onClick={() => { setSelectedTime(slot); setConfirmed(false); }}
@@ -363,14 +350,14 @@ export default function BookNowPage() {
                       <p><strong className="text-foreground">Location:</strong> <span className="text-muted-foreground">{location.charAt(0).toUpperCase() + location.slice(1)}</span></p>
                       <p><strong className="text-foreground">Services:</strong> <span className="text-muted-foreground">{summaryServices}</span></p>
                       <p><strong className="text-foreground">Clinician:</strong> <span className="text-muted-foreground">{selectedClinician || "Any Available"}</span></p>
-                      <p><strong className="text-foreground">Date:</strong> <span className="text-muted-foreground">{selectedDate !== null && availableDates[selectedDate] ? availableDates[selectedDate].toLocaleDateString("en-CA", { weekday: "long", month: "long", day: "numeric" }) : ""}</span></p>
+                      <p><strong className="text-foreground">Date:</strong> <span className="text-muted-foreground">{selectedDate ? format(selectedDate, "EEEE, MMMM d") : ""}</span></p>
                       <p><strong className="text-foreground">Time:</strong> <span className="text-muted-foreground">{selectedTime}</span></p>
                     </div>
                     <button
                       onClick={handleConfirm}
-                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
+                      className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
                     >
-                      <Calendar className="h-4 w-4" /> Confirm Booking <ChevronRight className="h-4 w-4" />
+                      <CalendarIcon className="h-4 w-4" /> Confirm Booking <ChevronRight className="h-4 w-4" />
                     </button>
                   </div>
                 </motion.div>
@@ -395,7 +382,7 @@ export default function BookNowPage() {
                       <p><strong>{location.charAt(0).toUpperCase() + location.slice(1)}</strong></p>
                       <p>{summaryServices}</p>
                       <p>{selectedClinician || "Any Available Clinician"}</p>
-                      <p>{selectedDate !== null && availableDates[selectedDate] ? availableDates[selectedDate].toLocaleDateString("en-CA", { weekday: "long", month: "long", day: "numeric" }) : ""} at {selectedTime}</p>
+                      <p>{selectedDate ? format(selectedDate, "EEEE, MMMM d") : ""} at {selectedTime}</p>
                     </div>
                   </div>
                 </motion.div>
