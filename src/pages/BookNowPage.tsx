@@ -88,16 +88,8 @@ export default function BookNowPage() {
 
   const clinicians = cliniciansByLocation[location];
 
-  const availableDates = useMemo(() => {
-    const dates: Date[] = [];
-    const now = new Date();
-    for (let i = 1; dates.length < 14; i++) {
-      const d = new Date(now);
-      d.setDate(now.getDate() + i);
-      if (d.getDay() !== 0 && d.getDay() !== 6) dates.push(d);
-    }
-    return dates;
-  }, []);
+
+
 
   const selectMain = (s: string) => {
     if (selectedMain === s) {
