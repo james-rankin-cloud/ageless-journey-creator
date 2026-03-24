@@ -370,8 +370,8 @@ export default function LocationsPage() {
                 </button>
 
                 <div className="flex flex-col md:flex-row">
-                  <div className="md:w-2/5 aspect-square md:aspect-auto bg-muted shrink-0">
-                    <img src={selectedMember.img} alt={selectedMember.name} className="w-full h-full object-cover md:rounded-l-3xl" />
+                  <div className="md:w-2/5 shrink-0 flex items-start justify-center p-6 md:p-8 bg-muted">
+                    <img src={selectedMember.img} alt={selectedMember.name} className="w-full max-w-[280px] aspect-square object-cover rounded-2xl" />
                   </div>
 
                   <div className="flex-1 p-8 md:p-10 space-y-7">
@@ -451,7 +451,7 @@ export default function LocationsPage() {
                       <Link
                         to="/book"
                         onClick={() => setSelectedMember(null)}
-                        className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97] w-full justify-center text-sm"
+                        className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97] w-full justify-center text-sm"
                       >
                         Book with {selectedMember.name.split(",")[0].split(" ")[0]} at {locationData[active].name} <ArrowRight className="h-4 w-4" />
                       </Link>
