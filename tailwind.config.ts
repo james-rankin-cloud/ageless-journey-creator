@@ -67,10 +67,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["Jost", "Optima", "system-ui", "sans-serif"],
-        display: ["Cormorant Garamond", "Georgia", "serif"],
-        heading: ["Libre Baskerville", "Georgia", "serif"],
-        ui: ["Inter", "system-ui", "sans-serif"],
+        sans: ["Poppins", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
