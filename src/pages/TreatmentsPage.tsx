@@ -137,7 +137,7 @@ export default function TreatmentsPage() {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {treatments.map((t, i) => (
               <motion.div
                 key={t.title}
@@ -148,12 +148,12 @@ export default function TreatmentsPage() {
                 className="group rounded-lg overflow-hidden bg-card shadow-sm hover:shadow-xl transition-shadow duration-300 cursor-pointer"
                 onClick={() => { setSelectedTreatment(t); setVideoPlaying(false); }}
               >
-                <div className="aspect-[3/2] overflow-hidden">
+                <div className="aspect-[4/3] overflow-hidden">
                   <img src={t.img} alt={t.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" loading="lazy" />
                 </div>
-                <div className="p-5">
-                   <h2 className="text-lg font-bold text-foreground mb-1.5">{t.title}</h2>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">{t.desc}</p>
+                <div className="p-4">
+                   <h2 className="text-sm font-bold text-foreground mb-1">{t.title}</h2>
+                  <p className="text-xs text-muted-foreground leading-relaxed mb-3 line-clamp-3">{t.desc}</p>
                   <div className="flex items-center justify-between">
                     <button className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-3 transition-all duration-200">
                       Learn How This Helps You <ArrowRight className="h-4 w-4" />
