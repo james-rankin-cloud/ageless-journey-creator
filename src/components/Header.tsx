@@ -54,7 +54,7 @@ export default function Header() {
           ))}
           <Link
             to="/book"
-            className="inline-flex items-center px-6 py-2.5 bg-primary text-primary-foreground text-sm font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
+            className="inline-flex items-center px-6 py-2.5 rounded-none bg-primary text-primary-foreground text-sm font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
           >
             Book Now
           </Link>
@@ -93,7 +93,7 @@ export default function Header() {
               ))}
               <Link
                 to="/book"
-                className="mt-2 inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground font-semibold"
+                className="mt-2 inline-flex items-center justify-center px-6 py-3 rounded-none bg-primary text-primary-foreground font-semibold"
               >
                 Book Now
               </Link>
