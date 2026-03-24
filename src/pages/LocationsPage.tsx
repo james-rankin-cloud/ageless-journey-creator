@@ -451,7 +451,7 @@ export default function LocationsPage() {
                       <Link
                         to="/book"
                         onClick={() => setSelectedMember(null)}
-                        className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97] w-full justify-center text-sm"
+                        className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97] w-full justify-center text-sm"
                       >
                         Book with {selectedMember.name.split(",")[0].split(" ")[0]} at {locationData[active].name} <ArrowRight className="h-4 w-4" />
                       </Link>

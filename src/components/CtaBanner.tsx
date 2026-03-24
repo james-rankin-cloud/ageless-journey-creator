@@ -21,7 +21,7 @@ export default function CtaBanner() {
           <div className="flex items-center gap-3 flex-wrap justify-center">
             <Link
               to="/book"
-              className="inline-flex items-center gap-2 px-7 py-3 bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
             >
               Book Now <ArrowRight className="h-4 w-4" />
             </Link>
