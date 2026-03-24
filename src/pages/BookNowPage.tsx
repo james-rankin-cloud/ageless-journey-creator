@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar as CalendarIcon, User, Check, ChevronRight, LogIn, Clock, ChevronDown } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
