@@ -1,8 +1,12 @@
 import { Helmet } from "react-helmet-async";
 import Hero from "@/components/Hero";
-import Reviews from "@/components/Reviews";
-import HomeTeaser from "@/components/HomeTeaser";
-import VisitUs from "@/components/VisitUs";
+import BentoBlock from "@/components/BentoBlock";
+import ServicesPreview from "@/components/ServicesPreview";
+import BrandStatement from "@/components/BrandStatement";
+import TeamSection from "@/components/TeamSection";
+import VideoTestimonial from "@/components/VideoTestimonial";
+import TestimonialsWall from "@/components/TestimonialsWall";
+import ContactBlock from "@/components/ContactBlock";
 
 export default function HomePage() {
   const jsonLd = {
@@ -14,7 +18,7 @@ export default function HomePage() {
     image: "https://agelessliving.com/wp-content/uploads/2022/06/ageless-living-logo.png",
     aggregateRating: { "@type": "AggregateRating", ratingValue: "4.9", reviewCount: "287", bestRating: "5" },
     address: [
-      { "@type": "PostalAddress", streetAddress: "20689 Fraser Hwy", addressLocality: "Langley", addressRegion: "BC", postalCode: "V3A 4G4", addressCountry: "CA" },
+      { "@type": "PostalAddress", streetAddress: "415-20178 96th Ave", addressLocality: "Langley", addressRegion: "BC", postalCode: "V1M 0B2", addressCountry: "CA" },
       { "@type": "PostalAddress", streetAddress: "1708 Dolphin Ave #101", addressLocality: "Kelowna", addressRegion: "BC", postalCode: "V1Y 9S4", addressCountry: "CA" },
       { "@type": "PostalAddress", streetAddress: "740 Hillside Ave #120", addressLocality: "Victoria", addressRegion: "BC", postalCode: "V8T 1Z4", addressCountry: "CA" },
     ],
@@ -29,9 +33,13 @@ export default function HomePage() {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
       <Hero />
-      <Reviews />
-      <HomeTeaser />
-      <VisitUs />
+      <BentoBlock />
+      <ServicesPreview />
+      <BrandStatement />
+      <TeamSection />
+      <VideoTestimonial />
+      <TestimonialsWall />
+      <ContactBlock />
     </>
   );
 }
