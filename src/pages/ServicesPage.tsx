@@ -154,7 +154,7 @@ export default function ServicesPage() {
                   viewport={{ once: true, amount: 0.1 }}
                   transition={{ duration: 0.5, delay: i * 0.05, ease }}
                   className={`group bg-card rounded-xl p-5 border border-border/40 hover:border-clinic-teal/30 hover:shadow-md transition-all duration-300 ${t.name === "Botox / Dysport" ? "cursor-pointer" : ""}`}
-                  onClick={() => { if (t.name === "Botox / Dysport") window.location.href = "/services/botox-dysport"; }}
+                  onClick={() => { if (t.name === "Botox / Dysport") navigate("/services/botox-dysport"); }}
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-9 h-9 rounded-lg bg-clinic-teal-light flex items-center justify-center">
