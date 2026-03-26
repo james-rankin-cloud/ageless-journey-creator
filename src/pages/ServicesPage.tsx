@@ -49,6 +49,7 @@ const weightTreatments = [
 
 export default function ServicesPage() {
   const [expandedHormone, setExpandedHormone] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   return (
     <>
