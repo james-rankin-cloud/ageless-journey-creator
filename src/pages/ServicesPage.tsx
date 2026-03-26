@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Plus, Minus, Sparkles, Droplets, Sun, Zap, Scissors, Grid3X3, Syringe, Heart, MapPin, Beaker, Brain, Flame, Activity, Pill, Scale, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -48,6 +49,7 @@ const weightTreatments = [
 
 export default function ServicesPage() {
   const [expandedHormone, setExpandedHormone] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -151,7 +153,8 @@ export default function ServicesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
                   transition={{ duration: 0.5, delay: i * 0.05, ease }}
-                  className="group bg-card rounded-xl p-5 border border-border/40 hover:border-clinic-teal/30 hover:shadow-md transition-all duration-300"
+                  className={`group bg-card rounded-xl p-5 border border-border/40 hover:border-clinic-teal/30 hover:shadow-md transition-all duration-300 ${t.name === "Botox / Dysport" ? "cursor-pointer" : ""}`}
+                  onClick={() => { if (t.name === "Botox / Dysport") navigate("/services/botox-dysport"); }}
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-9 h-9 rounded-lg bg-clinic-teal-light flex items-center justify-center">
