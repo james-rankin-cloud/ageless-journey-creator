@@ -45,6 +45,11 @@
     --sidebar-border: 30 18% 89%;
     --sidebar-ring: 0 0% 17%;
 
+    /* Clinical teal accent */
+    --clinic-teal: 181 100% 19%;
+    --clinic-teal-light: 181 40% 95%;
+    --clinic-teal-container: 181 100% 24%;
+
     /* Backward compat */
     --wellness-teal: 0 0% 17%;
     --wellness-teal-dark: 0 0% 12%;

@@ -57,6 +57,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        clinic: {
+          teal: "hsl(var(--clinic-teal))",
+          "teal-light": "hsl(var(--clinic-teal-light))",
+          "teal-container": "hsl(var(--clinic-teal-container))",
+        },
         wellness: {
           teal: "hsl(var(--wellness-teal))",
           "teal-dark": "hsl(var(--wellness-teal-dark))",
