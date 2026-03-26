@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Plus, Minus, Sparkles, Droplets, Sun, Zap, Scissors, Grid3X3, Syringe, Heart, MapPin, Beaker, Brain, Flame, Activity, Pill, Scale, BarChart3 } from "lucide-react";
 import { Link } from "react-router-dom";
