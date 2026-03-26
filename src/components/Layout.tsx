@@ -2,8 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import ChatBot from "./ChatBot";
-import FloatingBookNow from "./FloatingBookNow";
+import PromoPopup from "./PromoPopup";
 
 export default function Layout() {
   const { pathname } = useLocation();
@@ -15,12 +14,11 @@ export default function Layout() {
   return (
     <>
       <Header />
-      <main className="min-h-screen">
+      <main>
         <Outlet />
       </main>
       <Footer />
-      <ChatBot />
-      <FloatingBookNow />
+      <PromoPopup />
     </>
   );
 }
