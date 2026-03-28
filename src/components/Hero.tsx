@@ -20,9 +20,9 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease }}
             >
-              Your glow
+              Discover your
               <br />
-              starts here.
+              best self, at any age.
             </motion.h1>
 
             <motion.p
@@ -31,7 +31,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease }}
             >
-              Modern treatments, expert guidance, and a commitment to helping you live better — at any age. Serving Langley, Victoria & Kelowna, BC.
+              With Ageless Living™ wide range of modern treatments and services, there is something for everyone.
             </motion.p>
 
             <motion.div

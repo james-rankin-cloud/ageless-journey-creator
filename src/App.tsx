@@ -7,6 +7,7 @@ import Layout from "@/components/Layout";
 import HomePage from "@/pages/HomePage";
 import ServicesPage from "@/pages/ServicesPage";
 import BotoxDysportPage from "@/pages/BotoxDysportPage";
+import HormoneBalancingPage from "@/pages/HormoneBalancingPage";
 import PricesPage from "@/pages/PricesPage";
 import AboutPage from "@/pages/AboutPage";
 import BlogPage from "@/pages/BlogPage";
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/services/botox-dysport" element={<BotoxDysportPage />} />
+            <Route path="/services/hormone-balancing" element={<HormoneBalancingPage />} />
             <Route path="/prices" element={<PricesPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/blog" element={<BlogPage />} />

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/full-logo.png";
+import logo from "@/assets/ageless-living-logo-teal.png";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -35,7 +35,7 @@ export default function Header() {
     >
       <div className="container mx-auto flex items-center justify-between py-5 section-padding">
         <Link to="/">
-          <img src={logo} alt="Ageless Living™ Wellness Centre" className="h-8 md:h-10" />
+          <img src={logo} alt="Ageless Living™ Wellness Centre logo - premium wellness clinic in British Columbia" className="h-10 md:h-14" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -79,7 +79,7 @@ export default function Header() {
           >
             <div className="flex items-center justify-between py-5 section-padding container mx-auto">
               <Link to="/" onClick={() => setMobileOpen(false)}>
-                <img src={logo} alt="Ageless Living™" className="h-8" />
+                <img src={logo} alt="Ageless Living™ Wellness Centre logo" className="h-10" />
               </Link>
               <button onClick={() => setMobileOpen(false)} className="p-2 text-foreground">
                 <X size={24} />

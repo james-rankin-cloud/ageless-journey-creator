@@ -1,7 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import Hero from "@/components/Hero";
 import BentoBlock from "@/components/BentoBlock";
+import OurTreatments from "@/components/OurTreatments";
 import ServicesPreview from "@/components/ServicesPreview";
+import HomeLocations from "@/components/HomeLocations";
 import BrandStatement from "@/components/BrandStatement";
 import TeamSection from "@/components/TeamSection";
 import VideoTestimonial from "@/components/VideoTestimonial";
@@ -34,7 +36,9 @@ export default function HomePage() {
       </Helmet>
       <Hero />
       <BentoBlock />
+      <OurTreatments />
       <ServicesPreview />
+      <HomeLocations />
       <BrandStatement />
       <TeamSection />
       <VideoTestimonial />

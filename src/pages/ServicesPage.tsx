@@ -2,13 +2,12 @@ import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Plus, Minus, Sparkles, Droplets, Sun, Zap, Scissors, Grid3X3, Syringe, Heart, MapPin, Beaker, Brain, Flame, Activity, Pill, Scale, BarChart3 } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Plus, Minus, Sparkles, Droplets, Sun, Zap, Scissors, Grid3X3, Syringe, Heart, MapPin, Beaker, Activity, Pill, Scale } from "lucide-react";
 import { Link } from "react-router-dom";
 import servicesHeroImg from "@/assets/services-hero.jpg";
 import hormoneImg from "@/assets/hormone-clinic.jpg";
 import biohackingImg from "@/assets/biohacking-hub.jpg";
 import weightImg from "@/assets/weight-clinic.jpg";
-import VideoTestimonial from "@/components/VideoTestimonial";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -210,20 +209,38 @@ export default function ServicesPage() {
               <p className="text-muted-foreground leading-relaxed mb-6 max-w-md">
                 Comprehensive hormone testing and bio-identical hormone restoration to reclaim your energy, mood, and vitality.
               </p>
-              <img
-                src={hormoneImg}
-                alt="Hormone balancing clinic"
-                className="w-full rounded-2xl object-cover aspect-[3/4] max-h-[480px]"
-                loading="lazy"
-                width={512}
-                height={700}
-              />
-              <Link
-                to="/book"
-                className="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-clinic-teal hover:gap-3 transition-all"
+              <div
+                className="relative group cursor-pointer"
+                onClick={() => navigate("/services/hormone-balancing")}
               >
-                Book a Consultation <ArrowRight className="w-4 h-4" />
-              </Link>
+                <img
+                  src={hormoneImg}
+                  alt="Hormone balancing clinic"
+                  className="w-full rounded-2xl object-cover aspect-[3/4] max-h-[480px] transition-transform duration-500 group-hover:scale-[1.02]"
+                  loading="lazy"
+                  width={512}
+                  height={700}
+                />
+                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 rounded-2xl transition-colors flex items-center justify-center">
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 backdrop-blur-sm text-foreground font-semibold px-6 py-3 rounded-full shadow-lg">
+                    View Details <ArrowUpRight className="w-4 h-4 inline ml-1" />
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3 mt-6">
+                <Link
+                  to="/services/hormone-balancing"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-clinic-teal hover:gap-3 transition-all"
+                >
+                  Learn More <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  to="/book"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Book a Consultation
+                </Link>
+              </div>
             </motion.div>
 
             {/* Right — Accordion */}

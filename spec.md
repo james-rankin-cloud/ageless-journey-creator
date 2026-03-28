@@ -76,9 +76,10 @@ BrowserRouter
 │
 └── Routes
     ├── /                    → HomePage
-    ├── /services            → ServicesPage
-    ├── /services/:slug      → Treatment detail pages
-    ├── /prices              → PricesPage
+    ├── /services                      → ServicesPage
+    ├── /services/botox-dysport        → BotoxDysportPage
+    ├── /services/hormone-balancing    → HormoneBalancingPage
+    ├── /prices                        → PricesPage
     ├── /about               → AboutPage
     ├── /blog                → BlogPage
     ├── /book                → BookNowPage
@@ -117,12 +118,14 @@ ageless-journey-creator/
 │   │   ├── Booking.tsx            # Booking form
 │   │   ├── ChatBot.tsx            # AI assistant
 │   │   ├── Hero.tsx               # Hero section
+│   │   ├── OurTreatments.tsx      # Treatments intro section
 │   │   ├── ServicesPreview.tsx    # Services grid
+│   │   ├── HomeLocations.tsx      # Location cards for homepage
 │   │   ├── Treatments.tsx         # Treatment list
 │   │   ├── TestimonialsWall.tsx   # Reviews section
 │   │   ├── TeamSection.tsx        # Staff profiles
 │   │   ├── Products.tsx           # Product listings
-│   │   ├── Locations.tsx          # Location cards
+│   │   ├── Locations.tsx          # Location tabs with team
 │   │   ├── Contact.tsx            # Contact form
 │   │   └── ...                    # 25+ feature components
 │   │
@@ -130,6 +133,7 @@ ageless-journey-creator/
 │   │   ├── HomePage.tsx
 │   │   ├── ServicesPage.tsx
 │   │   ├── BotoxDysportPage.tsx
+│   │   ├── HormoneBalancingPage.tsx
 │   │   ├── PricesPage.tsx
 │   │   ├── AboutPage.tsx
 │   │   ├── BlogPage.tsx
@@ -173,7 +177,7 @@ ageless-journey-creator/
 ```
 Layout
 ├── Header
-│   ├── Logo
+│   ├── Logo (ageless-living-logo-teal.png, h-10 md:h-14)
 │   ├── Desktop Navigation (NavLink items)
 │   ├── Book Now CTA Button
 │   └── Mobile Menu (Sheet component)
@@ -206,6 +210,72 @@ Layout
   <CtaBanner />
   <FloatingBookNow />
 </Layout>
+```
+
+### HomePage Component Structure
+
+The homepage follows this specific component order:
+
+```
+HomePage
+├── Helmet (SEO meta tags + JSON-LD schema)
+├── Hero
+│   ├── Headline: "Discover your best self, at any age."
+│   ├── Subtext: Treatment offerings message
+│   ├── CTA: "Free consultation" button
+│   └── Portrait images + trust badges
+├── BentoBlock (clinic image + before/after slider)
+├── OurTreatments
+│   ├── Label: "Our Treatments"
+│   ├── Heading: "Picture Your Possible."
+│   └── Body: Guidance, tools, and technologies message
+├── ServicesPreview (3-column service cards)
+├── HomeLocations
+│   ├── Heading: "Visit Ageless Living"
+│   └── 3 Location Cards (Victoria, Langley, Kelowna)
+│       ├── Address, phone, email
+│       └── "Book Consultation" CTA
+├── BrandStatement
+├── TeamSection
+├── VideoTestimonial
+├── TestimonialsWall
+└── ContactBlock
+```
+
+### HormoneBalancingPage Component Structure
+
+Dedicated treatment detail page for Hormone Balancing services:
+
+```
+HormoneBalancingPage
+├── Helmet (SEO meta tags)
+├── Hero Section
+│   ├── Badge: "Well-being & Vitality"
+│   ├── Headline: "Hormone Balancing"
+│   ├── Description paragraphs (causes, symptoms)
+│   ├── Location availability note
+│   ├── CTAs: "Start Your Journey", "Watch the Story"
+│   └── Hero image with decorative blurs
+├── Why Test Your Hormones Section
+│   ├── Left column: explanation text
+│   └── Right column: 2x feature cards + image banner
+│       ├── MD Directed Programs card
+│       ├── All Ages & Genders card
+│       └── "Restoring Balance, Naturally" banner
+├── BHRT vs HRT Comparison Section (dark theme)
+│   ├── Left: explanation + feature cards
+│   │   ├── Bio-identical Perfection
+│   │   └── Risk Mitigation
+│   └── Right: stats grid (100% Identical, MD Certified)
+├── The Process Section
+│   ├── Step 01: Physician Consult
+│   ├── Step 02: Nutritionist Consultation
+│   └── Step 03: The Follow Up
+├── Locations Section
+│   ├── Location list (Victoria, Langley, Kelowna)
+│   └── Embedded Google Maps
+└── CTA Banner
+    └── "Ready to restore balance?" + booking links
 ```
 
 ### UI Component Library (shadcn/ui)
@@ -390,6 +460,55 @@ Three clinic locations with:
 - Location-specific staff
 - Google Maps integration
 - Individual booking flows
+
+### 8.4 Homepage Locations Section (HomeLocations)
+
+Card-based display of all three clinic locations:
+
+```tsx
+// HomeLocations.tsx - Location data structure
+const locations = [
+  {
+    id: "victoria",
+    name: "Victoria",
+    address: "1-101 Burnside Rd W, Victoria, BC V9A 1B7",
+    phone: "+1 (250) 590-5787",
+    email: "wellness@agelessliving.ca",
+    note: "Hours may vary due to weather or staff training..."
+  },
+  {
+    id: "langley",
+    name: "Langley",
+    address: "415-20178 96 Ave, Langley, BC V1M 0B2",
+    phone: "+1 (236) 326-6830",
+    email: "langley@agelessliving.ca"
+  },
+  {
+    id: "kelowna",
+    name: "Kelowna",
+    address: "102-3320 Richter Street, Kelowna, BC V1W 4V5",
+    phone: "+1 (778) 760-9827",
+    email: "kelowna@agelessliving.ca"
+  }
+];
+```
+
+Features:
+- Responsive 3-column grid (stacks on mobile)
+- Each card includes address, phone, email
+- "Book Consultation" CTA linking to /book
+- Victoria location includes hours note
+- Framer Motion animations on scroll
+
+### 8.5 Our Treatments Section (OurTreatments)
+
+Introductory section before services preview:
+
+- **Label**: "Our Treatments" (uppercase, small)
+- **Heading**: "Picture Your Possible."
+- **Body**: Brand message about guidance, tools, and technologies
+- Centered layout with max-width constraint
+- Smooth scroll-triggered animations
 
 ---
 
