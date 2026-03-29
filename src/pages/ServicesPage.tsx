@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Plus, Minus, Sparkles, Droplets, Sun, Zap, Scissors, Grid3X3, Syringe, Heart, MapPin, Beaker, Activity, Pill, Scale } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -49,6 +49,19 @@ const weightTreatments = [
 export default function ServicesPage() {
   const [expandedHormone, setExpandedHormone] = useState<number | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Handle hash scrolling on navigation
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      }
+    }
+  }, [location.hash]);
 
   return (
     <>
@@ -124,7 +137,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ═══ PILLAR 1 — SKIN REJUVENATION ═══ */}
-      <section id="skin-rejuvenation" className="py-20 md:py-28 bg-background">
+      <section id="skin-rejuvenation" className="scroll-mt-24 py-20 md:py-28 bg-background">
         <div className="container mx-auto section-padding">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -152,8 +165,15 @@ export default function ServicesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.1 }}
                   transition={{ duration: 0.5, delay: i * 0.05, ease }}
-                  className={`group bg-card rounded-xl p-5 border border-border/40 hover:border-clinic-teal/30 hover:shadow-md transition-all duration-300 ${t.name === "Botox / Dysport" ? "cursor-pointer" : ""}`}
-                  onClick={() => { if (t.name === "Botox / Dysport") navigate("/services/botox-dysport"); }}
+                  className={`group bg-card rounded-xl p-5 border border-border/40 hover:border-clinic-teal/30 hover:shadow-md transition-all duration-300 ${t.name === "Botox / Dysport" || t.name === "Cosmetic Dermal Filler" || t.name === "Customized UltraFacial" || t.name === "Laser & IPL/BBL" || t.name === "The Perfect Derma™ Peel" || t.name === "Microneedling" ? "cursor-pointer" : ""}`}
+                  onClick={() => {
+                    if (t.name === "Botox / Dysport") navigate("/services/botox-dysport");
+                    if (t.name === "Cosmetic Dermal Filler") navigate("/services/cosmetic-dermal-filler");
+                    if (t.name === "Customized UltraFacial") navigate("/services/customized-ultrafacial");
+                    if (t.name === "Laser & IPL/BBL") navigate("/services/laser-ipl-bbl");
+                    if (t.name === "The Perfect Derma™ Peel") navigate("/services/perfect-derma-peel");
+                    if (t.name === "Microneedling") navigate("/services/microneedling");
+                  }}
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="w-9 h-9 rounded-lg bg-clinic-teal-light flex items-center justify-center">
@@ -178,7 +198,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ═══ PILLAR 2 — HORMONE BALANCING ═══ */}
-      <section className="py-20 md:py-28 bg-secondary/50">
+      <section id="hormone-balancing" className="scroll-mt-24 py-20 md:py-28 bg-secondary/50">
         <div className="container mx-auto section-padding">
           <motion.p
             className="label-sm mb-3"
@@ -292,7 +312,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ═══ PILLAR 3 — BIOHACKING & LONGEVITY ═══ */}
-      <section className="py-20 md:py-28 bg-background">
+      <section id="biohacking" className="scroll-mt-24 py-20 md:py-28 bg-background">
         <div className="container mx-auto section-padding">
           <motion.p
             className="label-sm mb-3"
@@ -403,7 +423,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ═══ PILLAR 4 — HEALTH WEIGHT ═══ */}
-      <section className="py-20 md:py-28 bg-secondary/50">
+      <section id="health-weight" className="scroll-mt-24 py-20 md:py-28 bg-secondary/50">
         <div className="container mx-auto section-padding">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left — Image */}

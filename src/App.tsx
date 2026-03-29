@@ -8,6 +8,11 @@ import HomePage from "@/pages/HomePage";
 import ServicesPage from "@/pages/ServicesPage";
 import BotoxDysportPage from "@/pages/BotoxDysportPage";
 import HormoneBalancingPage from "@/pages/HormoneBalancingPage";
+import CosmeticDermalFillerPage from "@/pages/CosmeticDermalFillerPage";
+import CustomizedUltraFacialPage from "@/pages/CustomizedUltraFacialPage";
+import LaserIplBblPage from "@/pages/LaserIplBblPage";
+import PerfectDermaPeelPage from "@/pages/PerfectDermaPeelPage";
+import MicroneedlingPage from "@/pages/MicroneedlingPage"
 import PricesPage from "@/pages/PricesPage";
 import AboutPage from "@/pages/AboutPage";
 import BlogPage from "@/pages/BlogPage";
@@ -30,6 +35,11 @@ const App = () => (
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/services/botox-dysport" element={<BotoxDysportPage />} />
             <Route path="/services/hormone-balancing" element={<HormoneBalancingPage />} />
+            <Route path="/services/cosmetic-dermal-filler" element={<CosmeticDermalFillerPage />} />
+            <Route path="/services/customized-ultrafacial" element={<CustomizedUltraFacialPage />} />
+            <Route path="/services/laser-ipl-bbl" element={<LaserIplBblPage />} />
+            <Route path="/services/perfect-derma-peel" element={<PerfectDermaPeelPage />} />
+            <Route path="/services/microneedling" element={<MicroneedlingPage />} />
             <Route path="/prices" element={<PricesPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/blog" element={<BlogPage />} />

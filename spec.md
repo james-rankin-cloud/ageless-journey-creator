@@ -79,6 +79,9 @@ BrowserRouter
     ├── /services                      → ServicesPage
     ├── /services/botox-dysport        → BotoxDysportPage
     ├── /services/hormone-balancing    → HormoneBalancingPage
+    ├── /services/cosmetic-dermal-filler → CosmeticDermalFillerPage
+    ├── /services/customized-ultrafacial → CustomizedUltraFacialPage
+    ├── /services/laser-ipl-bbl        → LaserIplBblPage
     ├── /prices                        → PricesPage
     ├── /about               → AboutPage
     ├── /blog                → BlogPage
@@ -134,6 +137,9 @@ ageless-journey-creator/
 │   │   ├── ServicesPage.tsx
 │   │   ├── BotoxDysportPage.tsx
 │   │   ├── HormoneBalancingPage.tsx
+│   │   ├── CosmeticDermalFillerPage.tsx
+│   │   ├── CustomizedUltraFacialPage.tsx
+│   │   ├── LaserIplBblPage.tsx
 │   │   ├── PricesPage.tsx
 │   │   ├── AboutPage.tsx
 │   │   ├── BlogPage.tsx
@@ -277,6 +283,141 @@ HormoneBalancingPage
 └── CTA Banner
     └── "Ready to restore balance?" + booking links
 ```
+
+### CosmeticDermalFillerPage Component Structure
+
+Dedicated treatment detail page for Cosmetic Dermal Filler services:
+
+```
+CosmeticDermalFillerPage
+├── Helmet (SEO meta tags)
+├── Hero Section
+│   ├── Badge: "Premium Aesthetics"
+│   ├── Headline: "Cosmetic Dermal Filler"
+│   ├── Description: Non-surgical path to refined radiance
+│   ├── CTAs: "Book Consultation", "View Pricing"
+│   └── Hero image with floating badge (Medical Excellence)
+├── Focus Areas Section (Precision Artistry)
+│   ├── Asymmetric card grid
+│   ├── Lips card
+│   ├── Cheeks card
+│   ├── Jawline card
+│   └── Chin card
+├── Product Showcase Section (World-Class Formulations)
+│   ├── Product list (editorial layout)
+│   │   ├── 01 - Restylane®
+│   │   ├── 02 - Revanesse®
+│   │   ├── 03 - PRP (Platelet-Rich Plasma)
+│   │   └── 04 - Sculptra®
+│   └── Product image
+├── Experience Section (The Ageless Experience)
+│   ├── Pre-Treatment Consultation card
+│   ├── The Procedure card
+│   └── Recovery & Results card
+├── CTA Section (dark theme)
+│   └── "Refine Your Radiance" + booking link
+└── Locations Section
+    └── Available at: Victoria, Langley, Kelowna
+```
+
+### CustomizedUltraFacialPage Component Structure
+
+Dedicated treatment detail page for Customized UltraFacial (HydraFacial/AquaFirme):
+
+```
+CustomizedUltraFacialPage
+├── Helmet (SEO meta tags)
+├── Hero Section
+│   ├── Badge: "Clinical Sanctuary Excellence"
+│   ├── Headline: "Customized UltraFacial"
+│   ├── Description: HydraFacial (Victoria/Langley), AquaFirme (Kelowna)
+│   ├── CTAs: "Book Consultation", "View Results"
+│   └── Hero image with floating tech badge
+├── Intro Section (The Science of Radiant Health)
+│   ├── Quote about clinical intervention
+│   └── Process steps: Cleansing, Exfoliation, Extraction, Hydration, Protection
+├── Key Features Section
+│   ├── Safe for Pregnancy & Breastfeeding card (teal)
+│   └── Medical-Grade Efficacy card
+├── Benefits Section (Bento Layout)
+│   ├── Featured: Immediate Radiant Glow (large card with image)
+│   ├── Gentle Exfoliation
+│   ├── Deep Cleansing
+│   ├── No Downtime
+│   └── Intense Hydration (featured teal)
+├── CTA Section (dark theme)
+│   └── "Begin Your Skin Journey" + booking link
+└── Locations Section
+    ├── Victoria & Langley: HydraFacial MD®
+    ├── Kelowna: AquaFirme®
+    └── All Locations: Customized Protocols
+```
+
+### LaserIplBblPage Component Structure
+
+Dedicated treatment detail page for Laser & IPL/BBL Photorejuvenation:
+
+```
+LaserIplBblPage
+├── Helmet (SEO meta tags)
+├── Hero Section
+│   ├── Badge: "Advanced Dermatology"
+│   ├── Headline: "Laser & IPL/BBL Photorejuvenation"
+│   ├── Description: Light of Transformation message
+│   ├── CTA: "Book Your Clinical Assessment"
+│   └── Hero image with floating "Primary Goal" card
+├── Introduction Section (Asymmetric Split)
+│   ├── Left: "A Masterclass in Non-Invasive Skin Correction"
+│   └── Right: Description + "Clinical Excellence" quote
+├── Technology Breakdown Section (The Clinical Edge)
+│   ├── ICON® IPL System card (Victoria & Langley)
+│   │   └── Gold standard for vascular/pigmented lesions
+│   └── Sciton® BBL card (Kelowna, dark theme)
+│       └── Molecular-level rejuvenation technology
+├── Treatment Benefits Section (Targeted Correction)
+│   ├── Left: Image with animated border
+│   └── Right: Benefit cards
+│       ├── Redness & Rosacea
+│       ├── Pigmentation
+│       ├── Hair Removal
+│       └── Texture
+├── The Journey Section (Steps)
+│   ├── 01 - Consultation
+│   ├── 02 - The Session
+│   └── 03 - Recovery
+├── Locations Section
+│   └── Available at: Victoria, Langley, Kelowna
+└── CTA Section (teal theme)
+    └── "Ready for a Luminous Tomorrow?" + booking CTAs
+```
+
+### Header Navigation with Services Dropdown
+
+The Header component includes a dropdown menu for Services with anchor links:
+
+```
+Header
+├── Logo
+├── Desktop Navigation
+│   ├── Home
+│   ├── Services (with dropdown)
+│   │   ├── Skin Rejuvenation → /services#skin-rejuvenation
+│   │   ├── Hormone Balancing → /services#hormone-balancing
+│   │   ├── Biohacking & Longevity → /services#biohacking
+│   │   ├── Health Weight → /services#health-weight
+│   │   └── View All Services → /services
+│   ├── Prices
+│   ├── About Us
+│   └── Blog
+├── Book a time CTA
+└── Mobile Menu (with expandable Services submenu)
+```
+
+**Anchor Link Features:**
+- Each ServicesPage section has a unique ID (`id="skin-rejuvenation"`, etc.)
+- Sections use `scroll-mt-24` class to offset for the fixed navbar
+- Global smooth scrolling enabled via `html { scroll-behavior: smooth }`
+- ServicesPage includes `useEffect` to handle hash navigation on page load
 
 ### UI Component Library (shadcn/ui)
 
