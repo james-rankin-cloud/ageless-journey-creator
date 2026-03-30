@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Heart, Beaker, Utensils, ShieldCheck } from "lucide-react";
+import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -270,30 +270,11 @@ export default function HealthWeightPage() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-16 md:py-20 bg-clinic-teal">
-        <div className="container mx-auto section-padding text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease }}
-          >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight mb-3">
-              Ready to reclaim your health?
-            </h2>
-            <p className="text-white/90 text-base mb-6 max-w-2xl mx-auto leading-relaxed">
-              At Ageless Living, we develop a comprehensive plan to help you attain your Health Weight and keep it off.
-            </p>
-            <Link
-              to="/book"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-white text-clinic-teal font-semibold text-sm transition-all hover:bg-white/90 hover:shadow-xl"
-            >
-              Schedule Your Consultation
-            </Link>
-          </motion.div>
-        </div>
-      </section>
+      <ServiceCTA
+        title="Ready to reclaim your health?"
+        description="At Ageless Living, we develop a comprehensive plan to help you attain your Health Weight and keep it off."
+        primaryButtonText="Schedule Your Consultation"
+      />
     </>
   );
 }

@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -75,7 +76,7 @@ export default function MicroneedlingPage() {
       </section>
 
       {/* ═══ SCIENCE ═══ */}
-      <section className="py-28 bg-secondary/30">
+      <section className="py-16 bg-secondary/30">
         <div className="container mx-auto section-padding grid lg:grid-cols-2 gap-20">
 
           <div>
@@ -116,7 +117,7 @@ export default function MicroneedlingPage() {
       </section>
 
       {/* ═══ OUTCOMES (WITH 01 / 02 BLUE NUMBERS) ═══ */}
-      <section className="py-28 bg-foreground text-white rounded-[2rem] mx-4 md:mx-8">
+      <section className="py-16 bg-foreground text-white rounded-[2rem] mx-4 md:mx-8">
         <div className="container mx-auto section-padding grid lg:grid-cols-2 gap-20 items-center">
 
           <div className="rounded-full overflow-hidden aspect-square">
@@ -163,7 +164,7 @@ export default function MicroneedlingPage() {
       </section>
 
       {/* ═══ JOURNEY (FULL TEXT RESTORED) ═══ */}
-      <section className="py-28 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto section-padding">
 
           <div className="mb-20">
@@ -205,25 +206,11 @@ export default function MicroneedlingPage() {
         </div>
       </section>
 
-      {/* ═══ CTA ═══ */}
-      <section className="py-24 bg-secondary/30 text-center">
-        <div className="container mx-auto section-padding">
-          <h2 className="text-5xl font-light mb-8">
-            Begin Your Transformation
-          </h2>
-
-          <p className="text-muted-foreground mb-12">
-            Rediscover your skin’s natural potential.
-          </p>
-
-          <Link
-            to="/book"
-            className="bg-foreground text-white px-12 py-5 rounded-full font-bold"
-          >
-            Book Your Consultation
-          </Link>
-        </div>
-      </section>
+      <ServiceCTA
+        title="Begin Your Transformation"
+        description="Rediscover your skin's natural potential through collagen induction therapy."
+        primaryButtonText="Book Your Consultation"
+      />
     </>
   );
 }

@@ -1,8 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Sun, Syringe, Wind, Brain, Waves, Flame, Zap, AudioLines, Sparkles, ArrowRight, MapPin } from "lucide-react";
+import { Sun, Syringe, Wind, Brain, Flame, Zap, AudioLines, Sparkles, ArrowRight, MapPin } from "lucide-react";
 import biohackingImg from "@/assets/biohacking-hub.jpg";
+import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -296,7 +297,7 @@ export default function BiohackingPage() {
       </section>
 
       {/* PHILOSOPHY QUOTE */}
-      <section className="py-24 md:py-32 bg-background">
+      <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto section-padding text-center max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -316,38 +317,13 @@ export default function BiohackingPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-clinic-teal">
-        <div className="container mx-auto section-padding text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease }}
-          >
-            <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight mb-4">
-              Ready to optimize your biology?
-            </h2>
-            <p className="text-white/80 text-base mb-8 max-w-lg mx-auto">
-              Book a consultation with our biohacking specialists and discover your personalized protocol.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                to="/book"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-clinic-teal font-semibold text-sm transition-all hover:bg-white/90"
-              >
-                Book Online
-              </Link>
-              <Link
-                to="/locations/kelowna"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-white/40 text-white font-semibold text-sm transition-all hover:bg-white/10"
-              >
-                <MapPin className="w-4 h-4" /> View Kelowna Hub
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <ServiceCTA
+        title="Ready to optimize your biology?"
+        description="Book a consultation with our biohacking specialists and discover your personalized protocol."
+        primaryButtonText="Book Online"
+        secondaryButtonText="View Kelowna Hub"
+        secondaryButtonLink="/locations/kelowna"
+      />
     </>
   );
 }

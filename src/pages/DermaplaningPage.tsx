@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Check, Sparkles, Droplet, Clock } from "lucide-react";
+import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -131,7 +132,7 @@ export default function DermaplaningPage() {
       </section>
 
       {/* ═══ THE TECHNIQUE ═══ */}
-      <section className="py-24 bg-secondary/30">
+      <section className="py-16 bg-secondary/30">
         <div className="container mx-auto section-padding">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -222,7 +223,7 @@ export default function DermaplaningPage() {
       </section>
 
       {/* ═══ RADIANT RESULTS ═══ */}
-      <section className="py-24 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto section-padding">
           <motion.div
             className="text-center max-w-3xl mx-auto mb-16"
@@ -326,7 +327,7 @@ export default function DermaplaningPage() {
       </section>
 
       {/* ═══ THE EXPERIENCE ═══ */}
-      <section className="py-24 bg-secondary/30">
+      <section className="py-16 bg-secondary/30">
         <div className="container mx-auto section-padding">
           <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
             <motion.div
@@ -369,36 +370,11 @@ export default function DermaplaningPage() {
         </div>
       </section>
 
-      {/* ═══ CTA ═══ */}
-      <section className="py-24">
-        <div className="container mx-auto section-padding">
-          <motion.div
-            className="max-w-4xl mx-auto bg-clinic-teal text-center p-12 md:p-20 rounded-[2.5rem] relative overflow-hidden"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease }}
-          >
-            <div className="absolute -top-20 -left-20 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-            <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-            <div className="relative z-10 space-y-8">
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white tracking-tighter">
-                Ready to reveal your glow?
-              </h2>
-              <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto font-light">
-                Join us at the clinic for a precision treatment that redefines your skin's natural
-                brilliance.
-              </p>
-              <Link
-                to="/book"
-                className="inline-flex items-center gap-2 bg-white text-clinic-teal rounded-full px-10 py-5 font-bold text-lg hover:bg-white/90 transition-all shadow-xl"
-              >
-                Book Your Session
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <ServiceCTA
+        title="Ready to reveal your glow?"
+        description="Join us at the clinic for a precision treatment that redefines your skin's natural brilliance."
+        primaryButtonText="Book Your Session"
+      />
     </>
   );
 }

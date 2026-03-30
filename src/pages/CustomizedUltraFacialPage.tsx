@@ -4,6 +4,7 @@ import { ArrowRight, ShieldCheck, Sparkles, Droplets, Wind, Hand, Shield, Waves,
 import { Link } from "react-router-dom";
 import ultraFacialHeroImg from "@/assets/treatment-skin.jpg";
 import ultraFacialBenefitsImg from "@/assets/hero-clinic.jpg";
+import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -283,36 +284,6 @@ export default function CustomizedUltraFacialPage() {
         </div>
       </section>
 
-      {/* ═══ CTA SECTION ═══ */}
-      <section className="py-20 md:py-24 bg-card">
-        <div className="container mx-auto section-padding">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease }}
-            className="bg-foreground rounded-2xl p-12 md:p-20 text-center relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-clinic-teal/20 rounded-full -mr-32 -mt-32 blur-3xl" />
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-6">
-                Begin Your Skin Journey
-              </h2>
-              <p className="text-primary-foreground/70 text-lg mb-10 max-w-2xl mx-auto">
-                Consult with our clinical experts to determine the optimal Customized UltraFacial protocol for your
-                specific skin goals and location.
-              </p>
-              <Link
-                to="/book"
-                className="inline-flex items-center gap-2 px-10 py-5 rounded-full bg-clinic-teal text-white font-bold text-lg hover:scale-105 transition-transform shadow-xl"
-              >
-                Book Your Consultation
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* ═══ LOCATIONS SECTION ═══ */}
       <section className="py-16 bg-secondary/30">
         <div className="container mx-auto section-padding">
@@ -332,6 +303,9 @@ export default function CustomizedUltraFacialPage() {
           </div>
         </div>
       </section>
+
+      {/* CTA */}
+      <ServiceCTA />
     </>
   );
 }

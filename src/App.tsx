@@ -20,8 +20,8 @@ import HealthWeightPage from "@/pages/HealthWeightPage";
 import VictoriaPage from "@/pages/VictoriaPage";
 import LangleyPage from "@/pages/LangleyPage";
 import KelownaPage from "@/pages/KelownaPage";
-import AboutPage from "@/pages/AboutPage";
 import AboutUsPage from "@/pages/AboutUsPage";
+import TeamPage from "@/pages/TeamPage";
 import BlogPage from "@/pages/BlogPage";
 import BookNowPage from "@/pages/BookNowPage";
 import ShopPage from "@/pages/ShopPage";
@@ -54,19 +54,18 @@ const App = () => (
             <Route path="/locations/victoria" element={<VictoriaPage />} />
             <Route path="/locations/langley" element={<LangleyPage />} />
             <Route path="/locations/kelowna" element={<KelownaPage />} />
-            <Route path="/about" element={<AboutPage />} />
             <Route path="/about-us" element={<AboutUsPage />} />
-            <Route path="/our-team" element={<AboutPage />} />
-            <Route path="/faqs" element={<AboutPage />} />
-            <Route path="/careers" element={<AboutPage />} />
+            <Route path="/our-team" element={<TeamPage />} />
+            <Route path="/faqs" element={<AboutUsPage />} />
+            <Route path="/careers" element={<AboutUsPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/book" element={<BookNowPage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/contact" element={<ContactPage />} />
             {/* Redirects for old routes */}
             <Route path="/treatments" element={<Navigate to="/services" replace />} />
-            <Route path="/journey" element={<Navigate to="/about" replace />} />
-            <Route path="/locations" element={<Navigate to="/about" replace />} />
+            <Route path="/journey" element={<Navigate to="/about-us" replace />} />
+            <Route path="/locations" element={<Navigate to="/about-us" replace />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

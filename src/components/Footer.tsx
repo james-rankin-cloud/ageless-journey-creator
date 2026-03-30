@@ -33,14 +33,30 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Right: Address + hours */}
-          <div className="space-y-6 text-sm text-card/60">
-            <div>
-              <p className="text-card font-medium mb-1">Langley</p>
-              <p>415-20178 96th Ave, Langley, BC V1M 0B2</p>
-              <p>+1 (236) 326-6830</p>
+          {/* Right: Locations + hours */}
+          <div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-card/60 mb-6">
+              <div>
+                <p className="text-card font-medium mb-1">Victoria</p>
+                <p>740 Hillside Ave #120</p>
+                <p>Victoria, BC V8T 1Z4</p>
+              </div>
+              <div>
+                <p className="text-card font-medium mb-1">Langley</p>
+                <p>415-20178 96th Ave</p>
+                <p>Langley, BC V1M 0B2</p>
+              </div>
+              <div>
+                <p className="text-card font-medium mb-1">Kelowna</p>
+                <p>1708 Dolphin Ave #101</p>
+                <p>Kelowna, BC V1Y 9S4</p>
+              </div>
+              <div>
+                <p className="text-card font-medium mb-1">Contact</p>
+                <p>+1 (236) 326-6830</p>
+              </div>
             </div>
-            <div>
+            <div className="text-sm text-card/60">
               <p className="text-card font-medium mb-1">Hours</p>
               <p>Mon. to Fri. — 9 AM to 5 PM</p>
               <p>Saturday — By appointment</p>

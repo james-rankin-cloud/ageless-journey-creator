@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, CheckCircle, Sparkles, Clock, Grid3X3, Heart, Shield, MapPin } from "lucide-react";
+import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -103,7 +104,7 @@ export default function PerfectDermaPeelPage() {
       </section>
 
       {/* ═══ GLUTATHIONE ADVANTAGE ═══ */}
-      <section className="py-24 bg-secondary/30 overflow-hidden">
+      <section className="py-16 bg-secondary/30 overflow-hidden">
         <div className="container mx-auto section-padding">
           <div className="flex flex-col lg:flex-row gap-16 items-center">
             <motion.div
@@ -151,7 +152,7 @@ export default function PerfectDermaPeelPage() {
       </section>
 
       {/* ═══ TARGETED SOLUTIONS ═══ */}
-      <section className="py-24 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto section-padding">
           <motion.div
             className="text-center mb-16 space-y-4"
@@ -230,7 +231,7 @@ export default function PerfectDermaPeelPage() {
       </section>
 
       {/* ═══ WHAT TO EXPECT ═══ */}
-      <section className="py-24 bg-foreground text-background rounded-[2rem] mx-4 md:mx-8">
+      <section className="py-16 bg-foreground text-background rounded-[2rem] mx-4 md:mx-8">
         <div className="max-w-5xl mx-auto px-8">
           <motion.div
             className="text-center mb-16"
@@ -268,7 +269,7 @@ export default function PerfectDermaPeelPage() {
       </section>
 
       {/* ═══ POST-PEEL RESULTS ═══ */}
-      <section className="py-24 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto section-padding">
           <motion.div
             className="bg-secondary/30 rounded-xl overflow-hidden"
@@ -339,39 +340,13 @@ export default function PerfectDermaPeelPage() {
         </div>
       </section>
 
-      {/* ═══ CTA ═══ */}
-      <section className="py-24 bg-clinic-teal">
-        <div className="container mx-auto section-padding text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease }}
-            className="max-w-3xl mx-auto"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-8">
-              Ready to Transform Your Skin?
-            </h2>
-            <p className="text-white/80 text-lg mb-12 font-light">
-              Experience the power of Glutathione and reveal your most radiant complexion.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/book"
-                className="bg-white text-clinic-teal px-10 py-5 rounded-full font-bold text-lg hover:opacity-90 transition-opacity"
-              >
-                Book Your Peel
-              </Link>
-              <Link
-                to="/services"
-                className="border border-white/40 text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-colors"
-              >
-                Explore More Treatments
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <ServiceCTA
+        title="Ready to Transform Your Skin?"
+        description="Experience the power of Glutathione and reveal your most radiant complexion."
+        primaryButtonText="Book Your Peel"
+        secondaryButtonText="Explore More Treatments"
+        secondaryButtonLink="/services"
+      />
     </>
   );
 }

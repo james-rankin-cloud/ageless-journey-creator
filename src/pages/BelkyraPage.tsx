@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowDown, Check, FlaskConical, Sparkles, Activity } from "lucide-react";
+import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -142,7 +143,7 @@ export default function BelkyraPage() {
       </section>
 
       {/* ═══ THE SCIENCE ═══ */}
-      <section id="science" className="py-24 bg-secondary/30 scroll-mt-24">
+      <section id="science" className="py-16 bg-secondary/30 scroll-mt-24">
         <div className="container mx-auto section-padding">
           <motion.div
             className="mb-16"
@@ -196,7 +197,7 @@ export default function BelkyraPage() {
       </section>
 
       {/* ═══ THE EXPERIENCE ═══ */}
-      <section className="py-24 bg-foreground text-background">
+      <section className="py-16 bg-foreground text-background">
         <div className="container mx-auto section-padding">
           <motion.div
             className="text-center mb-20"
@@ -245,38 +246,11 @@ export default function BelkyraPage() {
         </div>
       </section>
 
-      {/* ═══ CTA ═══ */}
-      <section className="py-24">
-        <div className="container mx-auto section-padding">
-          <motion.div
-            className="max-w-4xl mx-auto bg-clinic-teal text-center p-12 md:p-20 rounded-[2.5rem] relative overflow-hidden"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease }}
-          >
-            <div className="absolute inset-0 opacity-10 pointer-events-none bg-gradient-to-br from-white/20 to-transparent" />
-            <div className="relative z-10 space-y-8">
-              <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tighter">
-                Ready to redefine your profile?
-              </h2>
-              <p className="text-white/80 text-lg max-w-2xl mx-auto">
-                Book your comprehensive consultation today and discover if Belkyra is the right
-                path for your aesthetic goals.
-              </p>
-              <Link
-                to="/book"
-                className="inline-flex items-center gap-2 bg-white text-clinic-teal rounded-full px-10 py-5 font-bold text-lg hover:bg-white/90 transition-all shadow-xl"
-              >
-                Book Your Consultation
-              </Link>
-              <p className="text-xs text-white/60 font-medium tracking-widest uppercase">
-                Spaces are limited for the current month.
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <ServiceCTA
+        title="Ready to redefine your profile?"
+        description="Book your comprehensive consultation today and discover if Belkyra is the right path for your aesthetic goals."
+        primaryButtonText="Book Your Consultation"
+      />
     </>
   );
 }

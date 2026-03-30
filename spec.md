@@ -91,18 +91,17 @@ BrowserRouter
     ├── /locations/victoria            → VictoriaPage
     ├── /locations/langley             → LangleyPage
     ├── /locations/kelowna             → KelownaPage
-    ├── /about               → AboutPage
     ├── /about-us            → AboutUsPage
-    ├── /our-team            → AboutPage (placeholder)
-    ├── /faqs                → AboutPage (placeholder)
-    ├── /careers             → AboutPage (placeholder)
+    ├── /our-team            → AboutUsPage (placeholder)
+    ├── /faqs                → AboutUsPage (placeholder)
+    ├── /careers             → AboutUsPage (placeholder)
     ├── /blog                → BlogPage
     ├── /book                → BookNowPage
     ├── /shop                → ShopPage
     ├── /contact             → ContactPage
     ├── /treatments          → Redirect to /services
-    ├── /journey             → Redirect to /about
-    ├── /locations           → Redirect to /about
+    ├── /journey             → Redirect to /about-us
+    ├── /locations           → Redirect to /about-us
     └── *                    → NotFound (404)
 ```
 
@@ -142,6 +141,7 @@ ageless-journey-creator/
 │   │   ├── Products.tsx           # Product listings
 │   │   ├── Locations.tsx          # Location tabs with team
 │   │   ├── Contact.tsx            # Contact form
+│   │   ├── ServiceCTA.tsx         # Reusable CTA for service pages
 │   │   └── ...                    # 25+ feature components
 │   │
 │   ├── pages/
@@ -161,7 +161,6 @@ ageless-journey-creator/
 │   │   ├── VictoriaPage.tsx
 │   │   ├── LangleyPage.tsx
 │   │   ├── KelownaPage.tsx
-│   │   ├── AboutPage.tsx
 │   │   ├── AboutUsPage.tsx
 │   │   ├── BlogPage.tsx
 │   │   ├── BookNowPage.tsx
@@ -234,76 +233,142 @@ Layout
   <Hero />
   <Section1 />
   <Section2 />
-  <CtaBanner />
+  <ServiceCTA />  // For service pages
   <FloatingBookNow />
 </Layout>
 ```
 
+### ServiceCTA Component
+
+Reusable call-to-action component for all service pages:
+
+```tsx
+// ServiceCTA.tsx
+interface ServiceCTAProps {
+  title?: string;
+  description?: string;
+  primaryButtonText?: string;
+  primaryButtonLink?: string;
+  secondaryButtonText?: string;
+  secondaryButtonLink?: string;
+}
+
+// Default props
+title: "Ready to start your aesthetic journey?"
+description: "Book a comprehensive consultation with our medical team at any of our three locations."
+primaryButtonText: "Book Online"
+primaryButtonLink: "/book"
+secondaryButtonText: "View Our Locations"
+secondaryButtonLink: "/about-us"
+```
+
+**Features:**
+- Consistent teal background (bg-clinic-teal)
+- Two-button CTA layout (primary white, secondary outlined)
+- Framer Motion scroll animations
+- Fully customizable via props
+- Used on all service pages: BotoxDysport, CosmeticDermalFiller, CustomizedUltraFacial, LaserIplBbl, PerfectDermaPeel, Microneedling, Belkyra, Dermaplaning, HormoneBalancing, Biohacking, HealthWeight
+
+**Benefits:**
+- Single source of truth for CTA styling
+- Easy to update across all pages
+- Maintains design consistency
+- Reduces code duplication (~30-40 lines saved per page)
+
 ### HomePage Component Structure
 
-The homepage follows this specific component order:
+The homepage follows a minimal, premium design with four main sections:
 
 ```
 HomePage
 ├── Helmet (SEO meta tags + JSON-LD schema)
-├── Hero
-│   ├── Headline: "Discover your best self, at any age."
-│   ├── Subtext: Treatment offerings message
-│   ├── CTA: "Free consultation" button
-│   └── Portrait images + trust badges
-├── BentoBlock (clinic image + before/after slider)
-├── OurTreatments
-│   ├── Label: "Our Treatments"
-│   ├── Heading: "Picture Your Possible."
-│   └── Body: Guidance, tools, and technologies message
-├── ServicesPreview (3-column service cards)
-├── HomeLocations
-│   ├── Heading: "Visit Ageless Living"
-│   └── 3 Location Cards (Victoria, Langley, Kelowna)
-│       ├── Address, phone, email
-│       └── "Book Consultation" CTA
-├── BrandStatement
-├── TeamSection
-├── VideoTestimonial
-├── TestimonialsWall
-└── ContactBlock
+├── Hero Section (Two-column with video)
+│   ├── Left Column: Text content
+│   │   ├── Headline: "Discover your best self, at any age."
+│   │   ├── Subtext: Treatment offerings message
+│   │   └── CTAs: "Explore our Locations" + "Learn more"
+│   └── Right Column: Video (human_graphic.mp4/.webm)
+│       ├── autoplay, loop, muted, playsInline
+│       ├── object-cover styling
+│       └── Soft gradient overlay on left edge
+├── Treatments Section (4-column grid)
+│   ├── Header: "Our Treatments" + "View All Services" link
+│   └── 4 Treatment Cards (icon-based, hover effects):
+│       ├── Skin Rejuvenation (Sparkles icon)
+│       ├── Hormone Balancing (FlaskConical icon)
+│       ├── Biohacking (Zap icon)
+│       └── Health Weight (Scale icon)
+├── Locations Section (Two-column with image)
+│   ├── Left Column:
+│   │   ├── Heading: "Our Locations"
+│   │   ├── Description: Serving BC for over a decade
+│   │   └── 3 Location Cards (hover border effect):
+│   │       ├── Victoria Clinic → /locations/victoria
+│   │       ├── Langley Clinic → /locations/langley
+│   │       └── Kelowna Clinic → /locations/kelowna
+│   └── Right Column: Clinical environment image
+└── Leadership Section (Centered)
+    ├── Badge: "Our Expertise"
+    ├── Heading: "Clinical Excellence & Collaborative Expertise"
+    ├── Description: Team and standards message
+    └── CTAs: "Meet our full team" + "Clinical Standards"
 ```
+
+**Design Features:**
+- Two-column hero with looping video (human_graphic.mp4/.webm)
+- Treatment cards with teal hover state and lift animation
+- Location cards with border highlight on hover
+- Minimal, editorial typography with tight tracking
+- Framer Motion scroll-triggered animations
+- Responsive: stacks on mobile, side-by-side on desktop
 
 ### HormoneBalancingPage Component Structure
 
-Dedicated treatment detail page for Hormone Balancing services:
+Dedicated treatment detail page for Hormone Balancing services - redesigned with updated content and structure:
 
 ```
 HormoneBalancingPage
 ├── Helmet (SEO meta tags)
-├── Hero Section
+├── Hero Section (min-h-85vh, py-12-16)
 │   ├── Badge: "Well-being & Vitality"
-│   ├── Headline: "Hormone Balancing"
-│   ├── Description paragraphs (causes, symptoms)
-│   ├── Location availability note
+│   ├── Headline: "Hormone Balancing" (text-5xl-7xl)
+│   ├── Detailed description paragraphs covering:
+│   │   ├── Hormone imbalance causes and effects
+│   │   ├── Environmental factors and toxins
+│   │   ├── MD-directed programs
+│   │   └── Location availability note
 │   ├── CTAs: "Start Your Journey", "Watch the Story"
-│   └── Hero image with decorative blurs
-├── Why Test Your Hormones Section
-│   ├── Left column: explanation text
-│   └── Right column: 2x feature cards + image banner
-│       ├── MD Directed Programs card
-│       ├── All Ages & Genders card
-│       └── "Restoring Balance, Naturally" banner
-├── BHRT vs HRT Comparison Section (dark theme)
-│   ├── Left: explanation + feature cards
-│   │   ├── Bio-identical Perfection
-│   │   └── Risk Mitigation
-│   └── Right: stats grid (100% Identical, MD Certified)
-├── The Process Section
-│   ├── Step 01: Physician Consult
-│   ├── Step 02: Nutritionist Consultation
-│   └── Step 03: The Follow Up
-├── Locations Section
-│   ├── Location list (Victoria, Langley, Kelowna)
-│   └── Embedded Google Maps
-└── CTA Banner
-    └── "Ready to restore balance?" + booking links
+│   └── Hero image with decorative blur effects
+├── Why Test Your Hormones Section (py-20-24)
+│   ├── Left column: Detailed explanation text
+│   └── Right column:
+│       ├── Benefits card with description
+│       └── Image banner with overlay text
+├── Video Section (py-16-20)
+│   └── Video placeholder with play button overlay
+├── BHRT vs HRT Comparison Section (py-20-24, dark theme)
+│   ├── Left column: Evolution explanation
+│   └── Right column: Stats grid
+│       ├── "100% Identical to Natural" card
+│       ├── "MD Board Certified Care" card
+│       └── Laboratory image (grayscale)
+├── The Process Section (py-20-24)
+│   ├── Section header with "Path to Balance" badge
+│   ├── Step 01: Physician Consult (with checklist + detailed description)
+│   ├── Step 02: Nutritionist Consultation (with checklist + pharmacist access note)
+│   └── Step 03: The Follow Up (with checklist + team care message)
+└── ServiceCTA Component
+    └── Reusable CTA with standard messaging
 ```
+
+**Design Updates:**
+- Replaced entire page content with premium design matching provided HTML
+- Larger hero section (85vh min-height) with extensive content
+- Three-step process cards with detailed checklists
+- Added video section for educational content
+- Removed separate locations/maps section (handled by ServiceCTA)
+- Reduced vertical padding for more compact layout (py-20-24 instead of py-28-32)
+- Uses ServiceCTA component for consistency across all service pages
 
 ### CosmeticDermalFillerPage Component Structure
 
@@ -1189,3 +1254,54 @@ VITE_GA_ID=xxx
 - Locations
 - Blog Posts
 - Products
+
+---
+
+## 16. Recent Updates & Changes
+
+### March 2026 - Service Pages Redesign
+
+**Component Architecture Improvements:**
+1. **ServiceCTA Component** - Created reusable CTA component used across all service pages
+   - Location: `src/components/ServiceCTA.tsx`
+   - Customizable props for title, description, and button text/links
+   - Consistent teal background with two-button layout
+   - Reduces code duplication by ~30-40 lines per page
+
+2. **HormoneBalancingPage Complete Redesign**
+   - Replaced entire page with premium design and expanded content
+   - New sections: Video player, detailed 3-step process cards
+   - Larger hero section (min-h-85vh) with comprehensive information
+   - BHRT vs HRT comparison with stats grid
+   - Now uses ServiceCTA component for consistency
+
+3. **Services Pages Optimization**
+   - Reduced vertical padding across all service pages (py-28/py-32 → py-16/py-20)
+   - More compact, modern layout with improved page rhythm
+   - Removed redundant location sections (handled by ServiceCTA)
+   - All service pages now use ServiceCTA component
+
+**Pages Updated:**
+- HormoneBalancingPage.tsx (complete redesign)
+- BotoxDysportPage.tsx
+- CosmeticDermalFillerPage.tsx
+- CustomizedUltraFacialPage.tsx
+- LaserIplBblPage.tsx
+- PerfectDermaPeelPage.tsx
+- MicroneedlingPage.tsx
+- BelkyraPage.tsx
+- DermaplaningPage.tsx
+- BiohackingPage.tsx
+- HealthWeightPage.tsx
+
+**Code Quality:**
+- Removed unused imports across all service pages
+- Eliminated code duplication (~300+ lines of redundant CTA code)
+- Improved maintainability (single source of truth for CTAs)
+- Consistent design patterns across all service pages
+
+**Design Improvements:**
+- Cleaner, more compact layouts
+- Consistent CTA styling and messaging
+- Reduced excessive whitespace
+- Premium, professional aesthetic maintained throughout

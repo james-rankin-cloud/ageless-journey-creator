@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Clock, Zap, Sparkles, Eye, Frown, Activity } from "lucide-react";
+import { ArrowLeft, Clock, Zap, Sparkles, Eye, Frown, Activity } from "lucide-react";
+import ServiceCTA from "@/components/ServiceCTA";
 import botoxHeroImg from "@/assets/botox-hero.jpg";
 import botoxResultsImg from "@/assets/botox-results.jpg";
 import botoxPrecisionImg from "@/assets/botox-precision.jpg";
@@ -47,7 +48,7 @@ export default function BotoxDysportPage() {
       </Helmet>
 
       {/* ═══ HERO ═══ */}
-      <section className="pt-32 pb-16 md:pb-24 bg-background">
+      <section className="pt-28 pb-12 md:pb-16 bg-background">
         <div className="container mx-auto section-padding">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <motion.div
@@ -103,7 +104,7 @@ export default function BotoxDysportPage() {
       </section>
 
       {/* ═══ SIGNS OF AGING ═══ */}
-      <section className="py-24 bg-secondary/30">
+      <section className="py-16 md:py-20 bg-secondary/30">
         <div className="container mx-auto section-padding">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             {/* Cards grid */}
@@ -160,7 +161,7 @@ export default function BotoxDysportPage() {
       </section>
 
       {/* ═══ HOW IT WORKS ═══ */}
-      <section className="py-24 bg-background">
+      <section className="py-16 md:py-20 bg-background">
         <div className="container mx-auto section-padding text-center space-y-16">
           <motion.div
             className="max-w-2xl mx-auto space-y-4"
@@ -196,7 +197,7 @@ export default function BotoxDysportPage() {
       </section>
 
       {/* ═══ WHY CHOOSE ═══ */}
-      <section className="py-24 bg-clinic-teal text-white overflow-hidden">
+      <section className="py-16 md:py-20 bg-clinic-teal text-white overflow-hidden">
         <div className="container mx-auto section-padding">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             <motion.div
@@ -256,7 +257,7 @@ export default function BotoxDysportPage() {
       </section>
 
       {/* ═══ COMMON AREAS ═══ */}
-      <section className="py-24 bg-secondary/30">
+      <section className="py-16 md:py-20 bg-secondary/30">
         <div className="container mx-auto section-padding space-y-16">
           <motion.div
             className="flex flex-col md:flex-row md:items-end justify-between gap-8"
@@ -301,35 +302,8 @@ export default function BotoxDysportPage() {
         </div>
       </section>
 
-      {/* ═══ CTA ═══ */}
-      <section className="py-24">
-        <div className="container mx-auto section-padding">
-          <motion.div
-            className="max-w-4xl mx-auto bg-secondary/50 text-center p-12 md:p-20 rounded-xl relative overflow-hidden"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease }}
-          >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-clinic-teal/5 rounded-full blur-3xl -mr-32 -mt-32" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-clinic-teal/5 rounded-full blur-3xl -ml-32 -mb-32" />
-            <div className="relative z-10 space-y-8">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
-                Ready to Begin Your Journey?
-              </h2>
-              <p className="text-muted-foreground text-lg font-light max-w-2xl mx-auto">
-                Your transformation starts with a personal consultation. Let us create a custom treatment plan tailored to your unique anatomy and goals.
-              </p>
-              <Link
-                to="/book"
-                className="inline-flex items-center gap-2 bg-foreground text-background rounded-full px-12 py-5 font-bold text-lg hover:opacity-90 transition-all shadow-2xl"
-              >
-                Book a Consultation
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* CTA */}
+      <ServiceCTA />
     </>
   );
 }

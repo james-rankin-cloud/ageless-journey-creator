@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Heart, Sun, Sparkles, Zap, MapPin } from "lucide-react";
+import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -89,7 +90,7 @@ export default function LaserIplBblPage() {
       </section>
 
       {/* ═══ INTRODUCTION ═══ */}
-      <section className="py-24 bg-secondary/30">
+      <section className="py-16 bg-secondary/30">
         <div className="container mx-auto section-padding">
           <div className="grid md:grid-cols-12 gap-12 items-start">
             <motion.div
@@ -123,7 +124,7 @@ export default function LaserIplBblPage() {
       </section>
 
       {/* ═══ TECHNOLOGY BREAKDOWN ═══ */}
-      <section className="py-24 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto section-padding">
           <motion.div
             className="text-center mb-16"
@@ -195,7 +196,7 @@ export default function LaserIplBblPage() {
       </section>
 
       {/* ═══ TREATMENT BENEFITS ═══ */}
-      <section className="py-24 bg-background overflow-hidden">
+      <section className="py-16 bg-background overflow-hidden">
         <div className="container mx-auto section-padding">
           <div className="flex flex-col md:flex-row gap-16 items-center">
             <motion.div
@@ -249,7 +250,7 @@ export default function LaserIplBblPage() {
       </section>
 
       {/* ═══ THE JOURNEY ═══ */}
-      <section className="py-24 bg-secondary/30">
+      <section className="py-16 bg-secondary/30">
         <div className="container mx-auto section-padding">
           <motion.div
             className="text-center mb-16"
@@ -290,7 +291,7 @@ export default function LaserIplBblPage() {
       </section>
 
       {/* ═══ LOCATIONS ═══ */}
-      <section className="py-24 bg-background">
+      <section className="py-16 bg-background">
         <div className="container mx-auto section-padding">
           <motion.div
             className="text-center mb-12"
@@ -313,39 +314,7 @@ export default function LaserIplBblPage() {
         </div>
       </section>
 
-      {/* ═══ CTA ═══ */}
-      <section className="py-24 bg-clinic-teal">
-        <div className="container mx-auto section-padding text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease }}
-            className="max-w-3xl mx-auto"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-8">
-              Ready for a <span className="italic font-medium underline decoration-white/20 underline-offset-8">Luminous</span> Tomorrow?
-            </h2>
-            <p className="text-white/80 text-lg mb-12 font-light">
-              Join us for a specialized assessment where light meets expertise.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/book"
-                className="bg-white text-clinic-teal px-10 py-5 rounded-full font-bold text-lg hover:opacity-90 transition-opacity"
-              >
-                Begin Your Light Therapy
-              </Link>
-              <Link
-                to="/services"
-                className="border border-white/40 text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-colors"
-              >
-                Explore More Treatments
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <ServiceCTA />
     </>
   );
 }

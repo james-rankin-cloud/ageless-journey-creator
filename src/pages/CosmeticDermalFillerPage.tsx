@@ -1,9 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { ArrowRight, Droplets, Sparkles, PenTool, Triangle, FileText, Stethoscope, Heart, ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Droplets, Sparkles, PenTool, Triangle, FileText, Stethoscope, Heart, ShieldCheck } from "lucide-react";
 import dermalFillerHeroImg from "@/assets/treatment-skin.jpg";
 import dermalFillerProductImg from "@/assets/botox-precision.jpg";
+import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -160,7 +161,7 @@ export default function CosmeticDermalFillerPage() {
       </section>
 
       {/* ═══ FOCUS AREAS SECTION ═══ */}
-      <section className="py-20 md:py-28 bg-secondary/30">
+      <section className="py-16 md:py-20 bg-secondary/30">
         <div className="container mx-auto section-padding">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -205,7 +206,7 @@ export default function CosmeticDermalFillerPage() {
       </section>
 
       {/* ═══ PRODUCT SHOWCASE SECTION ═══ */}
-      <section className="py-20 md:py-28 bg-background overflow-hidden">
+      <section className="py-16 md:py-20 bg-background overflow-hidden">
         <div className="container mx-auto section-padding">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -270,7 +271,7 @@ export default function CosmeticDermalFillerPage() {
       </section>
 
       {/* ═══ EXPERIENCE SECTION ═══ */}
-      <section className="py-20 md:py-28 bg-secondary/30">
+      <section className="py-16 md:py-20 bg-secondary/30">
         <div className="container mx-auto section-padding">
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -306,44 +307,8 @@ export default function CosmeticDermalFillerPage() {
         </div>
       </section>
 
-      {/* ═══ CTA SECTION ═══ */}
-      <section className="py-20 md:py-24 bg-foreground text-primary-foreground">
-        <div className="container mx-auto section-padding text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease }}
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Refine Your Radiance</h2>
-            <p className="text-primary-foreground/70 text-lg mb-10 max-w-lg mx-auto">
-              Book your private consultation at any of our three signature clinical locations.
-            </p>
-            <Link
-              to="/book"
-              className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-clinic-teal text-white font-semibold text-lg hover:scale-105 transition-transform"
-            >
-              Book Consultation Now <ArrowRight className="w-5 h-5" />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══ LOCATIONS SECTION ═══ */}
-      <section className="py-16 bg-secondary/30">
-        <div className="container mx-auto section-padding">
-          <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16 text-center">
-            <p className="text-sm font-semibold text-clinic-teal uppercase tracking-widest">Available at:</p>
-            <div className="flex flex-wrap justify-center gap-8">
-              {["Victoria", "Langley", "Kelowna"].map((loc) => (
-                <span key={loc} className="text-foreground font-medium">
-                  {loc}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* CTA */}
+      <ServiceCTA />
     </>
   );
 }
