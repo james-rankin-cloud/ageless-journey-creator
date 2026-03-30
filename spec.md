@@ -82,8 +82,20 @@ BrowserRouter
     ├── /services/cosmetic-dermal-filler → CosmeticDermalFillerPage
     ├── /services/customized-ultrafacial → CustomizedUltraFacialPage
     ├── /services/laser-ipl-bbl        → LaserIplBblPage
-    ├── /prices                        → PricesPage
+    ├── /services/perfect-derma-peel   → PerfectDermaPeelPage
+    ├── /services/microneedling        → MicroneedlingPage
+    ├── /services/belkyra              → BelkyraPage
+    ├── /services/dermaplaning         → DermaplaningPage
+    ├── /services/biohacking           → BiohackingPage
+    ├── /services/health-weight        → HealthWeightPage
+    ├── /locations/victoria            → VictoriaPage
+    ├── /locations/langley             → LangleyPage
+    ├── /locations/kelowna             → KelownaPage
     ├── /about               → AboutPage
+    ├── /about-us            → AboutUsPage
+    ├── /our-team            → AboutPage (placeholder)
+    ├── /faqs                → AboutPage (placeholder)
+    ├── /careers             → AboutPage (placeholder)
     ├── /blog                → BlogPage
     ├── /book                → BookNowPage
     ├── /shop                → ShopPage
@@ -140,8 +152,17 @@ ageless-journey-creator/
 │   │   ├── CosmeticDermalFillerPage.tsx
 │   │   ├── CustomizedUltraFacialPage.tsx
 │   │   ├── LaserIplBblPage.tsx
-│   │   ├── PricesPage.tsx
+│   │   ├── PerfectDermaPeelPage.tsx
+│   │   ├── MicroneedlingPage.tsx
+│   │   ├── BelkyraPage.tsx
+│   │   ├── DermaplaningPage.tsx
+│   │   ├── BiohackingPage.tsx
+│   │   ├── HealthWeightPage.tsx
+│   │   ├── VictoriaPage.tsx
+│   │   ├── LangleyPage.tsx
+│   │   ├── KelownaPage.tsx
 │   │   ├── AboutPage.tsx
+│   │   ├── AboutUsPage.tsx
 │   │   ├── BlogPage.tsx
 │   │   ├── BookNowPage.tsx
 │   │   ├── ShopPage.tsx
@@ -391,33 +412,387 @@ LaserIplBblPage
     └── "Ready for a Luminous Tomorrow?" + booking CTAs
 ```
 
-### Header Navigation with Services Dropdown
+### PerfectDermaPeelPage Component Structure
 
-The Header component includes a dropdown menu for Services with anchor links:
+Dedicated treatment detail page for The Perfect Derma™ Peel:
+
+```
+PerfectDermaPeelPage
+├── Helmet (SEO meta tags)
+├── Hero Section
+│   ├── Badge: "Advanced Resurfacing"
+│   ├── Headline: "The Perfect Derma™ Peel"
+│   ├── Description: Medical-grade chemical peel with Glutathione
+│   ├── CTAs: "Book Consultation", "View Pricing"
+│   └── Hero image with floating "Medical Grade Authority" card
+├── Glutathione Advantage Section
+│   ├── Left: Image with decorative blur
+│   └── Right: "The Science of Renewal"
+│       ├── Description of Glutathione benefits
+│       └── Checklist of benefits
+├── Targeted Solutions Section (Bento Grid)
+│   ├── Large card: Deep Hyperpigmentation & Melasma (94% efficacy)
+│   ├── Teal card: Acne & Scarring
+│   ├── Radiance Boost card
+│   ├── Anti-Aging card
+│   └── Pore Refinement card
+├── What to Expect Section (dark theme, rounded)
+│   ├── Step 1: Treatment Day (15 minutes)
+│   ├── Step 2: Days 1-2 (peeling begins)
+│   ├── Step 3: Days 3-5 (peak peeling)
+│   └── Step 4: Day 7 (complete transformation)
+├── Post-Peel Results Section
+│   ├── Left: "Post-Peel Radiance" + testimonial
+│   └── Right: Result image
+├── Locations Section
+│   └── Available at: Victoria, Langley, Kelowna
+└── CTA Section (teal theme)
+    └── "Ready to Transform Your Skin?" + booking CTAs
+```
+
+### BelkyraPage Component Structure
+
+Dedicated treatment detail page for Belkyra (submental fat reduction):
+
+```
+BelkyraPage
+├── Helmet (SEO meta tags)
+├── Hero Section
+│   ├── Badge: "Advanced Injectable"
+│   ├── Headline: "Belkyra™ Submental Contouring"
+│   ├── Description: Injectable treatment for double chin reduction
+│   ├── CTAs: "Start Your Transformation", "View Results"
+│   └── Hero image with floating FDA Approved badge
+├── The Science Section (The Science of Dissolving)
+│   ├── Card 1: Deoxycholic Acid
+│   ├── Card 2: Cellular Disruption (featured, teal)
+│   └── Card 3: Natural Elimination
+├── The Experience Section (dark theme)
+│   ├── Step 01: Clinical Consultation
+│   ├── Step 02: Precise Treatment
+│   └── Step 03: Recovery & Aftercare
+└── CTA Section (teal theme)
+    └── "Ready to redefine your profile?" + booking CTA
+```
+
+### DermaplaningPage Component Structure
+
+Dedicated treatment detail page for Dermaplaning (manual exfoliation):
+
+```
+DermaplaningPage
+├── Helmet (SEO meta tags)
+├── Hero Section
+│   ├── Badge: "Manual Exfoliation Specialist"
+│   ├── Headline: "Dermaplaning"
+│   ├── Description: Precision manual exfoliation for clarity
+│   ├── CTAs: "Book Appointment", "View Pricing"
+│   └── Hero image with floating "Immediate results" card
+├── The Technique Section
+│   ├── Left: Image grid with info cards
+│   │   ├── Vellus Hair card
+│   │   └── Manual Precision card (teal)
+│   └── Right: Description + benefits checklist
+├── Radiant Results Section (Bento Grid)
+│   ├── The Amazing Glow (large card)
+│   ├── Deeper Penetration (teal card)
+│   ├── Flawless Application
+│   └── The Perfect Add-on (dark card)
+├── The Experience Section
+│   ├── Step 01: Clinical Consultation
+│   ├── Step 02: Precision Treatment
+│   └── Step 03: Post-Care Ritual
+└── CTA Section (teal theme)
+    └── "Ready to reveal your glow?" + booking CTA
+```
+
+### BiohackingPage Component Structure
+
+Dedicated page for Biohacking & Longevity services:
+
+```
+BiohackingPage
+├── Helmet (SEO meta tags)
+├── Hero Section
+│   ├── Badge: "The Future of Performance"
+│   ├── Headline: "Biohacking: Developed by Leaders."
+│   ├── Description: Advanced protocols for weight loss, strength, recovery
+│   ├── CTAs: "Explore Modalities", "View Locations"
+│   └── Hero image with glow effect
+├── Clinical Suite Section (Bento Grid)
+│   ├── PBM / Red Light Therapy (large card, all locations)
+│   ├── IV Therapy (Kelowna Only)
+│   ├── HBOT - Hyperbaric Oxygen (Langley, Kelowna)
+│   ├── Neurointegrator (dark card, Langley)
+│   └── Small Cards Grid:
+│       ├── Brain Tap (Kelowna)
+│       ├── Far Infrared Sauna (Langley, Kelowna)
+│       ├── NuCalm (Victoria, Langley)
+│       └── PEMF (All Clinics)
+├── Philosophy Quote Section
+│   └── "We provide the tools. Your biology provides the transformation."
+└── CTA Section (teal theme)
+    └── "Ready to optimize your biology?" + booking CTAs
+```
+
+### HealthWeightPage Component Structure
+
+Dedicated page for Health Weight management services:
+
+```
+HealthWeightPage
+├── Helmet (SEO meta tags)
+├── Hero Section
+│   ├── Badge: "Metabolic Excellence"
+│   ├── Headline: "Health Weight"
+│   ├── Description: Weight as function of diet and metabolism
+│   └── Hero image (4:5 aspect ratio, portrait)
+├── Foundation Section (The Modern Epidemic)
+│   ├── Left: Two-column image grid (healthy food photography)
+│   └── Right: Problem statement + description
+│       ├── North American diet issues (high fat + high carb)
+│       ├── Inflammation and chronic diseases
+│       └── Lifestyle factors (stress, sleep, sedentary)
+├── What Makes Us Different Section (Bento Grid)
+│   ├── Large Feature Card: "Correcting the Cause"
+│   │   ├── Description: Addressing root causes (gut, metabolism, hormones)
+│   │   └── Physician avatars + "Expert Physician Oversight"
+│   ├── Side Card: "Beyond the Bandage" (teal theme)
+│   └── Bottom Features (3-column):
+│       ├── Individualized (holistic approach)
+│       ├── Assessment (hormone testing, nutrition)
+│       └── Safety First (medically-based program)
+├── Video Section
+│   ├── Full-width video placeholder with play button
+│   ├── Title: "The Science of Metabolism"
+│   └── Subtitle: "Watch our full methodology"
+└── Final CTA Section (teal theme)
+    ├── Heading: "Ready to reclaim your health?"
+    ├── Description: Comprehensive plan for sustainable weight
+    └── CTA: "Schedule Your Consultation" → /book
+```
+
+**Design Features:**
+- Premium medical aesthetic with scientific precision messaging
+- Bento grid layout for feature cards
+- Teal accent color scheme matching brand
+- Framer Motion scroll animations
+- Responsive image grids and asymmetric layouts
+- Video placeholder with hover effects
+
+### AboutUsPage Component Structure
+
+Dedicated About Us page showcasing company mission and values:
+
+```
+AboutUsPage
+├── Helmet (SEO meta tags)
+├── Hero Section (Two-column gradient layout)
+│   ├── Left: Practitioner/patient image (rounded, shadow)
+│   ├── Right: Content block
+│   │   ├── Label: "About Us" (10px, uppercase tracking)
+│   │   ├── Headline: "Helping you discover your best self, at any age."
+│   │   └── Description: Guidance, tools, and technologies message
+│   └── Background: Soft gradient (clinic-teal/5 to white)
+├── Mission & Branding Section (Two-column with divider)
+│   ├── Left Column:
+│   │   ├── Label: "Our Mission" (10px, uppercase tracking)
+│   │   ├── Heading: "Live better, longer."
+│   │   ├── Body text about health and wellbeing (80% influenced)
+│   │   └── Values Grid (2 columns):
+│   │       ├── "Picture your possible." + description
+│   │       └── "Collaborative care." + description
+│   └── Right Column: Brand Mark (Teal "A" SVG, 320px)
+├── Locations Section (Two-column, secondary background)
+│   ├── Left Column:
+│   │   ├── Label: "Across Multiple Locations"
+│   │   ├── Heading: "Serving British Columbia for over a decade."
+│   │   ├── Description paragraph
+│   │   └── Location Links (3 inline with MapPin icons):
+│   │       ├── Kelowna → /locations/kelowna
+│   │       ├── Victoria → /locations/victoria
+│   │       └── Langley → /locations/langley
+│   └── Right Column: Clinical team image with overlay branding
+└── Final CTA Section (Centered, white background)
+    ├── Heading: "Ready to begin your journey?"
+    ├── Description: "Your best self is waiting..."
+    └── Two CTAs: "Book Appointment" (dark pill) + "Contact Our Team" (text link)
+```
+
+**Design Features:**
+- Two-column hero with gradient background (clinic-teal/5 to white)
+- Large brand mark SVG (stylized "A" in teal)
+- Minimal, editorial typography (light font weights, tight tracking)
+- 10px uppercase labels with wide letter-spacing
+- MapPin icons for location links
+- Image with floating branding overlay
+- Framer Motion scroll-triggered animations
+- Responsive design with mobile-first approach
+- Premium typography with tracking and weight variations
+
+### VictoriaPage Component Structure
+
+Location page for the Victoria clinic (compact styling ~15% smaller than standard):
+
+```
+VictoriaPage
+├── Helmet (SEO meta tags)
+├── Hero Section
+│   ├── Badge: "Our Sanctuary"
+│   ├── Headline: "Victoria Clinic"
+│   ├── Contact info (address, phone, email)
+│   ├── Hours note callout
+│   ├── CTAs: "Book Consultation", "Get Directions"
+│   └── Hero image with Victoria city thumbnail
+├── Treatments Section
+│   ├── Heading: "Treatments available in Victoria"
+│   └── 4 treatment cards (Biohacking, Health Weight, Hormone, Skin)
+├── Map & Hours Section
+│   ├── Google Maps embed (left)
+│   └── Clinic hours card (teal, right)
+├── Meet the Team Section
+│   └── 6 team member cards with photos and roles
+└── CTA Section (dark theme)
+    └── "Ready to begin your journey?" + booking CTA
+```
+
+### LangleyPage Component Structure
+
+Location page for the Langley Clinic (compact styling ~15% smaller than standard):
+
+```
+LangleyPage
+├── Helmet (SEO meta tags)
+├── Hero Section
+│   ├── Badge: "Our Sanctuary"
+│   ├── Headline: "Langley Clinic"
+│   ├── Contact info (415-20178 96 Ave, +1 236-326-6830, langley@agelessliving.ca)
+│   ├── Hours note callout
+│   ├── CTAs: "Book Consultation", "Get Directions"
+│   └── Hero image with Langley city thumbnail
+├── Treatments Section
+│   ├── Heading: "Treatments available in Langley"
+│   └── 4 treatment cards (Biohacking, Health Weight, Hormone, Skin)
+├── Map & Hours Section
+│   ├── Google Maps embed (left)
+│   └── Clinic hours card (teal, right)
+├── Meet the Langley Team Section
+│   └── 5 team member cards:
+│       ├── Shelley McBride (MOA, Clinic Manager)
+│       ├── Yvonne Ng (Certified Medical Aesthetician)
+│       ├── Avnit Bhullar (Medical Aesthetician)
+│       ├── Michael Forbes, BSc Pharm (Owner, Pharmacist)
+│       └── Dr. Jean Paul Lim, MD, FRCPC (Owner, Internal Medicine)
+└── CTA Section (dark theme)
+    └── "Ready to begin your journey?" + booking CTA
+```
+
+### KelownaPage Component Structure
+
+Location page for the Kelowna Clinic (compact styling ~15% smaller than standard):
+
+```
+KelownaPage
+├── Helmet (SEO meta tags)
+├── Hero Section
+│   ├── Badge: "Visit Ageless Living"
+│   ├── Headline: "Kelowna Clinic"
+│   ├── Contact info (102-3320 Richter Street, +1 778-760-9827, kelowna@agelessliving.ca)
+│   ├── Online booking note callout
+│   ├── CTAs: "Book Consultation", "Get Directions"
+│   └── Hero image with Kelowna/Okanagan thumbnail
+├── Intro Section
+│   └── "Ageless Living™ brings together the best of what's possible..."
+├── Treatments Section
+│   ├── Heading: "Treatments available in Kelowna"
+│   └── 4 treatment cards (Biohacking, Health Weight, Hormone, Skin)
+├── Map & Hours Section
+│   ├── Google Maps embed (left)
+│   └── Clinic hours card (teal, right)
+├── Meet the Team Section
+│   └── 7 team member cards:
+│       ├── Constanza Moraga Herrera (Nutritional Practitioner)
+│       ├── Rachel Bowman Fassio (Clinical Nutritionist)
+│       ├── Melissa Zitterer (Clinic Manager, MOA)
+│       ├── Dr. Jason Boxtart, ND (Men's Health Specialist)
+│       ├── Dr. Tracey Lotze, MD (Hormone and Sexual Health)
+│       ├── Michael Forbes, BSc Pharm (Owner, Pharmacist)
+│       └── Dr. Jean Paul Lim, MD, FRCPC (Owner, Internal Medicine)
+└── CTA Section (dark theme)
+    └── "Ready to begin your journey?" + booking CTA
+```
+
+### Header Navigation with Services & Locations Dropdowns
+
+The Header component includes dropdown menus for Services and Locations:
 
 ```
 Header
 ├── Logo
 ├── Desktop Navigation
 │   ├── Home
-│   ├── Services (with dropdown)
+│   ├── Services (with dropdown) - Hover to open
 │   │   ├── Skin Rejuvenation → /services#skin-rejuvenation
 │   │   ├── Hormone Balancing → /services#hormone-balancing
-│   │   ├── Biohacking & Longevity → /services#biohacking
+│   │   ├── Biohacking → /services#biohacking
 │   │   ├── Health Weight → /services#health-weight
 │   │   └── View All Services → /services
-│   ├── Prices
-│   ├── About Us
-│   └── Blog
+│   ├── About (with dropdown) - Hover to open
+│   │   ├── About Us → /about-us
+│   │   ├── Our Team → /our-team
+│   │   ├── FAQs → /faqs
+│   │   ├── Blog → /blog
+│   │   └── Careers → /careers
+│   └── Locations (with dropdown) - Hover to open
+│       ├── Victoria → /locations/victoria
+│       ├── Langley → /locations/langley
+│       └── Kelowna → /locations/kelowna
 ├── Book a time CTA
-└── Mobile Menu (with expandable Services submenu)
+└── Mobile Menu (with expandable Services, About + Locations sections)
+    ├── Tap "Services" to expand service options
+    ├── Tap "About" to expand about options
+    └── Tap "Locations" to view location options
 ```
 
+**Dropdown Implementations:**
+
+*Services Dropdown:*
+- Desktop: Hover over "Services" to reveal dropdown (onMouseEnter/onMouseLeave)
+- Mobile: Tap "Services" button to expand/collapse service links
+- Dropdown auto-closes on navigation or when mouse leaves
+- Animated dropdown with Framer Motion (fade-in: opacity 0→1, y: 8→0)
+- Includes "View All Services" link with clinic-teal styling
+
+*About Dropdown:*
+- Desktop: Hover over "About" to reveal dropdown
+- Mobile: Tap "About" button to expand/collapse about links
+- Five items: About Us, Our Team, FAQs, Blog, Careers
+- Dropdown auto-closes on navigation or when mouse leaves
+- Same animation pattern as Services dropdown
+- Min-width: 180px
+
+*Locations Dropdown:*
+- Desktop: Hover over "Locations" to reveal dropdown
+- Mobile: Static list display
+- Three location links with MapPin icons
+- Same animation pattern as other dropdowns
+
 **Anchor Link Features:**
-- Each ServicesPage section has a unique ID (`id="skin-rejuvenation"`, etc.)
-- Sections use `scroll-mt-24` class to offset for the fixed navbar
-- Global smooth scrolling enabled via `html { scroll-behavior: smooth }`
-- ServicesPage includes `useEffect` to handle hash navigation on page load
+- Each ServicesPage section has a unique ID:
+  - `id="skin-rejuvenation"` (line 124)
+  - `id="hormone-balancing"` (line 187)
+  - `id="biohacking"` (line 273)
+  - `id="health-weight"` (line 345)
+- Sections use `scroll-mt-24` class to offset for the fixed navbar (prevents overlap)
+- Global smooth scrolling enabled: `html { scroll-behavior: smooth }` (index.css line 102-104)
+- ServicesPage includes `useEffect` to handle hash navigation on page load (line 39-48)
+
+**UX Details:**
+- Dropdown closes automatically after clicking a service link
+- Keyboard navigation supported via standard link focus states
+- Mobile menu collapses when navigating to avoid UI overlap
+- Chevron icon rotates 180° when dropdown is open
+- Consistent spacing and styling with existing Locations dropdown
 
 ### UI Component Library (shadcn/ui)
 

@@ -12,9 +12,16 @@ import CosmeticDermalFillerPage from "@/pages/CosmeticDermalFillerPage";
 import CustomizedUltraFacialPage from "@/pages/CustomizedUltraFacialPage";
 import LaserIplBblPage from "@/pages/LaserIplBblPage";
 import PerfectDermaPeelPage from "@/pages/PerfectDermaPeelPage";
-import MicroneedlingPage from "@/pages/MicroneedlingPage"
-import PricesPage from "@/pages/PricesPage";
+import MicroneedlingPage from "@/pages/MicroneedlingPage";
+import BelkyraPage from "@/pages/BelkyraPage";
+import DermaplaningPage from "@/pages/DermaplaningPage";
+import BiohackingPage from "@/pages/BiohackingPage";
+import HealthWeightPage from "@/pages/HealthWeightPage";
+import VictoriaPage from "@/pages/VictoriaPage";
+import LangleyPage from "@/pages/LangleyPage";
+import KelownaPage from "@/pages/KelownaPage";
 import AboutPage from "@/pages/AboutPage";
+import AboutUsPage from "@/pages/AboutUsPage";
 import BlogPage from "@/pages/BlogPage";
 import BookNowPage from "@/pages/BookNowPage";
 import ShopPage from "@/pages/ShopPage";
@@ -40,8 +47,18 @@ const App = () => (
             <Route path="/services/laser-ipl-bbl" element={<LaserIplBblPage />} />
             <Route path="/services/perfect-derma-peel" element={<PerfectDermaPeelPage />} />
             <Route path="/services/microneedling" element={<MicroneedlingPage />} />
-            <Route path="/prices" element={<PricesPage />} />
+            <Route path="/services/belkyra" element={<BelkyraPage />} />
+            <Route path="/services/dermaplaning" element={<DermaplaningPage />} />
+            <Route path="/services/biohacking" element={<BiohackingPage />} />
+            <Route path="/services/health-weight" element={<HealthWeightPage />} />
+            <Route path="/locations/victoria" element={<VictoriaPage />} />
+            <Route path="/locations/langley" element={<LangleyPage />} />
+            <Route path="/locations/kelowna" element={<KelownaPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/about-us" element={<AboutUsPage />} />
+            <Route path="/our-team" element={<AboutPage />} />
+            <Route path="/faqs" element={<AboutPage />} />
+            <Route path="/careers" element={<AboutPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/book" element={<BookNowPage />} />
             <Route path="/shop" element={<ShopPage />} />
