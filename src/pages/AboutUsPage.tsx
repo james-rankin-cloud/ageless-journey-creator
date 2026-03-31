@@ -23,8 +23,8 @@ export default function AboutUsPage() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-clinic-teal/5 via-white to-white py-20 md:py-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+      <section className="bg-gradient-to-br from-clinic-teal/5 via-white to-white pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
           <motion.div
             className="rounded-2xl overflow-hidden shadow-sm order-2 md:order-1"
             initial={{ opacity: 0, x: -20 }}
@@ -48,7 +48,7 @@ export default function AboutUsPage() {
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground leading-[1.1] mb-8">
               Helping you discover your best self,{" "}
-              <span className="text-clinic-teal font-medium italic">at any age.</span>
+              <span className="bg-gradient-to-r from-clinic-teal to-cyan-500 bg-clip-text text-transparent font-medium italic">at any age.</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed font-light">
               Ageless Living brings together the best of what's possible: The guidance, tools and technologies to help you live better, longer.
@@ -58,36 +58,36 @@ export default function AboutUsPage() {
       </section>
 
       {/* Mission & Branding Section */}
-      <section className="py-20 md:py-24 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 items-start border-b border-border/20 pb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start border-b border-border/20 pb-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease }}
             >
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground mb-4 block">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground mb-4 block">
                 Our Mission
               </span>
-              <h2 className="text-3xl md:text-4xl font-light text-foreground mb-8 tracking-tight">
+              <h2 className="text-4xl md:text-5xl font-light text-foreground mb-6 tracking-tight">
                 Live better, longer.
               </h2>
-              <p className="text-muted-foreground text-sm leading-relaxed max-w-md font-light">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-md font-light">
                 How we care for ourselves has the power to shape our body, mind and spirit, and ultimately our experience of aging. Evidence suggests as much as 80% of health is influenced by how we live each day. The upshot? Wellbeing is in our hands.
               </p>
 
               {/* Values Columns */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mt-16">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-4">Picture your possible.</h3>
-                  <p className="text-muted-foreground text-xs leading-relaxed font-light">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">Picture your possible.</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed font-light">
                     Ageless Living brings together the best of what's possible: the guidance, tools and technologies to help you live better, longer.
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-4">Collaborative care.</h3>
-                  <p className="text-muted-foreground text-xs leading-relaxed font-light">
+                  <h3 className="text-xl font-semibold text-foreground mb-3">Collaborative care.</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed font-light">
                     The brainchild of pharmacist and physician (MD) founders, Ageless blends the best of traditional medicine with groundbreaking wellness therapies, taking your health to the next level.
                   </p>
                 </div>
@@ -115,22 +115,22 @@ export default function AboutUsPage() {
       </section>
 
       {/* Locations Section */}
-      <section className="py-20 md:py-24 bg-secondary/30">
+      <section className="py-16 md:py-20 bg-secondary/30">
         <div className="max-w-7xl mx-auto px-6 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease }}
             >
-              <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-muted-foreground mb-6 block">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground mb-4 block">
                 Across Multiple Locations
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-foreground tracking-tight leading-tight mb-8">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-foreground tracking-tight leading-tight mb-6">
                 Serving British Columbia for over a decade.
               </h2>
-              <p className="text-muted-foreground text-sm leading-relaxed max-w-md font-light mb-12">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-md font-light mb-8">
                 Ageless Living™ now has three locations in BC. You can find location hours, addresses, and more by clicking a location below.
               </p>
 
@@ -165,7 +165,7 @@ export default function AboutUsPage() {
                 loading="lazy"
               />
               <div className="absolute top-8 left-8">
-                <div className="text-2xl font-light tracking-tighter text-clinic-teal">
+                <div className="text-2xl font-light tracking-tight text-clinic-teal">
                   Ageless<span className="text-muted-foreground">Living</span>
                 </div>
               </div>
@@ -175,7 +175,7 @@ export default function AboutUsPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 md:py-32 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="max-w-5xl mx-auto px-6 md:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -183,22 +183,22 @@ export default function AboutUsPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tighter text-foreground mb-8">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-8">
               Ready to begin your journey?
             </h2>
-            <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto font-light">
+            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto font-light">
               Your best self is waiting. Join the hundreds of British Columbians who have chosen the clinical sanctuary of Ageless Living.
             </p>
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
               <Link
                 to="/book"
-                className="bg-foreground text-background px-10 py-4 rounded-full text-sm font-bold transition-all hover:opacity-90 active:scale-95"
+                className="bg-gradient-to-r from-clinic-teal to-cyan-500 text-white px-10 py-4 rounded-full text-sm font-bold transition-all hover:from-clinic-teal/90 hover:to-cyan-500/90 active:scale-95 shadow-lg shadow-cyan-500/20"
               >
                 Book Appointment
               </Link>
               <Link
                 to="/contact"
-                className="text-clinic-teal font-bold text-sm border-b border-clinic-teal/20 hover:border-clinic-teal px-4 py-1 transition-all"
+                className="bg-gradient-to-r from-clinic-teal to-cyan-500 bg-clip-text text-transparent font-bold text-sm border-b border-cyan-500/20 hover:border-cyan-500 px-4 py-1 transition-all"
               >
                 Contact Our Team
               </Link>

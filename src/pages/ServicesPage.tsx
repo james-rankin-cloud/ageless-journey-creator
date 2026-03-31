@@ -66,10 +66,10 @@ export default function ServicesPage() {
               <span className="inline-block px-4 py-1.5 rounded-full bg-clinic-teal-light text-clinic-teal text-xs font-semibold tracking-wide uppercase mb-6">
                 Medical Excellence
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.08] mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground leading-[1.08] mb-6">
                 Expertise in{" "}
-                <em className="italic text-clinic-teal">Aesthetic</em> &{" "}
-                <em className="italic text-clinic-teal">Functional</em>{" "}
+                <em className="italic text-clinic-teal font-light">Aesthetic</em> &{" "}
+                <em className="italic text-clinic-teal font-light">Functional</em>{" "}
                 Medicine
               </h1>
               <p className="text-muted-foreground text-lg leading-relaxed max-w-lg mb-8">
@@ -78,7 +78,7 @@ export default function ServicesPage() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   to="#skin-rejuvenation"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-clinic-teal text-white font-medium text-sm transition-all hover:opacity-90"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white font-medium text-sm transition-all hover:from-clinic-teal/90 hover:to-cyan-500/90 shadow-lg shadow-cyan-500/20"
                 >
                   Explore Treatments
                 </Link>
@@ -131,7 +131,7 @@ export default function ServicesPage() {
             className="mb-12"
           >
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">Skin Rejuvenation</h2>
+              <h2 className="text-3xl md:text-4xl font-medium text-foreground">Skin Rejuvenation</h2>
               <span className="text-xs font-medium text-muted-foreground uppercase tracking-widest">Pillar One / 04</span>
             </div>
             <p className="text-muted-foreground max-w-2xl">
@@ -195,7 +195,7 @@ export default function ServicesPage() {
             Pillar Two
           </motion.p>
           <motion.h2
-            className="text-3xl md:text-4xl font-bold text-foreground mb-4"
+            className="text-3xl md:text-4xl font-medium text-foreground mb-4"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -253,7 +253,7 @@ export default function ServicesPage() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/services/hormone-balancing"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-clinic-teal text-white font-medium text-sm transition-all hover:opacity-90"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white font-medium text-sm transition-all hover:from-clinic-teal/90 hover:to-cyan-500/90 shadow-lg shadow-cyan-500/20"
                 >
                   Learn More <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -309,7 +309,7 @@ export default function ServicesPage() {
               className="space-y-6"
             >
               <p className="label-sm">Pillar Three</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              <h2 className="text-3xl md:text-4xl font-medium text-foreground">
                 Biohacking & Longevity
               </h2>
               <p className="text-muted-foreground leading-relaxed text-lg">
@@ -325,7 +325,7 @@ export default function ServicesPage() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/services/biohacking"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-clinic-teal text-white font-medium text-sm transition-all hover:opacity-90"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white font-medium text-sm transition-all hover:from-clinic-teal/90 hover:to-cyan-500/90 shadow-lg shadow-cyan-500/20"
                 >
                   Learn More <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -380,7 +380,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.6, delay: 0.1, ease }}
             >
               <p className="label-sm mb-3">Pillar Four</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Health Weight</h2>
+              <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-4">Health Weight</h2>
               <p className="text-muted-foreground leading-relaxed mb-8 max-w-md">
                 Medically supervised weight management combining nutrition science, metabolic testing, and ongoing support for sustainable health.
               </p>
@@ -388,7 +388,7 @@ export default function ServicesPage() {
               <div className="flex flex-wrap gap-4 mb-8">
                 <Link
                   to="/services/health-weight"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-clinic-teal text-white font-medium text-sm transition-all hover:opacity-90"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white font-medium text-sm transition-all hover:from-clinic-teal/90 hover:to-cyan-500/90 shadow-lg shadow-cyan-500/20"
                 >
                   Learn More <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -434,7 +434,7 @@ export default function ServicesPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-tight mb-4">
               Ready to start your{" "}
               <br className="hidden md:block" />
               aesthetic journey?

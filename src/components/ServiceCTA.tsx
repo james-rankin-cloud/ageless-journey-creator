@@ -21,7 +21,7 @@ export default function ServiceCTA({
   secondaryButtonLink = "/about-us",
 }: ServiceCTAProps) {
   return (
-    <section className="py-20 md:py-24 bg-clinic-teal">
+    <section className="py-20 md:py-24 bg-gradient-to-r from-clinic-teal to-cyan-600">
       <div className="container mx-auto section-padding text-center">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

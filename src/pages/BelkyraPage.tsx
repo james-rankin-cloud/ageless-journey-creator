@@ -79,7 +79,7 @@ export default function BelkyraPage() {
                 <span className="inline-block px-4 py-1.5 rounded-full bg-clinic-teal-light text-clinic-teal text-xs font-semibold tracking-wide uppercase">
                   Advanced Injectable
                 </span>
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[1.1]">
+                <h1 className="text-5xl md:text-7xl font-medium tracking-tight text-foreground leading-[1.1]">
                   Belkyra
                   <br />
                   <span className="text-clinic-teal font-light italic">Submental Contouring</span>
@@ -93,7 +93,7 @@ export default function BelkyraPage() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/book"
-                  className="inline-flex items-center gap-2 bg-clinic-teal text-white rounded-full px-10 py-4 font-semibold hover:bg-clinic-teal-container transition-all shadow-xl shadow-clinic-teal/10"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-10 py-4 font-semibold hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all shadow-xl shadow-cyan-500/20"
                 >
                   Start Your Transformation
                 </Link>
@@ -206,7 +206,7 @@ export default function BelkyraPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
               The Ageless Experience
             </h2>
             <p className="text-background/60 max-w-2xl mx-auto">

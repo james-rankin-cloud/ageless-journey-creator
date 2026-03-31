@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, FlaskConical, Zap, Scale } from "lucide-react";
+import { ArrowRight, Sparkles, FlaskConical, Zap, Scale, MapPin, Phone } from "lucide-react";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -11,31 +11,64 @@ const treatments = [
     title: "Skin Rejuvenation",
     description: "Restore your natural glow with our advanced aesthetic therapies.",
     href: "/services#skin-rejuvenation",
+    gradient: "from-rose-500/10 to-orange-500/10",
+    iconColor: "text-rose-500",
+    hoverBg: "hover:bg-gradient-to-br hover:from-rose-500 hover:to-orange-500",
   },
   {
     icon: FlaskConical,
     title: "Hormone Balancing",
     description: "Optimize your internal harmony through clinical expertise.",
     href: "/services#hormone-balancing",
+    gradient: "from-violet-500/10 to-purple-500/10",
+    iconColor: "text-violet-500",
+    hoverBg: "hover:bg-gradient-to-br hover:from-violet-500 hover:to-purple-500",
   },
   {
     icon: Zap,
     title: "Biohacking",
     description: "Unlock peak performance with evidence-based longevity tools.",
     href: "/services#biohacking",
+    gradient: "from-clinic-teal/10 to-emerald-500/10",
+    iconColor: "text-clinic-teal",
+    hoverBg: "hover:bg-gradient-to-br hover:from-clinic-teal hover:to-emerald-500",
   },
   {
     icon: Scale,
     title: "Health Weight",
     description: "A sustainable wellness journey tailored to your unique physiology.",
     href: "/services#health-weight",
+    gradient: "from-amber-500/10 to-orange-500/10",
+    iconColor: "text-amber-500",
+    hoverBg: "hover:bg-gradient-to-br hover:from-amber-500 hover:to-orange-500",
   },
 ];
 
 const locations = [
-  { name: "Victoria Clinic", href: "/locations/victoria" },
-  { name: "Langley Clinic", href: "/locations/langley" },
-  { name: "Kelowna Clinic", href: "/locations/kelowna" },
+  {
+    name: "Victoria Clinic",
+    href: "/locations/victoria",
+    address: "1-101 Burnside Rd W",
+    city: "Victoria, BC",
+    gradient: "from-clinic-teal/5 to-cyan-500/5",
+    hoverGradient: "hover:from-clinic-teal/10 hover:to-cyan-500/10"
+  },
+  {
+    name: "Langley Clinic",
+    href: "/locations/langley",
+    address: "415-20178 96th Ave",
+    city: "Langley, BC",
+    gradient: "from-violet-500/5 to-purple-500/5",
+    hoverGradient: "hover:from-violet-500/10 hover:to-purple-500/10"
+  },
+  {
+    name: "Kelowna Clinic",
+    href: "/locations/kelowna",
+    address: "102-3320 Richter Street",
+    city: "Kelowna, BC",
+    gradient: "from-amber-500/5 to-orange-500/5",
+    hoverGradient: "hover:from-amber-500/10 hover:to-orange-500/10"
+  },
 ];
 
 export default function HomePage() {
@@ -64,7 +97,10 @@ export default function HomePage() {
       </Helmet>
 
       {/* Hero Section with Video */}
-      <section className="relative min-h-[60vh] flex items-end overflow-hidden bg-secondary/30 py-16 lg:py-20">
+      <section className="relative min-h-[60vh] flex items-end overflow-hidden bg-gradient-to-br from-clinic-teal/5 via-background to-amber-50/30 pt-28 pb-16 lg:pt-32 lg:pb-20">
+        {/* Decorative gradient orbs */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-clinic-teal/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-20 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl" />
         <div className="container mx-auto px-6 lg:px-16 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-end">
             {/* Left: Text Content */}
@@ -74,23 +110,23 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease }}
             >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-foreground tracking-tighter leading-[1] mb-6">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium text-foreground tracking-tight leading-[1.05] mb-6">
                 Discover your best self, <br />
-                <span className="text-clinic-teal italic font-medium">at any age.</span>
+                <span className="bg-gradient-to-r from-clinic-teal to-cyan-500 bg-clip-text text-transparent italic font-light">at any age.</span>
               </h1>
-              <p className="text-base md:text-lg text-muted-foreground max-w-md mb-8 leading-relaxed">
+              <p className="text-lg md:text-xl text-muted-foreground max-w-lg mb-8 leading-relaxed">
                 With Ageless Living™ wide range of modern treatments and services there is something for everyone.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   to="/about-us"
-                  className="bg-clinic-teal hover:bg-clinic-teal/90 text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all shadow-xl shadow-clinic-teal/10 text-center"
+                  className="bg-gradient-to-r from-clinic-teal to-cyan-500 hover:from-clinic-teal/90 hover:to-cyan-500/90 text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all shadow-xl shadow-cyan-500/25 text-center"
                 >
                   Explore our Locations
                 </Link>
                 <Link
                   to="/services"
-                  className="flex items-center justify-center gap-3 px-8 py-4 rounded-full border border-border text-foreground font-bold text-sm uppercase tracking-widest hover:bg-secondary/50 transition-all"
+                  className="flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-foreground/20 text-foreground font-bold text-sm uppercase tracking-widest hover:bg-foreground hover:text-background transition-all"
                 >
                   Learn more
                   <ArrowRight className="w-4 h-4" />
@@ -123,7 +159,9 @@ export default function HomePage() {
       </section>
 
       {/* Treatments Section */}
-      <section className="py-16 md:py-20 bg-background">
+      <section className="relative py-16 md:py-20 bg-gradient-to-b from-background via-clinic-teal/[0.02] to-background overflow-hidden">
+        {/* Subtle decorative line */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-clinic-teal/30 to-transparent" />
         <div className="container mx-auto px-6 lg:px-16">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-14 gap-6">
             <motion.div
@@ -133,7 +171,7 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tighter mb-6">
+              <h2 className="text-4xl md:text-5xl font-medium text-foreground tracking-tight mb-6">
                 Our Treatments
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed font-light">
@@ -142,10 +180,10 @@ export default function HomePage() {
             </motion.div>
             <Link
               to="/services"
-              className="group flex items-center gap-2 text-clinic-teal font-bold uppercase tracking-widest text-sm border-b-2 border-clinic-teal/20 pb-1 hover:border-clinic-teal transition-all shrink-0"
+              className="group flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 bg-clip-text text-transparent font-bold uppercase tracking-widest text-sm border-b-2 border-cyan-500/20 pb-1 hover:border-cyan-500 transition-all shrink-0"
             >
               View All Services
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="w-4 h-4 text-clinic-teal transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
 
@@ -160,9 +198,9 @@ export default function HomePage() {
               >
                 <Link
                   to={treatment.href}
-                  className="group relative p-10 rounded-xl bg-secondary/30 transition-all hover:bg-clinic-teal hover:-translate-y-2 border border-border/10 block h-full"
+                  className={`group relative p-10 rounded-xl bg-gradient-to-br ${treatment.gradient} transition-all ${treatment.hoverBg} hover:-translate-y-2 border border-border/10 block h-full`}
                 >
-                  <treatment.icon className="w-10 h-10 text-clinic-teal mb-6 group-hover:text-white transition-colors" />
+                  <treatment.icon className={`w-10 h-10 ${treatment.iconColor} mb-6 group-hover:text-white transition-colors`} />
                   <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-white transition-colors">
                     {treatment.title}
                   </h3>
@@ -177,69 +215,73 @@ export default function HomePage() {
       </section>
 
       {/* Locations Section */}
-      <section className="py-16 md:py-20 bg-secondary/30 overflow-hidden">
-        <div className="container mx-auto px-6 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease }}
-            >
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tighter mb-6">
-                Our Locations
-              </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed font-light mb-8">
-                Serving British Columbia for over a decade. Ageless Living™ now has three locations in BC: Victoria, Langley, and Kelowna.
-              </p>
-              <div className="space-y-4">
-                {locations.map((location) => (
-                  <Link
-                    key={location.name}
-                    to={location.href}
-                    className="flex items-center justify-between p-6 rounded-xl bg-background border border-border/20 hover:border-clinic-teal transition-all cursor-pointer group"
-                  >
-                    <span className="text-xl font-bold group-hover:text-clinic-teal transition-colors">
-                      {location.name}
-                    </span>
-                    <ArrowRight className="w-5 h-5 text-clinic-teal group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
+      <section className="relative py-16 md:py-20 bg-gradient-to-br from-clinic-teal/5 via-secondary/30 to-amber-50/20 overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-1/2 -left-20 w-80 h-80 bg-clinic-teal/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-amber-200/20 rounded-full blur-3xl" />
+        <div className="container mx-auto px-6 lg:px-16 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease }}
+            className="text-center max-w-3xl mx-auto mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-medium text-foreground tracking-tight mb-4">
+              Our Locations
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-2">
+              Serving British Columbia for over a decade.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Ageless Living™ now has three locations in BC. You can find location hours, addresses, and more by clicking a location below.
+            </p>
+          </motion.div>
 
-            <motion.div
-              className="relative rounded-2xl overflow-hidden aspect-square lg:h-[600px] shadow-2xl"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1, ease }}
-            >
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcwqCZmwJA0EcX5w59fkVeRpz6k7kL3aHr5G6196CrvPe2DRivF3_PmFO9hNs6i65BChEowHyZJiS98AA0Ne69XwMkyL4S1S4rJCjBFKiXf22efKdzv9bITXYmrB_PI8t_emry4ei3bD4KTEqtA6WxPxhylsZcqELhsIcUfocq4jYs0g1CF6tMChbXromhoVF_pBk-MCXwQsOqDelITBMY7OKkBHga4R-th8LHeqGM6O9_dp6rTdw-0AXZpjZOqSm8nG7AVUF494U"
-                alt="Ageless Living clinical environment in British Columbia"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-clinic-teal/10" />
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+            {locations.map((location, index) => (
+              <motion.div
+                key={location.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1, ease }}
+              >
+                <Link
+                  to={location.href}
+                  className={`group block relative rounded-xl bg-gradient-to-br ${location.gradient} ${location.hoverGradient} border border-border/20 p-6 hover:shadow-xl hover:border-clinic-teal/30 transition-all duration-300 hover:-translate-y-1`}
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-xl font-bold text-foreground group-hover:text-clinic-teal transition-colors">
+                      {location.name}
+                    </h3>
+                    <ArrowRight className="w-5 h-5 text-clinic-teal group-hover:translate-x-1 transition-transform" />
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    {location.city}
+                  </p>
+                </Link>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Leadership/Expertise Section */}
-      <section className="py-16 md:py-20 bg-background">
-        <div className="container mx-auto px-6 lg:px-16 text-center max-w-4xl">
+      <section className="relative py-16 md:py-20 bg-gradient-to-t from-clinic-teal/5 via-background to-background overflow-hidden">
+        {/* Decorative gradient orb */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-clinic-teal/5 to-amber-100/20 rounded-full blur-3xl" />
+        <div className="container mx-auto px-6 lg:px-16 text-center max-w-4xl relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease }}
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-clinic-teal/10 text-clinic-teal text-xs font-bold uppercase tracking-[0.2em] mb-8">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-gradient-to-r from-clinic-teal/20 to-emerald-500/20 text-clinic-teal text-xs font-bold uppercase tracking-[0.2em] mb-8 border border-clinic-teal/20">
               Our Expertise
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground tracking-tighter mb-8 leading-[1.1]">
+            <h2 className="text-4xl md:text-5xl font-medium text-foreground tracking-tight mb-8 leading-[1.1]">
               Clinical Excellence & Collaborative Expertise
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed font-light mb-8">
@@ -248,14 +290,14 @@ export default function HomePage() {
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 to="/about-us"
-                className="px-8 py-4 rounded-full bg-foreground text-background text-sm font-bold uppercase tracking-widest hover:bg-clinic-teal transition-all flex items-center gap-3"
+                className="px-8 py-4 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white text-sm font-bold uppercase tracking-widest hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all flex items-center gap-3 shadow-lg shadow-cyan-500/20"
               >
                 Meet our full team
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/services"
-                className="px-8 py-4 rounded-full border border-border text-foreground text-sm font-bold uppercase tracking-widest hover:bg-secondary/50 transition-all"
+                className="px-8 py-4 rounded-full border-2 border-clinic-teal/30 text-foreground text-sm font-bold uppercase tracking-widest hover:bg-clinic-teal/10 hover:border-clinic-teal/50 transition-all"
               >
                 Clinical Standards
               </Link>

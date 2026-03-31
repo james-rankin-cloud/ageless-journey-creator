@@ -54,9 +54,9 @@ export default function PerfectDermaPeelPage() {
                   <span className="w-1.5 h-1.5 rounded-full bg-clinic-teal" />
                   Advanced Resurfacing
                 </div>
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[1.05]">
+                <h1 className="text-5xl md:text-7xl font-medium tracking-tight text-foreground leading-[1.05]">
                   The Perfect{" "}
-                  <span className="text-clinic-teal font-bold">Derma™ Peel</span>
+                  <span className="text-clinic-teal font-light">Derma™ Peel</span>
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed max-w-md font-light">
                   A transformative medical-grade chemical peel that delivers professional results for all skin types, featuring the powerful antioxidant Glutathione.

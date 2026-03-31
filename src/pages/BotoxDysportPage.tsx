@@ -67,7 +67,7 @@ export default function BotoxDysportPage() {
                 <span className="text-clinic-teal font-semibold tracking-[0.2em] uppercase text-xs">
                   Neuromodulators
                 </span>
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-[1.1]">
+                <h1 className="text-5xl md:text-7xl font-medium tracking-tight text-foreground leading-[1.1]">
                   Botox / Dysport
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed max-w-md font-light">
@@ -76,7 +76,7 @@ export default function BotoxDysportPage() {
               </div>
               <Link
                 to="/book"
-                className="inline-flex items-center gap-2 bg-clinic-teal text-white rounded-full px-10 py-4 font-semibold hover:bg-clinic-teal-container transition-all shadow-xl shadow-clinic-teal/10"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-10 py-4 font-semibold hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all shadow-xl shadow-cyan-500/20"
               >
                 Book a Consultation
               </Link>

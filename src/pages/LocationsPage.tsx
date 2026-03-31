@@ -256,7 +256,7 @@ export default function LocationsPage() {
           {/* Header */}
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease }} className="text-center max-w-2xl mx-auto mb-16">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">Our Clinics</p>
-            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold text-foreground mb-5 leading-[1.08] tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-medium text-foreground mb-5 leading-[1.08] tracking-tight">
               Serving British Columbia<br className="hidden md:block" /> for Over a Decade
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed max-w-lg mx-auto">Three beautiful clinics, one exceptional standard of care.</p>
@@ -292,7 +292,7 @@ export default function LocationsPage() {
 
               {/* Services at Location */}
               <div className="mb-20">
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3 tracking-tight">Services at {locationData[active].name}</h2>
+                <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-3 tracking-tight">Services at {locationData[active].name}</h2>
                 <p className="text-muted-foreground mb-10 max-w-xl text-lg leading-relaxed">Detailed treatments and sub-services available at this clinic.</p>
 
                 <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -322,7 +322,7 @@ export default function LocationsPage() {
 
               {/* Team at Location */}
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3 tracking-tight">Meet the Team at {locationData[active].name}</h2>
+                <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-3 tracking-tight">Meet the Team at {locationData[active].name}</h2>
                 <p className="text-muted-foreground mb-12 max-w-xl text-lg leading-relaxed">Our expert aestheticians and clinicians are specially trained for the treatments offered at this location.</p>
 
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

@@ -107,8 +107,8 @@ function TeamCard({ member }: { member: TeamMember }) {
           </div>
         )}
       </div>
-      <div className="p-6">
-        <h3 className="text-lg font-bold text-foreground leading-tight mb-2">{member.name}</h3>
+      <div className="p-4">
+        <h3 className="text-base font-bold text-foreground leading-tight mb-1">{member.name}</h3>
         <p className="text-xs font-bold uppercase tracking-widest text-clinic-teal">{member.role}</p>
       </div>
     </motion.div>
@@ -127,11 +127,11 @@ export default function TeamPage() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pb-20 bg-secondary/30">
+      <section className="pt-24 pb-10 md:pb-12 bg-secondary/30">
         <div className="container mx-auto section-padding">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <motion.div
-              className="space-y-6"
+              className="space-y-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease }}
@@ -139,10 +139,10 @@ export default function TeamPage() {
               <span className="text-clinic-teal font-bold tracking-widest uppercase text-xs">
                 Collaborative Care
               </span>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground leading-tight">
+              <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-foreground leading-tight">
                 Our Team
               </h1>
-              <p className="text-xl text-muted-foreground leading-relaxed max-w-xl">
+              <p className="text-base text-muted-foreground leading-relaxed max-w-xl">
                 The brainchild of pharmacist and physician (MD) founders, Ageless blends the best of traditional
                 medicine with groundbreaking wellness therapies, taking your health to the next level.
               </p>
@@ -161,8 +161,8 @@ export default function TeamPage() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -left-6 bg-card p-8 rounded-xl shadow-lg max-w-xs border border-border/40">
-                <p className="text-sm italic text-muted-foreground leading-relaxed">
+              <div className="absolute -bottom-4 -left-4 bg-card p-5 rounded-xl shadow-lg max-w-xs border border-border/40">
+                <p className="text-xs italic text-muted-foreground leading-relaxed">
                   "Integrating traditional precision with future-focused wellness."
                 </p>
               </div>
@@ -172,7 +172,7 @@ export default function TeamPage() {
       </section>
 
       {/* Location Filter Navigation */}
-      <section className="sticky top-[73px] z-40 bg-background/80 backdrop-blur-xl py-6 border-b border-border/20">
+      <section className="sticky top-[73px] z-40 bg-background/80 backdrop-blur-xl py-3 border-b border-border/20">
         <div className="container mx-auto section-padding">
           <div className="flex justify-center gap-4 md:gap-12 overflow-x-auto">
             <a
@@ -201,14 +201,14 @@ export default function TeamPage() {
       </section>
 
       {/* Team Sections */}
-      <main className="container mx-auto section-padding py-20 md:py-24 space-y-32">
+      <main className="container mx-auto section-padding py-12 md:py-16 space-y-16">
         {/* Langley Section */}
         <section id="langley" className="scroll-mt-40">
-          <div className="mb-12 border-l-4 border-clinic-teal pl-6">
-            <h2 className="text-4xl font-bold tracking-tight text-foreground">Langley Clinic</h2>
-            <p className="text-muted-foreground mt-2">Specialized care and innovative wellness protocols.</p>
+          <div className="mb-6 border-l-4 border-clinic-teal pl-4">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Langley Clinic</h2>
+            <p className="text-sm text-muted-foreground mt-1">Specialized care and innovative wellness protocols.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {teamData.langley.map((member) => (
               <TeamCard key={member.name} member={member} />
             ))}
@@ -217,11 +217,11 @@ export default function TeamPage() {
 
         {/* Kelowna Section */}
         <section id="kelowna" className="scroll-mt-40">
-          <div className="mb-12 border-l-4 border-clinic-teal pl-6">
-            <h2 className="text-4xl font-bold tracking-tight text-foreground">Kelowna Sanctuary</h2>
-            <p className="text-muted-foreground mt-2">Integrative therapies in a peaceful clinical setting.</p>
+          <div className="mb-6 border-l-4 border-clinic-teal pl-4">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Kelowna Sanctuary</h2>
+            <p className="text-sm text-muted-foreground mt-1">Integrative therapies in a peaceful clinical setting.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {teamData.kelowna.map((member) => (
               <TeamCard key={member.name} member={member} />
             ))}
@@ -230,11 +230,11 @@ export default function TeamPage() {
 
         {/* Victoria Section */}
         <section id="victoria" className="scroll-mt-40">
-          <div className="mb-12 border-l-4 border-clinic-teal pl-6">
-            <h2 className="text-4xl font-bold tracking-tight text-foreground">Victoria Practice</h2>
-            <p className="text-muted-foreground mt-2">Advanced aesthetic medicine and personalized care.</p>
+          <div className="mb-6 border-l-4 border-clinic-teal pl-4">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Victoria Practice</h2>
+            <p className="text-sm text-muted-foreground mt-1">Advanced aesthetic medicine and personalized care.</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {teamData.victoria.map((member) => (
               <TeamCard key={member.name} member={member} />
             ))}

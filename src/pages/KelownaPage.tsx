@@ -90,7 +90,7 @@ export default function KelownaPage() {
               <span className="text-clinic-teal font-bold tracking-[0.2em] uppercase text-[10px]">
                 Visit Ageless Living
               </span>
-              <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-foreground leading-[1.05]">
+              <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-foreground leading-[1.05]">
                 Kelowna Clinic
               </h1>
 
@@ -127,7 +127,7 @@ export default function KelownaPage() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   to="/book?location=kelowna"
-                  className="inline-flex items-center gap-2 bg-clinic-teal text-white rounded-full px-6 py-3 text-sm font-bold tracking-tight shadow-lg hover:shadow-xl transition-all"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-6 py-3 text-sm font-bold tracking-tight shadow-lg shadow-cyan-500/20 hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all"
                 >
                   Book Consultation
                 </Link>
@@ -202,7 +202,7 @@ export default function KelownaPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-foreground mb-3">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-3">
               Treatments available in Kelowna
             </h2>
             <p className="text-clinic-teal text-xl font-light italic">
@@ -307,7 +307,7 @@ export default function KelownaPage() {
             <span className="text-clinic-teal font-bold tracking-[0.2em] uppercase text-[10px] mb-3 block">
               Excellence in Care
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-foreground">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
               Meet the Team
             </h2>
           </motion.div>
@@ -351,7 +351,7 @@ export default function KelownaPage() {
             transition={{ duration: 0.6, ease }}
           >
             <div className="relative z-10 space-y-6">
-              <h2 className="text-2xl md:text-4xl font-bold text-background tracking-tighter">
+              <h2 className="text-2xl md:text-4xl font-bold text-background tracking-tight">
                 Ready to begin your journey?
               </h2>
               <p className="text-background/60 text-base max-w-xl mx-auto">
@@ -360,7 +360,7 @@ export default function KelownaPage() {
               </p>
               <Link
                 to="/book?location=kelowna"
-                className="inline-flex items-center gap-2 bg-clinic-teal text-white rounded-full px-8 py-4 font-bold text-base hover:opacity-90 transition-all shadow-xl"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-8 py-4 font-bold text-base hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all shadow-xl shadow-cyan-500/20"
               >
                 Book Your Consultation
               </Link>

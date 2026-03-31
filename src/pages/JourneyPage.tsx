@@ -77,7 +77,7 @@ export default function JourneyPage() {
             className="text-center max-w-3xl mx-auto mb-14"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Your Ageless Journey</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5 leading-[1.1]">How The Process Works</h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-5 leading-[1.1]">How The Process Works</h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Our expert aestheticians and clinicians guide you through every step — from first conversation to lasting transformation.
             </p>

@@ -95,10 +95,10 @@ export default function CosmeticDermalFillerPage() {
               <span className="inline-block px-4 py-1.5 rounded-full bg-clinic-teal-light text-clinic-teal text-xs font-semibold tracking-widest uppercase mb-6">
                 Premium Aesthetics
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.08] mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground leading-[1.08] mb-6">
                 Cosmetic
                 <br />
-                <span className="text-clinic-teal">Dermal Filler</span>
+                <span className="text-clinic-teal font-light">Dermal Filler</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg mb-8 leading-relaxed">
                 Smooth away lines and restore volume quickly and easily with cosmetic dermal fillers. A non-surgical path to refined radiance.

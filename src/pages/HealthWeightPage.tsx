@@ -29,7 +29,7 @@ export default function HealthWeightPage() {
               <span className="inline-block px-3 py-1 rounded-full bg-clinic-teal-light text-clinic-teal text-xs font-semibold tracking-wide uppercase mb-5">
                 Metabolic Excellence
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[0.95] mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground leading-[0.95] mb-6">
                 Health Weight
               </h1>
               <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl">

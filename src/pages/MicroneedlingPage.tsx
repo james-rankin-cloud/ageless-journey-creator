@@ -50,7 +50,7 @@ export default function MicroneedlingPage() {
             <div className="pt-4">
               <Link
                 to="/book"
-                className="bg-clinic-teal text-white px-10 py-4 rounded-full font-semibold shadow-xl hover:opacity-90 transition"
+                className="bg-gradient-to-r from-clinic-teal to-cyan-500 text-white px-10 py-4 rounded-full font-semibold shadow-xl shadow-cyan-500/20 hover:from-clinic-teal/90 hover:to-cyan-500/90 transition"
               >
                 Book Your Consultation
               </Link>

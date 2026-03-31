@@ -131,7 +131,7 @@ export default function TreatmentsPage() {
             className="max-w-2xl mb-16"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Our Treatments</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-[1.1]">Picture Your Possible.</h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-4 leading-[1.1]">Picture Your Possible.</h1>
             <p className="text-muted-foreground leading-relaxed text-lg">
               Ageless Living™ brings together the best of what's possible: the guidance, tools, and technologies to help you live better, longer.
             </p>
@@ -308,7 +308,7 @@ export default function TreatmentsPage() {
             className="text-center max-w-2xl mx-auto mb-16"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Your Plan</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">How Our Aestheticians Help You Achieve Your Goal</h2>
+            <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-4">How Our Aestheticians Help You Achieve Your Goal</h2>
             <p className="text-muted-foreground leading-relaxed">
               Every treatment starts with understanding you. Here's how our expert team creates your custom plan.
             </p>

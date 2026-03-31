@@ -22,7 +22,16 @@ import LangleyPage from "@/pages/LangleyPage";
 import KelownaPage from "@/pages/KelownaPage";
 import AboutUsPage from "@/pages/AboutUsPage";
 import TeamPage from "@/pages/TeamPage";
+import FAQPage from "@/pages/FAQPage";
 import BlogPage from "@/pages/BlogPage";
+import GLP1BlogPost from "@/pages/GLP1BlogPost";
+import WellnessRevolutionBlogPost from "@/pages/WellnessRevolutionBlogPost";
+import PreventionAndLongevityBlogPost from "@/pages/PreventionAndLongevityBlogPost";
+import PreventativeHealthBlogPost from "@/pages/PreventativeHealthBlogPost";
+import LongevityMasterclassBlogPost from "@/pages/LongevityMasterclassBlogPost";
+import GutMicrobesBlogPost from "@/pages/GutMicrobesBlogPost";
+import LiveBetterLongerBlogPost from "@/pages/LiveBetterLongerBlogPost";
+import LongevityIndustryBlogPost from "@/pages/LongevityIndustryBlogPost";
 import BookNowPage from "@/pages/BookNowPage";
 import ShopPage from "@/pages/ShopPage";
 import ContactPage from "@/pages/ContactPage";
@@ -56,9 +65,17 @@ const App = () => (
             <Route path="/locations/kelowna" element={<KelownaPage />} />
             <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/our-team" element={<TeamPage />} />
-            <Route path="/faqs" element={<AboutUsPage />} />
+            <Route path="/faqs" element={<FAQPage />} />
             <Route path="/careers" element={<AboutUsPage />} />
             <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/glp1-agonists" element={<GLP1BlogPost />} />
+            <Route path="/blog/wellness-revolution" element={<WellnessRevolutionBlogPost />} />
+            <Route path="/blog/prevention-and-longevity" element={<PreventionAndLongevityBlogPost />} />
+            <Route path="/blog/preventative-health" element={<PreventativeHealthBlogPost />} />
+            <Route path="/blog/longevity-masterclass" element={<LongevityMasterclassBlogPost />} />
+            <Route path="/blog/gut-microbes-mental-health" element={<GutMicrobesBlogPost />} />
+            <Route path="/blog/live-better-longer" element={<LiveBetterLongerBlogPost />} />
+            <Route path="/blog/longevity-industry" element={<LongevityIndustryBlogPost />} />
             <Route path="/book" element={<BookNowPage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/contact" element={<ContactPage />} />

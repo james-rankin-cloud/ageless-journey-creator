@@ -74,7 +74,7 @@ export default function PricesPage() {
             className="max-w-2xl"
           >
             <p className="label-sm mb-4">Prices</p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-5 leading-[1.08]">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground mb-5 leading-[1.08]">
               Affordable prices for every wellness need
             </h1>
             <p className="text-muted-foreground text-lg leading-relaxed max-w-lg">

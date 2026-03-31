@@ -65,10 +65,10 @@ export default function CustomizedUltraFacialPage() {
                 <ShieldCheck className="w-4 h-4" />
                 <span className="text-xs font-bold tracking-widest uppercase">Clinical Sanctuary Excellence</span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-[1.08] mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground leading-[1.08] mb-6">
                 Customized
                 <br />
-                <span className="text-clinic-teal">UltraFacial</span>
+                <span className="text-clinic-teal font-light">UltraFacial</span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
                 An elite skin health experience tailored to your unique biology. Available as{" "}

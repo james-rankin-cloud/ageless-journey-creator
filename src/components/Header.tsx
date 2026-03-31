@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/ageless-living-logo-teal.png";
+import logo from "@/assets/Ageless_logo1.png";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -56,8 +56,12 @@ export default function Header() {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-5 section-padding">
-        <Link to="/">
-          <img src={logo} alt="Ageless Living™ Wellness Centre logo - premium wellness clinic in British Columbia" className="h-10 md:h-14" />
+        <Link to="/" className="relative z-10 flex items-center">
+          <img
+            src={logo}
+            alt="Ageless Living™ Wellness Centre logo - premium wellness clinic in British Columbia"
+            className="h-16 md:h-20 lg:h-24 transition-all duration-300"
+          />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -202,7 +206,7 @@ export default function Header() {
 
           <Link
             to="/book"
-            className="inline-flex items-center px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium transition-all duration-200 hover:opacity-90 active:scale-[0.97]"
+            className="inline-flex items-center px-6 py-2.5 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white text-sm font-medium transition-all duration-200 hover:from-clinic-teal/90 hover:to-cyan-500/90 active:scale-[0.97] shadow-lg shadow-cyan-500/20"
           >
             Book a time
           </Link>
@@ -226,8 +230,12 @@ export default function Header() {
             className="lg:hidden fixed inset-0 top-0 bg-card z-40 overflow-hidden"
           >
             <div className="flex items-center justify-between py-5 section-padding container mx-auto">
-              <Link to="/" onClick={() => setMobileOpen(false)}>
-                <img src={logo} alt="Ageless Living™ Wellness Centre logo" className="h-10" />
+              <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center">
+                <img
+                  src={logo}
+                  alt="Ageless Living™ Wellness Centre logo"
+                  className="h-16 md:h-20"
+                />
               </Link>
               <button onClick={() => setMobileOpen(false)} className="p-2 text-foreground">
                 <X size={24} />
@@ -337,7 +345,7 @@ export default function Header() {
 
               <Link
                 to="/book"
-                className="mt-4 inline-flex items-center px-8 py-3.5 rounded-full bg-primary text-primary-foreground text-base font-medium"
+                className="mt-4 inline-flex items-center px-8 py-3.5 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white text-base font-medium shadow-lg shadow-cyan-500/20"
                 onClick={() => setMobileOpen(false)}
               >
                 Book a time

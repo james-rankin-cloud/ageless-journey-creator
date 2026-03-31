@@ -81,7 +81,7 @@ export default function DermaplaningPage() {
                 <span className="uppercase tracking-[0.3em] text-muted-foreground text-xs font-semibold">
                   Manual Exfoliation Specialist
                 </span>
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-foreground leading-[0.9]">
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight text-foreground leading-[0.95]">
                   Dermaplaning
                 </h1>
                 <p className="text-xl md:text-2xl text-muted-foreground max-w-xl font-light leading-relaxed">
@@ -91,7 +91,7 @@ export default function DermaplaningPage() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/book"
-                  className="inline-flex items-center gap-2 bg-clinic-teal text-white rounded-full px-10 py-4 font-semibold hover:bg-clinic-teal-container transition-all shadow-xl shadow-clinic-teal/10"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-10 py-4 font-semibold hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all shadow-xl shadow-cyan-500/20"
                 >
                   Book Appointment
                 </Link>
@@ -359,7 +359,7 @@ export default function DermaplaningPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease }}
               >
-                <div className="text-[5rem] font-extrabold text-secondary/50 transition-colors group-hover:text-clinic-teal-light leading-none mb-4">
+                <div className="text-[5rem] font-bold text-secondary/50 transition-colors group-hover:text-clinic-teal-light leading-none mb-4">
                   {step.num}
                 </div>
                 <h4 className="text-2xl font-bold text-foreground mb-4">{step.title}</h4>

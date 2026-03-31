@@ -134,7 +134,7 @@ export default function BookNowPage() {
             className="text-center max-w-2xl mx-auto mb-14"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Book Now</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-[1.1]">Schedule Your Visit</h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-4 leading-[1.1]">Schedule Your Visit</h1>
             <p className="text-muted-foreground leading-relaxed">Select your location, choose services, and pick a time that works for you.</p>
           </motion.div>
 

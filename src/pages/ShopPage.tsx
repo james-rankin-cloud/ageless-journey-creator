@@ -99,7 +99,7 @@ export default function ShopPage() {
             className="max-w-2xl mb-10"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Our Products</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-[1.1]">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-4 leading-[1.1]">
               Premium Products We Personally Use &amp; Recommend in Clinic
             </h1>
             <p className="text-muted-foreground leading-relaxed text-lg">

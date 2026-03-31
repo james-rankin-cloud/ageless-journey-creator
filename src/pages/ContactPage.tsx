@@ -48,7 +48,7 @@ export default function ContactPage() {
             className="max-w-2xl mb-14"
           >
             <p className="text-sm font-semibold uppercase tracking-widest text-primary mb-3">Contact Us</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-[1.1]">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-foreground mb-4 leading-[1.1]">
               Our Locations
             </h1>
             <p className="text-muted-foreground leading-relaxed text-lg">

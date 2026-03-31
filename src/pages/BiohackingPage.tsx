@@ -31,9 +31,9 @@ export default function BiohackingPage() {
               <span className="inline-block px-4 py-1.5 bg-clinic-teal-light text-clinic-teal rounded-full text-[10px] font-bold tracking-[0.2em] uppercase">
                 The Future of Performance
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tighter leading-[1.1] text-foreground">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-[1.1] text-foreground">
                 Biohacking: Developed by{" "}
-                <span className="text-clinic-teal font-semibold">Leaders.</span>
+                <span className="bg-gradient-to-r from-clinic-teal to-cyan-500 bg-clip-text text-transparent font-medium">Leaders.</span>
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
                 Giving our members access to the best when it comes to weight loss, strength, muscle gains, and age management. You will be able to train harder, recover quicker, and focus better than ever before.
@@ -41,7 +41,7 @@ export default function BiohackingPage() {
               <div className="flex flex-wrap gap-3 pt-2">
                 <a
                   href="#services"
-                  className="px-6 py-3 bg-clinic-teal text-white rounded-full text-sm font-semibold shadow-lg hover:opacity-90 transition-all"
+                  className="px-6 py-3 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full text-sm font-semibold shadow-lg shadow-cyan-500/20 hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all"
                 >
                   Explore Modalities
                 </a>
@@ -190,7 +190,7 @@ export default function BiohackingPage() {
                 </span>
                 <Link
                   to="/book?location=langley"
-                  className="w-fit px-5 py-2.5 bg-clinic-teal text-white rounded-full text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-all"
+                  className="w-fit px-5 py-2.5 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full text-xs font-bold uppercase tracking-widest hover:from-clinic-teal/90 hover:to-cyan-500/90 shadow-lg shadow-cyan-500/20 transition-all"
                 >
                   Book Clinical Consultation
                 </Link>
