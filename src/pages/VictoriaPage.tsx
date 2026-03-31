@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Info, Zap, Scale, FlaskConical, Sparkles, ExternalLink } from "lucide-react";
+import { getStaffByLocation, getStaffAltText } from "@/data/staffData";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -28,38 +29,7 @@ const treatments = [
   },
 ];
 
-const teamMembers = [
-  {
-    name: "Sarita Hutton",
-    role: "Owner, Aesthetic Nurse Specialist, Director",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=400&fit=crop",
-  },
-  {
-    name: "Dr. Tracey Lotze, MD",
-    role: "Hormone and Sexual Health Specialist",
-    image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=400&fit=crop",
-  },
-  {
-    name: "Dr. Jason Boxtart, ND",
-    role: "Men's Health Specialist",
-    image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=400&fit=crop",
-  },
-  {
-    name: "Jenny Hwang, RN",
-    role: "Aesthetic Nurse Mentee",
-    image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400&h=400&fit=crop",
-  },
-  {
-    name: "Lucy Watson",
-    role: "Clinic Manager",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop",
-  },
-  {
-    name: "Madison Allen",
-    role: "Clinic Administrator, MOA",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop",
-  },
-];
+const teamMembers = getStaffByLocation("victoria");
 
 export default function VictoriaPage() {
   return (
@@ -293,27 +263,28 @@ export default function VictoriaPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member, i) => (
-              <motion.div
-                key={member.name}
-                className="group"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease }}
-              >
-                <div className="aspect-square rounded-xl overflow-hidden mb-5 relative max-w-[280px] mx-auto">
-                  <img
-                    src={member.image}
-                    alt={`Portrait of ${member.name}`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                </div>
-                <h4 className="text-lg font-bold mb-1 text-foreground text-center">{member.name}</h4>
-                <p className="text-clinic-teal text-[10px] font-bold uppercase tracking-wider text-center">
-                  {member.role}
-                </p>
-              </motion.div>
+              <Link key={member.slug} to={`/our-team/${member.slug}`}>
+                <motion.div
+                  className="group"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.08, ease }}
+                >
+                  <div className="aspect-square rounded-xl overflow-hidden mb-5 relative max-w-[280px] mx-auto">
+                    <img
+                      src={member.image}
+                      alt={getStaffAltText(member)}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                  <h4 className="text-lg font-bold mb-1 text-foreground text-center">{member.name}</h4>
+                  <p className="text-clinic-teal text-[10px] font-bold uppercase tracking-wider text-center">
+                    {member.role}
+                  </p>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

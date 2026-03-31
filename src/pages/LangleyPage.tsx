@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Info, Zap, Scale, FlaskConical, Sparkles, ExternalLink } from "lucide-react";
+import { getStaffByLocation, getStaffAltText } from "@/data/staffData";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -28,33 +29,7 @@ const treatments = [
   },
 ];
 
-const teamMembers = [
-  {
-    name: "Shelley McBride",
-    role: "MOA, Clinic Manager",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDylm8Fw5ylj5CziqJ5EMslGTz9jXcmGsKNapwYM_K0lJiA5uhpgl6-6q9ni0Q3ZmKkHQycTWOxADVL5aIhc2SPWubytyapuzvGlULRlPM2s93zLvJp0R9Xu1ytoFW5AgjSqSwB2j6U6i56mdmbXS1PtR9AXiKI5__q5SwVSU_c2NREqxZPx4pfxl_hYg6b5rhpjGFTx4wMjqQOLreQWZo9CuaY8DnTB1_scUwr_4Gd8lnoCbyJPl8iGlY2P_ghSaQaB9SvGxT4gGI",
-  },
-  {
-    name: "Yvonne Ng",
-    role: "Certified Medical Aesthetician",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDQYi7jRkE01HcLF5qt7iYFvK4l354Abx9vuOmR429jWymOFxtmuDOCGV6Ct2ZnFqHvhii7HbyCKrqDbRReRaAEXwhV6oUKiq4gWGIvQeOX0lInsg9q7MM6MSM5T0ncTtnm8GVhHDctC6ED0BfX-KhQEgz8XW4mq2Npzyaer9QCSlYIBmlXP_Xfcl-XJ1-6GDprfYCTo23nW9I-a2sl5fgNLLT1_nbIeySnnevCmY4u4mUXXyJTdbyH0M2V4GcD755fUcDOry_-3Qw",
-  },
-  {
-    name: "Avnit Bhullar",
-    role: "Medical Aesthetician",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDFFekFq84n8diDb_M3Ku4SRYIjHIej4vCFvUPyfsN6xUStY7DK80ECoJ8LTsKYWq0IUxu4ANGZ6PClvQ6tdMtqQr5DHj1iuZAKGZGI00CCz84o0LKiY9FrlC30p9t8jWRcFoDDgwX6w88nkcQBQ1iJYZP55BcCQwuZY3mPRSLOtI9Bx1A0gJh5WZ4ZBk5gIM8_Z2buo7XIBPTQZhX0ayHE63niO2CT1TYlo_g3t6YqgcOZf3oZFKiun1Dd5sEWhHxgUx0ZizrxkpY",
-  },
-  {
-    name: "Michael Forbes, BSc Pharm",
-    role: "Owner, Pharmacist, Certified in Hormone Restoration",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAvAGaGfI_Z3N6SAzNypttQYkatars93iS-hZttjKc5-k3gV-sEi1WysbdKGmvr4_LlR6rRZ4d8Oz7c-AUPsUCvu7zWzyCAm_DID1pEIWR1BQeqJpfpzrdaCfpyYOW5TP-U3FRu8EbL0HadaBwKZ3MvJIg52cvWF7F_4ISrpwjKwGuGq2xguVBoHB_9Aq-nox0sz6WplBa3bju2w-3_3nAE8h65cMPtt-bRzR-5kG4Uj1dsQWYaD45Vzf2ueSF4OWvvuN8uUnpXYoY",
-  },
-  {
-    name: "Dr. Jean Paul Lim, MD, FRCPC",
-    role: "Owner, Internal Medicine, Complex Care, and Longevity Specialist",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBB_03kcfzVw4nxqwkS6arONW9SPtvAlGc8nHzCWIuowwHuzAy8A3lr1-1T3ZS_u402vAQ0VmHM_b4I_0SfPmrCfKN1DyJrSnx8w39eWIN7YO49V0xTWKNgI4CGAvrJ77haoE0yqOZI1_yxmZJ28AbvWksddrVU5Xngu4QeV083my39kBt1BVV5IQEISEqVjitgSIdZ3QspfWTJCx89q-pF1-5sO8beY2Nm8ZLtjimqjsVNxgMgAq7Sj8thoMKHwcnCd13DoZppU40",
-  },
-];
+const teamMembers = getStaffByLocation("langley");
 
 export default function LangleyPage() {
   return (
@@ -288,27 +263,28 @@ export default function LangleyPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member, i) => (
-              <motion.div
-                key={member.name}
-                className="group"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease }}
-              >
-                <div className="aspect-square rounded-xl overflow-hidden mb-5 relative max-w-[280px] mx-auto">
-                  <img
-                    src={member.image}
-                    alt={`Portrait of ${member.name}`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                </div>
-                <h4 className="text-lg font-bold mb-1 text-foreground text-center">{member.name}</h4>
-                <p className="text-clinic-teal text-[10px] font-bold uppercase tracking-wider text-center">
-                  {member.role}
-                </p>
-              </motion.div>
+              <Link key={member.slug} to={`/our-team/${member.slug}`}>
+                <motion.div
+                  className="group"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.08, ease }}
+                >
+                  <div className="aspect-square rounded-xl overflow-hidden mb-5 relative max-w-[280px] mx-auto">
+                    <img
+                      src={member.image}
+                      alt={getStaffAltText(member)}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                  </div>
+                  <h4 className="text-lg font-bold mb-1 text-foreground text-center">{member.name}</h4>
+                  <p className="text-clinic-teal text-[10px] font-bold uppercase tracking-wider text-center">
+                    {member.role}
+                  </p>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

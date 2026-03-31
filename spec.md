@@ -92,8 +92,9 @@ BrowserRouter
     ├── /locations/langley             → LangleyPage
     ├── /locations/kelowna             → KelownaPage
     ├── /about-us            → AboutUsPage
-    ├── /our-team            → AboutUsPage (placeholder)
-    ├── /faqs                → AboutUsPage (placeholder)
+    ├── /our-team            → TeamPage (staff listing by location)
+    ├── /our-team/:slug      → StaffProfilePage (individual staff bio page)
+    ├── /faqs                → FAQPage
     ├── /careers             → AboutUsPage (placeholder)
     ├── /blog                → BlogPage
     ├── /book                → BookNowPage
@@ -162,11 +163,17 @@ ageless-journey-creator/
 │   │   ├── LangleyPage.tsx
 │   │   ├── KelownaPage.tsx
 │   │   ├── AboutUsPage.tsx
+│   │   ├── TeamPage.tsx             # Staff listing by location
+│   │   ├── StaffProfilePage.tsx     # Individual staff bio page
+│   │   ├── FAQPage.tsx
 │   │   ├── BlogPage.tsx
 │   │   ├── BookNowPage.tsx
 │   │   ├── ShopPage.tsx
 │   │   ├── ContactPage.tsx
 │   │   └── NotFound.tsx
+│   │
+│   ├── data/
+│   │   └── staffData.ts             # Centralized staff data (single source of truth)
 │   │
 │   ├── hooks/
 │   │   ├── use-toast.ts           # Toast notifications
@@ -786,6 +793,88 @@ KelownaPage
 └── CTA Section (dark theme)
     └── "Ready to begin your journey?" + booking CTA
 ```
+
+### Centralized Staff Data System (`src/data/staffData.ts`)
+
+Single source of truth for all staff data. Used by TeamPage, LocationsPage, StaffProfilePage, TeamSection (homepage), and all location pages (Victoria, Langley, Kelowna).
+
+**StaffMember Interface:**
+```typescript
+{
+  name: string;          // Full name with credentials
+  slug: string;          // URL-safe identifier (e.g. "michael-forbes")
+  role: string;          // Full title/position
+  credentials: string;   // Professional credentials
+  image: string;         // Photo URL or local path (/images/team/name-headshot.webp)
+  locations: Location[]; // ["langley", "kelowna", "victoria"]
+  bio: string;           // Full biography paragraph(s)
+  education: string[];   // Degrees, certifications
+  specializations: string[];
+  treatments: string[];  // Treatment categories they handle
+  availability: string;
+  funFact?: string;
+  instagram?: string;
+  linkedin?: string;
+  facebook?: string;
+  twitter?: string;
+  email?: string;
+  phone?: string;
+}
+```
+
+**Complete Staff Roster (16 members):**
+
+| Name | Slug | Role | Locations |
+|------|------|------|-----------|
+| Michael Forbes, BSc Pharm | michael-forbes | Owner, Pharmacist, Certified in Hormone Restoration | Langley, Kelowna |
+| Dr. Jean Paul Lim, MD, FRCPC | dr-jean-paul-lim | Owner, Internal Medicine, Complex Care, and Longevity Specialist | Langley, Kelowna |
+| Sarita Hutton | sarita-hutton | Owner, Aesthetic Nurse Specialist, Director of Aesthetic Medicine | Victoria |
+| Dr. Tracey Lotze, MD | dr-tracey-lotze | Hormone and Sexual Health Specialist | Kelowna, Victoria |
+| Dr. Jason Boxtart, ND | dr-jason-boxtart | Men's Health Specialist | Kelowna, Victoria |
+| Constanza Moraga Herrera | constanza-moraga-herrera | Certified Nutritional Practitioner, Lifestyle Medicine & Microbiota Specialist | Kelowna |
+| Rachel Bowman Fassio, BSc, CN, RHN | rachel-bowman-fassio | Clinical and Holistic Nutritionist | Kelowna |
+| Yvonne Ng | yvonne-ng | Certified Medical Aesthetician | Langley |
+| Avnit Bhullar | avnit-bhullar | Medical Aesthetician | Langley |
+| Jenny Hwang, RN | jenny-hwang | Aesthetic Nurse Mentee | Victoria |
+| Madison Allen | madison-allen | Medical Aesthetician | Victoria |
+| Shelley McBride | shelley-mcbride | MOA, Clinic Manager | Langley |
+| Melissa Zitterer | melissa-zitterer | Clinic Manager, MOA | Kelowna |
+| Lucy Watson | lucy-watson | Clinic Manager | Victoria |
+| Natalie King | natalie-king | Medical Office Assistant | Victoria |
+
+**Image Convention:**
+- Path: `/images/team/[firstname-lastname]-headshot.webp`
+- Alt text: `"Photo of [Name] - [Title], Ageless Living"`
+- Format: .webp, compressed <200KB
+- Currently using live WordPress URLs where available; local placeholder paths for missing photos
+
+**Helper Functions:**
+- `getStaffByLocation(location)` — Filter staff by clinic
+- `getStaffBySlug(slug)` — Find single member by URL slug
+- `getFeaturedStaff()` — 3 founders for homepage
+- `getStaffAltText(member)` — Generate SEO alt text
+
+### StaffProfilePage Component Structure (`/our-team/:slug`)
+
+Individual staff bio page — full "staff bio book" layout:
+
+```
+StaffProfilePage
+├── Helmet (SEO: "[Name] — [Role] | Ageless Living™")
+├── Back to Team Link (← Back to Team)
+├── Hero Section (2-column on desktop)
+│   ├── Left: Large professional headshot (4:5 ratio, rounded-2xl)
+│   └── Right: Name, title, location badges, social links, bio, availability
+├── Details Section (3-column cards on bg-secondary/20)
+│   ├── Education & Certifications card
+│   ├── Specializations card
+│   └── Treatments & Services card (with treatment icons)
+├── Fun Fact card (if provided)
+└── CTA Section (if has treatments)
+    └── "Ready to book with [FirstName]?" + Book a Consultation button
+```
+
+**Profile URL pattern:** `/our-team/[slug]` (e.g. `/our-team/michael-forbes`)
 
 ### Header Navigation with Services & Locations Dropdowns
 

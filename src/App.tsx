@@ -22,6 +22,7 @@ import LangleyPage from "@/pages/LangleyPage";
 import KelownaPage from "@/pages/KelownaPage";
 import AboutUsPage from "@/pages/AboutUsPage";
 import TeamPage from "@/pages/TeamPage";
+import StaffProfilePage from "@/pages/StaffProfilePage";
 import FAQPage from "@/pages/FAQPage";
 import BlogPage from "@/pages/BlogPage";
 import GLP1BlogPost from "@/pages/GLP1BlogPost";
@@ -65,6 +66,7 @@ const App = () => (
             <Route path="/locations/kelowna" element={<KelownaPage />} />
             <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/our-team" element={<TeamPage />} />
+            <Route path="/our-team/:slug" element={<StaffProfilePage />} />
             <Route path="/faqs" element={<FAQPage />} />
             <Route path="/careers" element={<AboutUsPage />} />
             <Route path="/blog" element={<BlogPage />} />

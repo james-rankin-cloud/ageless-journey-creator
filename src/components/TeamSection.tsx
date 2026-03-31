@@ -1,28 +1,8 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { getFeaturedStaff, getStaffAltText } from "@/data/staffData";
 
-const team = [
-  {
-    name: "Michael Forbes, BSc Pharm",
-    role: "Owner & Pharmacist",
-    img: "https://agelessliving.com/wp-content/uploads/2022/06/mike-768x768.png",
-    email: "michael@agelessliving.ca",
-    phone: "+1 (236) 326-6830",
-  },
-  {
-    name: "Dr. Jean Paul Lim, MD",
-    role: "Internal Medicine Specialist",
-    img: "https://agelessliving.com/wp-content/uploads/2022/06/Screenshot-2024-06-14-at-10.23.47%E2%80%AFAM-768x767.png",
-    email: "info@agelessliving.ca",
-    phone: "+1 (236) 326-6830",
-  },
-  {
-    name: "Sarita Hutton",
-    role: "Director of Aesthetic Medicine",
-    img: "https://agelessliving.com/wp-content/uploads/2022/06/4-768x768.png",
-    email: "wellness@agelessliving.ca",
-    phone: "+1 (250) 590-5787",
-  },
-];
+const featured = getFeaturedStaff();
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -46,32 +26,35 @@ export default function TeamSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {team.map((m, i) => (
-            <motion.div
-              key={m.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: i * 0.1, ease }}
-              className="bg-card rounded-2xl border border-border overflow-hidden hover:border-muted-foreground/20 transition-colors duration-300"
-            >
-              <div className="aspect-square overflow-hidden">
-                <img
-                  src={m.img}
-                  alt={m.name}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-base font-bold text-foreground mb-1">{m.name}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{m.role}</p>
-                <div className="space-y-1 text-sm">
-                  <a href={`mailto:${m.email}`} className="block text-muted-foreground hover:text-foreground transition-colors">{m.email}</a>
-                  <a href={`tel:${m.phone.replace(/[^+\d]/g, "")}`} className="block text-muted-foreground hover:text-foreground transition-colors">{m.phone}</a>
+          {featured.map((m, i) => (
+            <Link key={m.slug} to={`/our-team/${m.slug}`}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease }}
+                className="bg-card rounded-2xl border border-border overflow-hidden hover:border-muted-foreground/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
+              >
+                <div className="aspect-square overflow-hidden">
+                  <img
+                    src={m.image}
+                    alt={getStaffAltText(m)}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                    loading="lazy"
+                  />
                 </div>
-              </div>
-            </motion.div>
+                <div className="p-6">
+                  <h3 className="text-base font-bold text-foreground mb-1">{m.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-4">{m.role}</p>
+                  {m.email && (
+                    <div className="space-y-1 text-sm">
+                      <span className="block text-muted-foreground">{m.email}</span>
+                      {m.phone && <span className="block text-muted-foreground">{m.phone}</span>}
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>
