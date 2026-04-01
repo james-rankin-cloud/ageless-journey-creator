@@ -10,9 +10,15 @@ import {
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-function TeamCard({ member }: { member: StaffMember }) {
+function TeamCard({
+  member,
+  section,
+}: {
+  member: StaffMember;
+  section: string;
+}) {
   return (
-    <Link to={`/our-team/${member.slug}`}>
+    <Link to={`/our-team/${member.slug}`} state={{ from: section }}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -155,7 +161,7 @@ export default function TeamPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {langleyTeam.map((member) => (
-              <TeamCard key={member.slug} member={member} />
+              <TeamCard key={member.slug} member={member} section="langley" />
             ))}
           </div>
         </section>
@@ -172,7 +178,7 @@ export default function TeamPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {kelownaTeam.map((member) => (
-              <TeamCard key={member.slug} member={member} />
+              <TeamCard key={member.slug} member={member} section="kelowna" />
             ))}
           </div>
         </section>
@@ -189,7 +195,7 @@ export default function TeamPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {victoriaTeam.map((member) => (
-              <TeamCard key={member.slug} member={member} />
+              <TeamCard key={member.slug} member={member} section="victoria" />
             ))}
           </div>
         </section>

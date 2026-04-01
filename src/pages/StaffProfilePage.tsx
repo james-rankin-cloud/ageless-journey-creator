@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -67,6 +67,10 @@ function SocialLink({
 }
 
 function ProfileContent({ member }: { member: StaffMember }) {
+  const location = useLocation();
+  const fromSection = (location.state as { from?: string })?.from;
+  const backToTeamUrl = fromSection ? `/our-team#${fromSection}` : "/our-team";
+
   const hasSocials =
     member.instagram || member.facebook || member.linkedin || member.twitter;
   const hasTreatments = member.treatments.length > 0;
@@ -84,7 +88,7 @@ function ProfileContent({ member }: { member: StaffMember }) {
       </Helmet>
 
       {/* Back button */}
-      <section className="pt-24 pb-0 bg-background">
+      <section className="pt-32 pb-0 bg-background">
         <div className="container mx-auto section-padding">
           <motion.div
             initial={{ opacity: 0, x: -10 }}
@@ -92,7 +96,7 @@ function ProfileContent({ member }: { member: StaffMember }) {
             transition={{ duration: 0.4, ease }}
           >
             <Link
-              to="/our-team"
+              to={backToTeamUrl}
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors group"
             >
               <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
@@ -346,6 +350,9 @@ function ProfileContent({ member }: { member: StaffMember }) {
 
 export default function StaffProfilePage() {
   const { slug } = useParams<{ slug: string }>();
+  const location = useLocation();
+  const fromSection = (location.state as { from?: string })?.from;
+  const backToTeamUrl = fromSection ? `/our-team#${fromSection}` : "/our-team";
   const member = slug ? getStaffBySlug(slug) : undefined;
 
   if (!member) {
@@ -359,7 +366,7 @@ export default function StaffProfilePage() {
             The profile you're looking for doesn't exist or may have been moved.
           </p>
           <Link
-            to="/our-team"
+            to={backToTeamUrl}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm"
           >
             <ArrowLeft className="h-4 w-4" />

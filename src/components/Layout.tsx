@@ -5,11 +5,22 @@ import Footer from "./Footer";
 import PromoPopup from "./PromoPopup";
 
 export default function Layout() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
-  }, [pathname]);
+    if (hash) {
+      // If there's a hash, let the browser handle scrolling to that element
+      setTimeout(() => {
+        const element = document.getElementById(hash.slice(1));
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      // Otherwise, scroll to top
+      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+    }
+  }, [pathname, hash]);
 
   return (
     <>
