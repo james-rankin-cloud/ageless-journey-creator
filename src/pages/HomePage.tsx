@@ -216,14 +216,14 @@ export default function HomePage() {
       </section>
 
       {/* Featured Image Section */}
-      <section className="py-12 md:py-16 bg-background">
+      <section className="py-10 md:py-14 bg-background">
         <div className="container mx-auto px-6 lg:px-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease }}
-            className="rounded-2xl overflow-hidden shadow-xl"
+            className="rounded-2xl overflow-hidden shadow-xl max-w-4xl mx-auto"
           >
             <img
               src={ourLocationsImg}
