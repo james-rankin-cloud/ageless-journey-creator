@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook } from "lucide-react";
-import logo from "@/assets/full-logo.png";
+import logo from "@/assets/footer-logo.png";
 
 const navLinks = [
   { label: "Home", to: "/" },

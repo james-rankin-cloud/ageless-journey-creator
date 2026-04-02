@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Star, Check } from "lucide-react";
 import { Link } from "react-router-dom";
-import portrait1 from "@/assets/hero-portrait-1.jpg";
-import portrait2 from "@/assets/hero-portrait-2.jpg";
-import portrait3 from "@/assets/hero-portrait-3.jpg";
+import portrait1 from "@/assets/home-1.jpg";
+import portrait2 from "@/assets/home-2.jpg";
+import portrait3 from "@/assets/home-3.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -66,7 +66,7 @@ export default function Hero() {
                 <img
                   src={src}
                   alt={`Client portrait ${i + 1}`}
-                  className="w-full h-full object-cover aspect-[3/4]"
+                  className="w-full h-full object-cover object-top aspect-[3/4]"
                   loading={i === 0 ? "eager" : "lazy"}
                 />
               </div>

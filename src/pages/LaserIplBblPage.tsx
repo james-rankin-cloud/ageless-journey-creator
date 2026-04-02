@@ -72,9 +72,9 @@ export default function LaserIplBblPage() {
               <div className="relative">
                 <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5] shadow-2xl shadow-foreground/10">
                   <img
-                    src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1000&auto=format&fit=crop"
+                    src="/src/assets/laser.jpg"
                     alt="Radiant skin after laser photorejuvenation treatment"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                     width={800}
                     height={1000}
                   />

@@ -116,9 +116,9 @@ export default function LangleyPage() {
             >
               <div className="aspect-[4/5] rounded-[1.75rem] overflow-hidden shadow-2xl max-w-md mx-auto lg:max-w-none">
                 <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJpUD9zmlTasOajvYU3X_tSzbow7KXWiuEHEd7Ha0uab1ikXhLM1d3GLwdoMNtcQ0AEAZuLaDT_sykIxxYIswYrzYdh0AU6OmzBhfgxhq5qmni_s7jINuZYfEzMotxdz-CNXHnBMP2W_TqB3ktqEiYz_prVtHpFda3me-Zq1AaKnMwm5rxJeztCl324AWqfyCA7-Ti7_hvq-G1-TAygYWBxPpmeHDnfsmPic0Nya7a4Ysqs4cTYeK407WlebBsNBQxqwmFJRNyies"
+                  src="/src/assets/langley.jpg"
                   alt="Modern minimalist aesthetic clinic reception in Langley with soft natural lighting and warm wood accents"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                   width={680}
                   height={850}
                 />
@@ -275,7 +275,7 @@ export default function LangleyPage() {
                     <img
                       src={member.image}
                       alt={getStaffAltText(member)}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
                       loading="lazy"
                     />
                   </div>

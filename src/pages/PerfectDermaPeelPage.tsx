@@ -86,9 +86,9 @@ export default function PerfectDermaPeelPage() {
             >
               <div className="aspect-[4/3] rounded-xl overflow-hidden bg-secondary shadow-2xl shadow-foreground/5">
                 <img
-                  src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1000&auto=format&fit=crop"
+                  src="/src/assets/dermapeel.jpg"
                   alt="Professional clinical setting for Perfect Derma Peel treatment"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                   width={1024}
                   height={768}
                 />

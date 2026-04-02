@@ -116,9 +116,9 @@ export default function BelkyraPage() {
             >
               <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5] shadow-2xl shadow-foreground/5">
                 <img
-                  src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&h=1000&fit=crop"
+                  src="/src/assets/belkyra.jpg"
                   alt="Woman with defined jawline showcasing Belkyra treatment results"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                   width={800}
                   height={1000}
                 />

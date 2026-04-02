@@ -66,9 +66,9 @@ export default function MicroneedlingPage() {
           >
             <div className="rounded-[2rem] overflow-hidden shadow-2xl">
               <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrzBEJzpvRjhVO1fsLFs58DUyp4xZvYMMt-sSsyTpedph4-NaKl2Lmd9BsO31H8oe8TtTKwhdlxqZ6uj5duFhhLQMSchQ-2Iq5RpbnX_GLtVrPGQ8AA9AkbsPbyQQAbXYdlc9GqXUzKPH0YPIlMdaNzeY9P6fNmTYD_nYIq-aJkQCTWTCaJjeEtE7a7AOA2e6HbLDIKxV9eKiPdLu5xvbht5vZzNHoFcPRXwZ4h4I5djlU6Js8wP3Q7BgAAId1dO5P5kQdLfqV8KE"
+                src="/src/assets/microneedling.jpg"
                 alt="Microneedling"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             </div>
           </motion.div>

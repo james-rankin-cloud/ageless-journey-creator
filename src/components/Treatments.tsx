@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import skinImg from "@/assets/treatment-skin.jpg";
-import hormoneImg from "@/assets/treatment-hormone.jpg";
-import biohackingImg from "@/assets/treatment-biohacking.jpg";
-import weightImg from "@/assets/treatment-weight.jpg";
+import skinImg from "@/assets/home-4.jpg";
+import hormoneImg from "@/assets/home-5.jpg";
+import biohackingImg from "@/assets/home-6.jpg";
+import weightImg from "@/assets/home-7.jpg";
 
 const treatments = [
   {
@@ -71,7 +71,7 @@ export default function Treatments() {
                 <img
                   src={t.img}
                   alt={t.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                   loading="lazy"
                 />
               </div>

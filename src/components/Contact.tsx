@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Send } from "lucide-react";
-import logo from "@/assets/full-logo.png";
+import logo from "@/assets/footer-logo.png";
 
 const locations = [
   { name: "Langley", address: "20689 Fraser Hwy, Langley, BC V3A 4G4", phone: "(604) 427-0120" },

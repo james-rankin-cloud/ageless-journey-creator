@@ -33,7 +33,7 @@ function TeamCard({
             <img
               src={member.image}
               alt={getStaffAltText(member)}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
               loading="lazy"
             />
           ) : (
@@ -102,9 +102,9 @@ export default function TeamPage() {
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden shadow-xl">
                 <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5s-5j0PK6Z9u1VaCylnq-2t1K-WwqAPnTV3iAln-3Nn5g9nQFZtNvaziuYixrJ3bWsW0oKQ5_hcBPrLKJPp0-JcqQeO9LMblxtM7L1tfc5JoEWMhcMKotuh-MeDlCNM8jJigWNmGvagimeiWOYUykhDKRhnoJszS_zwUnOmWhSqi7Bl2Y1mc3Ltt7TVjt7S6rl8GA2943cbAwZXDC8M8NOJuQpfpf0WdFcTc9pd6byIujJxiSBdOrt4yTIFB8xXEOS_fKHeoLWGA"
+                  src="/src/assets/our-team-1.jpg"
                   alt="Professional medical clinic founders"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="absolute -bottom-4 -left-4 bg-card p-5 rounded-xl shadow-lg max-w-xs border border-border/40">

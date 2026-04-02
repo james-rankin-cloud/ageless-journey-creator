@@ -2,8 +2,8 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Droplets, Sparkles, PenTool, Triangle, FileText, Stethoscope, Heart, ShieldCheck } from "lucide-react";
-import dermalFillerHeroImg from "@/assets/treatment-skin.jpg";
-import dermalFillerProductImg from "@/assets/botox-precision.jpg";
+import dermalFillerHeroImg from "@/assets/home-4.jpg";
+import dermalFillerProductImg from "@/assets/botox-3.jpg";
 import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -129,7 +129,7 @@ export default function CosmeticDermalFillerPage() {
                 <img
                   src={dermalFillerHeroImg}
                   alt="Professional dermal filler consultation at Ageless Living clinic"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                   width={600}
                   height={750}
                 />
@@ -259,7 +259,7 @@ export default function CosmeticDermalFillerPage() {
                 <img
                   src={dermalFillerProductImg}
                   alt="Premium dermal filler products at Ageless Living clinic"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                   loading="lazy"
                   width={800}
                   height={450}

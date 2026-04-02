@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Play, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import hormoneHeroImg from "@/assets/treatment-hormone.jpg";
 import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -66,9 +65,9 @@ export default function HormoneBalancingPage() {
             >
               <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative z-20">
                 <img
-                  src={hormoneHeroImg}
-                  alt="Clinical Excellence"
-                  className="w-full h-full object-cover"
+                  src="/src/assets/hormone-balancing.jpg"
+                  alt="Hormone Balancing Clinical Excellence"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
               <div className="absolute -top-10 -right-10 w-64 h-64 bg-clinic-teal/20 rounded-full blur-3xl -z-10" />
@@ -113,9 +112,9 @@ export default function HormoneBalancingPage() {
               </div>
               <div className="relative h-64 rounded-3xl overflow-hidden shadow-lg">
                 <img
-                  src={hormoneHeroImg}
+                  src="/src/assets/hormone-balancing.jpg"
                   alt="Clinical aesthetics"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-clinic-teal/60 to-transparent flex items-center p-12">
@@ -143,19 +142,15 @@ export default function HormoneBalancingPage() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative max-w-5xl mx-auto aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black group cursor-pointer"
+            className="relative max-w-5xl mx-auto aspect-video rounded-3xl overflow-hidden shadow-2xl"
           >
-            <img
-              src={hormoneHeroImg}
-              alt="Video thumbnail"
-              className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
-              loading="lazy"
+            <iframe
+              src="https://www.youtube.com/embed/DawhEAeJk4c"
+              title="Understanding Hormone Balance"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
             />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-24 h-24 bg-clinic-teal text-white rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
-                <Play className="w-10 h-10" />
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -201,7 +196,7 @@ export default function HormoneBalancingPage() {
               </div>
               <div className="col-span-2 aspect-[16/9] bg-secondary/10 rounded-3xl overflow-hidden">
                 <img
-                  src={hormoneHeroImg}
+                  src="/src/assets/hormone-balancing.jpg"
                   alt="Laboratory setting"
                   className="w-full h-full object-cover opacity-50 grayscale"
                   loading="lazy"

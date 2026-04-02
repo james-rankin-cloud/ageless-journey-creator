@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import clinicImg from "@/assets/hero-clinic.jpg";
-import skinImg from "@/assets/treatment-skin.jpg";
-import hormoneImg from "@/assets/treatment-hormone.jpg";
-import biohackingImg from "@/assets/treatment-biohacking.jpg";
-import weightImg from "@/assets/treatment-weight.jpg";
-import mask1 from "@/assets/mask-product-1.jpeg";
+import clinicImg from "@/assets/home-8.jpg";
+import skinImg from "@/assets/home-4.jpg";
+import hormoneImg from "@/assets/home-5.jpg";
+import biohackingImg from "@/assets/home-6.jpg";
+import weightImg from "@/assets/home-7.jpg";
+import mask1 from "@/assets/shop-1.jpeg";
 
 const galleryImages = [clinicImg, skinImg, hormoneImg, biohackingImg, weightImg, mask1];
 
@@ -41,11 +41,11 @@ export default function BrandStatement() {
       <div className="relative">
         <div className="flex animate-scroll-left gap-4 w-max hover:[animation-play-state:paused]">
           {[...galleryImages, ...galleryImages].map((src, i) => (
-            <div key={i} className="h-64 md:h-80 rounded-2xl overflow-hidden flex-shrink-0">
+            <div key={i} className="w-72 md:w-80 aspect-[4/5] rounded-2xl overflow-hidden flex-shrink-0">
               <img
                 src={src}
                 alt={`Clinic atmosphere ${(i % galleryImages.length) + 1}`}
-                className="h-full w-auto object-cover"
+                className="w-full h-full object-cover object-center"
                 loading="lazy"
               />
             </div>

@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Sun, Syringe, Wind, Brain, Flame, Zap, AudioLines, Sparkles, ArrowRight, MapPin } from "lucide-react";
-import biohackingImg from "@/assets/biohacking-hub.jpg";
+import biohackingImg from "@/assets/biohacking.jpg";
 import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -64,7 +64,7 @@ export default function BiohackingPage() {
               <img
                 src={biohackingImg}
                 alt="Modern biohacking facility with advanced therapeutic equipment"
-                className="relative w-full aspect-[4/5] object-cover rounded-xl shadow-2xl"
+                className="relative w-full aspect-[4/5] object-cover object-center rounded-xl shadow-2xl"
                 width={600}
                 height={750}
               />
@@ -296,8 +296,29 @@ export default function BiohackingPage() {
         </div>
       </section>
 
-      {/* PHILOSOPHY QUOTE */}
+      {/* VIDEO SECTION */}
       <section className="py-16 md:py-20 bg-background">
+        <div className="container mx-auto section-padding">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease }}
+            className="max-w-5xl mx-auto aspect-video rounded-3xl overflow-hidden shadow-2xl"
+          >
+            <iframe
+              src="https://www.youtube.com/embed/52vmzZQf8-g"
+              title="Ageless Living Philosophy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* PHILOSOPHY QUOTE */}
+      <section className="py-16 md:py-20 bg-secondary/30">
         <div className="container mx-auto section-padding text-center max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 16 }}

@@ -1,8 +1,8 @@
 import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { GripVertical } from "lucide-react";
-import clinicImg from "@/assets/hero-clinic.jpg";
-import skinImg from "@/assets/treatment-skin.jpg";
+import clinicImg from "@/assets/home-8.jpg";
+import skinImg from "@/assets/home-4.jpg";
 
 export default function BentoBlock() {
   const [pos, setPos] = useState(50);
@@ -31,7 +31,7 @@ export default function BentoBlock() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <img src={clinicImg} alt="Ageless Living clinic" className="absolute inset-0 w-full h-full object-cover" />
+            <img src={clinicImg} alt="Ageless Living clinic" className="absolute inset-0 w-full h-full object-cover object-center" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
             <div className="relative p-8 md:p-10 max-w-lg">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
@@ -60,14 +60,14 @@ export default function BentoBlock() {
             <img
               src={skinImg}
               alt="After treatment"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover object-top"
               draggable={false}
             />
             {/* Before image (clipped, desaturated) */}
             <img
               src={skinImg}
               alt="Before treatment"
-              className="absolute inset-0 w-full h-full object-cover grayscale brightness-[0.85] contrast-[0.9] sepia-[0.15]"
+              className="absolute inset-0 w-full h-full object-cover object-top grayscale brightness-[0.85] contrast-[0.9] sepia-[0.15]"
               style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
               draggable={false}
             />

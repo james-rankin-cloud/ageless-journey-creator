@@ -32,9 +32,9 @@ export default function AboutUsPage() {
             transition={{ duration: 0.7, ease }}
           >
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJpm49UmOc04bOjEko7atKFnzhW807a4jaFktPPEpWZABH95ieH4UjsbSiMaWmxg80yoRi91p6NN2t3RA3dRjTzSPxGePNrEn6Z4Ejp-47GQuHsX5soBvbk91hqFpLGXEcrFxBzarksFBa6sXfHhEa0fod9w-PzbyfO45i-hfDxllQx6rj1TIHZvCg2wFUDdOhlZK4JPkj5YUfWitrkM7N8R_D_lHYtxkqE2LR4G5ChkEQhwmitORKPo1M4LgEvgxbB0hH-Ei5eYk"
+              src="/src/assets/about-us-1.jpg"
               alt="Practitioner with patient at Ageless Living clinical setting"
-              className="w-full h-full object-cover aspect-[4/3]"
+              className="w-full h-full object-cover object-center aspect-[4/3]"
             />
           </motion.div>
           <motion.div
@@ -101,13 +101,12 @@ export default function AboutUsPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1, ease }}
             >
-              {/* Brand Mark - Teal 'A' SVG */}
-              <div className="w-64 h-64 md:w-80 md:h-80 text-clinic-teal opacity-90">
-                <svg className="w-full h-full" fill="none" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M50 5L10 85H25L50 30L75 85H90L50 5Z" fill="currentColor" />
-                  <path d="M35 65H65V75H35V65Z" fill="currentColor" />
-                  <path d="M30 75H70V80H30V75Z" fill="currentColor" />
-                </svg>
+              <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-lg">
+                <img
+                  src="/src/assets/about-us-2.png"
+                  alt="Ageless Living brand"
+                  className="w-full h-full object-cover object-center"
+                />
               </div>
             </motion.div>
           </div>
@@ -159,9 +158,9 @@ export default function AboutUsPage() {
               transition={{ duration: 0.6, delay: 0.1, ease }}
             >
               <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcXnzOPndvCJmIdJuGMI-XoOMID4xlqH8ulhmCHRzuCUlwVqQ9qnO6ssVIgPfZvhx4unx_aeGyI81nCPbLLSiNIVZkZYzRsqm68l5yxxvIp9hpI_PzdZzGNG2Nl6flOrsIYPnsR2gFnutkFv_Kgscd-NjTA1o3qAwE0fdsqa4QGemvGEBy0FbJfe1PWOAYdcVEzE8bl2_eW9AfXjD14l1mygF7urilvHJC6psXUNiyZ8ylIdbIJqxGr4rbJ1GWbblgcap3e5dYqq8"
+                src="/src/assets/about-us-3.jpg"
                 alt="Clinical team consulting at Ageless Living"
-                className="w-full h-full object-cover aspect-[4/3]"
+                className="w-full h-full object-cover object-center aspect-[4/3]"
                 loading="lazy"
               />
               <div className="absolute top-8 left-8">

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
-import clinicImg from "@/assets/hero-clinic.jpg";
+import clinicImg from "@/assets/home-8.jpg";
 
 export default function VideoTestimonial() {
   return (

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, ExternalLink } from "lucide-react";
-import logo from "@/assets/full-logo.png";
+import logo from "@/assets/footer-logo.png";
 
 export default function CtaBanner() {
   return (

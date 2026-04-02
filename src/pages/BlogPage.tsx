@@ -9,7 +9,7 @@ const posts = [
     category: "Medical Weight Loss",
     date: "January 6, 2026",
     excerpt: "For decades, the prevailing advice for weight loss has been simple: 'Eat less, move more.' Yet, for millions of people, this equation simply does not work. Discover the science behind GLP-1 agonists and how they're changing the landscape of longevity medicine.",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCT4TjIO_y2TBtQvnCSvq6Fn-_F0MEMhro0AOKcvkk0sb2Y2VvTSXMn8-ggufGUT5n3ke8VKWjUIcTooS0UAW0WNrxNSOqKoDBHKrJ18FclLuSX84UKGl-poFgsRHmnDvBe3NFONHof2reaFO3PGYFcOgZUvji85Ib3tUUmiemFn96utAK9b3OnM8HTgYqQWPSP2eAuf8OXiL3ek__poZCMefgkWMm8mGbTvnFdRavIYbopACaVApnoFZEShgeanTUDltZKMLz8Tbo",
+    img: "/src/assets/blog1.png",
     link: "/blog/glp1-agonists",
   },
   {
@@ -17,7 +17,7 @@ const posts = [
     category: "Longevity Medicine",
     date: "December 9, 2024",
     excerpt: "In a world where the quest for eternal vitality is often viewed as a lofty ideal, two dedicated doctors in Kelowna are rewriting the script on aging and wellness. Story by Boulevard Magazine, November 2024.",
-    img: "https://via.placeholder.com/600x400/1a4d4d/ffffff?text=Wellness+Revolution",
+    img: "/src/assets/blog2.png",
     link: "/blog/wellness-revolution",
   },
   {
@@ -25,7 +25,7 @@ const posts = [
     category: "Preventative Medicine",
     date: "October 2, 2024",
     excerpt: "Michael Forbes is a seasoned entrepreneur with a successful track record in the medical industry. His mission: to help people live their best, healthiest lives through personalized, preventative care. Story by The Georgia Straight, September 2024.",
-    img: "https://via.placeholder.com/600x400/1a4d4d/ffffff?text=Prevention+%26+Longevity",
+    img: "/src/assets/blog3.jpg",
     link: "/blog/prevention-and-longevity",
   },
   {
@@ -33,7 +33,7 @@ const posts = [
     category: "Preventative Medicine",
     date: "February 29, 2024",
     excerpt: "When health care is not a viable option, look elsewhere for support with the wellness center Ageless Living™. Become your best self now to better prepare yourself for the future to live a long, healthy life. Story by Dennis Buckly, New York Tech (MSN News, February 2024).",
-    img: "https://via.placeholder.com/600x400/1a4d4d/ffffff?text=Preventative+Health",
+    img: "/src/assets/blog4.jpg",
     link: "/blog/preventative-health",
   },
   {
@@ -41,7 +41,7 @@ const posts = [
     category: "Longevity Medicine",
     date: "September 15, 2022",
     excerpt: "Discover the emerging science and timeless wisdom of healthy aging with Ageless Living's comprehensive longevity masterclass. Learn evidence-based strategies to optimize your healthspan.",
-    img: "https://via.placeholder.com/600x400/1a4d4d/ffffff?text=Longevity+Masterclass",
+    img: "/src/assets/blog5.jpg",
     link: "/blog/longevity-masterclass",
   },
   {
@@ -49,7 +49,7 @@ const posts = [
     category: "Mental Health & Wellness",
     date: "September 14, 2022",
     excerpt: "The gut microbiome has previously been linked to some neurological and psychological disorders. Now, researchers are investigating whether utilizing microbes from the gut could potentially treat depression and other mental health disorders.",
-    img: "https://via.placeholder.com/600x400/1a4d4d/ffffff?text=Gut-Brain+Connection",
+    img: "/src/assets/blog6.jpg",
     link: "/blog/gut-microbes-mental-health",
   },
   {
@@ -57,7 +57,7 @@ const posts = [
     category: "Company News",
     date: "September 12, 2022",
     excerpt: "British Columbia's premier longevity and vitality clinic continues its expansion with a third location coming soon to Kelowna. Aging is inevitable. Feeling old doesn't have to be.",
-    img: "https://via.placeholder.com/600x400/1a4d4d/ffffff?text=Ageless+Living",
+    img: "/src/assets/blog7.jpg",
     link: "/blog/live-better-longer",
   },
   {
@@ -65,7 +65,7 @@ const posts = [
     category: "Longevity Industry",
     date: "September 1, 2022",
     excerpt: "An interview with Anastasia Lit about longevity and the emerging industry focused on healthy ageing. Explore the global landscape of longevity companies and the future of healthy aging.",
-    img: "https://via.placeholder.com/600x400/1a4d4d/ffffff?text=Longevity+Industry",
+    img: "/src/assets/blog8.jpg",
     link: "/blog/longevity-industry",
   },
 ];
@@ -116,7 +116,7 @@ export default function BlogPage() {
                     <img
                       src={post.img}
                       alt={post.title}
-                      className="w-full aspect-[3/2] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                      className="w-full aspect-[3/2] object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
                       loading="lazy"
                     />
                   </div>

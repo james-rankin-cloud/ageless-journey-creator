@@ -2,8 +2,8 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Sparkles, Droplets, Wind, Hand, Shield, Waves, CircleDot, Timer, Award } from "lucide-react";
 import { Link } from "react-router-dom";
-import ultraFacialHeroImg from "@/assets/treatment-skin.jpg";
-import ultraFacialBenefitsImg from "@/assets/hero-clinic.jpg";
+import ultraFacialHeroImg from "@/assets/customized_ultrafacial.jpg";
+import ultraFacialBenefitsImg from "@/assets/home-8.jpg";
 import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -102,7 +102,7 @@ export default function CustomizedUltraFacialPage() {
                 <img
                   src={ultraFacialHeroImg}
                   alt="Customized UltraFacial treatment at Ageless Living clinic"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                   width={600}
                   height={750}
                 />

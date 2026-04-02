@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Clock, Zap, Sparkles, Eye, Frown, Activity } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
-import botoxHeroImg from "@/assets/botox-hero.jpg";
-import botoxResultsImg from "@/assets/botox-results.jpg";
-import botoxPrecisionImg from "@/assets/botox-precision.jpg";
-import areaForeheadImg from "@/assets/area-forehead.jpg";
-import areaGlabellaImg from "@/assets/area-glabella.jpg";
-import areaCrowsFeetImg from "@/assets/area-crows-feet.jpg";
-import areaMassetersImg from "@/assets/area-masseters.jpg";
+import botoxHeroImg from "@/assets/botox-1.jpg";
+import botoxResultsImg from "@/assets/botox-2.jpg";
+import botoxPrecisionImg from "@/assets/botox-3.jpg";
+import areaForeheadImg from "@/assets/botox-4.jpg";
+import areaGlabellaImg from "@/assets/botox-5.jpg";
+import areaCrowsFeetImg from "@/assets/botox-6.jpg";
+import areaMassetersImg from "@/assets/botox-7.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -92,7 +92,7 @@ export default function BotoxDysportPage() {
                 <img
                   src={botoxHeroImg}
                   alt="Modern aesthetic clinic treatment room"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                   width={1024}
                   height={768}
                 />
@@ -237,7 +237,7 @@ export default function BotoxDysportPage() {
                 <img
                   src={botoxResultsImg}
                   alt="Natural aesthetic results"
-                  className="rounded-xl w-full aspect-[3/4] object-cover mt-12"
+                  className="rounded-xl w-full aspect-[3/4] object-cover object-top mt-12"
                   loading="lazy"
                   width={600}
                   height={800}
@@ -245,7 +245,7 @@ export default function BotoxDysportPage() {
                 <img
                   src={botoxPrecisionImg}
                   alt="Clinical precision"
-                  className="rounded-xl w-full aspect-[3/4] object-cover"
+                  className="rounded-xl w-full aspect-[3/4] object-cover object-top"
                   loading="lazy"
                   width={600}
                   height={800}
@@ -286,7 +286,7 @@ export default function BotoxDysportPage() {
                   <img
                     src={area.img}
                     alt={area.title}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                    className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
                     loading="lazy"
                     width={512}
                     height={640}

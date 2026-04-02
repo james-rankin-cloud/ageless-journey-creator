@@ -54,7 +54,7 @@ export default function GLP1BlogPost() {
             <img
               alt="Clinical Environment"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT4TjIO_y2TBtQvnCSvq6Fn-_F0MEMhro0AOKcvkk0sb2Y2VvTSXMn8-ggufGUT5n3ke8VKWjUIcTooS0UAW0WNrxNSOqKoDBHKrJ18FclLuSX84UKGl-poFgsRHmnDvBe3NFONHof2reaFO3PGYFcOgZUvji85Ib3tUUmiemFn96utAK9b3OnM8HTgYqQWPSP2eAuf8OXiL3ek__poZCMefgkWMm8mGbTvnFdRavIYbopACaVApnoFZEShgeanTUDltZKMLz8Tbo"
+              src="/src/assets/blog1.png"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>

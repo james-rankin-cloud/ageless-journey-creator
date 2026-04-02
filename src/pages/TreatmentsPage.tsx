@@ -3,10 +3,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, MessageSquare, ClipboardList, Stethoscope, Heart, X, Sparkles, MapPin, Play } from "lucide-react";
 import { Link } from "react-router-dom";
-import skinImg from "@/assets/treatment-skin.jpg";
-import hormoneImg from "@/assets/treatment-hormone.jpg";
-import biohackingImg from "@/assets/treatment-biohacking.jpg";
-import weightImg from "@/assets/treatment-weight.jpg";
+import skinImg from "@/assets/home-4.jpg";
+import hormoneImg from "@/assets/home-5.jpg";
+import biohackingImg from "@/assets/home-6.jpg";
+import weightImg from "@/assets/home-7.jpg";
 
 interface SubService {
   name: string;
@@ -149,7 +149,7 @@ export default function TreatmentsPage() {
                 onClick={() => { setSelectedTreatment(t); setVideoPlaying(false); }}
               >
                 <div className="relative aspect-[16/9]">
-                  <img src={t.img} alt={t.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" loading="lazy" />
+                  <img src={t.img} alt={t.title} className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.05]" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <h2 className="text-xl font-bold text-white mb-1">{t.title}</h2>
@@ -203,7 +203,7 @@ export default function TreatmentsPage() {
             >
               {/* Header image */}
               <div className="relative h-48 sm:h-56 overflow-hidden rounded-t-3xl">
-                <img src={selectedTreatment.img} alt={selectedTreatment.title} className="w-full h-full object-cover" />
+                <img src={selectedTreatment.img} alt={selectedTreatment.title} className="w-full h-full object-cover object-top" />
                 <div className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent" />
                 <button
                   onClick={() => setSelectedTreatment(null)}
@@ -273,7 +273,7 @@ export default function TreatmentsPage() {
                     <img
                       src={selectedTreatment.img}
                       alt={selectedTreatment.videoTitle}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-top"
                     />
                     <div className="absolute inset-0 bg-foreground/40 flex flex-col items-center justify-center gap-3">
                       <div className="w-16 h-16 rounded-full bg-primary/80 flex items-center justify-center shadow-lg">

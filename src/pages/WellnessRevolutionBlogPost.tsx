@@ -52,12 +52,14 @@ export default function WellnessRevolutionBlogPost() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
-            className="rounded-2xl overflow-hidden aspect-video relative shadow-lg group bg-muted flex items-center justify-center"
+            className="rounded-2xl overflow-hidden aspect-video relative shadow-lg group"
           >
-            <div className="text-center p-8">
-              <p className="text-muted-foreground font-medium mb-2">Featured Image Placeholder</p>
-              <p className="text-sm text-muted-foreground">Dr. Jason Boxtart & Dr. Tracey Lotze</p>
-            </div>
+            <img
+              alt="Dr. Jason Boxtart & Dr. Tracey Lotze"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src="/src/assets/blog2.png"
+              loading="lazy"
+            />
           </motion.div>
         </section>
 

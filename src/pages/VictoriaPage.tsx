@@ -116,9 +116,9 @@ export default function VictoriaPage() {
             >
               <div className="aspect-[4/5] rounded-[1.75rem] overflow-hidden shadow-2xl max-w-md mx-auto lg:max-w-none">
                 <img
-                  src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=680&h=850&fit=crop"
+                  src="/src/assets/victoria.png"
                   alt="Modern minimalist aesthetic clinic reception in Victoria"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                   width={680}
                   height={850}
                 />
@@ -275,7 +275,7 @@ export default function VictoriaPage() {
                     <img
                       src={member.image}
                       alt={getStaffAltText(member)}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
                       loading="lazy"
                     />
                   </div>

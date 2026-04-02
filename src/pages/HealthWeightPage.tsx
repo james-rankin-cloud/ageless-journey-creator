@@ -45,9 +45,9 @@ export default function HealthWeightPage() {
             >
               <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=1000&fit=crop"
+                  src="/src/assets/health-weight.jpg"
                   alt="Modern clinical consultation room with minimalist furniture and serene atmosphere"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center"
                   loading="lazy"
                 />
               </div>
@@ -245,27 +245,15 @@ export default function HealthWeightPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease }}
-            className="relative w-full aspect-video rounded-2xl overflow-hidden bg-foreground/90 group"
+            className="w-full aspect-video rounded-2xl overflow-hidden shadow-2xl"
           >
-            <img
-              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&h=900&fit=crop"
-              alt="Modern medical laboratory with advanced equipment"
-              className="w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105"
-              loading="lazy"
+            <iframe
+              src="https://www.youtube.com/embed/bgG2bRnN8lU"
+              title="The Science of Metabolism"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
             />
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <button className="w-16 h-16 md:w-20 md:h-20 bg-card rounded-full flex items-center justify-center shadow-2xl scale-100 hover:scale-110 transition-transform duration-300">
-                <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[17px] border-l-clinic-teal border-b-[10px] border-b-transparent ml-1"></div>
-              </button>
-              <div className="mt-6 text-center px-4">
-                <h3 className="text-white text-xl md:text-2xl font-bold tracking-tight">
-                  The Science of Metabolism
-                </h3>
-                <p className="text-white/70 mt-2 uppercase tracking-[0.2em] text-xs font-bold">
-                  Watch our full methodology
-                </p>
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>

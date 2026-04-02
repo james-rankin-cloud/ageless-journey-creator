@@ -2,10 +2,10 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { ExternalLink, ShieldCheck, Star, Heart, Sparkles, Award, Truck, Check } from "lucide-react";
 
-import mask1 from "@/assets/mask-product-1.jpeg";
-import mask2 from "@/assets/mask-product-2.jpeg";
-import mask3 from "@/assets/mask-product-3.jpeg";
-import mask4 from "@/assets/mask-product-4.jpeg";
+import mask1 from "@/assets/shop-1.jpeg";
+import mask2 from "@/assets/shop-2.jpeg";
+import mask3 from "@/assets/shop-3.jpeg";
+import mask4 from "@/assets/shop-4.jpeg";
 
 const SQUARE_URL = "https://ageless-living.square.site/s/shop";
 
@@ -126,7 +126,7 @@ export default function ShopPage() {
                     <img
                       src={img}
                       alt={`Ageless Living Red Light Therapy Mask - view ${i + 1}`}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                       loading={i > 1 ? "lazy" : "eager"}
                     />
                   </motion.div>
@@ -216,7 +216,7 @@ export default function ShopPage() {
                     <div className={`grid ${b.images.length > 1 ? "grid-cols-2" : "grid-cols-1"} gap-1`}>
                       {b.images.map((img, j) => (
                         <div key={j} className="h-52 overflow-hidden">
-                          <img src={img} alt={`${b.name} product ${j + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                          <img src={img} alt={`${b.name} product ${j + 1}`} className="w-full h-full object-cover object-center" loading="lazy" />
                         </div>
                       ))}
                     </div>

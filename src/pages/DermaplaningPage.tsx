@@ -112,9 +112,9 @@ export default function DermaplaningPage() {
             >
               <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-foreground/5 transform lg:rotate-2">
                 <img
-                  src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=800&h=1000&fit=crop"
+                  src="/src/assets/dermaplanning.jpg"
                   alt="Professional dermaplaning treatment in a clinical setting"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-top"
                   width={800}
                   height={1000}
                 />
@@ -147,7 +147,7 @@ export default function DermaplaningPage() {
                   <img
                     src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&h=300&fit=crop"
                     alt="Professional surgical tool"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                     loading="lazy"
                   />
                 </div>
@@ -167,9 +167,9 @@ export default function DermaplaningPage() {
                 </div>
                 <div className="h-80 rounded-2xl overflow-hidden shadow-sm">
                   <img
-                    src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400&h=500&fit=crop"
+                    src="/src/assets/dermaplanning2.jpg"
                     alt="Smooth skin result"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                     loading="lazy"
                   />
                 </div>

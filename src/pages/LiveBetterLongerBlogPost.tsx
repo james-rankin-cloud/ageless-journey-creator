@@ -46,6 +46,23 @@ export default function LiveBetterLongerBlogPost() {
           </div>
         </header>
 
+        {/* Hero Visual Section */}
+        <section className="max-w-7xl mx-auto px-8 mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease }}
+            className="rounded-2xl overflow-hidden aspect-video relative shadow-lg group"
+          >
+            <img
+              alt="Ageless Living Wellness Centre - Live Better Longer"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src="/src/assets/blog7.jpg"
+              loading="lazy"
+            />
+          </motion.div>
+        </section>
+
         {/* Content Canvas */}
         <div className="max-w-7xl mx-auto px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">

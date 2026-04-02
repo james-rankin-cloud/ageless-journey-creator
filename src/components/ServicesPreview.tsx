@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import skinImg from "@/assets/treatment-skin.jpg";
-import hormoneImg from "@/assets/treatment-hormone.jpg";
-import biohackingImg from "@/assets/treatment-biohacking.jpg";
+import skinImg from "@/assets/home-4.jpg";
+import hormoneImg from "@/assets/home-5.jpg";
+import biohackingImg from "@/assets/home-6.jpg";
 
 const services = [
   {
@@ -52,7 +52,7 @@ export default function ServicesPreview() {
                 <img
                   src={s.img}
                   alt={s.title}
-                  className="w-full aspect-[4/5] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="w-full aspect-[4/5] object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                   loading="lazy"
                 />
                 <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-card/90 backdrop-blur-sm text-xs font-medium text-foreground border border-border/50">

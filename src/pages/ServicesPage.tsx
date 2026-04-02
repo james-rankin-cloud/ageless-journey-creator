@@ -4,10 +4,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Sparkles, Droplets, Sun, Zap, Scissors, Grid3X3, Syringe, Heart, Activity, Pill, Scale } from "lucide-react";
 import { Link } from "react-router-dom";
-import servicesHeroImg from "@/assets/services-hero.jpg";
-import hormoneImg from "@/assets/hormone-clinic.jpg";
-import biohackingImg from "@/assets/biohacking-hub.jpg";
-import weightImg from "@/assets/weight-clinic.jpg";
+import servicesHeroImg from "@/assets/services-1.jpg";
+import hormoneImg from "@/assets/services-2.jpg";
+import biohackingImg from "@/assets/services-3.jpg";
+import weightImg from "@/assets/services-4.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -100,7 +100,7 @@ export default function ServicesPage() {
               <img
                 src={servicesHeroImg}
                 alt="Premium aesthetic clinic interior"
-                className="w-full rounded-2xl object-cover aspect-[4/3]"
+                className="w-full rounded-2xl object-cover object-center aspect-[4/3]"
                 width={800}
                 height={600}
               />
@@ -219,7 +219,7 @@ export default function ServicesPage() {
                 <img
                   src={hormoneImg}
                   alt="Hormone balancing clinic"
-                  className="w-full rounded-2xl object-cover aspect-[3/4] max-h-[480px] transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="w-full rounded-2xl object-cover object-top aspect-[3/4] transition-transform duration-500 group-hover:scale-[1.02]"
                   loading="lazy"
                   width={512}
                   height={700}
@@ -287,7 +287,7 @@ export default function ServicesPage() {
                 <img
                   src={biohackingImg}
                   alt="Biohacking and longevity hub"
-                  className="w-full rounded-2xl object-cover aspect-[3/4] max-h-[480px] transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="w-full rounded-2xl object-cover object-top aspect-[3/4] transition-transform duration-500 group-hover:scale-[1.02]"
                   loading="lazy"
                   width={512}
                   height={700}
@@ -359,7 +359,7 @@ export default function ServicesPage() {
                 <img
                   src={weightImg}
                   alt="Health weight management"
-                  className="w-full rounded-2xl object-cover aspect-[3/4] max-h-[520px] transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="w-full rounded-2xl object-cover object-top aspect-[3/4] transition-transform duration-500 group-hover:scale-[1.02]"
                   loading="lazy"
                   width={512}
                   height={700}

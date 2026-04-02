@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/Ageless_logo1.png";
+import logo from "@/assets/header-logo.png";
 
 const navItems = [
   { label: "Home", href: "/" },

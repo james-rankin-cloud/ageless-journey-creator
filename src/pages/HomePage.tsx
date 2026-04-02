@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, FlaskConical, Zap, Scale, MapPin, Phone } from "lucide-react";
+import ourLocationsImg from "@/assets/our-locations-home.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -211,6 +212,26 @@ export default function HomePage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Featured Image Section */}
+      <section className="py-12 md:py-16 bg-background">
+        <div className="container mx-auto px-6 lg:px-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease }}
+            className="rounded-2xl overflow-hidden shadow-xl"
+          >
+            <img
+              src={ourLocationsImg}
+              alt="Ageless Living wellness clinic interior showcasing modern medical facilities"
+              className="w-full h-auto object-cover object-center"
+              loading="lazy"
+            />
+          </motion.div>
         </div>
       </section>
 

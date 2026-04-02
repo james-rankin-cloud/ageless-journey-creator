@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { Link } from "react-router-dom";
-import skinImg from "@/assets/treatment-skin.jpg";
+import skinImg from "@/assets/home-4.jpg";
 
 export default function PromoPopup() {
   const [show, setShow] = useState(false);
