@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Play, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import ServiceCTA from "@/components/ServiceCTA";
+import hormoneBalancingImg from "@/assets/hormone-balancing.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -65,7 +66,7 @@ export default function HormoneBalancingPage() {
             >
               <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl relative z-20">
                 <img
-                  src="/src/assets/hormone-balancing.jpg"
+                  src={hormoneBalancingImg}
                   alt="Hormone Balancing Clinical Excellence"
                   className="w-full h-full object-cover object-top"
                 />
@@ -112,7 +113,7 @@ export default function HormoneBalancingPage() {
               </div>
               <div className="relative h-64 rounded-3xl overflow-hidden shadow-lg">
                 <img
-                  src="/src/assets/hormone-balancing.jpg"
+                  src={hormoneBalancingImg}
                   alt="Clinical aesthetics"
                   className="w-full h-full object-cover object-top"
                   loading="lazy"
@@ -196,7 +197,7 @@ export default function HormoneBalancingPage() {
               </div>
               <div className="col-span-2 aspect-[16/9] bg-secondary/10 rounded-3xl overflow-hidden">
                 <img
-                  src="/src/assets/hormone-balancing.jpg"
+                  src={hormoneBalancingImg}
                   alt="Laboratory setting"
                   className="w-full h-full object-cover opacity-50 grayscale"
                   loading="lazy"

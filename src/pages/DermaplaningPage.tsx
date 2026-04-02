@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Check, Sparkles, Droplet, Clock } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
+import dermaplanningImg from "@/assets/dermaplanning.jpg";
+import dermaplanning2Img from "@/assets/dermaplanning2.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -112,7 +114,7 @@ export default function DermaplaningPage() {
             >
               <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-foreground/5 transform lg:rotate-2">
                 <img
-                  src="/src/assets/dermaplanning.jpg"
+                  src={dermaplanningImg}
                   alt="Professional dermaplaning treatment in a clinical setting"
                   className="w-full h-full object-cover object-top"
                   width={800}
@@ -167,7 +169,7 @@ export default function DermaplaningPage() {
                 </div>
                 <div className="h-80 rounded-2xl overflow-hidden shadow-sm">
                   <img
-                    src="/src/assets/dermaplanning2.jpg"
+                    src={dermaplanning2Img}
                     alt="Smooth skin result"
                     className="w-full h-full object-cover object-top"
                     loading="lazy"

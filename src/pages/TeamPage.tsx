@@ -7,6 +7,7 @@ import {
   getStaffAltText,
   type StaffMember,
 } from "@/data/staffData";
+import ourTeamImg from "@/assets/our-team-1.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -102,7 +103,7 @@ export default function TeamPage() {
             >
               <div className="aspect-[4/5] rounded-xl overflow-hidden shadow-xl">
                 <img
-                  src="/src/assets/our-team-1.jpg"
+                  src={ourTeamImg}
                   alt="Professional medical clinic founders"
                   className="w-full h-full object-cover object-top"
                 />

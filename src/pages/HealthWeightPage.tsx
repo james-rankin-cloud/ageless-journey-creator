@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Heart, Beaker, Utensils, ShieldCheck } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
+import healthWeightImg from "@/assets/health-weight.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -45,7 +46,7 @@ export default function HealthWeightPage() {
             >
               <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/src/assets/health-weight.jpg"
+                  src={healthWeightImg}
                   alt="Modern clinical consultation room with minimalist furniture and serene atmosphere"
                   className="w-full h-full object-cover object-center"
                   loading="lazy"

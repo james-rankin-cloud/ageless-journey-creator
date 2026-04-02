@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { User, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import blog7Img from "@/assets/blog7.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -57,7 +58,7 @@ export default function LiveBetterLongerBlogPost() {
             <img
               alt="Ageless Living Wellness Centre - Live Better Longer"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              src="/src/assets/blog7.jpg"
+              src={blog7Img}
               loading="lazy"
             />
           </motion.div>

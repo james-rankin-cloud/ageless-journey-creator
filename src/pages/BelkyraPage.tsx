@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowDown, Check, FlaskConical, Sparkles, Activity } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
+import belkyraImg from "@/assets/belkyra.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -116,7 +117,7 @@ export default function BelkyraPage() {
             >
               <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5] shadow-2xl shadow-foreground/5">
                 <img
-                  src="/src/assets/belkyra.jpg"
+                  src={belkyraImg}
                   alt="Woman with defined jawline showcasing Belkyra treatment results"
                   className="w-full h-full object-cover object-top"
                   width={800}

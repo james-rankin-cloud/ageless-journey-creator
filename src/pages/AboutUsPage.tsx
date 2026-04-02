@@ -2,6 +2,9 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
+import aboutUs1Img from "@/assets/about-us-1.jpg";
+import aboutUs2Img from "@/assets/about-us-2.png";
+import aboutUs3Img from "@/assets/about-us-3.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -32,7 +35,7 @@ export default function AboutUsPage() {
             transition={{ duration: 0.7, ease }}
           >
             <img
-              src="/src/assets/about-us-1.jpg"
+              src={aboutUs1Img}
               alt="Practitioner with patient at Ageless Living clinical setting"
               className="w-full h-full object-cover object-center aspect-[4/3]"
             />
@@ -103,7 +106,7 @@ export default function AboutUsPage() {
             >
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-lg">
                 <img
-                  src="/src/assets/about-us-2.png"
+                  src={aboutUs2Img}
                   alt="Ageless Living brand"
                   className="w-full h-full object-cover object-center"
                 />
@@ -158,7 +161,7 @@ export default function AboutUsPage() {
               transition={{ duration: 0.6, delay: 0.1, ease }}
             >
               <img
-                src="/src/assets/about-us-3.jpg"
+                src={aboutUs3Img}
                 alt="Clinical team consulting at Ageless Living"
                 className="w-full h-full object-cover object-center aspect-[4/3]"
                 loading="lazy"

@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import blog5Img from "@/assets/blog5.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -45,7 +46,7 @@ export default function LongevityMasterclassBlogPost() {
             <img
               alt="Longevity Masterclass - Emerging Science and Timeless Wisdom of Healthy Aging"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              src="/src/assets/blog5.jpg"
+              src={blog5Img}
               loading="lazy"
             />
           </motion.div>

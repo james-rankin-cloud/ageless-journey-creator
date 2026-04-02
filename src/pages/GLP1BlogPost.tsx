@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { User, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import blog1Img from "@/assets/blog1.png";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -54,7 +55,7 @@ export default function GLP1BlogPost() {
             <img
               alt="Clinical Environment"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              src="/src/assets/blog1.png"
+              src={blog1Img}
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>

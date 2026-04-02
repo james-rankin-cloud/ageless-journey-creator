@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
+import microneedlingImg from "@/assets/microneedling.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -66,7 +67,7 @@ export default function MicroneedlingPage() {
           >
             <div className="rounded-[2rem] overflow-hidden shadow-2xl">
               <img
-                src="/src/assets/microneedling.jpg"
+                src={microneedlingImg}
                 alt="Microneedling"
                 className="w-full h-full object-cover object-top"
               />

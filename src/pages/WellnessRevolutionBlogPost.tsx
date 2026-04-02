@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { User, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import blog2Img from "@/assets/blog2.png";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -57,7 +58,7 @@ export default function WellnessRevolutionBlogPost() {
             <img
               alt="Dr. Jason Boxtart & Dr. Tracey Lotze"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              src="/src/assets/blog2.png"
+              src={blog2Img}
               loading="lazy"
             />
           </motion.div>

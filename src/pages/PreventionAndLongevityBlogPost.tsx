@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { User, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-
+import blog3Img from "@/assets/blog3.png";
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function PreventionAndLongevityBlogPost() {
@@ -57,7 +57,7 @@ export default function PreventionAndLongevityBlogPost() {
             <img
               alt="Michael Forbes"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              src="/src/assets/blog3.jpg"
+              src={blog3Img}
               loading="lazy"
             />
           </motion.div>

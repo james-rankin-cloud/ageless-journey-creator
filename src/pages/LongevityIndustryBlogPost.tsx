@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import blog8Img from "@/assets/blog8.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -48,7 +49,7 @@ export default function LongevityIndustryBlogPost() {
             <img
               alt="Longevity Industry and Healthy Ageing"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              src="/src/assets/blog8.jpg"
+              src={blog8Img}
               loading="lazy"
             />
           </motion.div>

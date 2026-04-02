@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, CheckCircle, Sparkles, Clock, Grid3X3, Heart, Shield, MapPin } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
+import dermapeelImg from "@/assets/dermapeel.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -86,7 +87,7 @@ export default function PerfectDermaPeelPage() {
             >
               <div className="aspect-[4/3] rounded-xl overflow-hidden bg-secondary shadow-2xl shadow-foreground/5">
                 <img
-                  src="/src/assets/dermapeel.jpg"
+                  src={dermapeelImg}
                   alt="Professional clinical setting for Perfect Derma Peel treatment"
                   className="w-full h-full object-cover object-center"
                   width={1024}

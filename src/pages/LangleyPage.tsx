@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Info, Zap, Scale, FlaskConical, Sparkles, ExternalLink } from "lucide-react";
 import { getStaffByLocation, getStaffAltText } from "@/data/staffData";
+import langleyImg from "@/assets/langley.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -116,7 +117,7 @@ export default function LangleyPage() {
             >
               <div className="aspect-[4/5] rounded-[1.75rem] overflow-hidden shadow-2xl max-w-md mx-auto lg:max-w-none">
                 <img
-                  src="/src/assets/langley.jpg"
+                  src={langleyImg}
                   alt="Modern minimalist aesthetic clinic reception in Langley with soft natural lighting and warm wood accents"
                   className="w-full h-full object-cover object-center"
                   width={680}

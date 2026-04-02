@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowLeft, Heart, Sun, Sparkles, Zap, MapPin } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
+import laserImg from "@/assets/laser.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -72,7 +73,7 @@ export default function LaserIplBblPage() {
               <div className="relative">
                 <div className="relative rounded-[2rem] overflow-hidden aspect-[4/5] shadow-2xl shadow-foreground/10">
                   <img
-                    src="/src/assets/laser.jpg"
+                    src={laserImg}
                     alt="Radiant skin after laser photorejuvenation treatment"
                     className="w-full h-full object-cover object-top"
                     width={800}
