@@ -78,16 +78,16 @@ export default function CustomizedUltraFacialPage() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/book"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-clinic-teal text-white font-semibold shadow-lg shadow-clinic-teal/20 hover:shadow-clinic-teal/30 transition-all"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all"
                 >
                   Book Consultation
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  to="/prices"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-clinic-teal/20 text-clinic-teal font-semibold hover:bg-clinic-teal/5 transition-all"
+                  to="/services"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-border bg-card text-foreground font-semibold hover:bg-secondary transition-all"
                 >
-                  View Results
+                  Back to All Services
                 </Link>
               </div>
             </motion.div>

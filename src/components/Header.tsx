@@ -37,6 +37,7 @@ export default function Header() {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
+  const [mobileLocationsOpen, setMobileLocationsOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -55,12 +56,12 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between py-5 section-padding">
+      <div className="container mx-auto flex items-center justify-between py-3 md:py-5 px-4 md:px-6 lg:px-8">
         <Link to="/" className="relative z-10 flex items-center">
           <img
             src={logo}
             alt="Ageless Living™ Wellness Centre logo - premium wellness clinic in British Columbia"
-            className="h-16 md:h-20 lg:h-24 transition-all duration-300"
+            className="h-12 md:h-16 lg:h-20 transition-all duration-300"
           />
         </Link>
 
@@ -214,7 +215,7 @@ export default function Header() {
 
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden p-2 text-foreground active:scale-95"
+          className="lg:hidden p-3 text-foreground rounded-full hover:bg-secondary/50 active:bg-secondary transition-colors"
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -225,132 +226,180 @@ export default function Header() {
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "100vh" }}
+            animate={{ opacity: 1, height: "100dvh" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden fixed inset-0 top-0 bg-card z-40 overflow-hidden"
+            className="lg:hidden fixed inset-0 top-0 bg-card z-40 flex flex-col"
           >
-            <div className="flex items-center justify-between py-5 section-padding container mx-auto">
+            {/* Mobile Header */}
+            <div className="flex items-center justify-between py-4 px-5 border-b border-border shrink-0">
               <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center">
                 <img
                   src={logo}
                   alt="Ageless Living™ Wellness Centre logo"
-                  className="h-16 md:h-20"
+                  className="h-12"
                 />
               </Link>
-              <button onClick={() => setMobileOpen(false)} className="p-2 text-foreground">
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="p-3 text-foreground rounded-full hover:bg-secondary/50 active:bg-secondary transition-colors"
+                aria-label="Close menu"
+              >
                 <X size={24} />
               </button>
             </div>
-            <nav className="flex flex-col items-center justify-center gap-8 pt-16">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  className="text-3xl font-bold text-foreground hover:text-muted-foreground transition-colors"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
 
-              {/* Mobile Services */}
-              <div className="text-center">
-                <button
-                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                  className="text-lg font-semibold text-muted-foreground mb-4 hover:text-foreground transition-colors flex items-center gap-2"
-                >
-                  Services
-                  <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`} />
-                </button>
-                <AnimatePresence>
-                  {mobileServicesOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex flex-col gap-3"
-                    >
-                      {services.map((svc) => (
-                        <Link
-                          key={svc.href}
-                          to={svc.href}
-                          className="text-lg font-medium text-foreground hover:text-primary transition-colors"
-                          onClick={() => {
-                            setMobileOpen(false);
-                            setMobileServicesOpen(false);
-                          }}
-                        >
-                          {svc.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+            {/* Scrollable Navigation */}
+            <nav className="flex-1 overflow-y-auto py-6 px-5">
+              <div className="flex flex-col gap-2">
+                {/* Home Link */}
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    className="flex items-center py-4 px-4 text-lg font-semibold text-foreground hover:bg-secondary/50 rounded-xl transition-colors"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
 
-              {/* Mobile About */}
-              <div className="text-center">
-                <button
-                  onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
-                  className="text-lg font-semibold text-muted-foreground mb-4 hover:text-foreground transition-colors flex items-center gap-2"
-                >
-                  About
-                  <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${mobileAboutOpen ? "rotate-180" : ""}`} />
-                </button>
-                <AnimatePresence>
-                  {mobileAboutOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="flex flex-col gap-3"
-                    >
-                      {aboutItems.map((item) => (
-                        <Link
-                          key={item.href}
-                          to={item.href}
-                          className="text-lg font-medium text-foreground hover:text-primary transition-colors"
-                          onClick={() => {
-                            setMobileOpen(false);
-                            setMobileAboutOpen(false);
-                          }}
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                {/* Mobile Services */}
+                <div className="border-t border-border pt-2 mt-2">
+                  <button
+                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    className="w-full flex items-center justify-between py-4 px-4 text-lg font-semibold text-foreground hover:bg-secondary/50 rounded-xl transition-colors"
+                  >
+                    Services
+                    <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-200 ${mobileServicesOpen ? "rotate-180" : ""}`} />
+                  </button>
+                  <AnimatePresence>
+                    {mobileServicesOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pl-4 pb-2 flex flex-col gap-1">
+                          {services.map((svc) => (
+                            <Link
+                              key={svc.href}
+                              to={svc.href}
+                              className="py-3 px-4 text-base text-muted-foreground hover:text-foreground hover:bg-secondary/30 rounded-lg transition-colors"
+                              onClick={() => {
+                                setMobileOpen(false);
+                                setMobileServicesOpen(false);
+                              }}
+                            >
+                              {svc.label}
+                            </Link>
+                          ))}
+                          <Link
+                            to="/services"
+                            className="py-3 px-4 text-base font-medium text-clinic-teal hover:bg-secondary/30 rounded-lg transition-colors"
+                            onClick={() => {
+                              setMobileOpen(false);
+                              setMobileServicesOpen(false);
+                            }}
+                          >
+                            View All Services
+                          </Link>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-              {/* Mobile Locations */}
-              <div className="text-center">
-                <p className="text-lg font-semibold text-muted-foreground mb-4">Locations</p>
-                <div className="flex flex-col gap-3">
-                  {locations.map((loc) => (
-                    <Link
-                      key={loc.label}
-                      to={loc.href}
-                      className="flex items-center justify-center gap-2 text-xl font-medium text-foreground hover:text-primary transition-colors"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      <MapPin className="w-5 h-5 text-primary" />
-                      {loc.label}
-                    </Link>
-                  ))}
+                {/* Mobile About */}
+                <div>
+                  <button
+                    onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
+                    className="w-full flex items-center justify-between py-4 px-4 text-lg font-semibold text-foreground hover:bg-secondary/50 rounded-xl transition-colors"
+                  >
+                    About
+                    <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-200 ${mobileAboutOpen ? "rotate-180" : ""}`} />
+                  </button>
+                  <AnimatePresence>
+                    {mobileAboutOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pl-4 pb-2 flex flex-col gap-1">
+                          {aboutItems.map((item) => (
+                            <Link
+                              key={item.href}
+                              to={item.href}
+                              className="py-3 px-4 text-base text-muted-foreground hover:text-foreground hover:bg-secondary/30 rounded-lg transition-colors"
+                              onClick={() => {
+                                setMobileOpen(false);
+                                setMobileAboutOpen(false);
+                              }}
+                            >
+                              {item.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Mobile Locations */}
+                <div>
+                  <button
+                    onClick={() => setMobileLocationsOpen(!mobileLocationsOpen)}
+                    className="w-full flex items-center justify-between py-4 px-4 text-lg font-semibold text-foreground hover:bg-secondary/50 rounded-xl transition-colors"
+                  >
+                    Locations
+                    <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-200 ${mobileLocationsOpen ? "rotate-180" : ""}`} />
+                  </button>
+                  <AnimatePresence>
+                    {mobileLocationsOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pl-4 pb-2 flex flex-col gap-1">
+                          {locations.map((loc) => (
+                            <Link
+                              key={loc.label}
+                              to={loc.href}
+                              className="flex items-center gap-3 py-3 px-4 text-base text-muted-foreground hover:text-foreground hover:bg-secondary/30 rounded-lg transition-colors"
+                              onClick={() => {
+                                setMobileOpen(false);
+                                setMobileLocationsOpen(false);
+                              }}
+                            >
+                              <MapPin className="w-4 h-4 text-clinic-teal" />
+                              {loc.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
+            </nav>
 
+            {/* Fixed Bottom CTA */}
+            <div className="shrink-0 p-5 border-t border-border bg-card">
               <Link
                 to="/book"
-                className="mt-4 inline-flex items-center px-8 py-3.5 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white text-base font-medium shadow-lg shadow-cyan-500/20"
+                className="w-full flex items-center justify-center py-4 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white text-base font-semibold shadow-lg shadow-cyan-500/20"
                 onClick={() => setMobileOpen(false)}
               >
                 Book a time
               </Link>
-            </nav>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

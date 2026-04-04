@@ -12,36 +12,36 @@ const treatments = [
     title: "Skin Rejuvenation",
     description: "Restore your natural glow with our advanced aesthetic therapies.",
     href: "/services#skin-rejuvenation",
-    gradient: "from-rose-500/10 to-orange-500/10",
-    iconColor: "text-rose-500",
-    hoverBg: "hover:bg-gradient-to-br hover:from-rose-500 hover:to-orange-500",
+    gradient: "from-clinic-teal/10 to-cyan-500/10",
+    iconColor: "text-clinic-teal",
+    hoverBg: "hover:bg-gradient-to-br hover:from-clinic-teal hover:to-cyan-500",
   },
   {
     icon: FlaskConical,
     title: "Hormone Balancing",
     description: "Optimize your internal harmony through clinical expertise.",
     href: "/services#hormone-balancing",
-    gradient: "from-violet-500/10 to-purple-500/10",
-    iconColor: "text-violet-500",
-    hoverBg: "hover:bg-gradient-to-br hover:from-violet-500 hover:to-purple-500",
+    gradient: "from-clinic-teal/10 to-cyan-500/10",
+    iconColor: "text-clinic-teal",
+    hoverBg: "hover:bg-gradient-to-br hover:from-clinic-teal hover:to-cyan-500",
   },
   {
     icon: Zap,
     title: "Biohacking",
     description: "Unlock peak performance with evidence-based longevity tools.",
     href: "/services#biohacking",
-    gradient: "from-clinic-teal/10 to-emerald-500/10",
+    gradient: "from-clinic-teal/10 to-cyan-500/10",
     iconColor: "text-clinic-teal",
-    hoverBg: "hover:bg-gradient-to-br hover:from-clinic-teal hover:to-emerald-500",
+    hoverBg: "hover:bg-gradient-to-br hover:from-clinic-teal hover:to-cyan-500",
   },
   {
     icon: Scale,
     title: "Health Weight",
     description: "A sustainable wellness journey tailored to your unique physiology.",
     href: "/services#health-weight",
-    gradient: "from-amber-500/10 to-orange-500/10",
-    iconColor: "text-amber-500",
-    hoverBg: "hover:bg-gradient-to-br hover:from-amber-500 hover:to-orange-500",
+    gradient: "from-clinic-teal/10 to-cyan-500/10",
+    iconColor: "text-clinic-teal",
+    hoverBg: "hover:bg-gradient-to-br hover:from-clinic-teal hover:to-cyan-500",
   },
 ];
 
@@ -59,16 +59,16 @@ const locations = [
     href: "/locations/langley",
     address: "415-20178 96th Ave",
     city: "Langley, BC",
-    gradient: "from-violet-500/5 to-purple-500/5",
-    hoverGradient: "hover:from-violet-500/10 hover:to-purple-500/10"
+    gradient: "from-clinic-teal/5 to-cyan-500/5",
+    hoverGradient: "hover:from-clinic-teal/10 hover:to-cyan-500/10"
   },
   {
     name: "Kelowna Clinic",
     href: "/locations/kelowna",
     address: "102-3320 Richter Street",
     city: "Kelowna, BC",
-    gradient: "from-amber-500/5 to-orange-500/5",
-    hoverGradient: "hover:from-amber-500/10 hover:to-orange-500/10"
+    gradient: "from-clinic-teal/5 to-cyan-500/5",
+    hoverGradient: "hover:from-clinic-teal/10 hover:to-cyan-500/10"
   },
 ];
 
@@ -123,13 +123,13 @@ export default function HomePage() {
                   to="/about-us"
                   className="bg-gradient-to-r from-clinic-teal to-cyan-500 hover:from-clinic-teal/90 hover:to-cyan-500/90 text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all shadow-xl shadow-cyan-500/25 text-center"
                 >
-                  Explore our Locations
+                  About Us
                 </Link>
                 <Link
-                  to="/services"
+                  to="/our-team"
                   className="flex items-center justify-center gap-3 px-8 py-4 rounded-full border-2 border-foreground/20 text-foreground font-bold text-sm uppercase tracking-widest hover:bg-foreground hover:text-background transition-all"
                 >
-                  Learn more
+                  Meet Our Team
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -223,7 +223,7 @@ export default function HomePage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease }}
-            className="rounded-2xl overflow-hidden shadow-xl max-w-4xl mx-auto"
+            className="rounded-2xl overflow-hidden shadow-xl max-w-2xl mx-auto"
           >
             <img
               src={ourLocationsImg}
@@ -306,21 +306,21 @@ export default function HomePage() {
               Clinical Excellence & Collaborative Expertise
             </h2>
             <p className="text-xl text-muted-foreground leading-relaxed font-light mb-8">
-              Our clinical sanctuary is powered by a multidisciplinary team of physicians, specialists, and clinical managers across Langley, Victoria, and Kelowna. Together, we bring decades of experience to your longevity journey, ensuring every treatment plan meets the highest standards of safety and clinical efficacy.
+              Our clinical sanctuary is powered by a multidisciplinary team of physicians, specialists, and clinical managers across Langley, Victoria, and Kelowna. Together, we bring a decade of experience to your longevity journey, ensuring every treatment plan meets the highest standards of safety and clinical efficacy.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                to="/about-us"
+                to="/contact"
                 className="px-8 py-4 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white text-sm font-bold uppercase tracking-widest hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all flex items-center gap-3 shadow-lg shadow-cyan-500/20"
               >
-                Meet our full team
+                Contact
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                to="/services"
+                to="/faqs"
                 className="px-8 py-4 rounded-full border-2 border-clinic-teal/30 text-foreground text-sm font-bold uppercase tracking-widest hover:bg-clinic-teal/10 hover:border-clinic-teal/50 transition-all"
               >
-                Clinical Standards
+                FAQ
               </Link>
             </div>
           </motion.div>

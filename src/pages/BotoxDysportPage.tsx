@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Clock, Zap, Sparkles, Eye, Frown, Activity } from "lucide-react";
+import { Clock, Zap, Sparkles, Eye, Frown, Activity } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
 import botoxHeroImg from "@/assets/botox-1.jpg";
 import botoxResultsImg from "@/assets/botox-2.jpg";
@@ -57,12 +57,6 @@ export default function BotoxDysportPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease }}
             >
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" /> Back to Services
-              </Link>
               <div className="space-y-4">
                 <span className="text-clinic-teal font-semibold tracking-[0.2em] uppercase text-xs">
                   Neuromodulators
@@ -74,12 +68,20 @@ export default function BotoxDysportPage() {
                   Soften lines and restore your youthful glow with precision neuromodulators.
                 </p>
               </div>
-              <Link
-                to="/book"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-10 py-4 font-semibold hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all shadow-xl shadow-cyan-500/20"
-              >
-                Book a Consultation
-              </Link>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  to="/book"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-10 py-4 font-semibold hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all shadow-xl shadow-cyan-500/20"
+                >
+                  Book a Consultation
+                </Link>
+                <Link
+                  to="/services"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-border bg-card text-foreground font-semibold hover:bg-secondary transition-all"
+                >
+                  Back to All Services
+                </Link>
+              </div>
             </motion.div>
 
             <motion.div

@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowDown, Check, FlaskConical, Sparkles, Activity } from "lucide-react";
+import { ArrowDown, Check, FlaskConical, Sparkles, Activity } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
 import belkyraImg from "@/assets/belkyra.jpg";
 
@@ -70,12 +70,6 @@ export default function BelkyraPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease }}
             >
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" /> Back to Services
-              </Link>
               <div className="space-y-4">
                 <span className="inline-block px-4 py-1.5 rounded-full bg-clinic-teal-light text-clinic-teal text-xs font-semibold tracking-wide uppercase">
                   Advanced Injectable
@@ -96,16 +90,14 @@ export default function BelkyraPage() {
                   to="/book"
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-10 py-4 font-semibold hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all shadow-xl shadow-cyan-500/20"
                 >
-                  Start Your Transformation
+                  Book Your Consultation
                 </Link>
-                <button
-                  onClick={() => {
-                    document.getElementById("science")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="inline-flex items-center gap-2 px-8 py-4 text-clinic-teal font-semibold hover:underline"
+                <Link
+                  to="/services"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-border bg-card text-foreground font-semibold hover:bg-secondary transition-all"
                 >
-                  View Results <ArrowDown className="w-4 h-4" />
-                </button>
+                  Back to All Services
+                </Link>
               </div>
             </motion.div>
 
@@ -119,7 +111,7 @@ export default function BelkyraPage() {
                 <img
                   src={belkyraImg}
                   alt="Woman with defined jawline showcasing Belkyra treatment results"
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-center"
                   width={800}
                   height={1000}
                 />

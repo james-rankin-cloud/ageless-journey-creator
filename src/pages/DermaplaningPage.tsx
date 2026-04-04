@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Check, Sparkles, Droplet, Clock } from "lucide-react";
+import { Check, Sparkles, Droplet, Clock } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
 import dermaplanningImg from "@/assets/dermaplanning.jpg";
 import dermaplanning2Img from "@/assets/dermaplanning2.jpg";
@@ -73,12 +73,6 @@ export default function DermaplaningPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease }}
             >
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" /> Back to Services
-              </Link>
               <div className="space-y-4">
                 <span className="uppercase tracking-[0.3em] text-muted-foreground text-xs font-semibold">
                   Manual Exfoliation Specialist
@@ -98,10 +92,10 @@ export default function DermaplaningPage() {
                   Book Appointment
                 </Link>
                 <Link
-                  to="/prices"
-                  className="inline-flex items-center gap-2 px-10 py-4 rounded-full border border-border bg-card text-foreground font-semibold transition-all hover:bg-secondary"
+                  to="/services"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-border bg-card text-foreground font-semibold hover:bg-secondary transition-all"
                 >
-                  View Pricing
+                  Back to All Services
                 </Link>
               </div>
             </motion.div>

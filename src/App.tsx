@@ -24,6 +24,7 @@ import AboutUsPage from "@/pages/AboutUsPage";
 import TeamPage from "@/pages/TeamPage";
 import StaffProfilePage from "@/pages/StaffProfilePage";
 import FAQPage from "@/pages/FAQPage";
+import CareersPage from "@/pages/CareersPage";
 import BlogPage from "@/pages/BlogPage";
 import GLP1BlogPost from "@/pages/GLP1BlogPost";
 import WellnessRevolutionBlogPost from "@/pages/WellnessRevolutionBlogPost";
@@ -68,7 +69,7 @@ const App = () => (
             <Route path="/our-team" element={<TeamPage />} />
             <Route path="/our-team/:slug" element={<StaffProfilePage />} />
             <Route path="/faqs" element={<FAQPage />} />
-            <Route path="/careers" element={<AboutUsPage />} />
+            <Route path="/careers" element={<CareersPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/glp1-agonists" element={<GLP1BlogPost />} />
             <Route path="/blog/wellness-revolution" element={<WellnessRevolutionBlogPost />} />

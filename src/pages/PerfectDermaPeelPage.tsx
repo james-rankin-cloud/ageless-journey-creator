@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight, CheckCircle, Sparkles, Clock, Grid3X3, Heart, Shield, MapPin } from "lucide-react";
+import { ArrowRight, CheckCircle, Sparkles, Clock, Grid3X3, Heart, Shield, MapPin } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
 import dermapeelImg from "@/assets/dermapeel.jpg";
 
@@ -44,12 +44,6 @@ export default function PerfectDermaPeelPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease }}
             >
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" /> Back to Services
-              </Link>
               <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-muted-foreground text-sm font-medium tracking-wide">
                   <span className="w-1.5 h-1.5 rounded-full bg-clinic-teal" />
@@ -66,15 +60,15 @@ export default function PerfectDermaPeelPage() {
               <div className="flex flex-wrap gap-4 pt-4">
                 <Link
                   to="/book"
-                  className="bg-foreground text-background px-10 py-4 rounded-full font-semibold hover:opacity-90 transition-all"
+                  className="bg-gradient-to-r from-clinic-teal to-cyan-500 text-white px-10 py-4 rounded-full font-semibold shadow-lg shadow-cyan-500/20 hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all"
                 >
                   Book Consultation
                 </Link>
                 <Link
-                  to="/prices"
-                  className="flex items-center gap-2 text-clinic-teal font-medium px-6 py-4 hover:gap-3 transition-all"
+                  to="/services"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-border bg-card text-foreground font-semibold hover:bg-secondary transition-all"
                 >
-                  View Pricing <ArrowRight className="w-4 h-4" />
+                  Back to All Services
                 </Link>
               </div>
             </motion.div>
@@ -201,12 +195,6 @@ export default function PerfectDermaPeelPage() {
                 <h4 className="text-2xl font-bold mb-4">Acne & Scarring</h4>
                 <p className="text-white/80 leading-relaxed">Diminishes active acne and softens the appearance of post-inflammatory scars by encouraging rapid collagen production.</p>
               </div>
-              <Link
-                to="/services"
-                className="mt-8 border border-white/30 rounded-full py-3 px-6 hover:bg-white hover:text-clinic-teal transition-colors text-sm font-medium text-center"
-              >
-                Learn about scarring
-              </Link>
             </motion.div>
 
             {/* Small Bento Items */}

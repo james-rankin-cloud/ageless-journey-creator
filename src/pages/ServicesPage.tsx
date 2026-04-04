@@ -75,20 +75,6 @@ export default function ServicesPage() {
               <p className="text-muted-foreground text-lg leading-relaxed max-w-lg mb-8">
                 Science-backed treatments across four specialized pillars: Skin Rejuvenation, Hormone Balancing, Biohacking, and Health Weight.
               </p>
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  to="#skin-rejuvenation"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white font-medium text-sm transition-all hover:from-clinic-teal/90 hover:to-cyan-500/90 shadow-lg shadow-cyan-500/20"
-                >
-                  Explore Treatments
-                </Link>
-                <Link
-                  to="/about"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border bg-card text-foreground font-medium text-sm transition-all hover:bg-secondary"
-                >
-                  Our Clinical Approach
-                </Link>
-              </div>
             </motion.div>
 
             <motion.div
@@ -219,10 +205,10 @@ export default function ServicesPage() {
                 <img
                   src={hormoneImg}
                   alt="Hormone balancing clinic"
-                  className="w-full rounded-2xl object-cover object-top aspect-[3/4] transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="w-full rounded-2xl object-cover object-top aspect-[4/5] transition-transform duration-500 group-hover:scale-[1.02]"
                   loading="lazy"
                   width={512}
-                  height={700}
+                  height={640}
                 />
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 rounded-2xl transition-colors flex items-center justify-center">
                   <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 backdrop-blur-sm text-foreground font-semibold px-6 py-3 rounded-full shadow-lg">
@@ -287,10 +273,10 @@ export default function ServicesPage() {
                 <img
                   src={biohackingImg}
                   alt="Biohacking and longevity hub"
-                  className="w-full rounded-2xl object-cover object-top aspect-[3/4] transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="w-full rounded-2xl object-cover object-top aspect-[4/5] transition-transform duration-500 group-hover:scale-[1.02]"
                   loading="lazy"
                   width={512}
-                  height={700}
+                  height={640}
                 />
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 rounded-2xl transition-colors flex items-center justify-center">
                   <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 backdrop-blur-sm text-foreground font-semibold px-6 py-3 rounded-full shadow-lg">
@@ -359,10 +345,10 @@ export default function ServicesPage() {
                 <img
                   src={weightImg}
                   alt="Health weight management"
-                  className="w-full rounded-2xl object-cover object-top aspect-[3/4] transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="w-full rounded-2xl object-cover object-top aspect-[4/5] transition-transform duration-500 group-hover:scale-[1.02]"
                   loading="lazy"
                   width={512}
-                  height={700}
+                  height={640}
                 />
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 rounded-2xl transition-colors flex items-center justify-center">
                   <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 backdrop-blur-sm text-foreground font-semibold px-6 py-3 rounded-full shadow-lg">

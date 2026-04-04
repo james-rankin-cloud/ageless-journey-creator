@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
 import microneedlingImg from "@/assets/microneedling.jpg";
 
@@ -25,13 +24,6 @@ export default function MicroneedlingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
           >
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
-            >
-              <ArrowLeft className="w-4 h-4" /> Back to Services
-            </Link>
-
             <span className="text-clinic-teal tracking-[0.2em] uppercase text-xs font-semibold">
               Advanced Skin Therapy
             </span>
@@ -48,12 +40,18 @@ export default function MicroneedlingPage() {
               for refined texture and natural skin vitality.
             </p>
 
-            <div className="pt-4">
+            <div className="pt-4 flex flex-wrap gap-4">
               <Link
                 to="/book"
                 className="bg-gradient-to-r from-clinic-teal to-cyan-500 text-white px-10 py-4 rounded-full font-semibold shadow-xl shadow-cyan-500/20 hover:from-clinic-teal/90 hover:to-cyan-500/90 transition"
               >
                 Book Your Consultation
+              </Link>
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-border bg-card text-foreground font-semibold hover:bg-secondary transition-all"
+              >
+                Back to All Services
               </Link>
             </div>
           </motion.div>

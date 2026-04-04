@@ -1394,3 +1394,69 @@ VITE_GA_ID=xxx
 - Consistent CTA styling and messaging
 - Reduced excessive whitespace
 - Premium, professional aesthetic maintained throughout
+
+### April 2026 - UI/UX Updates & Mobile Navigation Improvements
+
+**Header & Mobile Navigation Overhaul:**
+1. **Improved Mobile Menu**
+   - Scrollable menu container with fixed header and bottom CTA
+   - Larger touch targets (44px+ height) on all menu items
+   - Made Locations section collapsible like Services and About
+   - Added "View All Services" link in mobile dropdown
+   - Using `100dvh` for proper mobile viewport height
+   - Improved hover/active states for visual feedback
+
+2. **Header Responsiveness**
+   - Smaller logo on mobile (h-12 vs h-16)
+   - Better hamburger button with larger tap area and hover state
+   - Reduced padding for mobile devices
+   - Visual hierarchy with borders separating sections
+
+**HomePage Updates:**
+1. **Hero Section CTAs**
+   - "Explore our Locations" → "About Us" (links to /about-us)
+   - "Learn more" → "Meet Our Team" (links to /our-team)
+
+2. **Leadership Section CTAs**
+   - "Meet our full team" → "Contact" (links to /contact)
+   - "Clinical Standards" → "FAQ" (links to /faqs)
+
+3. **Color Consistency**
+   - All treatment cards now use consistent cyan/teal gradient
+   - All location cards use matching cyan/teal theme
+   - Featured image reduced from max-w-4xl to max-w-2xl
+
+**ServicesPage Updates:**
+- Removed "Explore Treatments" and "Our Clinical Approach" buttons from hero section
+- Cleaner hero layout focusing on content
+
+**Service Page Button Standardization:**
+
+All service pages updated to use consistent cyan gradient button styling (`bg-gradient-to-r from-clinic-teal to-cyan-500`):
+
+1. **CosmeticDermalFillerPage**
+   - Book Consultation button updated to cyan gradient
+   - Removed "View Pricing" button
+
+2. **CustomizedUltraFacialPage**
+   - Book Consultation button updated to cyan gradient
+   - Removed "View Results" button
+   - Added "Back to All Services" button
+
+3. **PerfectDermaPeelPage**
+   - Book Consultation button updated to cyan gradient
+   - Removed "View Pricing" button
+   - Removed "Learn about scarring" button from Acne & Scarring card
+
+4. **BelkyraPage**
+   - "Start Your Transformation" → "Book Your Consultation"
+   - Removed "View Results" button
+   - Hero image updated to use `object-center` for better display
+
+5. **DermaplaningPage**
+   - Removed "View Pricing" button
+
+**Note:** Botox page treatment area photos (Forehead, Glabella, Crow's Feet) require manual replacement with more accurate images:
+- `src/assets/botox-4.jpg` (Forehead)
+- `src/assets/botox-5.jpg` (Glabella)
+- `src/assets/botox-6.jpg` (Crow's Feet)
