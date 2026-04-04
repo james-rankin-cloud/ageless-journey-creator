@@ -3,13 +3,22 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import blog1Img from "@/assets/blog1.png";
+import blog2Img from "@/assets/blog2.png";
+import blog3Img from "@/assets/blog3.png";
+import blog4Img from "@/assets/blog4.jpg";
+import blog5Img from "@/assets/blog5.jpg";
+import blog6Img from "@/assets/blog6.jpg";
+import blog7Img from "@/assets/blog7.jpg";
+import blog8Img from "@/assets/blog8.jpg";
+
 const posts = [
   {
     title: "Understanding GLP-1 Agonists: The Science Behind Medical Weight Loss & Metabolic Health",
     category: "Medical Weight Loss",
     date: "January 6, 2026",
     excerpt: "For decades, the prevailing advice for weight loss has been simple: 'Eat less, move more.' Yet, for millions of people, this equation simply does not work. Discover the science behind GLP-1 agonists and how they're changing the landscape of longevity medicine.",
-    img: "/src/assets/blog1.png",
+    img: blog1Img,
     link: "/blog/glp1-agonists",
   },
   {
@@ -17,7 +26,7 @@ const posts = [
     category: "Longevity Medicine",
     date: "December 9, 2024",
     excerpt: "In a world where the quest for eternal vitality is often viewed as a lofty ideal, two dedicated doctors in Kelowna are rewriting the script on aging and wellness. Story by Boulevard Magazine, November 2024.",
-    img: "/src/assets/blog2.png",
+    img: blog2Img,
     link: "/blog/wellness-revolution",
   },
   {
@@ -25,7 +34,7 @@ const posts = [
     category: "Preventative Medicine",
     date: "October 2, 2024",
     excerpt: "Michael Forbes is a seasoned entrepreneur with a successful track record in the medical industry. His mission: to help people live their best, healthiest lives through personalized, preventative care. Story by The Georgia Straight, September 2024.",
-    img: "/src/assets/blog3.jpg",
+    img: blog3Img,
     link: "/blog/prevention-and-longevity",
   },
   {
@@ -33,7 +42,7 @@ const posts = [
     category: "Preventative Medicine",
     date: "February 29, 2024",
     excerpt: "When health care is not a viable option, look elsewhere for support with the wellness center Ageless Living™. Become your best self now to better prepare yourself for the future to live a long, healthy life. Story by Dennis Buckly, New York Tech (MSN News, February 2024).",
-    img: "/src/assets/blog4.jpg",
+    img: blog4Img,
     link: "/blog/preventative-health",
   },
   {
@@ -41,7 +50,7 @@ const posts = [
     category: "Longevity Medicine",
     date: "September 15, 2022",
     excerpt: "Discover the emerging science and timeless wisdom of healthy aging with Ageless Living's comprehensive longevity masterclass. Learn evidence-based strategies to optimize your healthspan.",
-    img: "/src/assets/blog5.jpg",
+    img: blog5Img,
     link: "/blog/longevity-masterclass",
   },
   {
@@ -49,7 +58,7 @@ const posts = [
     category: "Mental Health & Wellness",
     date: "September 14, 2022",
     excerpt: "The gut microbiome has previously been linked to some neurological and psychological disorders. Now, researchers are investigating whether utilizing microbes from the gut could potentially treat depression and other mental health disorders.",
-    img: "/src/assets/blog6.jpg",
+    img: blog6Img,
     link: "/blog/gut-microbes-mental-health",
   },
   {
@@ -57,7 +66,7 @@ const posts = [
     category: "Company News",
     date: "September 12, 2022",
     excerpt: "British Columbia's premier longevity and vitality clinic continues its expansion with a third location coming soon to Kelowna. Aging is inevitable. Feeling old doesn't have to be.",
-    img: "/src/assets/blog7.jpg",
+    img: blog7Img,
     link: "/blog/live-better-longer",
   },
   {
@@ -65,7 +74,7 @@ const posts = [
     category: "Longevity Industry",
     date: "September 1, 2022",
     excerpt: "An interview with Anastasia Lit about longevity and the emerging industry focused on healthy ageing. Explore the global landscape of longevity companies and the future of healthy aging.",
-    img: "/src/assets/blog8.jpg",
+    img: blog8Img,
     link: "/blog/longevity-industry",
   },
 ];
