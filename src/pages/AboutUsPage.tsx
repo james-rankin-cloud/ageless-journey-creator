@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 import aboutUs1Img from "@/assets/about-us-1.jpg";
-import aboutUs2Img from "@/assets/about-us-2.png";
+import iconImg from "@/assets/icon.png";
 import aboutUs3Img from "@/assets/about-us-3.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -106,8 +106,8 @@ export default function AboutUsPage() {
             >
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-lg">
                 <img
-                  src={aboutUs2Img}
-                  alt="Ageless Living brand"
+                  src={iconImg}
+                  alt="Ageless Living brand icon"
                   className="w-full h-full object-cover object-center"
                 />
               </div>
