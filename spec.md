@@ -1,5 +1,58 @@
 # Ageless Living™ Website Architecture Specification
 
+## Changelog — Premium UI Overhaul (2026-04-05)
+
+A bespoke editorial redesign intended to remove any "AI-generated template"
+feel and align the brand with the visual standard of Apple / Stripe /
+premium wellness editorial sites.
+
+### Typography
+- Added **Fraunces** (modern display serif) paired with existing **DM Sans**.
+- Global `h1`, `h2`, `h3` now render in Fraunces (`font-display`), light weight,
+  tight negative tracking. Body, eyebrows and UI copy remain DM Sans.
+- New CSS utilities: `.font-display`, `.font-sans-alt`, `.eyebrow`, `.hairline`,
+  `.scrollbar-none`.
+- New Tailwind font family tokens: `font-display`, `font-serif`.
+
+### Layout & Global Components
+- **Removed** `PromoPopup` (discount modal) from `Layout.tsx` — site no longer
+  shows a promotional popup on load.
+- **Added** `src/components/VisitShopCta.tsx` — a premium, globally-mounted
+  "Visit Shop" module rendered above the footer on every route. Editorial
+  12-col layout with giant outlined display type, dark teal gradient card,
+  featured product image (`shop-1.jpeg`) and a high-contrast pill CTA.
+- `Layout.tsx` now renders `<VisitShopCta />` between `<Outlet />` and
+  `<Footer />`.
+
+### HomePage (`src/pages/HomePage.tsx`) — full rewrite
+- Editorial asymmetric 12-column grid throughout.
+- Massive serif display hero ("Live better, *longer* — at any age.") with
+  supporting portrait + inset secondary image, instead of the previous
+  gradient-heavy template hero.
+- New pillar section: editorial row list (number / title / blurb / thumbnail)
+  using only existing brand assets (`services-1…4.jpg`).
+- Philosophy section with large quote + portrait (`about-us-1.jpg`).
+- Locations grid using existing `victoria.png`, `langley.jpg`, `kelowna.jpg`.
+- All generic stock / AI-style imagery removed — only existing Ageless Living
+  brand assets referenced.
+
+### ServicesPage (`src/pages/ServicesPage.tsx`) — full rewrite
+- Sophisticated **sticky side-navigation** on desktop (`lg:` +) that highlights
+  the active pillar via `IntersectionObserver`.
+- Horizontal scrolling chip nav on mobile for the same four pillars.
+- Each pillar rendered as an editorial article: number, eyebrow, Fraunces
+  display title with italic accent, 7/5 image+copy grid, and a numbered
+  "treatment rows" list (`01 / name / description / arrow`) that links to
+  individual service sub-pages.
+- Brand imagery only (`services-1…4.jpg`).
+
+### Service Sub-Pages
+- Automatically inherit the new serif heading style globally via the `h1/h2/h3`
+  rule in `index.css`, lifting every service page (Botox, Filler, Laser, etc.)
+  into the same typographic system without page-by-page rewrites.
+
+---
+
 ## Overview
 
 This document describes the technical architecture of the Ageless Living™ Wellness Centre website, a React single-page application (SPA) built for a multi-location wellness clinic in British Columbia.

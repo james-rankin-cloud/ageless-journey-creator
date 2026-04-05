@@ -73,6 +73,8 @@ export default {
       },
       fontFamily: {
         sans: ["DM Sans", "system-ui", "sans-serif"],
+        display: ["Fraunces", "Cormorant Garamond", "Georgia", "serif"],
+        serif: ["Fraunces", "Cormorant Garamond", "Georgia", "serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

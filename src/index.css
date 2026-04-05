@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -68,10 +68,19 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'DM Sans', system-ui, sans-serif;
+    font-feature-settings: "ss01", "cv11";
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight font-bold;
+  h1, h2, h3 {
+    font-family: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 30, "WONK" 0;
+    @apply tracking-[-0.02em] font-light;
+    text-wrap: balance;
+  }
+
+  h4, h5, h6 {
+    @apply tracking-tight font-semibold;
     text-wrap: balance;
   }
 
@@ -96,6 +105,35 @@
   .text-gradient {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--muted-foreground)) 100%);
+  }
+
+  .font-display {
+    font-family: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    font-optical-sizing: auto;
+  }
+
+  .font-sans-alt {
+    font-family: 'DM Sans', system-ui, sans-serif;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-sans-alt font-medium uppercase tracking-[0.22em] text-muted-foreground;
+  }
+
+  .hairline {
+    @apply relative inline-block;
+  }
+  .hairline::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 h-px w-10 bg-clinic-teal;
+  }
+
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
   }
 }
 
