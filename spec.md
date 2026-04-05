@@ -1,5 +1,54 @@
 # Ageless Living™ Website Architecture Specification
 
+## Changelog — Clinical Refinement Pass (2026-04-05 · v2)
+
+A second pass that repositions the visual identity toward a clinical,
+scientific aesthetic (reference: "The Ordinary").
+
+### Typography
+- **Removed Fraunces / all serif fonts**.
+- Headings (`h1–h6`) now render in **Jost** (with Raleway fallback) — clean,
+  geometric, minimalist. `font-display` utility and `.eyebrow` now resolve to
+  Jost so every existing usage upgrades automatically.
+- Body copy now uses **Inter** (replacing DM Sans).
+- Imports updated in `src/index.css`; Tailwind `fontFamily` tokens updated.
+
+### Ageless Blue Palette
+- `--clinic-teal` CSS variable **repurposed to clinical blue** (`hsl(212 68% 38%)`),
+  so every existing `text-clinic-teal` / `bg-clinic-teal` instance across the
+  codebase instantly switches to the Ageless blue without per-file edits.
+- New tokens: `--ageless-blue`, `--ageless-blue-deep` (CTA background), and
+  `--ageless-blue-soft` (section tints). Exposed as Tailwind colours
+  `ageless-blue`, `ageless-blue-deep`, `ageless-blue-soft`.
+- New `::selection` highlight uses the Ageless blue.
+
+### Video-First Integration
+- HomePage hero rebuilt around a **full-width framed muted-looping `<video>`**
+  using the existing `/public/human_graphic.{webm,mp4}` asset, with an
+  editorial copy + CTA overlay in the bottom gutter.
+- Reusable `LoopVideo` component renders additional muted/looping players
+  used in three more on-page sections:
+  1. Philosophy section — portrait-ratio video
+  2. Patient Stories / Testimonials — three portrait videos in a grid
+  3. (Hero counts as the fourth major video integration)
+- All videos use existing assets — no new media or AI photos introduced.
+
+### Logo Presence & Watermark
+- New `.logo-watermark` CSS utility — oversized outlined wordmark for
+  decorative backgrounds.
+- HomePage closing CTA now uses the **ageless-blue-deep** background with a
+  faint `footer-logo.png` badge and a massive outlined "ageless" wordmark as
+  a background watermark.
+- `VisitShopCta` component rebuilt on the same ageless-blue-deep background
+  with a logo badge, an `ageless` wordmark watermark, larger whitespace and
+  the new uppercase Jost headline treatment.
+
+### Whitespace
+- Section padding bumped across the board (e.g. HomePage section `py-32
+  md:py-48`, VisitShop `py-28 md:py-40`) to match high-end clinical brands.
+
+---
+
 ## Changelog — Premium UI Overhaul (2026-04-05)
 
 A bespoke editorial redesign intended to remove any "AI-generated template"

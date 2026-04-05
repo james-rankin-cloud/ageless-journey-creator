@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -45,10 +45,13 @@
     --sidebar-border: 30 18% 89%;
     --sidebar-ring: 0 0% 17%;
 
-    /* Clinical teal accent */
-    --clinic-teal: 181 100% 19%;
-    --clinic-teal-light: 181 40% 95%;
-    --clinic-teal-container: 181 100% 24%;
+    /* Ageless clinical blue — primary accent */
+    --clinic-teal: 212 68% 38%;            /* ~#1f5cab — deep clinical blue */
+    --clinic-teal-light: 212 60% 96%;      /* very soft blue tint */
+    --clinic-teal-container: 212 80% 46%;  /* brighter hover / accent */
+    --ageless-blue: 212 68% 38%;
+    --ageless-blue-deep: 215 72% 18%;      /* near-navy for CTA backgrounds */
+    --ageless-blue-soft: 212 60% 96%;
 
     /* Backward compat */
     --wellness-teal: 0 0% 17%;
@@ -67,25 +70,28 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-feature-settings: "ss01", "cv11";
+    letter-spacing: -0.005em;
   }
 
-  h1, h2, h3 {
-    font-family: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
-    font-optical-sizing: auto;
-    font-variation-settings: "SOFT" 30, "WONK" 0;
-    @apply tracking-[-0.02em] font-light;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Jost', 'Raleway', system-ui, sans-serif;
+    @apply tracking-[-0.015em] font-light;
     text-wrap: balance;
   }
 
   h4, h5, h6 {
-    @apply tracking-tight font-semibold;
-    text-wrap: balance;
+    @apply font-medium tracking-tight;
   }
 
   p {
     text-wrap: pretty;
+  }
+
+  /* Uppercase micro-labels inherit the heading face for visual unity */
+  ::selection {
+    background: hsl(var(--ageless-blue) / 0.18);
   }
 }
 
@@ -107,17 +113,20 @@
     background-image: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--muted-foreground)) 100%);
   }
 
+  /* Display utility now resolves to Jost for a clean clinical look */
   .font-display {
-    font-family: 'Fraunces', 'Cormorant Garamond', Georgia, serif;
+    font-family: 'Jost', 'Raleway', system-ui, sans-serif;
     font-optical-sizing: auto;
+    letter-spacing: -0.02em;
   }
 
   .font-sans-alt {
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
   .eyebrow {
-    @apply text-[11px] font-sans-alt font-medium uppercase tracking-[0.22em] text-muted-foreground;
+    @apply text-[11px] font-medium uppercase tracking-[0.28em] text-muted-foreground;
+    font-family: 'Jost', 'Raleway', system-ui, sans-serif;
   }
 
   .hairline {
@@ -126,6 +135,16 @@
   .hairline::after {
     content: '';
     @apply absolute left-0 -bottom-1 h-px w-10 bg-clinic-teal;
+  }
+
+  /* Oversized outlined wordmark watermark for CTA backgrounds */
+  .logo-watermark {
+    font-family: 'Jost', system-ui, sans-serif;
+    font-weight: 200;
+    letter-spacing: -0.055em;
+    line-height: 0.8;
+    -webkit-text-stroke: 1px currentColor;
+    color: transparent;
   }
 
   .scrollbar-none {
