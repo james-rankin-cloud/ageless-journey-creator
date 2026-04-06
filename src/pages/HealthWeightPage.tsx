@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Heart, Beaker, Utensils, ShieldCheck } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
 import healthWeightImg from "@/assets/health-weight.jpg";
+import homeImg4 from "@/assets/home-4.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -71,16 +72,16 @@ export default function HealthWeightPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="aspect-square rounded-xl overflow-hidden">
                   <img
-                    src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=400&fit=crop"
-                    alt="Fresh healthy bowl with vegetables and grains"
+                    src={healthWeightImg}
+                    alt="Ageless Living health and weight management consultation"
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
                 </div>
                 <div className="aspect-square rounded-xl overflow-hidden mt-8">
                   <img
-                    src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=400&fit=crop"
-                    alt="Healthy Mediterranean salad with olive oil and herbs"
+                    src={homeImg4}
+                    alt="Ageless Living wellness clinic treatment room"
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -150,16 +151,16 @@ export default function HealthWeightPage() {
                 <div className="flex -space-x-4">
                   <div className="w-12 h-12 rounded-full border-2 border-card overflow-hidden bg-secondary">
                     <img
-                      src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=100&h=100&fit=crop"
-                      alt="Professional physician portrait"
+                      src="https://agelessliving.com/wp-content/uploads/2022/06/Screenshot-2024-06-14-at-10.23.47%E2%80%AFAM-768x767.png"
+                      alt="Dr. Jean Paul Lim, Ageless Living physician"
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />
                   </div>
                   <div className="w-12 h-12 rounded-full border-2 border-card overflow-hidden bg-secondary">
                     <img
-                      src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=100&h=100&fit=crop"
-                      alt="Professional physician portrait"
+                      src="https://agelessliving.com/wp-content/uploads/2022/06/mike-768x768.png"
+                      alt="Michael Forbes, Ageless Living practitioner"
                       className="w-full h-full object-cover"
                       loading="lazy"
                     />

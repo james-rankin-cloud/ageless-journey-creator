@@ -1,9 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar as CalendarIcon, User, Check, ChevronRight, LogIn, Clock, ChevronDown } from "lucide-react";
+import { Calendar as CalendarIcon, User, Check, ChevronRight, LogIn, Clock, ChevronDown, ArrowRight } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
+import { useAuth } from "@/lib/auth";
 type Location = "langley" | "kelowna" | "victoria";
 
 const mainServices = [
@@ -78,7 +80,10 @@ function generateSlots(day: number) {
 }
 
 export default function BookNowPage() {
-  const [location, setLocation] = useState<Location>("langley");
+  const { isAuthenticated, user, addBooking } = useAuth();
+  const [location, setLocation] = useState<Location>(
+    (user?.preferredLocation as Location) || "langley"
+  );
   const [selectedMain, setSelectedMain] = useState<string | null>(null);
   const [selectedSubs, setSelectedSubs] = useState<string[]>([]);
   const [selectedClinician, setSelectedClinician] = useState<string | null>(null);
@@ -109,7 +114,20 @@ export default function BookNowPage() {
   const subOptions = selectedMain ? subServiceMap[selectedMain] : undefined;
 
   const step = confirmed ? 5 : selectedTime ? 4 : selectedDate ? 3 : hasSelection ? 2 : 1;
-  const handleConfirm = () => setConfirmed(true);
+  const handleConfirm = () => {
+    if (isAuthenticated && selectedDate && selectedTime && selectedMain) {
+      addBooking({
+        location: location.charAt(0).toUpperCase() + location.slice(1),
+        service: selectedMain,
+        subServices: selectedSubs,
+        clinician: selectedClinician,
+        date: format(selectedDate, "yyyy-MM-dd"),
+        time: selectedTime,
+        status: "upcoming",
+      });
+    }
+    setConfirmed(true);
+  };
 
   const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -389,14 +407,33 @@ export default function BookNowPage() {
               )}
             </AnimatePresence>
 
-            {/* Client Portal tease */}
-            <div className="flex items-center gap-3 p-5 rounded-2xl bg-secondary text-sm">
-              <LogIn className="h-5 w-5 text-primary shrink-0" />
-              <div>
-                <p className="font-semibold text-foreground">Already a client?</p>
-                <p className="text-muted-foreground">Log in to view your history, notes, invoices &amp; rebook easily.</p>
+            {/* Client Portal */}
+            {isAuthenticated ? (
+              <Link
+                to="/dashboard"
+                className="flex items-center gap-3 p-5 rounded-2xl bg-primary/5 border border-primary/20 text-sm group hover:bg-primary/10 transition-colors"
+              >
+                <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0 text-sm font-bold">
+                  {user?.firstName?.[0]}{user?.lastName?.[0]}
+                </div>
+                <div className="flex-1">
+                  <p className="font-semibold text-foreground">Welcome, {user?.firstName}</p>
+                  <p className="text-muted-foreground">View your dashboard, history &amp; upcoming appointments.</p>
+                </div>
+                <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            ) : (
+              <div className="flex items-center gap-3 p-5 rounded-2xl bg-secondary text-sm">
+                <LogIn className="h-5 w-5 text-primary shrink-0" />
+                <div className="flex-1">
+                  <p className="font-semibold text-foreground">Already a client?</p>
+                  <p className="text-muted-foreground">Log in to save bookings, view history &amp; rebook easily.</p>
+                </div>
+                <Link to="/login" className="text-primary font-semibold text-sm hover:underline shrink-0">
+                  Sign In
+                </Link>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>

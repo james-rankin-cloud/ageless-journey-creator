@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Heart, Sun, Sparkles, Zap, MapPin } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
 import laserImg from "@/assets/laser.jpg";
+import skinImg from "@/assets/services-1.jpg";
+import homeImg5 from "@/assets/botox-3.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -53,7 +55,7 @@ export default function LaserIplBblPage() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/book"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-10 py-4 font-semibold hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all shadow-xl shadow-cyan-500/20"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-clinic-teal text-white rounded-full px-10 py-4 font-semibold hover:from-clinic-teal/90 hover:to-clinic-teal/90 transition-all shadow-xl shadow-clinic-teal/20"
                 >
                   Book Your Clinical Assessment
                 </Link>
@@ -158,8 +160,8 @@ export default function LaserIplBblPage() {
               </div>
               <div className="rounded-xl overflow-hidden aspect-video bg-secondary">
                 <img
-                  src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=1000&auto=format&fit=crop"
-                  alt="ICON IPL medical laser device in aesthetic clinic"
+                  src={laserImg}
+                  alt="ICON IPL medical laser device at Ageless Living clinic"
                   className="w-full h-full object-cover"
                   loading="lazy"
                   width={800}
@@ -185,8 +187,8 @@ export default function LaserIplBblPage() {
               </div>
               <div className="rounded-xl overflow-hidden aspect-video bg-background/10">
                 <img
-                  src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1000&auto=format&fit=crop"
-                  alt="Cellular regeneration visualization representing BBL skin rejuvenation"
+                  src={skinImg}
+                  alt="Skin rejuvenation treatment at Ageless Living clinic"
                   className="w-full h-full object-cover opacity-80"
                   loading="lazy"
                   width={800}
@@ -212,8 +214,8 @@ export default function LaserIplBblPage() {
               <div className="aspect-square rounded-full border border-clinic-teal/10 absolute -top-10 -left-10 w-full h-full animate-pulse" />
               <div className="relative z-10 aspect-[3/4] rounded-2xl overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=800&auto=format&fit=crop"
-                  alt="Beautiful radiant skin after laser treatment"
+                  src={homeImg5}
+                  alt="Radiant skin after laser treatment at Ageless Living"
                   className="w-full h-full object-cover"
                   loading="lazy"
                   width={600}

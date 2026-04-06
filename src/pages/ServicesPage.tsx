@@ -1,155 +1,200 @@
 import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Sparkles, Droplets, Sun, Zap, Scissors, Grid3X3, Syringe, Heart, Activity, Pill, Scale } from "lucide-react";
-import { Link } from "react-router-dom";
-import servicesHeroImg from "@/assets/services-1.jpg";
-import hormoneImg from "@/assets/services-2.jpg";
-import biohackingImg from "@/assets/services-3.jpg";
-import weightImg from "@/assets/services-4.jpg";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
+
+import skinImg from "@/assets/services-1.jpg";
+import hormoneImg from "@/assets/hormone-balancing.jpg";
+import biohackingImg from "@/assets/biohacking.jpg";
+import weightImg from "@/assets/health-weight.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-const pillars = [
-  { id: "skin-rejuvenation", title: "Skin Rejuvenation", number: "01" },
-  { id: "hormone-balancing", title: "Hormone Balancing", number: "02" },
-  { id: "biohacking", title: "Biohacking & Longevity", number: "03" },
-  { id: "health-weight", title: "Health Weight", number: "04" },
-];
+type Treatment = { name: string; desc: string; href?: string };
 
-/* ─── Pillar 1: Skin Rejuvenation treatments ─── */
-const skinTreatments = [
-  { icon: Sparkles, name: "Botox / Dysport", desc: "Cosmetic injections to smooth fine lines and wrinkles.", locations: ["Victoria", "Langley", "Kelowna"] },
-  { icon: Droplets, name: "Cosmetic Dermal Filler", desc: "Restore volume and contour with Restylane®, Revanesse®, PRP, and Sculptra®.", locations: ["Victoria", "Langley", "Kelowna"] },
-  { icon: Sun, name: "Customized UltraFacial", desc: "HydraFacial and AquaFirme treatments customized to your skin.", locations: ["Victoria", "Langley", "Kelowna"] },
-  { icon: Zap, name: "Laser & IPL/BBL", desc: "Medical-grade laser to reduce sun damage, redness, and texture.", locations: ["Victoria", "Langley", "Kelowna"] },
-  { icon: Heart, name: "The Perfect Derma™ Peel", desc: "Powerful glutathione peel for acne, scarring, and melasma.", locations: ["Victoria", "Langley", "Kelowna"] },
-  { icon: Grid3X3, name: "Microneedling", desc: "Collagen induction therapy for dramatic skin texture improvement.", locations: ["Victoria", "Langley", "Kelowna"] },
-  { icon: Syringe, name: "Belkyra™", desc: "Injectable treatment to reduce submental fat (double chin).", locations: ["Victoria", "Langley", "Kelowna"] },
-  { icon: Scissors, name: "Dermaplaning", desc: "Manual exfoliation for smoother, brighter skin.", locations: ["Victoria", "Langley", "Kelowna"] },
-];
+type Pillar = {
+  id: string;
+  n: string;
+  label: string;
+  title: string;
+  accent: string;
+  intro: string;
+  image: string;
+  treatments: Treatment[];
+};
 
-
-/* ─── Pillar 4: Health Weight ─── */
-const weightTreatments = [
-  { icon: Pill, name: "GLP-1 Support (Semaglutide)", desc: "Physician-prescribed medication for sustainable loss." },
-  { icon: Activity, name: "Metabolic Testing", desc: "Comprehensive metabolic assessment." },
-  { icon: Scale, name: "InBody Composition Analysis", desc: "Advanced body composition scanning." },
+const pillars: Pillar[] = [
+  {
+    id: "skin-rejuvenation",
+    n: "01",
+    label: "Pillar One",
+    title: "Skin Rejuvenation",
+    accent: "Skin Rejuvenation",
+    intro:
+      "Advanced aesthetic treatments to restore your skin's youthful glow and cellular health — injectables, laser, micro-needling and medical peels delivered by licensed practitioners.",
+    image: skinImg,
+    treatments: [
+      { name: "Botox / Dysport", desc: "Cosmetic injections to smooth fine lines and wrinkles.", href: "/services/botox-dysport" },
+      { name: "Cosmetic Dermal Filler", desc: "Restore volume and contour with Restylane®, Revanesse®, PRP, and Sculptra®.", href: "/services/cosmetic-dermal-filler" },
+      { name: "Customized UltraFacial", desc: "HydraFacial and AquaFirme treatments customized to your skin.", href: "/services/customized-ultrafacial" },
+      { name: "Laser & IPL/BBL", desc: "Medical-grade laser to reduce sun damage, redness, and texture.", href: "/services/laser-ipl-bbl" },
+      { name: "The Perfect Derma™ Peel", desc: "Powerful glutathione peel for acne, scarring, and melasma.", href: "/services/perfect-derma-peel" },
+      { name: "Microneedling", desc: "Collagen induction therapy for dramatic skin texture improvement.", href: "/services/microneedling" },
+      { name: "Belkyra™", desc: "Injectable treatment to reduce submental fat (double chin).", href: "/services/belkyra" },
+      { name: "Dermaplaning", desc: "Manual exfoliation for smoother, brighter skin.", href: "/services/dermaplaning" },
+    ],
+  },
+  {
+    id: "hormone-balancing",
+    n: "02",
+    label: "Pillar Two",
+    title: "Hormone Balancing",
+    accent: "Hormone Balancing",
+    intro:
+      "Comprehensive hormone testing and bio-identical hormone restoration to reclaim your energy, mood and vitality — personalised protocols for men and women, led by board-certified physicians.",
+    image: hormoneImg,
+    treatments: [
+      { name: "BHRT Protocols", desc: "Personalised bio-identical hormones.", href: "/services/hormone-balancing" },
+      { name: "Lab-Led Diagnostics", desc: "Full hormone panel & follow-up.", href: "/services/hormone-balancing" },
+      { name: "Menopause Support", desc: "Evidence-based symptom management.", href: "/services/hormone-balancing" },
+      { name: "Men's Health", desc: "Testosterone optimisation.", href: "/services/hormone-balancing" },
+    ],
+  },
+  {
+    id: "biohacking",
+    n: "03",
+    label: "Pillar Three",
+    title: "Biohacking & Longevity",
+    accent: "Biohacking & Longevity",
+    intro:
+      "Advanced cellular optimisation for peak performance and longevity — access cutting-edge technologies including Red Light, HBOT, IV Therapy, PEMF, Neurointegrator and Far Infrared Sauna.",
+    image: biohackingImg,
+    treatments: [
+      { name: "Red Light Therapy", desc: "Cellular energy & skin support.", href: "/services/biohacking" },
+      { name: "HBOT", desc: "Hyperbaric oxygen therapy.", href: "/services/biohacking" },
+      { name: "IV Therapy", desc: "Vitamin, mineral & NAD+ infusions.", href: "/services/biohacking" },
+      { name: "PEMF & Neurointegrator", desc: "Nervous-system optimisation.", href: "/services/biohacking" },
+    ],
+  },
+  {
+    id: "health-weight",
+    n: "04",
+    label: "Pillar Four",
+    title: "Health & Weight",
+    accent: "Health & Weight",
+    intro:
+      "Medically-supervised weight management combining nutrition science, metabolic testing and ongoing support for sustainable health outcomes.",
+    image: weightImg,
+    treatments: [
+      { name: "GLP-1 Support (Semaglutide)", desc: "Physician-prescribed medication for sustainable loss.", href: "/services/health-weight" },
+      { name: "Metabolic Testing", desc: "Comprehensive metabolic assessment.", href: "/services/health-weight" },
+      { name: "InBody Composition Analysis", desc: "Advanced body composition scanning.", href: "/services/health-weight" },
+    ],
+  },
 ];
 
 export default function ServicesPage() {
-  const navigate = useNavigate();
   const location = useLocation();
-  const [activeSection, setActiveSection] = useState<string>("skin-rejuvenation");
+  const [active, setActive] = useState<string>(pillars[0].id);
 
-  // Handle hash scrolling on navigation
   useEffect(() => {
     if (location.hash) {
-      const element = document.querySelector(location.hash);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: "smooth" });
-        }, 100);
-      }
+      const el = document.querySelector(location.hash);
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 100);
     }
   }, [location.hash]);
 
-  // Intersection observer to track active section
   useEffect(() => {
     const sections = pillars
       .map((p) => document.getElementById(p.id))
       .filter(Boolean) as HTMLElement[];
 
-    const observer = new IntersectionObserver(
+    const obs = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(e.target.id);
         });
       },
       { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
     );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    sections.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
   }, []);
 
   return (
     <>
       <Helmet>
         <title>Treatments | Ageless Living™ — Aesthetic & Functional Medicine</title>
-        <meta name="description" content="Science-backed treatments across four specialized pillars: Skin Rejuvenation, Hormone Balancing, Biohacking, and Health Weight." />
+        <meta
+          name="description"
+          content="Science-backed treatments across four specialized pillars: Skin Rejuvenation, Hormone Balancing, Biohacking, and Health Weight."
+        />
       </Helmet>
 
-      {/* ═══ HERO ═══ */}
-      <section className="pt-32 pb-20 bg-background">
-        <div className="container mx-auto section-padding">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      {/* ══════════════ HERO — text + hero image ══════════════ */}
+      <section className="relative bg-background pt-32 pb-20 overflow-hidden">
+        <div className="pointer-events-none absolute -top-20 right-0 h-96 w-96 rounded-full bg-clinic-teal/[0.06] blur-3xl" />
+        <div className="container mx-auto px-6 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease }}
+              transition={{ duration: 0.8, ease }}
             >
               <span className="inline-block px-4 py-1.5 rounded-full bg-clinic-teal-light text-clinic-teal text-xs font-semibold tracking-wide uppercase mb-6">
                 Medical Excellence
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground leading-[1.08] mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground leading-[1.08] mb-6 tracking-tight">
                 Expertise in{" "}
-                <em className="italic text-clinic-teal font-light">Aesthetic</em> &{" "}
-                <em className="italic text-clinic-teal font-light">Functional</em>{" "}
+                <span className="text-clinic-teal">Aesthetic</span> &{" "}
+                <span className="text-clinic-teal">Functional</span>{" "}
                 Medicine
               </h1>
               <p className="text-muted-foreground text-lg leading-relaxed max-w-lg mb-8">
-                Science-backed treatments across four specialized pillars: Skin Rejuvenation, Hormone Balancing, Biohacking, and Health Weight.
+                Science-backed treatments across four specialized pillars — designed by physicians, refined over a decade of clinical practice across British Columbia.
               </p>
+              <Link
+                to="/book"
+                className="group inline-flex items-center gap-3 bg-clinic-teal hover:bg-clinic-teal-container text-white px-8 py-4 rounded-full font-semibold text-sm uppercase tracking-widest transition-all"
+              >
+                Book a Consultation
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease }}
-              className="relative"
             >
               <img
-                src={servicesHeroImg}
-                alt="Premium aesthetic clinic interior"
-                className="w-full rounded-2xl object-cover object-center aspect-[4/3]"
+                src={skinImg}
+                alt="Premium aesthetic clinic interior at Ageless Living"
+                className="w-full rounded-2xl object-cover object-center aspect-[4/3] shadow-xl"
                 width={800}
                 height={600}
               />
-              <div className="absolute -bottom-6 left-6 right-6 bg-card rounded-xl p-4 border border-border/50 shadow-lg">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-full bg-clinic-teal-light flex items-center justify-center flex-shrink-0">
-                    <Heart className="w-4 h-4 text-clinic-teal" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-foreground text-sm">Patient Focused</p>
-                    <p className="text-xs text-muted-foreground">Personalized care plans designed by licensed practitioners to optimize your unique biology.</p>
-                  </div>
-                </div>
-              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ═══ SIDEBAR + PILLARS LAYOUT ═══ */}
+      {/* ══════════════ STICKY SIDE-NAV + PILLARS ══════════════ */}
       <section className="relative bg-background py-16 md:py-24">
-        <div className="container mx-auto section-padding">
+        <div className="container mx-auto px-6 lg:px-16">
           <div className="grid grid-cols-12 gap-6 lg:gap-12">
-            {/* Sticky Sidebar Navigation */}
+            {/* Sticky side navigation */}
             <aside className="hidden lg:block lg:col-span-3">
               <div className="sticky top-32">
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-8">Explore Pillars</p>
+                <p className="eyebrow mb-8">Explore Pillars</p>
                 <nav className="flex flex-col border-l border-foreground/10">
-                  {pillars.map((pillar) => {
-                    const isActive = activeSection === pillar.id;
+                  {pillars.map((p) => {
+                    const isActive = active === p.id;
                     return (
                       <a
-                        key={pillar.id}
-                        href={`#${pillar.id}`}
+                        key={p.id}
+                        href={`#${p.id}`}
                         className={`group relative -ml-px flex items-baseline gap-4 border-l-2 py-4 pl-6 transition-all ${
                           isActive
                             ? "border-clinic-teal"
@@ -157,11 +202,11 @@ export default function ServicesPage() {
                         }`}
                       >
                         <span
-                          className={`font-medium text-sm transition-colors ${
+                          className={`font-display text-sm font-medium transition-colors ${
                             isActive ? "text-clinic-teal" : "text-muted-foreground"
                           }`}
                         >
-                          {pillar.number}
+                          {p.n}
                         </span>
                         <span
                           className={`text-base font-medium tracking-tight transition-colors ${
@@ -170,7 +215,7 @@ export default function ServicesPage() {
                               : "text-muted-foreground group-hover:text-foreground"
                           }`}
                         >
-                          {pillar.title}
+                          {p.title}
                         </span>
                       </a>
                     );
@@ -179,7 +224,7 @@ export default function ServicesPage() {
 
                 <Link
                   to="/book"
-                  className="mt-10 inline-flex items-center gap-3 rounded-full bg-clinic-teal text-white pl-6 pr-3 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] transition-all hover:bg-clinic-teal/90"
+                  className="mt-10 inline-flex items-center gap-3 rounded-full bg-clinic-teal text-white pl-6 pr-3 py-3 text-[11px] font-semibold uppercase tracking-[0.18em] transition-all hover:bg-clinic-teal-container"
                 >
                   Book Consultation
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 text-white">
@@ -189,343 +234,125 @@ export default function ServicesPage() {
               </div>
             </aside>
 
-            {/* Mobile Chip Navigation */}
+            {/* Mobile chip nav */}
             <div className="lg:hidden col-span-12 -mx-6 overflow-x-auto scrollbar-none mb-8">
               <div className="flex gap-3 px-6 min-w-max">
-                {pillars.map((pillar) => (
+                {pillars.map((p) => (
                   <a
-                    key={pillar.id}
-                    href={`#${pillar.id}`}
+                    key={p.id}
+                    href={`#${p.id}`}
                     className={`whitespace-nowrap rounded-full border px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] transition-all ${
-                      activeSection === pillar.id
+                      active === p.id
                         ? "border-clinic-teal bg-clinic-teal text-white"
                         : "border-foreground/15 text-foreground hover:border-foreground/30"
                     }`}
                   >
-                    {pillar.title}
+                    {p.title}
                   </a>
                 ))}
               </div>
             </div>
 
-            {/* Main Content Area */}
+            {/* Pillar sections */}
             <div className="col-span-12 lg:col-span-9 space-y-24 md:space-y-32">
-
-              {/* ═══ PILLAR 1 — SKIN REJUVENATION ═══ */}
-              <article id="skin-rejuvenation" className="scroll-mt-24">
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease }}
+              {pillars.map((p, idx) => (
+                <article
+                  id={p.id}
+                  key={p.id}
+                  className="scroll-mt-28"
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-clinic-teal mb-2">Pillar One</p>
-                      <h2 className="text-3xl md:text-4xl font-medium text-foreground">Skin Rejuvenation</h2>
-                    </div>
-                  </div>
-                  <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl mb-8">
-                    Advanced aesthetic treatments to restore your skin's youthful glow and cellular health.
-                  </p>
-
-                  <div className="space-y-4">
-                    {skinTreatments.map((t) => {
-                      const Icon = t.icon;
-                      const getRoute = () => {
-                        if (t.name === "Botox / Dysport") return "/services/botox-dysport";
-                        if (t.name === "Cosmetic Dermal Filler") return "/services/cosmetic-dermal-filler";
-                        if (t.name === "Customized UltraFacial") return "/services/customized-ultrafacial";
-                        if (t.name === "Laser & IPL/BBL") return "/services/laser-ipl-bbl";
-                        if (t.name === "The Perfect Derma™ Peel") return "/services/perfect-derma-peel";
-                        if (t.name === "Microneedling") return "/services/microneedling";
-                        if (t.name === "Belkyra™") return "/services/belkyra";
-                        if (t.name === "Dermaplaning") return "/services/dermaplaning";
-                        return null;
-                      };
-
-                      const route = getRoute();
-
-                      return (
-                        <div
-                          key={t.name}
-                          className="flex items-start gap-4 bg-card rounded-xl p-5 border border-border/40 group hover:border-clinic-teal/30 transition-colors cursor-pointer"
-                          onClick={() => route && navigate(route)}
-                        >
-                          <div className="w-10 h-10 rounded-xl bg-clinic-teal-light flex items-center justify-center flex-shrink-0">
-                            <Icon className="w-5 h-5 text-clinic-teal" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h3 className="font-bold text-foreground text-sm mb-1">{t.name}</h3>
-                            <p className="text-xs text-muted-foreground mb-2">{t.desc}</p>
-                            <div className="flex flex-wrap gap-1.5">
-                              {t.locations.map((loc) => (
-                                <span key={loc} className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-secondary text-muted-foreground uppercase tracking-wider">
-                                  {loc}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                          <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              </article>
-
-              {/* ═══ PILLAR 2 — HORMONE BALANCING ═══ */}
-              <article id="hormone-balancing" className="scroll-mt-24">
-                <motion.p
-                  className="text-xs font-semibold uppercase tracking-widest text-clinic-teal mb-2"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                >
-                  Pillar Two
-                </motion.p>
-                <motion.h2
-                  className="text-3xl md:text-4xl font-medium text-foreground mb-4"
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, ease }}
-                >
-                  Hormone Balancing
-                </motion.h2>
-
-                <div className="grid lg:grid-cols-2 gap-10 items-center">
-                  {/* Left — Image + CTA */}
                   <motion.div
-                    initial={{ opacity: 0, x: -16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease }}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ duration: 0.7, ease }}
                   >
-                    <div
-                      className="relative group cursor-pointer"
-                      onClick={() => navigate("/services/hormone-balancing")}
-                    >
-                      <img
-                        src={hormoneImg}
-                        alt="Hormone balancing clinic"
-                        className="w-full rounded-2xl object-cover object-top aspect-[4/5] transition-transform duration-500 group-hover:scale-[1.02]"
-                        loading="lazy"
-                        width={512}
-                        height={640}
-                      />
-                      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 rounded-2xl transition-colors flex items-center justify-center">
-                        <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 backdrop-blur-sm text-foreground font-semibold px-6 py-3 rounded-full shadow-lg">
-                          View Details <ArrowUpRight className="w-4 h-4 inline ml-1" />
-                        </span>
-                      </div>
+                    <div className="flex items-baseline gap-4 mb-4">
+                      <span className="font-display text-xl text-clinic-teal font-semibold">
+                        {p.n}
+                      </span>
+                      <p className="eyebrow">{p.label}</p>
                     </div>
-                  </motion.div>
-
-                  {/* Right — Description */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.1, ease }}
-                    className="space-y-6"
-                  >
-                    <p className="text-muted-foreground leading-relaxed text-lg">
-                      Comprehensive hormone testing and bio-identical hormone restoration to reclaim your energy, mood, and vitality. Our board-certified physicians specialize in personalized protocols for both men and women.
-                    </p>
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {["Victoria", "Langley", "Kelowna"].map((loc) => (
-                        <span key={loc} className="text-[10px] font-semibold px-3 py-1 rounded-full bg-card border border-border text-muted-foreground uppercase tracking-widest">
-                          {loc}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex flex-wrap gap-4">
-                      <Link
-                        to="/services/hormone-balancing"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white font-medium text-sm transition-all hover:from-clinic-teal/90 hover:to-cyan-500/90 shadow-lg shadow-cyan-500/20"
-                      >
-                        Learn More <ArrowRight className="w-4 h-4" />
-                      </Link>
-                      <Link
-                        to="/book"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border bg-card text-foreground font-medium text-sm transition-all hover:bg-secondary"
-                      >
-                        Book a Consultation
-                      </Link>
-                    </div>
-                  </motion.div>
-                </div>
-              </article>
-
-              {/* ═══ PILLAR 3 — BIOHACKING & LONGEVITY ═══ */}
-              <article id="biohacking" className="scroll-mt-24">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                  {/* Left — Image */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease }}
-                  >
-                    <div
-                      className="relative group cursor-pointer"
-                      onClick={() => navigate("/services/biohacking")}
-                    >
-                      <img
-                        src={biohackingImg}
-                        alt="Biohacking and longevity hub"
-                        className="w-full rounded-2xl object-cover object-top aspect-[4/5] transition-transform duration-500 group-hover:scale-[1.02]"
-                        loading="lazy"
-                        width={512}
-                        height={640}
-                      />
-                      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 rounded-2xl transition-colors flex items-center justify-center">
-                        <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 backdrop-blur-sm text-foreground font-semibold px-6 py-3 rounded-full shadow-lg">
-                          View Details <ArrowUpRight className="w-4 h-4 inline ml-1" />
-                        </span>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  {/* Right — Description */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.1, ease }}
-                    className="space-y-6"
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-widest text-clinic-teal">Pillar Three</p>
-                    <h2 className="text-3xl md:text-4xl font-medium text-foreground">
-                      Biohacking & Longevity
+                    <h2 className="text-4xl md:text-5xl font-medium text-foreground tracking-tight mb-8">
+                      {p.title}
                     </h2>
-                    <p className="text-muted-foreground leading-relaxed text-lg">
-                      Advanced cellular optimization protocols designed for peak performance and longevity. Access cutting-edge technologies including Red Light Therapy, HBOT, IV Therapy, PEMF, Neurointegrator, and Far Infrared Sauna — developed by leaders in the medical and pharmaceutical field.
-                    </p>
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {["Victoria", "Langley", "Kelowna"].map((loc) => (
-                        <span key={loc} className="text-[10px] font-semibold px-3 py-1 rounded-full bg-card border border-border text-muted-foreground uppercase tracking-widest">
-                          {loc}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="flex flex-wrap gap-4">
-                      <Link
-                        to="/services/biohacking"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white font-medium text-sm transition-all hover:from-clinic-teal/90 hover:to-cyan-500/90 shadow-lg shadow-cyan-500/20"
-                      >
-                        Learn More <ArrowRight className="w-4 h-4" />
-                      </Link>
-                      <Link
-                        to="/book"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border bg-card text-foreground font-medium text-sm transition-all hover:bg-secondary"
-                      >
-                        Book a Consultation
-                      </Link>
-                    </div>
-                  </motion.div>
-                </div>
-              </article>
 
-              {/* ═══ PILLAR 4 — HEALTH WEIGHT ═══ */}
-              <article id="health-weight" className="scroll-mt-24">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                  {/* Left — Image */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, ease }}
-                  >
-                    <div
-                      className="relative group cursor-pointer"
-                      onClick={() => navigate("/services/health-weight")}
-                    >
-                      <img
-                        src={weightImg}
-                        alt="Health weight management"
-                        className="w-full rounded-2xl object-cover object-top aspect-[4/5] transition-transform duration-500 group-hover:scale-[1.02]"
-                        loading="lazy"
-                        width={512}
-                        height={640}
-                      />
-                      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 rounded-2xl transition-colors flex items-center justify-center">
-                        <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-white/90 backdrop-blur-sm text-foreground font-semibold px-6 py-3 rounded-full shadow-lg">
-                          View Details <ArrowUpRight className="w-4 h-4 inline ml-1" />
-                        </span>
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 items-start mb-10">
+                      <div className="md:col-span-7 relative aspect-[4/3] overflow-hidden rounded-2xl">
+                        <img
+                          src={p.image}
+                          alt={`${p.title} at Ageless Living`}
+                          loading="lazy"
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                      <div className="md:col-span-5 md:pt-4">
+                        <p className="text-base md:text-lg leading-relaxed text-muted-foreground mb-6">
+                          {p.intro}
+                        </p>
+                        <Link
+                          to={p.treatments[0]?.href ?? "/book"}
+                          className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-clinic-teal border-b-2 border-clinic-teal/20 pb-1 hover:border-clinic-teal transition-all"
+                        >
+                          Learn More <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
                       </div>
                     </div>
-                  </motion.div>
 
-                  {/* Right — Content */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.1, ease }}
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-widest text-clinic-teal mb-2">Pillar Four</p>
-                    <h2 className="text-3xl md:text-4xl font-medium text-foreground mb-4">Health Weight</h2>
-                    <p className="text-muted-foreground leading-relaxed mb-8 max-w-md">
-                      Medically supervised weight management combining nutrition science, metabolic testing, and ongoing support for sustainable health.
-                    </p>
-
-                    <div className="flex flex-wrap gap-4 mb-8">
-                      <Link
-                        to="/services/health-weight"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white font-medium text-sm transition-all hover:from-clinic-teal/90 hover:to-cyan-500/90 shadow-lg shadow-cyan-500/20"
-                      >
-                        Learn More <ArrowRight className="w-4 h-4" />
-                      </Link>
-                      <Link
-                        to="/book"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border bg-card text-foreground font-medium text-sm transition-all hover:bg-secondary"
-                      >
-                        Book a Consultation
-                      </Link>
-                    </div>
-
-                    <div className="space-y-4">
-                      {weightTreatments.map((t) => {
-                        const Icon = t.icon;
-                        return (
+                    {/* Treatment rows */}
+                    <div className="border-t border-foreground/10">
+                      {p.treatments.map((t, i) => {
+                        const Row = (
                           <div
-                            key={t.name}
-                            className="flex items-start gap-4 bg-card rounded-xl p-5 border border-border/40 group hover:border-clinic-teal/30 transition-colors"
+                            key={`${t.name}-inner`}
+                            className="group grid grid-cols-12 gap-4 items-center py-5 border-b border-foreground/10 transition-colors hover:bg-clinic-teal-light/50"
                           >
-                            <div className="w-10 h-10 rounded-xl bg-clinic-teal-light flex items-center justify-center flex-shrink-0">
-                              <Icon className="w-5 h-5 text-clinic-teal" />
+                            <span className="col-span-2 md:col-span-1 text-sm text-muted-foreground font-medium">
+                              {String(i + 1).padStart(2, "0")}
+                            </span>
+                            <h3 className="col-span-10 md:col-span-4 text-lg md:text-xl font-medium tracking-tight text-foreground transition-colors group-hover:text-clinic-teal">
+                              {t.name}
+                            </h3>
+                            <p className="col-span-12 md:col-span-6 text-sm text-muted-foreground">
+                              {t.desc}
+                            </p>
+                            <div className="col-span-12 md:col-span-1 flex md:justify-end">
+                              <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:text-clinic-teal" />
                             </div>
-                            <div className="flex-1 min-w-0">
-                              <h3 className="font-bold text-foreground text-sm mb-0.5">{t.name}</h3>
-                              <p className="text-xs text-muted-foreground">{t.desc}</p>
-                            </div>
-                            <ArrowRight className="w-4 h-4 text-muted-foreground flex-shrink-0 mt-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                           </div>
+                        );
+                        return t.href ? (
+                          <Link to={t.href} key={t.name} className="block">
+                            {Row}
+                          </Link>
+                        ) : (
+                          <div key={t.name}>{Row}</div>
                         );
                       })}
                     </div>
                   </motion.div>
-                </div>
-              </article>
 
+                  {idx < pillars.length - 1 && (
+                    <div className="mt-20 h-px w-full bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
+                  )}
+                </article>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ CTA BANNER ═══ */}
+      {/* ══════════════ CTA BANNER ══════════════ */}
       <section className="py-20 md:py-28 bg-clinic-teal">
-        <div className="container mx-auto section-padding text-center">
+        <div className="container mx-auto px-6 lg:px-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-tight mb-4">
-              Ready to start your{" "}
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-tight mb-4 tracking-tight">
+              Ready to start your
               <br className="hidden md:block" />
               aesthetic journey?
             </h2>
@@ -535,13 +362,13 @@ export default function ServicesPage() {
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 to="/book"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-clinic-teal font-semibold text-sm transition-all hover:bg-white/90"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-clinic-teal font-semibold text-sm uppercase tracking-widest hover:bg-white/90 transition-all"
               >
                 Book Online
               </Link>
               <Link
-                to="/locations"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-white/40 text-white font-semibold text-sm transition-all hover:bg-white/10"
+                to="/about-us"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border-2 border-white/40 text-white font-semibold text-sm uppercase tracking-widest hover:bg-white/10 transition-all"
               >
                 View Our Locations
               </Link>

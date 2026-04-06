@@ -2,7 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import PromoPopup from "./PromoPopup";
+import VisitShopCta from "./VisitShopCta";
 
 export default function Layout() {
   const { pathname, hash } = useLocation();
@@ -28,8 +28,8 @@ export default function Layout() {
       <main>
         <Outlet />
       </main>
+      <VisitShopCta />
       <Footer />
-      <PromoPopup />
     </>
   );
 }

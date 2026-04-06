@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Star, Check } from "lucide-react";
 import { Link } from "react-router-dom";
-import portrait1 from "@/assets/home-1.jpg";
-import portrait2 from "@/assets/home-2.jpg";
-import portrait3 from "@/assets/home-3.jpg";
+import portrait1 from "@/assets/about-us-1.jpg";
+import portrait2 from "@/assets/about-us-3.jpg";
+import portrait3 from "@/assets/home-4.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 

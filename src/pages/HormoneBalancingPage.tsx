@@ -29,7 +29,7 @@ export default function HormoneBalancingPage() {
               </span>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight text-foreground leading-[1.05] mb-8">
                 Hormone<br />
-                <span className="bg-gradient-to-r from-clinic-teal to-cyan-500 bg-clip-text text-transparent font-light">Balancing</span>
+                <span className="bg-gradient-to-r from-clinic-teal to-clinic-teal bg-clip-text text-transparent font-light">Balancing</span>
               </h1>
               <div className="space-y-5 max-w-xl">
                 <p className="text-lg text-foreground font-medium leading-relaxed">
@@ -47,7 +47,7 @@ export default function HormoneBalancingPage() {
               <div className="mt-10 flex flex-wrap gap-4">
                 <Link
                   to="/book"
-                  className="bg-gradient-to-r from-clinic-teal to-cyan-500 text-white px-10 py-4 rounded-full font-bold shadow-xl shadow-cyan-500/20 hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all"
+                  className="bg-gradient-to-r from-clinic-teal to-clinic-teal text-white px-10 py-4 rounded-full font-bold shadow-xl shadow-clinic-teal/20 hover:from-clinic-teal/90 hover:to-clinic-teal/90 transition-all"
                 >
                   Start Your Journey
                 </Link>

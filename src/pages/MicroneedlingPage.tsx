@@ -43,7 +43,7 @@ export default function MicroneedlingPage() {
             <div className="pt-4 flex flex-wrap gap-4">
               <Link
                 to="/book"
-                className="bg-gradient-to-r from-clinic-teal to-cyan-500 text-white px-10 py-4 rounded-full font-semibold shadow-xl shadow-cyan-500/20 hover:from-clinic-teal/90 hover:to-cyan-500/90 transition"
+                className="bg-gradient-to-r from-clinic-teal to-clinic-teal text-white px-10 py-4 rounded-full font-semibold shadow-xl shadow-clinic-teal/20 hover:from-clinic-teal/90 hover:to-clinic-teal/90 transition"
               >
                 Book Your Consultation
               </Link>
@@ -121,7 +121,8 @@ export default function MicroneedlingPage() {
 
           <div className="rounded-full overflow-hidden aspect-square">
             <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd8AiSNkln7yrWAnhShV-O0l_EvPtLIKRM-y7Sa9EfROrxz_sfYrlIj9CATeFFQfQaOb4YfdRUUCXZokUaj4CvmPuP3KP4Viq16HV5xbqzJyD68mUjdp9E1nwaHQQpJ-9lxKkoHOCAKuUCHNhKs8-B4YOseGvRBRccZuHMDQiajqTGqsWTCApvQl2RoEvkBE2CNTuZdoi7YGdvXpARhnuInZ4HxENAY3UjGFGYIJU1KoqA2gzVH7VaPIG2RaXSx7F3qJdShqf10cY"
+              src={microneedlingImg}
+              alt="Microneedling treatment at Ageless Living clinic"
               className="w-full h-full object-cover grayscale"
             />
           </div>

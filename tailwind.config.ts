@@ -62,6 +62,11 @@ export default {
           "teal-light": "hsl(var(--clinic-teal-light))",
           "teal-container": "hsl(var(--clinic-teal-container))",
         },
+        ageless: {
+          blue: "hsl(var(--ageless-blue))",
+          "blue-deep": "hsl(var(--ageless-blue-deep))",
+          "blue-soft": "hsl(var(--ageless-blue-soft))",
+        },
         wellness: {
           teal: "hsl(var(--wellness-teal))",
           "teal-dark": "hsl(var(--wellness-teal-dark))",
@@ -72,7 +77,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["DM Sans", "system-ui", "sans-serif"],
+        sans: ["Inter", "system-ui", "sans-serif"],
+        display: ["Jost", "Raleway", "system-ui", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

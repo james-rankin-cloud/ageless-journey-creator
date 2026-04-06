@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, Sparkles, Clock, Grid3X3, Heart, Shield, MapPin } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
 import dermapeelImg from "@/assets/dermapeel.jpg";
+import homeImg1 from "@/assets/about-us-1.jpg";
+import homeImg8 from "@/assets/our-locations-home.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -60,7 +62,7 @@ export default function PerfectDermaPeelPage() {
               <div className="flex flex-wrap gap-4 pt-4">
                 <Link
                   to="/book"
-                  className="bg-gradient-to-r from-clinic-teal to-cyan-500 text-white px-10 py-4 rounded-full font-semibold shadow-lg shadow-cyan-500/20 hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all"
+                  className="bg-gradient-to-r from-clinic-teal to-clinic-teal text-white px-10 py-4 rounded-full font-semibold shadow-lg shadow-clinic-teal/20 hover:from-clinic-teal/90 hover:to-clinic-teal/90 transition-all"
                 >
                   Book Consultation
                 </Link>
@@ -111,8 +113,8 @@ export default function PerfectDermaPeelPage() {
             >
               <div className="w-64 h-64 bg-clinic-teal/10 rounded-full absolute -top-12 -left-12 blur-3xl" />
               <img
-                src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=800&auto=format&fit=crop"
-                alt="Cellular renewal visualization representing Glutathione benefits"
+                src={dermapeelImg}
+                alt="The Perfect Derma Peel treatment at Ageless Living"
                 className="relative z-10 w-full rounded-xl shadow-lg aspect-square object-cover"
                 loading="lazy"
                 width={600}
@@ -279,8 +281,8 @@ export default function PerfectDermaPeelPage() {
                   <div className="flex items-center gap-6">
                     <div className="w-16 h-16 rounded-full overflow-hidden bg-secondary flex-shrink-0">
                       <img
-                        src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?q=80&w=200&auto=format&fit=crop"
-                        alt="Patient with glowing skin after Perfect Derma Peel"
+                        src={homeImg1}
+                        alt="Ageless Living patient after Perfect Derma Peel"
                         className="w-full h-full object-cover"
                         loading="lazy"
                       />
@@ -294,8 +296,8 @@ export default function PerfectDermaPeelPage() {
               </div>
               <div className="relative min-h-[400px] lg:min-h-[500px]">
                 <img
-                  src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=800&auto=format&fit=crop"
-                  alt="Radiant skin result after Perfect Derma Peel treatment"
+                  src={homeImg8}
+                  alt="Radiant skin result at Ageless Living wellness clinic"
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
                 />
