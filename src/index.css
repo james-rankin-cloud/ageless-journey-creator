@@ -45,13 +45,13 @@
     --sidebar-border: 30 18% 89%;
     --sidebar-ring: 0 0% 17%;
 
-    /* Ageless clinical blue — primary accent */
-    --clinic-teal: 212 68% 38%;            /* ~#1f5cab — deep clinical blue */
-    --clinic-teal-light: 212 60% 96%;      /* very soft blue tint */
-    --clinic-teal-container: 212 80% 46%;  /* brighter hover / accent */
-    --ageless-blue: 212 68% 38%;
-    --ageless-blue-deep: 215 72% 18%;      /* near-navy for CTA backgrounds */
-    --ageless-blue-soft: 212 60% 96%;
+    /* Ageless Living brand blue — single source of truth */
+    --clinic-teal: 210 70% 38%;
+    --clinic-teal-light: 210 50% 96%;
+    --clinic-teal-container: 210 70% 44%;
+    --ageless-blue: 210 70% 38%;
+    --ageless-blue-deep: 210 70% 38%;
+    --ageless-blue-soft: 210 50% 96%;
 
     /* Backward compat */
     --wellness-teal: 0 0% 17%;
@@ -77,12 +77,12 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Jost', 'Raleway', system-ui, sans-serif;
-    @apply tracking-[-0.015em] font-light;
+    @apply tracking-[-0.015em] font-medium;
     text-wrap: balance;
   }
 
   h4, h5, h6 {
-    @apply font-medium tracking-tight;
+    @apply font-semibold tracking-tight;
   }
 
   p {
@@ -140,9 +140,9 @@
   /* Oversized outlined wordmark watermark for CTA backgrounds */
   .logo-watermark {
     font-family: 'Jost', system-ui, sans-serif;
-    font-weight: 200;
-    letter-spacing: -0.055em;
-    line-height: 0.8;
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    line-height: 0.85;
     -webkit-text-stroke: 1px currentColor;
     color: transparent;
   }
