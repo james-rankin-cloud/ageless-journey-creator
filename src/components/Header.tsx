@@ -207,7 +207,7 @@ export default function Header() {
 
           <Link
             to="/book"
-            className="inline-flex items-center px-6 py-2.5 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white text-sm font-medium transition-all duration-200 hover:from-clinic-teal/90 hover:to-cyan-500/90 active:scale-[0.97] shadow-lg shadow-cyan-500/20"
+            className="inline-flex items-center px-6 py-2.5 rounded-full bg-gradient-to-r from-clinic-teal to-clinic-teal text-white text-sm font-medium transition-all duration-200 hover:from-clinic-teal/90 hover:to-clinic-teal/90 active:scale-[0.97] shadow-lg shadow-clinic-teal/20"
           >
             Book a time
           </Link>
@@ -394,7 +394,7 @@ export default function Header() {
             <div className="shrink-0 p-5 border-t border-border bg-card">
               <Link
                 to="/book"
-                className="w-full flex items-center justify-center py-4 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white text-base font-semibold shadow-lg shadow-cyan-500/20"
+                className="w-full flex items-center justify-center py-4 rounded-full bg-gradient-to-r from-clinic-teal to-clinic-teal text-white text-base font-semibold shadow-lg shadow-clinic-teal/20"
                 onClick={() => setMobileOpen(false)}
               >
                 Book a time

@@ -51,7 +51,7 @@ export default function AboutUsPage() {
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight text-foreground leading-[1.1] mb-8">
               Helping you discover your best self,{" "}
-              <span className="bg-gradient-to-r from-clinic-teal to-cyan-500 bg-clip-text text-transparent font-medium italic">at any age.</span>
+              <span className="bg-gradient-to-r from-clinic-teal to-clinic-teal bg-clip-text text-transparent font-medium italic">at any age.</span>
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed font-light">
               Ageless Living brings together the best of what's possible: The guidance, tools and technologies to help you live better, longer.
@@ -194,13 +194,13 @@ export default function AboutUsPage() {
             <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
               <Link
                 to="/book"
-                className="bg-gradient-to-r from-clinic-teal to-cyan-500 text-white px-10 py-4 rounded-full text-sm font-bold transition-all hover:from-clinic-teal/90 hover:to-cyan-500/90 active:scale-95 shadow-lg shadow-cyan-500/20"
+                className="bg-gradient-to-r from-clinic-teal to-clinic-teal text-white px-10 py-4 rounded-full text-sm font-bold transition-all hover:from-clinic-teal/90 hover:to-clinic-teal/90 active:scale-95 shadow-lg shadow-clinic-teal/20"
               >
                 Book Appointment
               </Link>
               <Link
                 to="/contact"
-                className="bg-gradient-to-r from-clinic-teal to-cyan-500 bg-clip-text text-transparent font-bold text-sm border-b border-cyan-500/20 hover:border-cyan-500 px-4 py-1 transition-all"
+                className="bg-gradient-to-r from-clinic-teal to-clinic-teal bg-clip-text text-transparent font-bold text-sm border-b border-clinic-teal/20 hover:border-clinic-teal px-4 py-1 transition-all"
               >
                 Contact Our Team
               </Link>

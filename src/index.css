@@ -45,13 +45,13 @@
     --sidebar-border: 30 18% 89%;
     --sidebar-ring: 0 0% 17%;
 
-    /* Ageless Living brand blue — single source of truth */
-    --clinic-teal: 210 70% 38%;
-    --clinic-teal-light: 210 50% 96%;
-    --clinic-teal-container: 210 70% 44%;
-    --ageless-blue: 210 70% 38%;
-    --ageless-blue-deep: 210 70% 38%;
-    --ageless-blue-soft: 210 50% 96%;
+    /* Ageless Living brand accent — #4FAAB5 */
+    --clinic-teal: 186 41% 51%;
+    --clinic-teal-light: 186 35% 96%;
+    --clinic-teal-container: 186 45% 45%;
+    --ageless-blue: 186 41% 51%;
+    --ageless-blue-deep: 186 41% 51%;
+    --ageless-blue-soft: 186 35% 96%;
 
     /* Backward compat */
     --wellness-teal: 0 0% 17%;

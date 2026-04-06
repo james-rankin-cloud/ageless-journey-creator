@@ -78,7 +78,7 @@ export default function CustomizedUltraFacialPage() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/book"
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-clinic-teal to-cyan-500 text-white font-semibold shadow-lg shadow-cyan-500/20 hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all"
+                  className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-clinic-teal to-clinic-teal text-white font-semibold shadow-lg shadow-clinic-teal/20 hover:from-clinic-teal/90 hover:to-clinic-teal/90 transition-all"
                 >
                   Book Consultation
                   <ArrowRight className="w-4 h-4" />

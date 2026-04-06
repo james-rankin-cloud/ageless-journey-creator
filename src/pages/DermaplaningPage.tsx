@@ -87,7 +87,7 @@ export default function DermaplaningPage() {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/book"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-10 py-4 font-semibold hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all shadow-xl shadow-cyan-500/20"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-clinic-teal text-white rounded-full px-10 py-4 font-semibold hover:from-clinic-teal/90 hover:to-clinic-teal/90 transition-all shadow-xl shadow-clinic-teal/20"
                 >
                   Book Appointment
                 </Link>
@@ -141,8 +141,8 @@ export default function DermaplaningPage() {
               <div className="space-y-4">
                 <div className="h-64 rounded-2xl overflow-hidden shadow-sm">
                   <img
-                    src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=400&h=300&fit=crop"
-                    alt="Professional surgical tool"
+                    src={dermaplanningImg}
+                    alt="Dermaplaning treatment at Ageless Living clinic"
                     className="w-full h-full object-cover object-center"
                     loading="lazy"
                   />
@@ -311,8 +311,8 @@ export default function DermaplaningPage() {
               </div>
               <div className="w-full md:w-1/3 aspect-square rounded-2xl overflow-hidden grayscale opacity-80">
                 <img
-                  src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=300&h=300&fit=crop"
-                  alt="Skincare serums"
+                  src={dermaplanning2Img}
+                  alt="Dermaplaning skin results at Ageless Living"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />

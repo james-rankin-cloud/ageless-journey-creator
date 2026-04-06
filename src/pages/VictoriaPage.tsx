@@ -94,7 +94,7 @@ export default function VictoriaPage() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   to="/book?location=victoria"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-6 py-3 text-sm font-bold tracking-tight shadow-lg shadow-cyan-500/20 hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-clinic-teal text-white rounded-full px-6 py-3 text-sm font-bold tracking-tight shadow-lg shadow-clinic-teal/20 hover:from-clinic-teal/90 hover:to-clinic-teal/90 transition-all"
                 >
                   Book Consultation
                 </Link>
@@ -127,8 +127,8 @@ export default function VictoriaPage() {
               <div className="absolute -bottom-5 -left-5 bg-card p-3 rounded-xl shadow-xl hidden md:block border border-border/50">
                 <div className="w-40 h-28 rounded-lg overflow-hidden grayscale">
                   <img
-                    src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?w=250&h=170&fit=crop"
-                    alt="Scenic view of Victoria BC"
+                    src={victoriaImg}
+                    alt="Ageless Living Victoria clinic"
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -311,7 +311,7 @@ export default function VictoriaPage() {
               </p>
               <Link
                 to="/book?location=victoria"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-8 py-4 font-bold text-base hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all shadow-xl shadow-cyan-500/20"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-clinic-teal text-white rounded-full px-8 py-4 font-bold text-base hover:from-clinic-teal/90 hover:to-clinic-teal/90 transition-all shadow-xl shadow-clinic-teal/20"
               >
                 Book Your Consultation
               </Link>

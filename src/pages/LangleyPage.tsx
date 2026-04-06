@@ -94,7 +94,7 @@ export default function LangleyPage() {
               <div className="flex flex-wrap gap-3">
                 <Link
                   to="/book?location=langley"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-6 py-3 text-sm font-bold tracking-tight shadow-lg shadow-cyan-500/20 hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-clinic-teal text-white rounded-full px-6 py-3 text-sm font-bold tracking-tight shadow-lg shadow-clinic-teal/20 hover:from-clinic-teal/90 hover:to-clinic-teal/90 transition-all"
                 >
                   Book Consultation
                 </Link>
@@ -127,8 +127,8 @@ export default function LangleyPage() {
               <div className="absolute -bottom-5 -left-5 bg-card p-3 rounded-xl shadow-xl hidden md:block border border-border/50">
                 <div className="w-40 h-28 rounded-lg overflow-hidden grayscale">
                   <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiwGCQmcpoC5qlH-wTW83syX7hBSaJ0ETDbY-BBe8nAM5WvTi4CuYiEGYG-efaQenQ6fyP9SVLXWj4SaRHKJfVAKcJ2dpna0xdNEGkgoxgD5aDbDEqPGbFv4H77Es71b8Xe7M7lgx1wFftdKCAXKZ86FYi2eQzBJYCyc8JVa-P-SK_6jXStM67PXHwExed3-T9V4_fDJMgta6rrnkoKxfrT0SCuxIpDhNja0lqxSxoXx4Q4SdkaaMX2qwQu15O7S4vf0tLeDmnZe4"
-                    alt="Suburban landscape of Langley BC with lush greenery"
+                    src={langleyImg}
+                    alt="Ageless Living Langley clinic"
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -311,7 +311,7 @@ export default function LangleyPage() {
               </p>
               <Link
                 to="/book?location=langley"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-cyan-500 text-white rounded-full px-8 py-4 font-bold text-base hover:from-clinic-teal/90 hover:to-cyan-500/90 transition-all shadow-xl shadow-cyan-500/20"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-clinic-teal to-clinic-teal text-white rounded-full px-8 py-4 font-bold text-base hover:from-clinic-teal/90 hover:to-clinic-teal/90 transition-all shadow-xl shadow-clinic-teal/20"
               >
                 Book Your Consultation
               </Link>
