@@ -5,7 +5,6 @@ import logo from "@/assets/header-logo.png";
 const navLinks = [
   { label: "Home", to: "/" },
   { label: "Services", to: "/services" },
-  { label: "Prices", to: "/prices" },
   { label: "About Us", to: "/about" },
   { label: "Blog", to: "/blog" },
   { label: "Contact", to: "/contact" },
@@ -15,17 +14,19 @@ const navLinks = [
 export default function Footer() {
   return (
     <footer className="bg-foreground text-card">
-      <div className="container mx-auto section-padding py-16 md:py-20">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20 mb-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-16 py-12 md:py-16 lg:py-20">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-12 lg:gap-20 mb-12 md:mb-16">
           {/* Left: Logo + nav */}
           <div>
-            <img src={logo} alt="Ageless Living™" className="h-8 mb-8 brightness-0 invert" />
-            <div className="flex flex-wrap gap-x-8 gap-y-3">
+            <Link to="/" className="inline-block mb-6 md:mb-8">
+              <img src={logo} alt="Ageless Living™" className="h-7 md:h-8 brightness-0 invert hover:opacity-80 transition-opacity" />
+            </Link>
+            <div className="flex flex-wrap gap-x-6 md:gap-x-8 gap-y-2.5 md:gap-y-3">
               {navLinks.map((l) => (
                 <Link
                   key={l.to}
                   to={l.to}
-                  className="text-sm text-card/60 hover:text-card transition-colors"
+                  className="text-xs md:text-sm text-card/60 hover:text-card transition-colors"
                 >
                   {l.label}
                 </Link>
@@ -35,7 +36,7 @@ export default function Footer() {
 
           {/* Right: Locations + hours */}
           <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-card/60 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 text-xs md:text-sm text-card/60 mb-5 md:mb-6">
               <div>
                 <p className="text-card font-medium mb-1">Victoria</p>
                 <p>740 Hillside Ave #120</p>
@@ -56,7 +57,7 @@ export default function Footer() {
                 <p>+1 (236) 326-6830</p>
               </div>
             </div>
-            <div className="text-sm text-card/60">
+            <div className="text-xs md:text-sm text-card/60">
               <p className="text-card font-medium mb-1">Hours</p>
               <p>Mon. to Fri. — 9 AM to 5 PM</p>
               <p>Saturday — By appointment</p>
@@ -66,8 +67,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="pt-8 border-t border-card/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-card/40">
+        <div className="pt-6 md:pt-8 border-t border-card/10 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
+          <p className="text-xs text-card/40 text-center md:text-left">
             © {new Date().getFullYear()} Ageless Living™ Wellness Centre. All rights reserved.
           </p>
           <div className="flex items-center gap-4">

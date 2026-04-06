@@ -1,5 +1,46 @@
 # Ageless Living™ Website Architecture Specification
 
+## Changelog — Mobile Responsiveness Optimization (2026-04-06)
+
+A comprehensive mobile-first optimization pass for AboutUsPage, ContactPage, and Footer component to ensure premium UX on all screen sizes.
+
+### AboutUsPage Mobile Optimizations
+- **Hero Section**: Reduced top padding from `pt-28` to `pt-24` on mobile, improved text sizing from `text-4xl` to `text-3xl sm:text-4xl md:text-5xl lg:text-6xl` for better mobile readability
+- **Container Padding**: Updated from `px-6 md:px-8` to mobile-first `px-4 sm:px-6 lg:px-8` for tighter margins on small screens
+- **Rounded Corners**: Progressive rounding `rounded-xl md:rounded-2xl` instead of fixed `rounded-2xl`
+- **Section Spacing**: Reduced mobile padding throughout (e.g., `py-12 md:py-16 lg:py-20` vs previous `py-16 md:py-20`)
+- **Text Hierarchy**: Better progressive sizing for all headings and body text with sm/md/lg breakpoints
+- **CTA Buttons**: Primary button now full-width on mobile (`w-full sm:w-auto`) for easier tapping, flex-col to flex-row on small screens
+- **Image & Icon Sizing**: Progressive sizing (e.g., `w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64`) for better mobile layouts
+- **Gap Spacing**: Tighter gaps on mobile throughout all grid layouts
+
+### ContactPage Mobile Optimizations
+- **Page Padding**: Top padding reduced from `pt-32` to `pt-24 md:pt-32` for mobile
+- **Container**: Replaced generic `section-padding` with explicit `px-4 sm:px-6 lg:px-16` for consistency
+- **Header Text**: Better progressive sizing `text-3xl sm:text-4xl md:text-4xl lg:text-5xl`
+- **Location Cards**: Reduced padding `p-6 sm:p-8 lg:p-10` and tighter spacing throughout
+- **Card Corners**: Progressive rounding `rounded-2xl md:rounded-3xl`
+- **Get Directions Button**: Full-width on mobile (`w-full sm:w-fit`) with `justify-center` for better UX, added `rounded-lg` for visual consistency
+- **Card Spacing**: Reduced gap from `space-y-10` to `space-y-6 md:space-y-10` for mobile
+
+### Footer Mobile Optimizations
+- **Container Padding**: Mobile-first `px-4 sm:px-6 lg:px-16 py-12 md:py-16 lg:py-20` (reduced from `py-16 md:py-20`)
+- **Grid Spacing**: Tighter gaps `gap-10 md:gap-12 lg:gap-20` (from `gap-12 md:gap-20`)
+- **Text Sizing**: All text now has mobile sizes `text-xs md:text-sm` for nav links and location info
+- **Logo Sizing**: Progressive `h-7 md:h-8` for better mobile fit
+- **Location Grid**: Changed from `md:grid-cols-2` to `sm:grid-cols-2` so two-column layout appears earlier
+- **Link Spacing**: Reduced gaps `gap-x-6 md:gap-x-8 gap-y-2.5 md:gap-y-3` for mobile
+- **Bottom Bar**: Better mobile centering with `text-center md:text-left` for copyright
+
+### Mobile-First Design Patterns Applied
+- Consistent container padding: `px-4 sm:px-6 lg:px-16`
+- Reduced section padding on mobile: `pt-24 md:pt-32` and `py-12 md:py-16 lg:py-20`
+- Progressive text sizing: `text-3xl sm:text-4xl md:text-5xl lg:text-6xl`
+- Tighter gaps and spacing on mobile throughout
+- Full-width buttons on mobile with proper touch targets
+- Progressive rounded corners: `rounded-xl md:rounded-2xl`
+- Better responsive grid patterns with sm/md/lg breakpoints
+
 ## Changelog — Clinical Refinement Pass (2026-04-05 · v2)
 
 A second pass that repositions the visual identity toward a clinical,

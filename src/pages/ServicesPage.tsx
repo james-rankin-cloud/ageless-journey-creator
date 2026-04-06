@@ -133,30 +133,30 @@ export default function ServicesPage() {
       </Helmet>
 
       {/* ══════════════ HERO — text + hero image ══════════════ */}
-      <section className="relative bg-background pt-32 pb-20 overflow-hidden">
+      <section className="relative bg-background pt-24 md:pt-32 pb-12 md:pb-20 overflow-hidden">
         <div className="pointer-events-none absolute -top-20 right-0 h-96 w-96 rounded-full bg-clinic-teal/[0.06] blur-3xl" />
-        <div className="container mx-auto px-6 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease }}
             >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-clinic-teal-light text-clinic-teal text-xs font-semibold tracking-wide uppercase mb-6">
+              <span className="inline-block px-3 py-1.5 rounded-full bg-clinic-teal-light text-clinic-teal text-xs font-semibold tracking-wide uppercase mb-4 md:mb-6">
                 Medical Excellence
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-foreground leading-[1.08] mb-6 tracking-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-foreground leading-[1.1] mb-4 md:mb-6 tracking-tight">
                 Expertise in{" "}
                 <span className="text-clinic-teal">Aesthetic</span> &{" "}
                 <span className="text-clinic-teal">Functional</span>{" "}
                 Medicine
               </h1>
-              <p className="text-muted-foreground text-lg leading-relaxed max-w-lg mb-8">
+              <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-lg mb-6 md:mb-8">
                 Science-backed treatments across four specialized pillars — designed by physicians, refined over a decade of clinical practice across British Columbia.
               </p>
               <Link
                 to="/book"
-                className="group inline-flex items-center gap-3 bg-clinic-teal hover:bg-clinic-teal-container text-white px-8 py-4 rounded-full font-semibold text-sm uppercase tracking-widest transition-all"
+                className="group inline-flex items-center justify-center gap-3 bg-clinic-teal hover:bg-clinic-teal-container text-white px-6 md:px-8 py-3.5 md:py-4 rounded-full font-semibold text-xs md:text-sm uppercase tracking-widest transition-all w-full sm:w-auto"
               >
                 Book a Consultation
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -171,7 +171,7 @@ export default function ServicesPage() {
               <img
                 src={skinImg}
                 alt="Premium aesthetic clinic interior at Ageless Living"
-                className="w-full rounded-2xl object-cover object-center aspect-[4/3] shadow-xl"
+                className="w-full rounded-xl md:rounded-2xl object-cover object-center aspect-[4/3] shadow-xl"
                 width={800}
                 height={600}
               />
@@ -181,8 +181,8 @@ export default function ServicesPage() {
       </section>
 
       {/* ══════════════ STICKY SIDE-NAV + PILLARS ══════════════ */}
-      <section className="relative bg-background py-16 md:py-24">
-        <div className="container mx-auto px-6 lg:px-16">
+      <section className="relative bg-background py-12 md:py-16 lg:py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
           <div className="grid grid-cols-12 gap-6 lg:gap-12">
             {/* Sticky side navigation */}
             <aside className="hidden lg:block lg:col-span-3">
@@ -235,13 +235,13 @@ export default function ServicesPage() {
             </aside>
 
             {/* Mobile chip nav */}
-            <div className="lg:hidden col-span-12 -mx-6 overflow-x-auto scrollbar-none mb-8">
-              <div className="flex gap-3 px-6 min-w-max">
+            <div className="lg:hidden col-span-12 -mx-4 sm:-mx-6 overflow-x-auto scrollbar-none mb-6 md:mb-8">
+              <div className="flex gap-2 sm:gap-3 px-4 sm:px-6 pb-2">
                 {pillars.map((p) => (
                   <a
                     key={p.id}
                     href={`#${p.id}`}
-                    className={`whitespace-nowrap rounded-full border px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] transition-all ${
+                    className={`whitespace-nowrap rounded-full border px-4 sm:px-5 py-2 sm:py-2.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.12em] transition-all ${
                       active === p.id
                         ? "border-clinic-teal bg-clinic-teal text-white"
                         : "border-foreground/15 text-foreground hover:border-foreground/30"
@@ -254,12 +254,12 @@ export default function ServicesPage() {
             </div>
 
             {/* Pillar sections */}
-            <div className="col-span-12 lg:col-span-9 space-y-24 md:space-y-32">
+            <div className="col-span-12 lg:col-span-9 space-y-16 md:space-y-24 lg:space-y-32">
               {pillars.map((p, idx) => (
                 <article
                   id={p.id}
                   key={p.id}
-                  className="scroll-mt-28"
+                  className="scroll-mt-20 md:scroll-mt-28"
                 >
                   <motion.div
                     initial={{ opacity: 0, y: 24 }}
@@ -267,18 +267,18 @@ export default function ServicesPage() {
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ duration: 0.7, ease }}
                   >
-                    <div className="flex items-baseline gap-4 mb-4">
-                      <span className="font-display text-xl text-clinic-teal font-semibold">
+                    <div className="flex items-baseline gap-3 md:gap-4 mb-3 md:mb-4">
+                      <span className="font-display text-lg md:text-xl text-clinic-teal font-semibold">
                         {p.n}
                       </span>
-                      <p className="eyebrow">{p.label}</p>
+                      <p className="eyebrow text-[10px] md:text-xs">{p.label}</p>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-medium text-foreground tracking-tight mb-8">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-foreground tracking-tight mb-6 md:mb-8">
                       {p.title}
                     </h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 items-start mb-10">
-                      <div className="md:col-span-7 relative aspect-[4/3] overflow-hidden rounded-2xl">
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6 lg:gap-10 items-start mb-8 md:mb-10">
+                      <div className="md:col-span-7 relative aspect-[4/3] overflow-hidden rounded-xl md:rounded-2xl">
                         <img
                           src={p.image}
                           alt={`${p.title} at Ageless Living`}
@@ -287,14 +287,14 @@ export default function ServicesPage() {
                         />
                       </div>
                       <div className="md:col-span-5 md:pt-4">
-                        <p className="text-base md:text-lg leading-relaxed text-muted-foreground mb-6">
+                        <p className="text-sm sm:text-base md:text-lg leading-relaxed text-muted-foreground mb-5 md:mb-6">
                           {p.intro}
                         </p>
                         <Link
                           to={p.treatments[0]?.href ?? "/book"}
-                          className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-clinic-teal border-b-2 border-clinic-teal/20 pb-1 hover:border-clinic-teal transition-all"
+                          className="inline-flex items-center gap-2 text-xs md:text-sm font-semibold uppercase tracking-widest text-clinic-teal border-b-2 border-clinic-teal/20 pb-1 hover:border-clinic-teal transition-all"
                         >
-                          Learn More <ArrowRight className="h-3.5 w-3.5" />
+                          Learn More <ArrowRight className="h-3 w-3 md:h-3.5 md:w-3.5" />
                         </Link>
                       </div>
                     </div>
@@ -305,19 +305,21 @@ export default function ServicesPage() {
                         const Row = (
                           <div
                             key={`${t.name}-inner`}
-                            className="group grid grid-cols-12 gap-4 items-center py-5 border-b border-foreground/10 transition-colors hover:bg-clinic-teal-light/50"
+                            className="group grid grid-cols-[auto_1fr_auto] md:grid-cols-12 gap-3 md:gap-4 items-start md:items-center py-4 md:py-5 border-b border-foreground/10 transition-colors hover:bg-clinic-teal-light/50"
                           >
-                            <span className="col-span-2 md:col-span-1 text-sm text-muted-foreground font-medium">
+                            <span className="text-xs md:text-sm text-muted-foreground font-medium pt-0.5 md:pt-0 md:col-span-1">
                               {String(i + 1).padStart(2, "0")}
                             </span>
-                            <h3 className="col-span-10 md:col-span-4 text-lg md:text-xl font-medium tracking-tight text-foreground transition-colors group-hover:text-clinic-teal">
-                              {t.name}
-                            </h3>
-                            <p className="col-span-12 md:col-span-6 text-sm text-muted-foreground">
-                              {t.desc}
-                            </p>
-                            <div className="col-span-12 md:col-span-1 flex md:justify-end">
-                              <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-0 transition-all group-hover:opacity-100 group-hover:text-clinic-teal" />
+                            <div className="md:col-span-10 md:grid md:grid-cols-10 md:gap-4">
+                              <h3 className="text-base sm:text-lg md:text-xl font-medium tracking-tight text-foreground transition-colors group-hover:text-clinic-teal mb-2 md:mb-0 md:col-span-4">
+                                {t.name}
+                              </h3>
+                              <p className="text-xs sm:text-sm text-muted-foreground md:col-span-6">
+                                {t.desc}
+                              </p>
+                            </div>
+                            <div className="md:col-span-1 flex md:justify-end pt-0.5 md:pt-0">
+                              <ArrowUpRight className="h-3.5 w-3.5 md:h-4 md:w-4 text-muted-foreground md:opacity-0 transition-all group-hover:opacity-100 group-hover:text-clinic-teal" />
                             </div>
                           </div>
                         );
@@ -333,7 +335,7 @@ export default function ServicesPage() {
                   </motion.div>
 
                   {idx < pillars.length - 1 && (
-                    <div className="mt-20 h-px w-full bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
+                    <div className="mt-12 md:mt-16 lg:mt-20 h-px w-full bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
                   )}
                 </article>
               ))}
@@ -343,32 +345,32 @@ export default function ServicesPage() {
       </section>
 
       {/* ══════════════ CTA BANNER ══════════════ */}
-      <section className="py-20 md:py-28 bg-clinic-teal">
-        <div className="container mx-auto px-6 lg:px-16 text-center">
+      <section className="py-16 md:py-20 lg:py-28 bg-clinic-teal">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease }}
           >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-tight mb-4 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-tight mb-3 md:mb-4 tracking-tight">
               Ready to start your
-              <br className="hidden md:block" />
+              <br className="hidden sm:block" />
               aesthetic journey?
             </h2>
-            <p className="text-white/80 text-lg mb-8 max-w-lg mx-auto">
+            <p className="text-white/80 text-sm sm:text-base md:text-lg mb-6 md:mb-8 max-w-lg mx-auto px-4">
               Book a comprehensive consultation with our medical team at any of our three locations.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 px-4 sm:px-0">
               <Link
                 to="/book"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-clinic-teal font-semibold text-sm uppercase tracking-widest hover:bg-white/90 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-3.5 rounded-full bg-white text-clinic-teal font-semibold text-xs md:text-sm uppercase tracking-widest hover:bg-white/90 transition-all"
               >
                 Book Online
               </Link>
               <Link
                 to="/about-us"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border-2 border-white/40 text-white font-semibold text-sm uppercase tracking-widest hover:bg-white/10 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-3.5 rounded-full border-2 border-white/40 text-white font-semibold text-xs md:text-sm uppercase tracking-widest hover:bg-white/10 transition-all"
               >
                 View Our Locations
               </Link>
