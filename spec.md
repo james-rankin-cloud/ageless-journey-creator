@@ -14,11 +14,13 @@ Added two new homepage sections per owner feedback to better visualize the Agele
 - **Interaction**: Click any stage to jump to it, or use "Next Stage" button to progress linearly
 
 #### JourneyCTA (`src/components/JourneyCTA.tsx`)
-- **Purpose**: "Help Me Create My Ageless Living Journey" call-to-action section ported from agelessliving.com
-- **Layout**: Two-column — clinic photo with gradient overlay (left), headline + journey steps + CTAs (right)
-- **Desktop**: Floating card showing journey steps preview overlaid on the image
-- **Mobile**: Journey steps shown as 2x2 grid below the text, image stacks above text
-- **CTAs**: "Book a Consultation" (primary) + "Explore Services" (secondary), full-width on mobile
+- **Purpose**: Interactive AI-powered journey builder — a conversational chat experience that asks users about their wellness goals and generates personalized service recommendations
+- **Layout**: Centered card with chat header (clinic-teal), scrollable message thread, option pill buttons, and free-text input
+- **Flow**: Welcome → Goal selection → Concern selection (with free-text option) → Age range → Personalized results
+- **AI Logic**: `getRecommendations()` analyzes user responses across goal, concern, and age to map to 1–4 service pillars (Skin Rejuvenation, Hormone Balancing, Biohacking, Health Weight)
+- **Results**: Animated recommendation cards with color-coded service badges, links to service sections, and "Book My Consultation" CTA
+- **Mobile**: Full-width option pills wrap naturally, free-text input with send button, scrollable chat area (max-h-[360px] on mobile, max-h-[420px] on desktop)
+- **Interaction**: Click option pills to progress, type custom responses for the concern step, restart anytime via header button
 
 ### HomePage Integration
 - `TransformationJourney` inserted after the Treatments section
