@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, MapPin } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, ChevronDown, MapPin, User, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "@/lib/auth";
 import logo from "@/assets/header-logo.png";
 
 const navItems = [
@@ -38,7 +39,10 @@ export default function Header() {
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
   const [mobileLocationsOpen, setMobileLocationsOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isAuthenticated, user, logout } = useAuth();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -211,6 +215,59 @@ export default function Header() {
           >
             Book a time
           </Link>
+
+          {/* User Menu */}
+          {isAuthenticated ? (
+            <div
+              className="relative"
+              onMouseEnter={() => setUserMenuOpen(true)}
+              onMouseLeave={() => setUserMenuOpen(false)}
+            >
+              <button className="w-9 h-9 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center hover:ring-2 hover:ring-primary/30 transition-all">
+                {user?.firstName?.[0]}{user?.lastName?.[0]}
+              </button>
+              <AnimatePresence>
+                {userMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.15 }}
+                    className="absolute top-full right-0 pt-2"
+                  >
+                    <div className="bg-card border border-border rounded-xl shadow-lg py-2 min-w-[200px]">
+                      <div className="px-4 py-2.5 border-b border-border">
+                        <p className="text-sm font-semibold text-foreground">{user?.firstName} {user?.lastName}</p>
+                        <p className="text-xs text-muted-foreground">{user?.email}</p>
+                      </div>
+                      <Link
+                        to="/dashboard"
+                        className="flex items-center gap-2 px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        <User className="h-4 w-4" />
+                        Dashboard
+                      </Link>
+                      <button
+                        onClick={() => { logout(); setUserMenuOpen(false); navigate("/"); }}
+                        className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-colors"
+                      >
+                        <LogOut className="h-4 w-4" />
+                        Sign Out
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Sign In
+            </Link>
+          )}
         </nav>
 
         <button
@@ -391,7 +448,40 @@ export default function Header() {
             </nav>
 
             {/* Fixed Bottom CTA */}
-            <div className="shrink-0 p-5 border-t border-border bg-card">
+            <div className="shrink-0 p-5 border-t border-border bg-card space-y-3">
+              {isAuthenticated ? (
+                <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-secondary">
+                  <div className="w-9 h-9 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center shrink-0">
+                    {user?.firstName?.[0]}{user?.lastName?.[0]}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-foreground truncate">{user?.firstName} {user?.lastName}</p>
+                    <div className="flex gap-3 mt-1">
+                      <Link
+                        to="/dashboard"
+                        className="text-xs text-primary font-medium"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        Dashboard
+                      </Link>
+                      <button
+                        onClick={() => { logout(); setMobileOpen(false); navigate("/"); }}
+                        className="text-xs text-muted-foreground font-medium"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  to="/login"
+                  className="w-full flex items-center justify-center py-3 rounded-full border-2 border-border text-foreground text-base font-semibold hover:border-primary/40 transition-colors"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Sign In
+                </Link>
+              )}
               <Link
                 to="/book"
                 className="w-full flex items-center justify-center py-4 rounded-full bg-gradient-to-r from-clinic-teal to-clinic-teal text-white text-base font-semibold shadow-lg shadow-clinic-teal/20"

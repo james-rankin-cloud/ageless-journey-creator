@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AuthProvider } from "@/lib/auth";
 import Layout from "@/components/Layout";
 import HomePage from "@/pages/HomePage";
 import ServicesPage from "@/pages/ServicesPage";
@@ -35,6 +36,9 @@ import GutMicrobesBlogPost from "@/pages/GutMicrobesBlogPost";
 import LiveBetterLongerBlogPost from "@/pages/LiveBetterLongerBlogPost";
 import LongevityIndustryBlogPost from "@/pages/LongevityIndustryBlogPost";
 import BookNowPage from "@/pages/BookNowPage";
+import LoginPage from "@/pages/LoginPage";
+import SignupPage from "@/pages/SignupPage";
+import DashboardPage from "@/pages/DashboardPage";
 import ShopPage from "@/pages/ShopPage";
 import ContactPage from "@/pages/ContactPage";
 import NotFound from "./pages/NotFound.tsx";
@@ -43,6 +47,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
+    <AuthProvider>
     <TooltipProvider>
       <Toaster />
       <Sonner />
@@ -80,6 +85,9 @@ const App = () => (
             <Route path="/blog/live-better-longer" element={<LiveBetterLongerBlogPost />} />
             <Route path="/blog/longevity-industry" element={<LongevityIndustryBlogPost />} />
             <Route path="/book" element={<BookNowPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/contact" element={<ContactPage />} />
             {/* Redirects for old routes */}
@@ -91,6 +99,7 @@ const App = () => (
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 
