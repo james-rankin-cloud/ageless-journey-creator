@@ -26,7 +26,7 @@ export default function CtaBanner() {
               Book Now <ArrowRight className="h-4 w-4" />
             </Link>
             <a
-              href="https://ageless-living.square.site/s/shop"
+              href="https://ageless-store.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-border bg-card text-foreground font-semibold hover:shadow-md transition-all duration-200 active:scale-[0.97]"
