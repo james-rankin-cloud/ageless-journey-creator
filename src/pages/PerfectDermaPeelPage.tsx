@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, Sparkles, Clock, Grid3X3, Heart, Shield, MapPin } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
 import dermapeelImg from "@/assets/dermapeel.jpg";
-import homeImg1 from "@/assets/home-1.jpg";
-import homeImg8 from "@/assets/home-8.jpg";
+import homeImg1 from "@/assets/about-us-1.jpg";
+import homeImg8 from "@/assets/our-locations-home.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 

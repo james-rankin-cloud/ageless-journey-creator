@@ -3,17 +3,14 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Sparkles, FlaskConical, Zap, Scale, MapPin } from "lucide-react";
 
-import heroImg from "@/assets/home-1.jpg";
-import homeImg2 from "@/assets/home-2.jpg";
-import homeImg3 from "@/assets/home-3.jpg";
-import homeImg4 from "@/assets/home-4.jpg";
 import skinImg from "@/assets/services-1.jpg";
-import hormoneImg from "@/assets/services-2.jpg";
-import biohackingImg from "@/assets/services-3.jpg";
-import weightImg from "@/assets/services-4.jpg";
+import hormoneImg from "@/assets/hormone-balancing.jpg";
+import biohackingImg from "@/assets/biohacking.jpg";
+import weightImg from "@/assets/health-weight.jpg";
 import aboutImg from "@/assets/about-us-1.jpg";
 import aboutImg2 from "@/assets/about-us-3.jpg";
 import ourLocationsImg from "@/assets/our-locations-home.jpg";
+import botoxImg from "@/assets/botox-2.jpg";
 import victoriaImg from "@/assets/victoria.png";
 import langleyImg from "@/assets/langley.jpg";
 import kelownaImg from "@/assets/kelowna.jpg";
@@ -143,7 +140,7 @@ export default function HomePage() {
               </div>
               {/* Small floating accent image */}
               <div className="absolute -bottom-6 -left-6 hidden lg:block w-32 h-32 rounded-xl overflow-hidden shadow-xl border-4 border-background">
-                <img src={heroImg} alt="Ageless Living wellness treatment" className="w-full h-full object-cover" />
+                <img src={botoxImg} alt="Ageless Living wellness treatment" className="w-full h-full object-cover" />
               </div>
             </motion.div>
           </div>
@@ -364,7 +361,7 @@ export default function HomePage() {
       <section className="bg-background pb-8">
         <div className="container mx-auto px-6 lg:px-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {[homeImg2, homeImg3, homeImg4, heroImg].map((img, i) => (
+            {[aboutImg2, botoxImg, ourLocationsImg, aboutImg].map((img, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 12 }}

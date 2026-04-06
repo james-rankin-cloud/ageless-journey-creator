@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import skinImg from "@/assets/home-4.jpg";
-import hormoneImg from "@/assets/home-5.jpg";
-import biohackingImg from "@/assets/home-6.jpg";
-import weightImg from "@/assets/home-7.jpg";
+import skinImg from "@/assets/services-1.jpg";
+import hormoneImg from "@/assets/hormone-balancing.jpg";
+import biohackingImg from "@/assets/biohacking.jpg";
+import weightImg from "@/assets/health-weight.jpg";
 
 const treatments = [
   {

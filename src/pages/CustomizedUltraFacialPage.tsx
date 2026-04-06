@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck, Sparkles, Droplets, Wind, Hand, Shield, Waves, CircleDot, Timer, Award } from "lucide-react";
 import { Link } from "react-router-dom";
 import ultraFacialHeroImg from "@/assets/customized_ultrafacial.jpg";
-import ultraFacialBenefitsImg from "@/assets/home-8.jpg";
+import ultraFacialBenefitsImg from "@/assets/our-locations-home.jpg";
 import ServiceCTA from "@/components/ServiceCTA";
 
 const ease = [0.16, 1, 0.3, 1] as const;

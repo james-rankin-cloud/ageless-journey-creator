@@ -5,7 +5,7 @@ import { Heart, Sun, Sparkles, Zap, MapPin } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
 import laserImg from "@/assets/laser.jpg";
 import skinImg from "@/assets/services-1.jpg";
-import homeImg5 from "@/assets/home-5.jpg";
+import homeImg5 from "@/assets/botox-3.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 

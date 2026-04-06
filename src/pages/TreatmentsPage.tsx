@@ -3,10 +3,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, MessageSquare, ClipboardList, Stethoscope, Heart, X, Sparkles, MapPin, Play } from "lucide-react";
 import { Link } from "react-router-dom";
-import skinImg from "@/assets/home-4.jpg";
-import hormoneImg from "@/assets/home-5.jpg";
-import biohackingImg from "@/assets/home-6.jpg";
-import weightImg from "@/assets/home-7.jpg";
+import skinImg from "@/assets/services-1.jpg";
+import hormoneImg from "@/assets/hormone-balancing.jpg";
+import biohackingImg from "@/assets/biohacking.jpg";
+import weightImg from "@/assets/health-weight.jpg";
 
 interface SubService {
   name: string;

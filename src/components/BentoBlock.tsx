@@ -1,8 +1,8 @@
 import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { GripVertical } from "lucide-react";
-import clinicImg from "@/assets/home-8.jpg";
-import skinImg from "@/assets/home-4.jpg";
+import clinicImg from "@/assets/our-locations-home.jpg";
+import skinImg from "@/assets/services-1.jpg";
 
 export default function BentoBlock() {
   const [pos, setPos] = useState(50);

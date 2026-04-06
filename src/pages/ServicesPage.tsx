@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 
 import skinImg from "@/assets/services-1.jpg";
-import hormoneImg from "@/assets/services-2.jpg";
-import biohackingImg from "@/assets/services-3.jpg";
-import weightImg from "@/assets/services-4.jpg";
+import hormoneImg from "@/assets/hormone-balancing.jpg";
+import biohackingImg from "@/assets/biohacking.jpg";
+import weightImg from "@/assets/health-weight.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
