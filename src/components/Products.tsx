@@ -46,7 +46,7 @@ export default function Products() {
               <h3 className="font-bold text-foreground mb-2">{p.name}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">{p.desc}</p>
               <a
-                href="https://ageless-living.square.site/s/shop"
+                href="https://ageless-store.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"

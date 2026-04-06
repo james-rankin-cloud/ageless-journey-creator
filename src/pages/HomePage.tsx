@@ -138,10 +138,6 @@ export default function HomePage() {
                   <source src="/human_graphic.mp4" type="video/mp4" />
                 </video>
               </div>
-              {/* Small floating accent image */}
-              <div className="absolute -bottom-6 -left-6 hidden lg:block w-32 h-32 rounded-xl overflow-hidden shadow-xl border-4 border-background">
-                <img src={botoxImg} alt="Ageless Living wellness treatment" className="w-full h-full object-cover" />
-              </div>
             </motion.div>
           </div>
         </div>
