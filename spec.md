@@ -1,5 +1,39 @@
 # Ageless Living™ Website Architecture Specification
 
+## Changelog — Transformation Journey & Journey CTA (2026-04-06)
+
+Added two new homepage sections per owner feedback to better visualize the Ageless Living service journey and port over the "Help Me Create My Ageless Living Journey" concept from the agelessliving.com site.
+
+### New Components
+
+#### TransformationJourney (`src/components/TransformationJourney.tsx`)
+- **Purpose**: Interactive visual journey showing how a client transforms through the 4 service pillars (Skin Rejuvenation → Hormone Balancing → Biohacking → Health Weight)
+- **Desktop**: Connected progress bar with step nodes, animated active line, stage content panel with image + text
+- **Mobile**: Horizontal scrollable pill tabs, stacked layout, full-width CTAs
+- **Features**: Stage badge overlay on images showing progression ("Stage 1 of 4"), avatar state description, benefits grid, animated transitions between stages via Framer Motion AnimatePresence
+- **Interaction**: Click any stage to jump to it, or use "Next Stage" button to progress linearly
+
+#### JourneyCTA (`src/components/JourneyCTA.tsx`)
+- **Purpose**: "Help Me Create My Ageless Living Journey" call-to-action section ported from agelessliving.com
+- **Layout**: Two-column — clinic photo with gradient overlay (left), headline + journey steps + CTAs (right)
+- **Desktop**: Floating card showing journey steps preview overlaid on the image
+- **Mobile**: Journey steps shown as 2x2 grid below the text, image stacks above text
+- **CTAs**: "Book a Consultation" (primary) + "Explore Services" (secondary), full-width on mobile
+
+### HomePage Integration
+- `TransformationJourney` inserted after the Treatments section
+- `JourneyCTA` inserted after TransformationJourney, before the About/Philosophy section
+- Both sections maintain the existing design language (eyebrow labels, hairline accents, clinic-teal brand color, Jost/Inter typography)
+
+### Mobile Responsiveness
+- All new components follow mobile-first responsive design
+- Progressive text sizing, padding, and spacing across all breakpoints
+- Scrollable horizontal tabs on mobile for journey stages
+- Full-width CTAs on mobile with vertical stacking
+- Hidden/shown elements adapted per breakpoint (floating card hidden on mobile, mini grid shown instead)
+
+---
+
 ## Changelog — Mobile Responsiveness Optimization (2026-04-06)
 
 A comprehensive mobile-first optimization pass for AboutUsPage, ContactPage, and Footer component to ensure premium UX on all screen sizes.
