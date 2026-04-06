@@ -26,7 +26,11 @@ export default function AboutUsPage() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-clinic-teal/5 via-white to-white pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-clinic-teal/5 via-white to-white pt-28 pb-16 md:pt-32 md:pb-20 overflow-hidden">
+        {/* Subtle logo watermark */}
+        <div className="pointer-events-none absolute top-1/2 right-8 -translate-y-1/2 opacity-[0.04] hidden md:block">
+          <img src={iconImg} alt="" aria-hidden className="w-80 h-80 object-contain" />
+        </div>
         <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
           <motion.div
             className="rounded-2xl overflow-hidden shadow-sm order-2 md:order-1"
@@ -104,20 +108,22 @@ export default function AboutUsPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1, ease }}
             >
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-lg">
-                <img
-                  src={iconImg}
-                  alt="Ageless Living brand icon"
-                  className="w-full h-full object-cover object-center"
-                />
-              </div>
+              <img
+                src={iconImg}
+                alt="Ageless Living brand icon"
+                className="w-48 h-48 md:w-64 md:h-64 object-contain opacity-10"
+              />
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Locations Section */}
-      <section className="py-16 md:py-20 bg-secondary/30">
+      <section className="relative py-16 md:py-20 bg-secondary/30 overflow-hidden">
+        {/* Subtle logo watermark */}
+        <div className="pointer-events-none absolute bottom-4 left-4 opacity-[0.05]">
+          <img src={iconImg} alt="" aria-hidden className="w-40 h-40 object-contain" />
+        </div>
         <div className="max-w-7xl mx-auto px-6 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-12 items-center">
             <motion.div

@@ -115,7 +115,7 @@ export default function Contact() {
           </p>
           <div className="flex gap-6 text-xs text-muted-foreground">
             <a href="https://agelessliving.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Official Site</a>
-            <a href="https://ageless-living.square.site/s/shop" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Shop</a>
+            <a href="https://ageless-store.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Shop</a>
             <a href="https://ageless.janeapp.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Book Online</a>
           </div>
         </div>

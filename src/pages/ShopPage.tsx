@@ -7,7 +7,7 @@ import mask2 from "@/assets/shop-2.jpeg";
 import mask3 from "@/assets/shop-3.jpeg";
 import mask4 from "@/assets/shop-4.jpeg";
 
-const SQUARE_URL = "https://ageless-living.square.site/s/shop";
+const SQUARE_URL = "https://ageless-store.vercel.app/";
 
 const heroImages = [mask1, mask2, mask3, mask4];
 

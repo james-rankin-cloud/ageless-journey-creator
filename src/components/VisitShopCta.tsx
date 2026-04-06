@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import shopImg from "@/assets/shop-1.jpeg";
 import logo from "@/assets/footer-logo.png";
@@ -44,15 +43,17 @@ export default function VisitShopCta() {
                 practitioners use in clinic. Hand-picked. Never filler.
               </p>
               <div className="flex flex-wrap items-center gap-4">
-                <Link
-                  to="/shop"
+                <a
+                  href="https://ageless-store.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group inline-flex items-center gap-3 rounded-full bg-white text-clinic-teal pl-7 pr-3 py-3 text-sm font-semibold uppercase tracking-widest transition-all hover:bg-white/90"
                 >
                   Visit the Shop
                   <span className="flex h-9 w-9 items-center justify-center rounded-full bg-clinic-teal text-white transition-transform group-hover:rotate-45">
                     <ArrowUpRight className="h-4 w-4" />
                   </span>
-                </Link>
+                </a>
                 <span className="text-xs uppercase tracking-[0.2em] text-white/40">
                   Free shipping over $150
                 </span>
