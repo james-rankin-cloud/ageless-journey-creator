@@ -2,29 +2,86 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f766e" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Security headers (for static hosts that honour meta; server headers still recommended) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
+
     <link rel="icon" type="image/png" href="/icon.png" />
-    <!-- TODO: Set the document title to the name of your application -->
+    <link rel="apple-touch-icon" href="/icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href="https://agelessliving.com/" />
+
+    <!-- Perf: preconnect to asset origins used by the site -->
+    <link rel="preconnect" href="https://agelessliving.com" crossorigin />
+    <link rel="dns-prefetch" href="https://ageless.janeapp.com" />
+
     <title>Ageless Living™ Wellness Centre | Langley, Victoria, Kelowna BC</title>
-    <meta name="description" content="Modern wellness treatments including skin rejuvenation, hormone balancing, biohacking &amp; health weight management. Serving BC for over a decade.">
+    <meta
+      name="description"
+      content="Premium physician-led wellness in British Columbia. Skin rejuvenation, hormone balancing, biohacking & medical weight management. Clinics in Langley, Victoria & Kelowna."
+    />
     <meta name="author" content="Ageless Living™ Wellness Centre" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="geo.region" content="CA-BC" />
+    <meta name="geo.placename" content="British Columbia" />
 
-    
-    
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/27053720-4e35-4d85-91a3-452e670a5298/id-preview-12af2431--ac8d4752-88aa-4c6d-983c-d02038d71279.lovable.app-1774321929293.png">
+    <meta property="og:site_name" content="Ageless Living™ Wellness Centre" />
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:url" content="https://agelessliving.com/" />
+    <meta property="og:title" content="Ageless Living™ Wellness Centre | Langley, Victoria, Kelowna BC" />
+    <meta
+      property="og:description"
+      content="Premium physician-led wellness in British Columbia. Skin rejuvenation, hormone balancing, biohacking & medical weight management."
+    />
+    <meta
+      property="og:image"
+      content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/27053720-4e35-4d85-91a3-452e670a5298/id-preview-12af2431--ac8d4752-88aa-4c6d-983c-d02038d71279.lovable.app-1774321929293.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/27053720-4e35-4d85-91a3-452e670a5298/id-preview-12af2431--ac8d4752-88aa-4c6d-983c-d02038d71279.lovable.app-1774321929293.png">
-    <meta property="og:title" content="Ageless Living™ Wellness Centre | Langley, Victoria, Kelowna BC">
-  <meta name="twitter:title" content="Ageless Living™ Wellness Centre | Langley, Victoria, Kelowna BC">
-  <meta property="og:description" content="Modern wellness treatments including skin rejuvenation, hormone balancing, biohacking &amp; health weight management. Serving BC for over a decade.">
-  <meta name="twitter:description" content="Modern wellness treatments including skin rejuvenation, hormone balancing, biohacking &amp; health weight management. Serving BC for over a decade.">
-</head>
+    <meta name="twitter:title" content="Ageless Living™ Wellness Centre | Langley, Victoria, Kelowna BC" />
+    <meta
+      name="twitter:description"
+      content="Premium physician-led wellness in BC. Skin, hormones, biohacking & weight health."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/27053720-4e35-4d85-91a3-452e670a5298/id-preview-12af2431--ac8d4752-88aa-4c6d-983c-d02038d71279.lovable.app-1774321929293.png"
+    />
+
+    <!-- Site-wide Organisation schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Ageless Living™ Wellness Centre",
+        "url": "https://agelessliving.com",
+        "logo": "https://agelessliving.com/icon.png",
+        "sameAs": [
+          "https://www.instagram.com/agelessliving",
+          "https://www.facebook.com/agelessliving"
+        ]
+      }
+    </script>
+  </head>
 
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="padding: 2rem; font-family: system-ui, sans-serif; text-align: center;">
+        Ageless Living™ requires JavaScript. Please enable it, or call any of our three BC clinics for appointments.
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

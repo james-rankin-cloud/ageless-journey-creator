@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import VisitShopCta from "./VisitShopCta";
+import ChatBot from "./ChatBot";
 
 export default function Layout() {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
     if (hash) {
-      // If there's a hash, let the browser handle scrolling to that element
       setTimeout(() => {
         const element = document.getElementById(hash.slice(1));
         if (element) {
@@ -17,19 +17,25 @@ export default function Layout() {
         }
       }, 100);
     } else {
-      // Otherwise, scroll to top
       window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
     }
   }, [pathname, hash]);
 
   return (
     <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-md focus:bg-clinic-teal focus:text-white focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
       <Header />
-      <main>
+      <main id="main-content">
         <Outlet />
       </main>
       <VisitShopCta />
       <Footer />
+      <ChatBot />
     </>
   );
 }

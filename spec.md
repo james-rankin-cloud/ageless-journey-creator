@@ -1639,3 +1639,63 @@ All service pages updated to use consistent cyan gradient button styling (`bg-gr
 - `src/assets/botox-4.jpg` (Forehead)
 - `src/assets/botox-5.jpg` (Glabella)
 - `src/assets/botox-6.jpg` (Crow's Feet)
+
+---
+
+## 2026-04-16 — Full-site polish pass (branch: `claude/polish-ageless-living-site-NSzq5`)
+
+### Homepage
+- **Removed** the "Help me create my Ageless Living Journey" section (`JourneyCTA.tsx` deleted and unreferenced).
+- The on-page conversational flow is superseded by the global AI Concierge (see below).
+
+### Global AI Concierge (ChatBot)
+- `src/components/ChatBot.tsx` fully rewritten.
+- Mounted globally in `src/components/Layout.tsx` — now persistent on every page (mobile + desktop).
+- Position: **bottom-left** (pill with "Ask Ageless AI" on ≥640px, icon on mobile).
+- Expanded knowledge base: 17 intent clusters covering fatigue, skin, hormones, biohacking, weight, booking, locations, hours, pricing, insurance, team, FAQ, blog, contact, shop, safety, about.
+- Accessibility: `aria-label`, `aria-expanded`, labelled input, focus-visible ring, form-submit instead of Enter-key-only, 240-char max-length, disabled send when empty.
+- Intercepts internal links so in-chat CTAs navigate via React Router without a full reload.
+
+### Booking (`BookNowPage`)
+- Fixed type bug: `setSelectedDate(null)` → `setSelectedDate(undefined)` (state type is `Date | undefined`).
+- Removed dead constants (`dayNames`, `monthNames`) and stray blank lines.
+- Added mobile-compact progress indicator ("Step 3 of 5 · Clinician & Date") that replaces the 5-label strip under `sm`.
+- Added `role="progressbar"` + `aria-valuenow/min/max`.
+- "Confirm Booking" button is full-width on mobile for thumb-friendly tapping.
+
+### Auth pages
+- `LoginPage.tsx` and `SignupPage.tsx`: fixed React Hooks rules violation (`useForm` was called after a conditional early return). Redirect now runs in `useEffect`.
+
+### SEO
+- `public/sitemap.xml` added with 32 URLs matching the real React Router paths.
+- `public/robots.txt` tightened: allow crawl, disallow `/dashboard` / `/login` / `/signup`, declare sitemap.
+- `public/site.webmanifest` added (PWA manifest, theme colour, icons).
+- `index.html` rewritten: complete OG + Twitter meta, `theme-color`, `canonical`, `geo.region` + `geo.placename`, `robots` directive, Organisation JSON-LD, `<noscript>` fallback, `apple-touch-icon`, `preconnect` + `dns-prefetch`.
+
+### Security
+- Security headers in dev via `vite.config.ts` (`X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy`).
+- `<meta http-equiv>` fallbacks in `index.html`.
+- Production CSP + HSTS to be configured at hosting edge (documented in `BUSINESS_PLAN.md`).
+
+### Performance
+- Vite manual chunk splitting: `react-vendor`, `ui-vendor`, `query-vendor`, `form-vendor`.
+- `preconnect` and `dns-prefetch` for asset + Jane App origins.
+- Build verified: largest entry chunk gzipped at 151 KB.
+
+### Accessibility
+- Skip-to-main-content link in `Layout.tsx`.
+- `<main>` gets `id="main-content"`.
+- Chatbot + booking progress bar fully labelled.
+
+### Housekeeping
+- Deleted unused `src/components/FloatingBookNow.tsx`.
+- Fixed shadcn/ui lint errors: empty-interface → type alias in `command.tsx` and `textarea.tsx`; `require()` → ESM import in `tailwind.config.ts`.
+- Fixed a pre-existing TS error in `DashboardPage.tsx` select onChange cast.
+- Clean build: 0 ESLint errors (down from 5), 0 new TS errors.
+
+### Out of scope (see `BUSINESS_PLAN.md`)
+- Real booking backend (Supabase + Resend + OAuth).
+- Large image → WebP migration (critical for Lighthouse; blog1-3 are 1.8–4.9 MB PNGs today).
+- Manual AI-photo audit (requires visual inspection).
+- Production CSP/HSTS headers at edge.
+- Google Business Profile / Search Console / GA4 setup.
