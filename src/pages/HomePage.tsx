@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Sparkles, FlaskConical, Zap, Scale, MapPin } from "lucide-react";
 import TransformationJourney from "@/components/TransformationJourney";
-import JourneyCTA from "@/components/JourneyCTA";
 
 import skinImg from "@/assets/services-1.jpg";
 import hormoneImg from "@/assets/hormone-balancing.jpg";
@@ -248,9 +247,6 @@ export default function HomePage() {
 
       {/* ══════════════ TRANSFORMATION JOURNEY — visual avatar journey ══════════════ */}
       <TransformationJourney />
-
-      {/* ══════════════ HELP ME CREATE MY JOURNEY — CTA section ══════════════ */}
-      <JourneyCTA />
 
       {/* ══════════════ ABOUT / PHILOSOPHY — image + text side-by-side ══════════════ */}
       <section className="relative py-16 md:py-24 lg:py-32 bg-secondary/50 overflow-hidden">

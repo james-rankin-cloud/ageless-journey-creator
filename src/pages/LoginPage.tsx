@@ -5,7 +5,7 @@ import { LogIn, Eye, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth";
 
 const loginSchema = z.object({
@@ -23,11 +23,6 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [serverError, setServerError] = useState("");
 
-  if (isAuthenticated) {
-    navigate("/dashboard", { replace: true });
-    return null;
-  }
-
   const {
     register,
     handleSubmit,
@@ -35,6 +30,10 @@ export default function LoginPage() {
   } = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
   });
+
+  useEffect(() => {
+    if (isAuthenticated) navigate("/dashboard", { replace: true });
+  }, [isAuthenticated, navigate]);
 
   const onSubmit = (data: LoginForm) => {
     setServerError("");

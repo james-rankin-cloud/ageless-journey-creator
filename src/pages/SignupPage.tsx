@@ -5,7 +5,7 @@ import { UserPlus, Eye, EyeOff } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/lib/auth";
 
 const signupSchema = z
@@ -35,11 +35,6 @@ export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [serverError, setServerError] = useState("");
 
-  if (isAuthenticated) {
-    navigate("/dashboard", { replace: true });
-    return null;
-  }
-
   const {
     register,
     handleSubmit,
@@ -48,6 +43,10 @@ export default function SignupPage() {
     resolver: zodResolver(signupSchema),
     defaultValues: { preferredLocation: "langley" },
   });
+
+  useEffect(() => {
+    if (isAuthenticated) navigate("/dashboard", { replace: true });
+  }, [isAuthenticated, navigate]);
 
   const onSubmit = (data: SignupForm) => {
     setServerError("");

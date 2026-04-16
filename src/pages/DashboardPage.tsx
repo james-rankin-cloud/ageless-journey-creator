@@ -329,7 +329,7 @@ export default function DashboardPage() {
                         <label className="block text-sm font-semibold text-foreground mb-2">Preferred Location</label>
                         <select
                           value={profileForm.preferredLocation}
-                          onChange={(e) => setProfileForm({ ...profileForm, preferredLocation: e.target.value })}
+                          onChange={(e) => setProfileForm({ ...profileForm, preferredLocation: e.target.value as "langley" | "kelowna" | "victoria" })}
                           className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
                         >
                           <option value="langley">Langley</option>

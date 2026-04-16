@@ -93,9 +93,6 @@ export default function BookNowPage() {
 
   const clinicians = cliniciansByLocation[location];
 
-
-
-
   const selectMain = (s: string) => {
     if (selectedMain === s) {
       setSelectedMain(null);
@@ -129,9 +126,6 @@ export default function BookNowPage() {
     setConfirmed(true);
   };
 
-  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
   const summaryServices = selectedSubs.length > 0
     ? `${selectedMain} — ${selectedSubs.join(", ")}`
     : selectedMain || "";
@@ -157,13 +151,19 @@ export default function BookNowPage() {
           </motion.div>
 
           {/* Progress bar */}
-          <div className="max-w-4xl mx-auto mb-10">
-            <div className="flex items-center justify-between text-xs font-medium text-muted-foreground mb-2">
+          <div className="max-w-4xl mx-auto mb-10" aria-label="Booking progress">
+            {/* Mobile: compact step indicator */}
+            <div className="flex sm:hidden items-center justify-between text-xs font-semibold text-muted-foreground mb-2">
+              <span className="text-primary">Step {Math.min(step, 5)} of 5</span>
+              <span>{["Location", "Services", "Clinician & Date", "Time", "Confirm"][Math.min(step, 5) - 1]}</span>
+            </div>
+            {/* Desktop: all labels */}
+            <div className="hidden sm:flex items-center justify-between text-xs font-medium text-muted-foreground mb-2">
               {["Location", "Services", "Clinician & Date", "Time", "Confirm"].map((label, i) => (
                 <span key={label} className={step > i ? "text-primary font-semibold" : ""}>{label}</span>
               ))}
             </div>
-            <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
+            <div className="h-1.5 bg-secondary rounded-full overflow-hidden" role="progressbar" aria-valuemin={0} aria-valuemax={5} aria-valuenow={step}>
               <motion.div className="h-full bg-primary rounded-full" animate={{ width: `${(step / 5) * 100}%` }} transition={{ duration: 0.3 }} />
             </div>
           </div>
@@ -179,7 +179,7 @@ export default function BookNowPage() {
                 {(["langley", "kelowna", "victoria"] as Location[]).map((loc) => (
                   <button
                     key={loc}
-                    onClick={() => { setLocation(loc); setSelectedClinician(null); setSelectedDate(null); setSelectedTime(null); setConfirmed(false); }}
+                    onClick={() => { setLocation(loc); setSelectedClinician(null); setSelectedDate(undefined); setSelectedTime(null); setConfirmed(false); }}
                     className={`px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 active:scale-[0.97] ${
                       location === loc ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" : "bg-secondary text-muted-foreground hover:text-foreground border border-border"
                     }`}
@@ -325,7 +325,7 @@ export default function BookNowPage() {
 
             {/* Step 4: Time slots */}
             <AnimatePresence>
-              {selectedDate !== null && (
+              {selectedDate !== undefined && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
@@ -373,7 +373,7 @@ export default function BookNowPage() {
                     </div>
                     <button
                       onClick={handleConfirm}
-                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 sm:py-3.5 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all duration-200 active:scale-[0.97]"
                     >
                       <CalendarIcon className="h-4 w-4" /> Confirm Booking <ChevronRight className="h-4 w-4" />
                     </button>
