@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Heart, Beaker, Utensils, ShieldCheck } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
+import ServiceTransformationSection from "@/components/ServiceTransformationSection";
 import healthWeightImg from "@/assets/health-weight.jpg";
 import homeImg4 from "@/assets/home-4.jpg";
 
@@ -259,6 +260,14 @@ export default function HealthWeightPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ═══ REAL RESULTS — interactive transformation slider ═══ */}
+      <ServiceTransformationSection
+        variant="weight"
+        serviceSlug="health-weight"
+        title="Real Client Progress"
+        subtitle="Drag to compare — physician-supervised change that sticks, without extreme diets."
+      />
 
       <ServiceCTA
         title="Ready to reclaim your health?"

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Check, Sparkles, Droplet, Clock } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
+import ServiceTransformationSection from "@/components/ServiceTransformationSection";
 import dermaplanningImg from "@/assets/dermaplanning.jpg";
 import dermaplanning2Img from "@/assets/dermaplanning2.jpg";
 
@@ -365,6 +366,14 @@ export default function DermaplaningPage() {
           </div>
         </div>
       </section>
+
+      {/* ═══ REAL RESULTS — interactive transformation slider ═══ */}
+      <ServiceTransformationSection
+        variant="dermaplaning"
+        serviceSlug="dermaplaning"
+        title="Instant Luminosity"
+        subtitle="Drag to compare — the silk-smooth, light-reflecting finish dermaplaning is famous for."
+      />
 
       <ServiceCTA
         title="Ready to reveal your glow?"

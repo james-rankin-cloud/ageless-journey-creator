@@ -48,7 +48,6 @@ const subServiceMap: Record<string, { name: string; locationNote?: string }[]> =
   "Health Weight": [
     { name: "GLP-1 Support (Semaglutide)" },
     { name: "Metabolic Testing" },
-    { name: "InBody Composition Analysis" },
     { name: "Nutritional Counseling" },
   ],
 };

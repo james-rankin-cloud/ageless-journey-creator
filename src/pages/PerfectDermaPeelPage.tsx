@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle, Sparkles, Clock, Grid3X3, Heart, Shield, MapPin } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
+import ServiceTransformationSection from "@/components/ServiceTransformationSection";
 import dermapeelImg from "@/assets/dermapeel.jpg";
 import homeImg1 from "@/assets/about-us-1.jpg";
 import homeImg8 from "@/assets/our-locations-home.jpg";
@@ -330,6 +331,14 @@ export default function PerfectDermaPeelPage() {
           </div>
         </div>
       </section>
+
+      {/* ═══ REAL RESULTS — interactive transformation slider ═══ */}
+      <ServiceTransformationSection
+        variant="peel"
+        serviceSlug="perfect-derma-peel"
+        title="Skin, Reset"
+        subtitle="Drag to compare — clearer tone, softer texture and a luminous finish."
+      />
 
       <ServiceCTA
         title="Ready to Transform Your Skin?"

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ultraFacialHeroImg from "@/assets/customized_ultrafacial.jpg";
 import ultraFacialBenefitsImg from "@/assets/our-locations-home.jpg";
 import ServiceCTA from "@/components/ServiceCTA";
+import ServiceTransformationSection from "@/components/ServiceTransformationSection";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -305,6 +306,14 @@ export default function CustomizedUltraFacialPage() {
       </section>
 
       {/* CTA */}
+      {/* ═══ REAL RESULTS — interactive transformation slider ═══ */}
+      <ServiceTransformationSection
+        variant="ultrafacial"
+        serviceSlug="customized-ultrafacial"
+        title="The UltraFacial Glow"
+        subtitle="Drag to compare — plumper, clearer, visibly brighter skin in a single session."
+      />
+
       <ServiceCTA />
     </>
   );

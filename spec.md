@@ -1,5 +1,82 @@
 # Ageless Living™ Website Architecture Specification
 
+## Changelog — Premium Redesign: Video Hero & Transformation Components (2026-04-20)
+
+A major premium-brand upgrade. Goal: make the site feel significantly more high-end (Apple / luxury Korean skincare aesthetic) without losing the existing core identity. Adds motion storytelling, a creative transformation avatar, real before/after sliders, and tightens the services catalogue.
+
+### New Components
+
+#### `src/components/TransformationAvatar.tsx`
+- **Purpose**: Creative, interactive "transformation avatar" — a premium UI element that visually communicates anti-aging / aesthetic change.
+- **Design**: Glassmorphic panel, orbiting accent rings, animated diagnostic scan-beam, pin-point annotations keyed to each service, portrait that cross-fades BEFORE ↔ AFTER, and animated metric chips (collagen, firmness, hydration, etc.).
+- **Variant API**: 12 specialised variants — `home`, `botox`, `filler`, `ultrafacial`, `laser`, `peel`, `microneedling`, `belkyra`, `dermaplaning`, `biohacking`, `hormone`, `weight`. Each drives its own annotations, metrics and copy. A `compact` prop renders a slimmer version used inside service pages.
+- **Default portraits**: `AVATAR_BEFORE` / `AVATAR_AFTER` in `src/lib/placeholders.ts` — swap those paths to go live.
+
+#### `src/components/BeforeAfterSlider.tsx`
+- **Purpose**: Smooth, draggable before/after image comparison (pointer + touch + keyboard accessible).
+- **Interaction**: Click or drag anywhere on the slider; arrow keys also move the handle. Exposes `role="slider"` with ARIA values for accessibility.
+- **Styling**: Rounded editorial frame, animated handle, corner "Before" / "After" pills, soft shadow ring in clinic-teal.
+- **Asset overrides**: Pass `before=` / `after=` props, or change the `SERVICE_BEFORE_AFTER` map in `src/lib/placeholders.ts`.
+
+#### `src/components/ServiceTransformationSection.tsx`
+- **Purpose**: Single drop-in section that pairs a compact `TransformationAvatar` with a `BeforeAfterSlider`, used at the bottom of every service page.
+- **API**: `variant`, `serviceSlug`, optional `title` / `subtitle` / `eyebrow`.
+- **Placement**: Mounted just above `<ServiceCTA />` on every service page.
+
+#### `src/lib/placeholders.ts`
+- **Purpose**: Single source of truth for every placeholder image & video path introduced by this release.
+- **Swap instructions**: Drop production assets into `public/photos/…` and update the exported constants (`HERO_VIDEO_MP4`, `HERO_POSTER`, `AVATAR_BEFORE`, `AVATAR_AFTER`, `BEFORE_PHOTO`, `AFTER_PHOTO`, and per-service entries in `SERVICE_BEFORE_AFTER`).
+
+### HomePage Upgrade (`src/pages/HomePage.tsx`)
+
+#### New Hero — full-screen motion video
+- **Layout**: Full-viewport video background (`h-screen min-h-[640px]`) with legibility gradients, a floating pill-row of category chips (Skinphy-style), top-left lead copy, a giant editorial wordmark ("AGELESS") that sits *behind* the video subject, and a bottom row with tagline + dual-CTA cluster (Book / View Services).
+- **Video source**: `HERO_VIDEO_MP4` = `/photos/no_zoom_in_or_zoom_out_create__Kling_30__00466.mp4` (placeholder). Muted, looping, autoplay, `playsInline` for iOS. `poster` fallback keyed to `HERO_POSTER`.
+- **Animations**: Framer Motion orchestrated fades & letter-spacing reveal on the wordmark; scroll cue animates at the bottom.
+
+#### New "Transformation, made visible" section
+- Adds a dedicated home-page section introducing the `<TransformationAvatar variant="home" />` — the creative UI element the brief asked for. Sits just above the existing multi-stage `TransformationJourney` so the two complement each other.
+
+### Service Page Upgrades (11 pages)
+
+Every service page now renders `<ServiceTransformationSection />` above its `<ServiceCTA />`, each passing the correct `variant` + `serviceSlug` so the avatar shows specialised annotations / metrics and the slider pulls the right before/after pair:
+
+| Page | variant | serviceSlug |
+| --- | --- | --- |
+| BotoxDysportPage | `botox` | `botox` |
+| CosmeticDermalFillerPage | `filler` | `cosmetic-dermal-filler` |
+| CustomizedUltraFacialPage | `ultrafacial` | `customized-ultrafacial` |
+| LaserIplBblPage | `laser` | `laser-ipl-bbl` |
+| PerfectDermaPeelPage | `peel` | `perfect-derma-peel` |
+| MicroneedlingPage | `microneedling` | `microneedling` |
+| BelkyraPage | `belkyra` | `belkyra` |
+| DermaplaningPage | `dermaplaning` | `dermaplaning` |
+| BiohackingPage | `biohacking` | `biohacking` |
+| HormoneBalancingPage | `hormone` | `hormone-balancing` |
+| HealthWeightPage | `weight` | `health-weight` |
+
+### Service Catalogue — body composition removed
+
+Per owner instruction, the service "InBody Composition Analysis" (and any residual "body composition" copy) is retired:
+- `src/pages/ServicesPage.tsx` — removed from the Health & Weight pillar treatments list; replaced with "Nutritional Counseling".
+- `src/pages/TreatmentsPage.tsx` — removed from Health Weight `subServices`; program description updated.
+- `src/pages/BookNowPage.tsx` — removed from the Health Weight booking service list.
+- No other references remain in `src/`.
+
+### Asset Swap Instructions (summary)
+
+All new placeholder paths live in `src/lib/placeholders.ts`. To go production-ready:
+1. Drop real assets into `public/photos/` (or sub-folders like `public/photos/botox/…`).
+2. Update the corresponding constants in `placeholders.ts`. Hot-reload propagates the change everywhere.
+3. For per-service before/after pairs, fill in the `SERVICE_BEFORE_AFTER` map keyed by serviceSlug (see table above).
+4. Follow the project image naming rule — `[service]-[location]-[descriptor].webp`, <200 KB, lazy-loaded.
+
+### QA
+- `npm run build` passes cleanly. No TypeScript or runtime errors.
+- All new components use only Tailwind, Framer Motion, lucide-react and React Router — no new dependencies introduced.
+
+---
+
 ## Changelog — Transformation Journey & Journey CTA (2026-04-06)
 
 Added two new homepage sections per owner feedback to better visualize the Ageless Living service journey and port over the "Help Me Create My Ageless Living Journey" concept from the agelessliving.com site.

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Play, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import ServiceCTA from "@/components/ServiceCTA";
+import ServiceTransformationSection from "@/components/ServiceTransformationSection";
 import hormoneBalancingImg from "@/assets/hormone-balancing.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -337,6 +338,14 @@ export default function HormoneBalancingPage() {
       </section>
 
       {/* CTA Section */}
+      {/* ═══ REAL RESULTS — interactive transformation slider ═══ */}
+      <ServiceTransformationSection
+        variant="hormone"
+        serviceSlug="hormone-balancing"
+        title="Feel the Difference Balance Makes"
+        subtitle="Drag to compare — when hormones return to their optimal set-points, everything else follows."
+      />
+
       <ServiceCTA />
     </>
   );

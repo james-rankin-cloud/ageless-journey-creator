@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ServiceCTA from "@/components/ServiceCTA";
+import ServiceTransformationSection from "@/components/ServiceTransformationSection";
 import microneedlingImg from "@/assets/microneedling.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -205,6 +206,14 @@ export default function MicroneedlingPage() {
           </div>
         </div>
       </section>
+
+      {/* ═══ REAL RESULTS — interactive transformation slider ═══ */}
+      <ServiceTransformationSection
+        variant="microneedling"
+        serviceSlug="microneedling"
+        title="Collagen You Can See"
+        subtitle="Drag to compare — smoother texture, refined pores and visibly firmer skin."
+      />
 
       <ServiceCTA
         title="Begin Your Transformation"

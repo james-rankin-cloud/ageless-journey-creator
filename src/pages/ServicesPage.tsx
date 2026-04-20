@@ -89,7 +89,7 @@ const pillars: Pillar[] = [
     treatments: [
       { name: "GLP-1 Support (Semaglutide)", desc: "Physician-prescribed medication for sustainable loss.", href: "/services/health-weight" },
       { name: "Metabolic Testing", desc: "Comprehensive metabolic assessment.", href: "/services/health-weight" },
-      { name: "InBody Composition Analysis", desc: "Advanced body composition scanning.", href: "/services/health-weight" },
+      { name: "Nutritional Counseling", desc: "Personalised dietary guidance tuned to your metabolism.", href: "/services/health-weight" },
     ],
   },
 ];

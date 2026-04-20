@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowDown, Check, FlaskConical, Sparkles, Activity } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
+import ServiceTransformationSection from "@/components/ServiceTransformationSection";
 import belkyraImg from "@/assets/belkyra.jpg";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -238,6 +239,14 @@ export default function BelkyraPage() {
           </div>
         </div>
       </section>
+
+      {/* ═══ REAL RESULTS — interactive transformation slider ═══ */}
+      <ServiceTransformationSection
+        variant="belkyra"
+        serviceSlug="belkyra"
+        title="A Sharper, More Defined Profile"
+        subtitle="Drag to compare — permanent reduction of submental fat, without surgery."
+      />
 
       <ServiceCTA
         title="Ready to redefine your profile?"
