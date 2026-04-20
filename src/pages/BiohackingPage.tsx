@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Sun, Syringe, Wind, Brain, Flame, Zap, AudioLines, Sparkles, ArrowRight, MapPin } from "lucide-react";
 import biohackingImg from "@/assets/biohacking.jpg";
 import ServiceCTA from "@/components/ServiceCTA";
+import ServiceTransformationSection from "@/components/ServiceTransformationSection";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -337,6 +338,14 @@ export default function BiohackingPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* ═══ REAL RESULTS — interactive transformation slider ═══ */}
+      <ServiceTransformationSection
+        variant="biohacking"
+        serviceSlug="biohacking"
+        title="Performance, Measured"
+        subtitle="Drag to compare — the clarity, recovery and energy our clients report after a full biohacking protocol."
+      />
 
       <ServiceCTA
         title="Ready to optimize your biology?"

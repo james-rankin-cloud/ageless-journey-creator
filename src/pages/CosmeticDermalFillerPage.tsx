@@ -5,6 +5,7 @@ import { Droplets, Sparkles, PenTool, Triangle, FileText, Stethoscope, Heart, Sh
 import dermalFillerHeroImg from "@/assets/home-4.jpg";
 import dermalFillerProductImg from "@/assets/botox-3.jpg";
 import ServiceCTA from "@/components/ServiceCTA";
+import ServiceTransformationSection from "@/components/ServiceTransformationSection";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -308,6 +309,14 @@ export default function CosmeticDermalFillerPage() {
       </section>
 
       {/* CTA */}
+      {/* ═══ REAL RESULTS — interactive transformation slider ═══ */}
+      <ServiceTransformationSection
+        variant="filler"
+        serviceSlug="cosmetic-dermal-filler"
+        title="Volume, Contour, Confidence"
+        subtitle="Drag to compare — strategic filler restores the youthful architecture most of us lose with time."
+      />
+
       <ServiceCTA />
     </>
   );

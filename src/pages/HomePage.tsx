@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Sparkles, FlaskConical, Zap, Scale, MapPin } from "lucide-react";
 import TransformationJourney from "@/components/TransformationJourney";
+import TransformationAvatar from "@/components/TransformationAvatar";
+import { HERO_VIDEO_MP4, HERO_POSTER } from "@/lib/placeholders";
 
 import skinImg from "@/assets/services-1.jpg";
 import hormoneImg from "@/assets/hormone-balancing.jpg";
@@ -81,67 +83,138 @@ export default function HomePage() {
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      {/* ══════════════ HERO — text left, video right ══════════════ */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-background pt-24 pb-16 md:pt-28 md:pb-20 lg:pt-36 lg:pb-28">
-        <div className="pointer-events-none absolute top-20 left-10 w-72 h-72 bg-clinic-teal/8 rounded-full blur-3xl" />
-        <div className="pointer-events-none absolute bottom-10 right-20 w-96 h-96 bg-clinic-teal/5 rounded-full blur-3xl" />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-16 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
-            {/* Left: Text */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease }}
-            >
-              <p className="eyebrow mb-4 md:mb-6">
-                <span className="hairline pb-2 text-xs md:text-sm">Est. 2014 · British Columbia</span>
-              </p>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-medium text-foreground tracking-tight leading-[1.05] mb-5 md:mb-6">
-                Discover your best self,{" "}
-                <span className="text-clinic-teal">at any age.</span>
-              </h1>
-              <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-lg mb-8 md:mb-10 leading-relaxed">
-                With Ageless Living™ wide range of modern treatments and services there is something for everyone.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  to="/book"
-                  className="group inline-flex items-center justify-center gap-3 bg-clinic-teal hover:bg-clinic-teal-container text-white px-6 md:px-8 py-3.5 md:py-4 rounded-full font-semibold text-xs md:text-sm uppercase tracking-widest transition-all text-center"
-                >
-                  Book a Consultation
-                  <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-                <Link
-                  to="/our-team"
-                  className="flex items-center justify-center gap-3 px-6 md:px-8 py-3.5 md:py-4 rounded-full border-2 border-foreground/15 text-foreground font-semibold text-xs md:text-sm uppercase tracking-widest hover:bg-foreground hover:text-background transition-all"
-                >
-                  Meet Our Team
-                </Link>
-              </div>
-            </motion.div>
+      {/*
+        ═══════════════════════════════════════════════════════════════
+          HERO — full-screen motion video, premium editorial typography
+        ═══════════════════════════════════════════════════════════════
+          Swap the video file? → edit HERO_VIDEO_MP4 in
+          `src/lib/placeholders.ts`. Same for the still-image poster
+          (HERO_POSTER). Use a muted, looping, horizontally-oriented
+          .mp4 — ideally with a matching .webm for better compression.
+      */}
+      <section className="relative h-screen min-h-[640px] w-full overflow-hidden bg-black">
+        {/* Video layer */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={HERO_POSTER}
+          className="absolute inset-0 h-full w-full object-cover"
+          aria-hidden
+        >
+          <source src={HERO_VIDEO_MP4} type="video/mp4" />
+        </video>
 
-            {/* Right: Video */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.2, ease }}
-              className="relative"
-            >
-              <div className="relative rounded-xl md:rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl border border-border/30">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                >
-                  <source src="/human_graphic.webm" type="video/webm" />
-                  <source src="/human_graphic.mp4" type="video/mp4" />
-                </video>
-              </div>
-            </motion.div>
+        {/* Legibility gradients */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/5 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
+
+        {/* Top pill row — category chips, Skinphy-style */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease }}
+          className="absolute top-24 md:top-28 inset-x-0 z-20"
+        >
+          <div className="container mx-auto px-4 sm:px-6 lg:px-16 flex flex-wrap items-center gap-2 md:gap-3 justify-center md:justify-between">
+            {[
+              "Aesthetic Medicine",
+              "Hormone Balancing",
+              "Biohacking",
+              "Est. 2014 · BC",
+            ].map((pill) => (
+              <span
+                key={pill}
+                className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-[10px] md:text-xs font-medium uppercase tracking-[0.22em] text-white backdrop-blur-md"
+              >
+                {pill}
+              </span>
+            ))}
           </div>
-        </div>
+        </motion.div>
+
+        {/* Giant editorial wordmark — sits "behind" the subject */}
+        <motion.h1
+          initial={{ opacity: 0, y: 30, letterSpacing: "0.04em" }}
+          animate={{ opacity: 1, y: 0, letterSpacing: "-0.04em" }}
+          transition={{ duration: 1.1, ease }}
+          className="pointer-events-none absolute inset-x-0 top-[46%] md:top-[52%] -translate-y-1/2 z-10 text-center font-display font-light text-white leading-none"
+          style={{
+            fontSize: "clamp(4rem, 17vw, 22rem)",
+            letterSpacing: "-0.04em",
+          }}
+        >
+          AGELESS
+        </motion.h1>
+
+        {/* Top-left lead copy */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.4, ease }}
+          className="absolute top-[40%] md:top-[38%] left-0 z-20"
+        >
+          <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+            <p className="max-w-xs text-white/90 text-base md:text-lg leading-relaxed font-light">
+              Premium wellness &amp; longevity
+              <br />
+              medicine — refined for the way
+              <br />
+              you want to age.
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Bottom row — tagline + CTA cluster */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.55, ease }}
+          className="absolute bottom-10 md:bottom-14 inset-x-0 z-20"
+        >
+          <div className="container mx-auto px-4 sm:px-6 lg:px-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="max-w-md">
+              <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/60 mb-2">
+                Ageless Living™ · Victoria · Langley · Kelowna
+              </p>
+              <p className="font-display text-2xl md:text-3xl text-white leading-tight tracking-tight">
+                Discover your best self,{" "}
+                <span className="italic text-white/80">at any age.</span>
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Link
+                to="/book"
+                className="group inline-flex items-center justify-center gap-3 bg-white text-foreground px-7 md:px-8 py-3.5 md:py-4 rounded-full font-semibold text-xs md:text-sm uppercase tracking-[0.18em] transition-all hover:bg-clinic-teal hover:text-white"
+              >
+                Book a Consultation
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                to="/services"
+                className="inline-flex items-center justify-center gap-3 px-7 md:px-8 py-3.5 md:py-4 rounded-full border border-white/40 text-white font-semibold text-xs md:text-sm uppercase tracking-[0.18em] hover:bg-white/10 transition-all backdrop-blur"
+              >
+                View Services
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Scroll cue */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.6 }}
+          className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-1 text-white/60"
+        >
+          <span className="text-[9px] uppercase tracking-[0.35em]">Scroll</span>
+          <motion.span
+            className="block h-8 w-px bg-white/40"
+            animate={{ scaleY: [0.3, 1, 0.3], originY: 0 }}
+            transition={{ duration: 1.8, repeat: Infinity }}
+          />
+        </motion.div>
       </section>
 
       {/* ══════════════ STATS STRIP ══════════════ */}
@@ -241,6 +314,44 @@ export default function HomePage() {
                 </Link>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════ TRANSFORMATION AVATAR — creative interactive UI ══════════════ */}
+      <section className="relative py-16 md:py-24 lg:py-32 bg-background overflow-hidden">
+        <div className="pointer-events-none absolute -top-32 right-0 h-[32rem] w-[32rem] rounded-full bg-clinic-teal/[0.06] blur-3xl" />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-10 md:gap-14 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease }}
+            >
+              <p className="eyebrow mb-4">
+                <span className="hairline pb-2 text-xs md:text-sm">The Ageless™ Effect</span>
+              </p>
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-foreground leading-[1.05] mb-5 md:mb-6">
+                Transformation,
+                <br />
+                <span className="italic text-clinic-teal">made visible.</span>
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed mb-6 md:mb-8 max-w-md">
+                Anti-aging isn't a before &amp; after — it's a continuous
+                signal. Our interactive diagnostic maps the exact areas your
+                care plan will refine, brighten and restore.
+              </p>
+              <Link
+                to="/services"
+                className="group inline-flex items-center gap-2 text-clinic-teal font-semibold uppercase tracking-widest text-xs md:text-sm border-b-2 border-clinic-teal/20 pb-1 hover:border-clinic-teal transition-all"
+              >
+                Explore the Four Pillars
+                <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </motion.div>
+
+            <TransformationAvatar variant="home" />
           </div>
         </div>
       </section>

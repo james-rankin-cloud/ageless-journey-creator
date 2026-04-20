@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Clock, Zap, Sparkles, Eye, Frown, Activity } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
+import ServiceTransformationSection from "@/components/ServiceTransformationSection";
 import botoxHeroImg from "@/assets/botox-1.jpg";
 import botoxResultsImg from "@/assets/botox-2.jpg";
 import botoxPrecisionImg from "@/assets/botox-3.jpg";
@@ -303,6 +304,14 @@ export default function BotoxDysportPage() {
           </div>
         </div>
       </section>
+
+      {/* ═══ REAL RESULTS — interactive transformation slider ═══ */}
+      <ServiceTransformationSection
+        variant="botox"
+        serviceSlug="botox"
+        title="See Botox Results, Frame by Frame"
+        subtitle="Drag the handle to reveal real client outcomes — softer dynamic lines, rested eyes, still unmistakably you."
+      />
 
       {/* CTA */}
       <ServiceCTA />

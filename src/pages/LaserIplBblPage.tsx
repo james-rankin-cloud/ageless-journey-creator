@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Heart, Sun, Sparkles, Zap, MapPin } from "lucide-react";
 import ServiceCTA from "@/components/ServiceCTA";
+import ServiceTransformationSection from "@/components/ServiceTransformationSection";
 import laserImg from "@/assets/laser.jpg";
 import skinImg from "@/assets/services-1.jpg";
 import homeImg5 from "@/assets/botox-3.jpg";
@@ -318,6 +319,14 @@ export default function LaserIplBblPage() {
           </div>
         </div>
       </section>
+
+      {/* ═══ REAL RESULTS — interactive transformation slider ═══ */}
+      <ServiceTransformationSection
+        variant="laser"
+        serviceSlug="laser-ipl-bbl"
+        title="Pigment, Redness, Erased"
+        subtitle="Drag to compare — medical-grade light therapy clears what creams can't."
+      />
 
       <ServiceCTA />
     </>
