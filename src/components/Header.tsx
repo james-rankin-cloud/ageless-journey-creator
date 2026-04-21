@@ -260,14 +260,7 @@ export default function Header() {
                 )}
               </AnimatePresence>
             </div>
-          ) : (
-            <Link
-              to="/login"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Sign In
-            </Link>
-          )}
+          ) : null}
         </nav>
 
         <button
@@ -449,9 +442,9 @@ export default function Header() {
 
             {/* Fixed Bottom CTA */}
             <div className="shrink-0 p-5 border-t border-border bg-card space-y-3">
-              {isAuthenticated ? (
+              {isAuthenticated && (
                 <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-secondary">
-                  <div className="w-9 h-9 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9 rounded-full bg-foreground text-background text-xs font-bold flex items-center justify-center shrink-0">
                     {user?.firstName?.[0]}{user?.lastName?.[0]}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -459,7 +452,7 @@ export default function Header() {
                     <div className="flex gap-3 mt-1">
                       <Link
                         to="/dashboard"
-                        className="text-xs text-primary font-medium"
+                        className="text-xs text-clinic-teal font-medium"
                         onClick={() => setMobileOpen(false)}
                       >
                         Dashboard
@@ -473,18 +466,10 @@ export default function Header() {
                     </div>
                   </div>
                 </div>
-              ) : (
-                <Link
-                  to="/login"
-                  className="w-full flex items-center justify-center py-3 rounded-full border-2 border-border text-foreground text-base font-semibold hover:border-primary/40 transition-colors"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  Sign In
-                </Link>
               )}
               <Link
                 to="/book"
-                className="w-full flex items-center justify-center py-4 rounded-full bg-gradient-to-r from-clinic-teal to-clinic-teal text-white text-base font-semibold shadow-lg shadow-clinic-teal/20"
+                className="w-full flex items-center justify-center py-4 rounded-full bg-clinic-teal text-white text-base font-semibold shadow-sm hover:bg-clinic-teal-container transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 Book a time

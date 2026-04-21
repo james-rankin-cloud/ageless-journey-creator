@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState, useCallback, useEffect, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BEFORE_PHOTO, AFTER_PHOTO } from "@/lib/placeholders";
@@ -44,7 +44,25 @@ export default function BeforeAfterSlider({
 }: Props) {
   const [pos, setPos] = useState(initial);
   const [dragging, setDragging] = useState(false);
+  const [width, setWidth] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  // Track container width so the "before" image renders at its true pixel
+  // size — the old implementation read clientWidth synchronously during
+  // render which was stale on the first paint.
+  useLayoutEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => setWidth(el.clientWidth);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    window.addEventListener("resize", update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
   const updateFromEvent = useCallback((clientX: number) => {
     const el = containerRef.current;
@@ -54,25 +72,29 @@ export default function BeforeAfterSlider({
     setPos(Math.max(0, Math.min(100, raw)));
   }, []);
 
-  // Global listeners while dragging
   useEffect(() => {
     if (!dragging) return;
     const onMove = (e: PointerEvent) => updateFromEvent(e.clientX);
     const onUp = () => setDragging(false);
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
     return () => {
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
     };
   }, [dragging, updateFromEvent]);
 
   return (
     <div
       ref={containerRef}
-      className={`relative w-full select-none overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_80px_-20px_rgba(15,60,74,0.25)] ring-1 ring-clinic-teal/10 bg-clinic-teal-light ${className}`}
-      style={{ aspectRatio: aspect }}
+      className={`relative w-full select-none overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_80px_-20px_rgba(15,60,74,0.25)] ring-1 ring-foreground/10 bg-secondary ${
+        dragging ? "cursor-grabbing" : "cursor-grab"
+      } ${className}`}
+      style={{ aspectRatio: aspect, touchAction: "none" }}
       onPointerDown={(e) => {
+        (e.target as Element).setPointerCapture?.(e.pointerId);
         setDragging(true);
         updateFromEvent(e.clientX);
       }}
@@ -87,18 +109,22 @@ export default function BeforeAfterSlider({
         if (e.key === "ArrowRight") setPos((p) => Math.min(100, p + 4));
       }}
     >
-      {/* AFTER image — bottom layer */}
+      {/* AFTER image — bottom layer, always at full width */}
       <img
         src={after}
         alt={`${alt} — after`}
         loading="lazy"
         draggable={false}
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 h-full w-full object-cover pointer-events-none"
       />
 
-      {/* BEFORE image — clipped to handle position */}
+      {/* BEFORE image — clipped to handle position.
+          The inner <img> renders at the container's full width and is
+          simply revealed by the outer div's width. Using the measured
+          `width` (not a stale ref read during render) keeps the clip
+          accurate on first paint and on resize. */}
       <div
-        className="absolute inset-0 h-full"
+        className="absolute inset-y-0 left-0 overflow-hidden pointer-events-none"
         style={{ width: `${pos}%` }}
       >
         <img
@@ -106,20 +132,16 @@ export default function BeforeAfterSlider({
           alt={`${alt} — before`}
           loading="lazy"
           draggable={false}
-          className="absolute inset-0 h-full object-cover"
-          style={{
-            width: containerRef.current
-              ? `${containerRef.current.clientWidth}px`
-              : "100%",
-          }}
+          className="absolute inset-0 h-full object-cover max-w-none"
+          style={{ width: width ? `${width}px` : "100%" }}
         />
       </div>
 
       {/* Corner labels */}
-      <span className="absolute top-4 left-4 rounded-full bg-black/55 backdrop-blur-sm px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white">
+      <span className="absolute top-4 left-4 rounded-full bg-black/60 backdrop-blur-sm px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white pointer-events-none">
         Before
       </span>
-      <span className="absolute top-4 right-4 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground">
+      <span className="absolute top-4 right-4 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground pointer-events-none">
         After
       </span>
 
@@ -131,11 +153,11 @@ export default function BeforeAfterSlider({
         <div className="absolute inset-y-0 -translate-x-1/2 w-0.5 bg-white/90 shadow-[0_0_10px_rgba(0,0,0,0.25)]" />
         <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full bg-white shadow-xl ring-1 ring-foreground/10"
-          animate={{ scale: dragging ? 1.05 : 1 }}
+          animate={{ scale: dragging ? 1.08 : 1 }}
           transition={{ duration: 0.2 }}
         >
-          <ChevronLeft className="h-4 w-4 text-clinic-teal" />
-          <ChevronRight className="h-4 w-4 text-clinic-teal" />
+          <ChevronLeft className="h-4 w-4 text-foreground" />
+          <ChevronRight className="h-4 w-4 text-foreground" />
         </motion.div>
       </div>
     </div>

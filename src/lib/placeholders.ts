@@ -10,11 +10,6 @@
  *    2. Update the corresponding string below to point at its filename.
  *    3. Save — Vite will hot-reload it everywhere automatically.
  *
- *  Current placeholders come from the supplied  `/photos`  folder:
- *     • no_zoom_in_or_zoom_out_create__Kling_30__00466.mp4  (hero video)
- *     • download (3).png                                    (before photo)
- *     • download (4).png                                    (after photo)
- *
  *  For each field below, the comment shows WHERE the asset is rendered and
  *  WHAT kind of production file is expected (dimensions, orientation, etc.).
  *  Leave the `%20` URL-encoding in place — browsers need it for paths with
@@ -58,20 +53,6 @@ export const AFTER_PHOTO = "/photos/download%20(4).png";
  *
  *      [service]-[location]-[descriptor]-before.webp
  *      [service]-[location]-[descriptor]-after.webp
- *
- *  Example (uncomment and swap in when ready):
- *
- *    export const SERVICE_BEFORE_AFTER = {
- *      botox: {
- *        before: "/photos/botox/botox-victoria-forehead-before.webp",
- *        after:  "/photos/botox/botox-victoria-forehead-after.webp",
- *      },
- *      ...
- *    };
- *
- *  For now every service page uses the default pair defined above so you
- *  can visually validate the slider placement; swap them in one service at
- *  a time as production photos arrive.
  */
 export const SERVICE_BEFORE_AFTER: Record<
   string,
@@ -89,4 +70,79 @@ export const SERVICE_BEFORE_AFTER: Record<
   biohacking: { before: BEFORE_PHOTO, after: AFTER_PHOTO },
   "hormone-balancing": { before: BEFORE_PHOTO, after: AFTER_PHOTO },
   "health-weight": { before: BEFORE_PHOTO, after: AFTER_PHOTO },
+};
+
+/**
+ *  ─── HOME PAGE · FOUR-PHASE TRANSFORMATION MEDIA ────────────────────────
+ *  The home-page TransformationJourney section walks clients through the
+ *  four pillars of the Ageless Living™ method. Each phase needs a
+ *  before + after asset (photo OR short looping video) that visually
+ *  demonstrates the result of that phase.
+ *
+ *  REQUIRED ASSETS (see checklist in spec.md for full naming spec)
+ *    phase 1 — skin-rejuvenation-home-before.webp / -after.webp
+ *    phase 2 — hormone-balancing-home-before.webp / -after.webp
+ *    phase 3 — biohacking-home-before.webp        / -after.webp
+ *    phase 4 — health-weight-home-before.webp     / -after.webp
+ *
+ *  Optionally also provide an 8-15s looping .mp4 per phase for an even
+ *  more premium feel (set `video` property; both can coexist — video
+ *  will be used if provided, image is fallback).
+ */
+export type PhaseMedia = {
+  before: string;
+  after: string;
+  /** Optional 8-15s looping mp4 — renders in place of the after still */
+  video?: string;
+};
+
+export const HOME_PHASE_MEDIA: Record<
+  "skin" | "hormones" | "biohacking" | "weight",
+  PhaseMedia
+> = {
+  skin: { before: BEFORE_PHOTO, after: AFTER_PHOTO },
+  hormones: { before: BEFORE_PHOTO, after: AFTER_PHOTO },
+  biohacking: { before: BEFORE_PHOTO, after: AFTER_PHOTO },
+  weight: { before: BEFORE_PHOTO, after: AFTER_PHOTO },
+};
+
+/**
+ *  ─── SERVICE PAGE · PHASED TRANSFORMATION MEDIA ─────────────────────────
+ *  Every individual service page shows a 3-phase client journey:
+ *    phase 1 — "Before treatment"
+ *    phase 2 — "Mid-protocol" (1-2 weeks in)
+ *    phase 3 — "Final result" (after full course)
+ *
+ *  Each phase needs one image (or short video) per service. Paths below
+ *  default to the placeholder pair so every page renders during dev.
+ *  Swap these one service at a time as production photography arrives.
+ *
+ *  Naming convention for production files:
+ *      /public/photos/<service>/<service>-phase{1|2|3}.webp
+ *      /public/photos/<service>/<service>-phase{1|2|3}.mp4   (optional)
+ */
+export type ServicePhaseMedia = {
+  phase1: { src: string; video?: string; alt?: string };
+  phase2: { src: string; video?: string; alt?: string };
+  phase3: { src: string; video?: string; alt?: string };
+};
+
+const defaultPhaseMedia = (slug: string): ServicePhaseMedia => ({
+  phase1: { src: BEFORE_PHOTO, alt: `${slug} — before treatment` },
+  phase2: { src: BEFORE_PHOTO, alt: `${slug} — mid-protocol` },
+  phase3: { src: AFTER_PHOTO, alt: `${slug} — final result` },
+});
+
+export const SERVICE_PHASE_MEDIA: Record<string, ServicePhaseMedia> = {
+  botox: defaultPhaseMedia("botox"),
+  "cosmetic-dermal-filler": defaultPhaseMedia("cosmetic-dermal-filler"),
+  "customized-ultrafacial": defaultPhaseMedia("customized-ultrafacial"),
+  "laser-ipl-bbl": defaultPhaseMedia("laser-ipl-bbl"),
+  "perfect-derma-peel": defaultPhaseMedia("perfect-derma-peel"),
+  microneedling: defaultPhaseMedia("microneedling"),
+  belkyra: defaultPhaseMedia("belkyra"),
+  dermaplaning: defaultPhaseMedia("dermaplaning"),
+  biohacking: defaultPhaseMedia("biohacking"),
+  "hormone-balancing": defaultPhaseMedia("hormone-balancing"),
+  "health-weight": defaultPhaseMedia("health-weight"),
 };

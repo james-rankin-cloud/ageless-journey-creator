@@ -1,5 +1,105 @@
 # Ageless Living™ Website Architecture Specification
 
+## Changelog — Final UI/UX Pass: Hero, Phased Transformation, Sliders, Auth & Shop (2026-04-21)
+
+Final polish pass before hand-off. Tightens the hero, turns the home-page and service-page transformation sections into explicit phased journeys, fixes and re-designs every slider on the site, removes the standalone Sign-In entry-point in favour of a booking-time auth gate, and restricts the primary teal to buttons / accents (no more giant blue hero blocks in the shop CTA, closing CTA, or stats strip).
+
+### 1. Hero Section — Clarity & Typography (`src/pages/HomePage.tsx`)
+- Re-centred the hero: one editorial headline, one sub-line, two clean CTAs. Removed the competing left-aligned copy block, oversized `AGELESS` wordmark and the top pill row so the video reads clearly.
+- New copy explicitly states what the site is + sells:
+  - Headline: **"Look younger. Feel stronger. / Live better, longer."**
+  - Supporting line: "Physician-led skin rejuvenation, hormone balancing, biohacking and weight care — across three BC clinics in Victoria, Langley & Kelowna."
+  - Eyebrow: "Ageless Living™ · Wellness & Longevity Medicine".
+- Softer, single-tone legibility scrim replaces the layered gradients. Typography scales with `clamp(2.75rem, 7.5vw, 6.5rem)` so it stays readable on all breakpoints.
+
+### 2. Home-Page Transformation — Four Phases (`src/components/TransformationJourney.tsx`)
+- Rewritten from a "four pillars" tab strip into an explicit **four-phase journey**: Skin Rejuvenation → Hormone Balancing → Biohacking → Health Weight. Each phase is numbered `01`–`04` and the stepper fills as the user progresses.
+- Every phase now supports **before / after media**:
+  - default → `<BeforeAfterSlider>` driven by per-phase `before` / `after` stills,
+  - optional → a looping `.mp4` (set `video` on the phase in `HOME_PHASE_MEDIA`) replaces the slider with a full-bleed video card.
+- Data model lives in `src/lib/placeholders.ts` (`HOME_PHASE_MEDIA`) so photography can be swapped one phase at a time with zero code changes.
+
+#### Home-Page Asset Checklist (REQUIRED)
+Drop the following into `/public/photos/home-phases/` (prefer `.webp`, <200 KB, ≥1200×900 or 4:3). Videos are optional but recommended.
+
+| Phase | File (required) | Video (optional) | What it should show |
+| --- | --- | --- | --- |
+| 01 · Skin Rejuvenation | `skin-rejuvenation-home-before.webp` + `skin-rejuvenation-home-after.webp` | `skin-rejuvenation-home.mp4` (8–15 s, muted loop) | Close-up face: Before (visible lines / uneven tone) → After (smoother, even, glowing) |
+| 02 · Hormone Balancing | `hormone-balancing-home-before.webp` + `hormone-balancing-home-after.webp` | `hormone-balancing-home.mp4` | Lifestyle portrait: Before (tired, drained) → After (energetic, clear-eyed, smiling) |
+| 03 · Biohacking | `biohacking-home-before.webp` + `biohacking-home-after.webp` | `biohacking-home.mp4` | Body / posture shot OR an in-clinic therapy photo (red-light, IV, HBOT) transitioning to active, athletic shot |
+| 04 · Health Weight | `health-weight-home-before.webp` + `health-weight-home-after.webp` | `health-weight-home.mp4` | Full-body: Before → After composition change, consistent pose / lighting |
+
+Update the paths in `HOME_PHASE_MEDIA` (`src/lib/placeholders.ts`) once assets are in place.
+
+### 3. Service-Page Transformation — Three-Phase Flow (`src/components/ServiceTransformationSection.tsx`)
+- Every individual service page now shows a **three-phase client journey**: `Before Treatment` → `Mid-Protocol` → `Final Result`. A segmented control tabs between the three; each phase can render an image OR a short looping video.
+- Below the phase tabs, the real draggable `<BeforeAfterSlider>` still shows the final outcome. The compact `TransformationAvatar` stays on the right.
+- Per-service media is declared in `SERVICE_PHASE_MEDIA` (`src/lib/placeholders.ts`). Every service has sensible placeholder entries today; swap them one at a time as production photography arrives.
+
+#### Service-Page Asset Checklist (REQUIRED, per service)
+For **every** service below, supply all three phase stills. Store under `/public/photos/<service>/` using the naming convention `{service}-phase{1|2|3}.webp`. Videos (`.mp4`, muted 8–15 s loops) are optional and take precedence over stills when present.
+
+All service pages also still need the existing two-file before/after pair (`before.webp` / `after.webp`) for the comparison slider.
+
+| Service | Slug / folder | Stills required (× 3 phases) | Suggested shot |
+| --- | --- | --- | --- |
+| Botox / Dysport | `botox` | `botox-phase1.webp`, `botox-phase2.webp`, `botox-phase3.webp` | Forehead / glabella at rest + at full expression, Before → 2 weeks in → 2 months |
+| Cosmetic Dermal Filler | `cosmetic-dermal-filler` | `cosmetic-dermal-filler-phase1.webp` … `-phase3.webp` | 3/4 profile, cheek / nasolabial area, consistent neutral light |
+| Customized UltraFacial | `customized-ultrafacial` | `customized-ultrafacial-phase1.webp` … `-phase3.webp` | Bare-face frontal, Before → day-of-glow → 4 weeks |
+| Laser & IPL / BBL | `laser-ipl-bbl` | `laser-ipl-bbl-phase1.webp` … `-phase3.webp` | Pigmentation / vascular area close-up, Before → week 2 → week 8 |
+| The Perfect Derma™ Peel | `perfect-derma-peel` | `perfect-derma-peel-phase1.webp` … `-phase3.webp` | Full face, Before → day 4 peel → 3 weeks post |
+| Medical Microneedling | `microneedling` | `microneedling-phase1.webp` … `-phase3.webp` | Texture close-up, Before → 1 week (mild pinkness) → 6 weeks |
+| Belkyra™ | `belkyra` | `belkyra-phase1.webp` … `-phase3.webp` | Submental / neck profile, Before → session 2 → final |
+| Dermaplaning | `dermaplaning` | `dermaplaning-phase1.webp` … `-phase3.webp` | Cheek close-up, Before → day-of → 2 weeks |
+| Biohacking | `biohacking` | `biohacking-phase1.webp` … `-phase3.webp` | In-clinic therapy shots + active-life shot (or performance metrics graphic) |
+| Hormone Balancing | `hormone-balancing` | `hormone-balancing-phase1.webp` … `-phase3.webp` | Lifestyle portrait showing energy transformation across phases |
+| Health Weight | `health-weight` | `health-weight-phase1.webp` … `-phase3.webp` | Full-body front shot, Before → mid-program → final, consistent wardrobe / lighting |
+
+For each service also deliver (or confirm existing) `before.webp` + `after.webp` for the drag slider — update `SERVICE_BEFORE_AFTER` in the same file.
+
+### 4. Sliders — Global Fix & Redesign
+- **`BeforeAfterSlider`** — Fixed a rendering bug where the `before` image's pixel width was read from a stale `containerRef.current.clientWidth` during render. Replaced with a `useLayoutEffect` + `ResizeObserver` that keeps the measured width in state, so the slider renders correctly on first paint and on resize. Added `pointer-capture`, `touch-action: none`, a grab / grabbing cursor, and tightened the visual frame (removed the tinted teal background that bled through).
+- **`Reviews.tsx`** — Replaced the CSS ticker with a polished one-at-a-time review slider: quote card, star rating, client + service + location, left/right arrows, dot pagination, swipe gestures, 7 s auto-advance that pauses on hover.
+- **`TestimonialsWall.tsx`** — Replaced the dual-row marquee with a responsive paginated slider that shows 3 cards on desktop / 2 on tablet / 1 on mobile, with arrow controls, dot pagination, swipe, and 6.5 s auto-advance. Cards are now clean white cards on a neutral background (no teal bleed).
+
+### 5. Authentication Flow — Booking-Time Gate
+- Removed the standalone **"Sign In"** link from both the desktop nav and the mobile drawer in `src/components/Header.tsx`. The only auth-related UI in the header is the avatar menu (shown only when already signed in).
+- Removed the "Already a client? Sign In" side panel from `src/pages/BookNowPage.tsx`.
+- Added a modal auth gate to `BookNowPage`: clicking **Confirm Booking** while unauthenticated now opens a compact in-page modal with a `Sign In` / `Create Account` toggle (React Hook Form + Zod, inline errors). On success the modal closes and the booking is finalised in the same click — the user never has to re-select their date/time/service.
+- `/login` and `/signup` routes remain available for direct navigation (dashboard links, deep-linking) but they are no longer surfaced from the global nav.
+
+### 6. Shop CTA + Closing CTA — Minimal Redesign (`src/components/VisitShopCta.tsx`, HomePage closing section)
+- New **VisitShopCta** copy and layout:
+  - Heading copy: **"Shop our products on our online store."**
+  - Removed the full-width teal block, oversized `shop` wordmark, and `text-white` body copy. Layout is now a neutral two-column editorial section on `bg-background` with a single teal CTA button.
+  - Product card uses a white glass chip for the bundle label and a dark chip for the "Save 15%" badge — no teal overlay on the image.
+- **Home-page closing CTA** — swapped the full-bleed `bg-clinic-teal` hero-style panel for a neutral editorial section: `bg-background`, foreground/60 watermark, solid teal button + outline-only secondary. Adds an italic teal accent on "wellness journey?" to preserve brand warmth.
+- **Home-page stats strip** — changed from `bg-clinic-teal text-white` to a neutral `bg-background` band with top/bottom hairline borders. Large teal blocks are now reserved for deliberate accents only.
+
+### 7. Global Colour Rule
+Primary blue (`clinic-teal`, `hsl(186 41% 51%)`) is now restricted to:
+1. Interactive elements — primary buttons, hover states, links, focus rings.
+2. Small accent moments — hairline underlines (`.hairline`), italic emphasis, pill icons.
+
+It must **not** be used for full-width section backgrounds. Neutral surfaces are: `bg-background`, `bg-card`, `bg-secondary` (warm off-white) and `bg-foreground` (near-black, used by the footer only).
+
+### Files Changed in This Pass
+
+| File | Change |
+| --- | --- |
+| `src/pages/HomePage.tsx` | Hero redesign, stats strip de-teal, closing CTA redesign |
+| `src/components/TransformationJourney.tsx` | Rewritten as 4-phase journey with before/after media |
+| `src/components/ServiceTransformationSection.tsx` | Rewritten as 3-phase client journey + slider + avatar |
+| `src/components/BeforeAfterSlider.tsx` | Fixed stale-width bug, polished interaction |
+| `src/components/Reviews.tsx` | Replaced ticker with polished slider |
+| `src/components/TestimonialsWall.tsx` | Replaced marquee with paginated slider |
+| `src/components/Header.tsx` | Removed "Sign In" (desktop + mobile) |
+| `src/components/VisitShopCta.tsx` | Minimal editorial redesign, new copy |
+| `src/pages/BookNowPage.tsx` | Auth modal gate at confirmation |
+| `src/lib/placeholders.ts` | Added `HOME_PHASE_MEDIA` + `SERVICE_PHASE_MEDIA`, documented asset checklist |
+
+---
+
 ## Changelog — Premium Redesign: Video Hero & Transformation Components (2026-04-20)
 
 A major premium-brand upgrade. Goal: make the site feel significantly more high-end (Apple / luxury Korean skincare aesthetic) without losing the existing core identity. Adds motion storytelling, a creative transformation avatar, real before/after sliders, and tightens the services catalogue.
