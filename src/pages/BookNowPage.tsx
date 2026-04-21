@@ -2,10 +2,13 @@ import { Helmet } from "react-helmet-async";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar as CalendarIcon, User, Check, ChevronRight, LogIn, Clock, ChevronDown, ArrowRight } from "lucide-react";
+import { Calendar as CalendarIcon, User, Check, ChevronRight, Lock, Clock, ChevronDown, ArrowRight } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { useAuth } from "@/lib/auth";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 type Location = "langley" | "kelowna" | "victoria";
 
 const mainServices = [
@@ -78,8 +81,23 @@ function generateSlots(day: number) {
   return slots.filter((_, i) => (i + day) % 3 !== 0);
 }
 
+const authSchema = z.object({
+  mode: z.enum(["signin", "signup"]),
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
+  phone: z.string().optional(),
+  email: z.string().email("Enter a valid email"),
+  password: z.string().min(6, "Minimum 6 characters"),
+}).superRefine((data, ctx) => {
+  if (data.mode === "signup") {
+    if (!data.firstName?.trim()) ctx.addIssue({ code: "custom", path: ["firstName"], message: "First name required" });
+    if (!data.lastName?.trim()) ctx.addIssue({ code: "custom", path: ["lastName"], message: "Last name required" });
+  }
+});
+type AuthFormValues = z.infer<typeof authSchema>;
+
 export default function BookNowPage() {
-  const { isAuthenticated, user, addBooking } = useAuth();
+  const { isAuthenticated, user, addBooking, login, signup } = useAuth();
   const [location, setLocation] = useState<Location>(
     (user?.preferredLocation as Location) || "langley"
   );
@@ -89,6 +107,14 @@ export default function BookNowPage() {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [confirmed, setConfirmed] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
+
+  const authForm = useForm<AuthFormValues>({
+    resolver: zodResolver(authSchema),
+    defaultValues: { mode: "signin", email: "", password: "" },
+  });
+  const authMode = authForm.watch("mode");
 
   const clinicians = cliniciansByLocation[location];
 
@@ -110,20 +136,54 @@ export default function BookNowPage() {
   const subOptions = selectedMain ? subServiceMap[selectedMain] : undefined;
 
   const step = confirmed ? 5 : selectedTime ? 4 : selectedDate ? 3 : hasSelection ? 2 : 1;
-  const handleConfirm = () => {
-    if (isAuthenticated && selectedDate && selectedTime && selectedMain) {
-      addBooking({
-        location: location.charAt(0).toUpperCase() + location.slice(1),
-        service: selectedMain,
-        subServices: selectedSubs,
-        clinician: selectedClinician,
-        date: format(selectedDate, "yyyy-MM-dd"),
-        time: selectedTime,
-        status: "upcoming",
-      });
-    }
+
+  const finalizeBooking = () => {
+    if (!selectedDate || !selectedTime || !selectedMain) return;
+    addBooking({
+      location: location.charAt(0).toUpperCase() + location.slice(1),
+      service: selectedMain,
+      subServices: selectedSubs,
+      clinician: selectedClinician,
+      date: format(selectedDate, "yyyy-MM-dd"),
+      time: selectedTime,
+      status: "upcoming",
+    });
     setConfirmed(true);
   };
+
+  const handleConfirm = () => {
+    if (isAuthenticated) {
+      finalizeBooking();
+    } else {
+      setShowAuth(true);
+    }
+  };
+
+  const handleAuthSubmit = authForm.handleSubmit((values) => {
+    setAuthError(null);
+    if (values.mode === "signin") {
+      const res = login(values.email, values.password);
+      if (!res.success) {
+        setAuthError(res.error ?? "Could not sign in.");
+        return;
+      }
+    } else {
+      const res = signup({
+        firstName: values.firstName!,
+        lastName: values.lastName!,
+        email: values.email,
+        phone: values.phone ?? "",
+        password: values.password,
+        preferredLocation: location,
+      });
+      if (!res.success) {
+        setAuthError(res.error ?? "Could not create account.");
+        return;
+      }
+    }
+    setShowAuth(false);
+    finalizeBooking();
+  });
 
   const summaryServices = selectedSubs.length > 0
     ? `${selectedMain} — ${selectedSubs.join(", ")}`
@@ -406,36 +466,166 @@ export default function BookNowPage() {
               )}
             </AnimatePresence>
 
-            {/* Client Portal */}
-            {isAuthenticated ? (
+            {/* Client Portal — shown only when already signed in */}
+            {isAuthenticated && (
               <Link
                 to="/dashboard"
-                className="flex items-center gap-3 p-5 rounded-2xl bg-primary/5 border border-primary/20 text-sm group hover:bg-primary/10 transition-colors"
+                className="flex items-center gap-3 p-5 rounded-2xl bg-secondary border border-border text-sm group hover:border-clinic-teal/40 transition-colors"
               >
-                <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0 text-sm font-bold">
+                <div className="w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center shrink-0 text-sm font-bold">
                   {user?.firstName?.[0]}{user?.lastName?.[0]}
                 </div>
                 <div className="flex-1">
-                  <p className="font-semibold text-foreground">Welcome, {user?.firstName}</p>
+                  <p className="font-semibold text-foreground">Welcome back, {user?.firstName}</p>
                   <p className="text-muted-foreground">View your dashboard, history &amp; upcoming appointments.</p>
                 </div>
-                <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-0.5 transition-transform" />
+                <ArrowRight className="h-4 w-4 text-clinic-teal group-hover:translate-x-0.5 transition-transform" />
               </Link>
-            ) : (
-              <div className="flex items-center gap-3 p-5 rounded-2xl bg-secondary text-sm">
-                <LogIn className="h-5 w-5 text-primary shrink-0" />
-                <div className="flex-1">
-                  <p className="font-semibold text-foreground">Already a client?</p>
-                  <p className="text-muted-foreground">Log in to save bookings, view history &amp; rebook easily.</p>
-                </div>
-                <Link to="/login" className="text-primary font-semibold text-sm hover:underline shrink-0">
-                  Sign In
-                </Link>
-              </div>
             )}
           </div>
         </div>
       </section>
+
+      {/* Auth gate — shown when user confirms a booking without being signed in */}
+      <AnimatePresence>
+        {showAuth && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+            onClick={() => setShowAuth(false)}
+          >
+            <motion.div
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 40, opacity: 0 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-md bg-background rounded-2xl shadow-2xl border border-border p-6 md:p-8"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="auth-gate-title"
+            >
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-10 h-10 rounded-full bg-clinic-teal-light flex items-center justify-center">
+                  <Lock className="h-4 w-4 text-clinic-teal" />
+                </div>
+                <div>
+                  <h3 id="auth-gate-title" className="text-lg font-semibold text-foreground">
+                    One last step
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {authMode === "signin" ? "Sign in to confirm your booking." : "Create an account to confirm your booking."}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 mb-5 p-1 rounded-full bg-secondary">
+                <button
+                  type="button"
+                  onClick={() => { authForm.setValue("mode", "signin"); setAuthError(null); }}
+                  className={`flex-1 py-2 text-xs font-semibold uppercase tracking-widest rounded-full transition-colors ${
+                    authMode === "signin" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground"
+                  }`}
+                >
+                  Sign In
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { authForm.setValue("mode", "signup"); setAuthError(null); }}
+                  className={`flex-1 py-2 text-xs font-semibold uppercase tracking-widest rounded-full transition-colors ${
+                    authMode === "signup" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground"
+                  }`}
+                >
+                  Create Account
+                </button>
+              </div>
+
+              <form onSubmit={handleAuthSubmit} className="space-y-3">
+                {authMode === "signup" && (
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <input
+                        {...authForm.register("firstName")}
+                        placeholder="First name"
+                        className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-clinic-teal outline-none text-sm"
+                      />
+                      {authForm.formState.errors.firstName && (
+                        <p className="mt-1 text-xs text-red-500">{authForm.formState.errors.firstName.message}</p>
+                      )}
+                    </div>
+                    <div>
+                      <input
+                        {...authForm.register("lastName")}
+                        placeholder="Last name"
+                        className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-clinic-teal outline-none text-sm"
+                      />
+                      {authForm.formState.errors.lastName && (
+                        <p className="mt-1 text-xs text-red-500">{authForm.formState.errors.lastName.message}</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+                <div>
+                  <input
+                    {...authForm.register("email")}
+                    type="email"
+                    autoComplete="email"
+                    placeholder="Email"
+                    className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-clinic-teal outline-none text-sm"
+                  />
+                  {authForm.formState.errors.email && (
+                    <p className="mt-1 text-xs text-red-500">{authForm.formState.errors.email.message}</p>
+                  )}
+                </div>
+                {authMode === "signup" && (
+                  <input
+                    {...authForm.register("phone")}
+                    type="tel"
+                    autoComplete="tel"
+                    placeholder="Phone (optional)"
+                    className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-clinic-teal outline-none text-sm"
+                  />
+                )}
+                <div>
+                  <input
+                    {...authForm.register("password")}
+                    type="password"
+                    autoComplete={authMode === "signin" ? "current-password" : "new-password"}
+                    placeholder="Password"
+                    className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-clinic-teal outline-none text-sm"
+                  />
+                  {authForm.formState.errors.password && (
+                    <p className="mt-1 text-xs text-red-500">{authForm.formState.errors.password.message}</p>
+                  )}
+                </div>
+
+                {authError && (
+                  <p className="text-xs text-red-500 bg-red-50 border border-red-100 px-3 py-2 rounded-lg">
+                    {authError}
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  className="w-full inline-flex items-center justify-center gap-2 py-3.5 rounded-full bg-foreground text-background text-sm font-semibold uppercase tracking-widest hover:bg-clinic-teal transition-colors"
+                >
+                  {authMode === "signin" ? "Sign in & Confirm" : "Create account & Confirm"}
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowAuth(false)}
+                  className="w-full text-xs text-muted-foreground hover:text-foreground transition-colors pt-1"
+                >
+                  Cancel
+                </button>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -85,12 +85,11 @@ export default function HomePage() {
 
       {/*
         ═══════════════════════════════════════════════════════════════
-          HERO — full-screen motion video, premium editorial typography
+          HERO — full-screen motion video with clean, centered typography.
+          One headline. One sub-line. One primary CTA. That's it.
         ═══════════════════════════════════════════════════════════════
           Swap the video file? → edit HERO_VIDEO_MP4 in
-          `src/lib/placeholders.ts`. Same for the still-image poster
-          (HERO_POSTER). Use a muted, looping, horizontally-oriented
-          .mp4 — ideally with a matching .webm for better compression.
+          `src/lib/placeholders.ts`. Same for the still-image poster.
       */}
       <section className="relative h-screen min-h-[640px] w-full overflow-hidden bg-black">
         {/* Video layer */}
@@ -106,107 +105,73 @@ export default function HomePage() {
           <source src={HERO_VIDEO_MP4} type="video/mp4" />
         </video>
 
-        {/* Legibility gradients */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/5 to-black/60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
+        {/* Single, even legibility scrim — softer than before */}
+        <div className="absolute inset-0 bg-black/45" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/55" />
 
-        {/* Top pill row — category chips, Skinphy-style */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease }}
-          className="absolute top-24 md:top-28 inset-x-0 z-20"
-        >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-16 flex flex-wrap items-center gap-2 md:gap-3 justify-center md:justify-between">
-            {[
-              "Aesthetic Medicine",
-              "Hormone Balancing",
-              "Biohacking",
-              "Est. 2014 · BC",
-            ].map((pill) => (
-              <span
-                key={pill}
-                className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-[10px] md:text-xs font-medium uppercase tracking-[0.22em] text-white backdrop-blur-md"
-              >
-                {pill}
-              </span>
-            ))}
-          </div>
-        </motion.div>
+        {/* Centered content stack */}
+        <div className="relative z-20 h-full flex items-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-16 text-center">
+            <motion.p
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease }}
+              className="text-[10px] md:text-xs uppercase tracking-[0.32em] text-white/70 mb-6 md:mb-8"
+            >
+              Ageless Living™ · Wellness &amp; Longevity Medicine
+            </motion.p>
 
-        {/* Giant editorial wordmark — sits "behind" the subject */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30, letterSpacing: "0.04em" }}
-          animate={{ opacity: 1, y: 0, letterSpacing: "-0.04em" }}
-          transition={{ duration: 1.1, ease }}
-          className="pointer-events-none absolute inset-x-0 top-[46%] md:top-[52%] -translate-y-1/2 z-10 text-center font-display font-light text-white leading-none"
-          style={{
-            fontSize: "clamp(4rem, 17vw, 22rem)",
-            letterSpacing: "-0.04em",
-          }}
-        >
-          AGELESS
-        </motion.h1>
-
-        {/* Top-left lead copy */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.4, ease }}
-          className="absolute top-[40%] md:top-[38%] left-0 z-20"
-        >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-16">
-            <p className="max-w-xs text-white/90 text-base md:text-lg leading-relaxed font-light">
-              Premium wellness &amp; longevity
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease }}
+              className="font-display font-medium text-white leading-[1.02] tracking-tight mx-auto max-w-5xl"
+              style={{ fontSize: "clamp(2.75rem, 7.5vw, 6.5rem)" }}
+            >
+              Look younger. Feel stronger.
               <br />
-              medicine — refined for the way
-              <br />
-              you want to age.
-            </p>
-          </div>
-        </motion.div>
+              <span className="italic font-light text-white/90">Live better, longer.</span>
+            </motion.h1>
 
-        {/* Bottom row — tagline + CTA cluster */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.55, ease }}
-          className="absolute bottom-10 md:bottom-14 inset-x-0 z-20"
-        >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <div className="max-w-md">
-              <p className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/60 mb-2">
-                Ageless Living™ · Victoria · Langley · Kelowna
-              </p>
-              <p className="font-display text-2xl md:text-3xl text-white leading-tight tracking-tight">
-                Discover your best self,{" "}
-                <span className="italic text-white/80">at any age.</span>
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.2, ease }}
+              className="mt-6 md:mt-8 mx-auto max-w-2xl text-base md:text-lg text-white/85 leading-relaxed"
+            >
+              Physician-led skin rejuvenation, hormone balancing, biohacking and
+              weight care — across three BC clinics in Victoria, Langley &amp; Kelowna.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.35, ease }}
+              className="mt-9 md:mt-11 flex flex-col sm:flex-row justify-center gap-3"
+            >
               <Link
                 to="/book"
-                className="group inline-flex items-center justify-center gap-3 bg-white text-foreground px-7 md:px-8 py-3.5 md:py-4 rounded-full font-semibold text-xs md:text-sm uppercase tracking-[0.18em] transition-all hover:bg-clinic-teal hover:text-white"
+                className="group inline-flex items-center justify-center gap-3 bg-white text-foreground px-8 py-4 rounded-full font-semibold text-sm uppercase tracking-[0.18em] transition-all hover:bg-clinic-teal hover:text-white"
               >
                 Book a Consultation
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/services"
-                className="inline-flex items-center justify-center gap-3 px-7 md:px-8 py-3.5 md:py-4 rounded-full border border-white/40 text-white font-semibold text-xs md:text-sm uppercase tracking-[0.18em] hover:bg-white/10 transition-all backdrop-blur"
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full border border-white/50 text-white font-semibold text-sm uppercase tracking-[0.18em] hover:bg-white/10 transition-all backdrop-blur"
               >
-                View Services
+                Explore Services
               </Link>
-            </div>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Scroll cue */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.6 }}
-          className="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-1 text-white/60"
+          className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-1.5 text-white/60"
         >
           <span className="text-[9px] uppercase tracking-[0.35em]">Scroll</span>
           <motion.span
@@ -217,10 +182,10 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* ══════════════ STATS STRIP ══════════════ */}
-      <section className="bg-clinic-teal text-white py-10 md:py-12 lg:py-16">
+      {/* ══════════════ STATS STRIP — neutral, editorial ══════════════ */}
+      <section className="bg-background border-y border-border/60 py-10 md:py-12 lg:py-14">
         <div className="container mx-auto px-4 sm:px-6 lg:px-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-6 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
             {[
               { k: "10+", v: "Years in BC" },
               { k: "3", v: "Clinic locations" },
@@ -234,10 +199,10 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease }}
               >
-                <p className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">
+                <p className="font-display text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-foreground">
                   {s.k}
                 </p>
-                <p className="mt-1.5 md:mt-2 text-[10px] sm:text-xs uppercase tracking-[0.2em] text-white/70">
+                <p className="mt-1.5 md:mt-2 text-[10px] sm:text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   {s.v}
                 </p>
               </motion.div>
@@ -550,47 +515,49 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══════════════ CLOSING CTA — with logo watermark ══════════════ */}
-      <section className="relative bg-clinic-teal text-white overflow-hidden">
-        {/* Oversized logo watermark */}
+      {/* ══════════════ CLOSING CTA — editorial, minimal ══════════════ */}
+      <section className="relative bg-background overflow-hidden border-t border-border/60">
+        {/* Oversized wordmark watermark in the site's neutral tone */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 flex items-center justify-center select-none"
         >
-          <span className="logo-watermark text-white/[0.08] text-[28vw] md:text-[20vw]">
+          <span className="logo-watermark text-foreground/[0.04] text-[28vw] md:text-[20vw]">
             ageless
           </span>
         </div>
-        {/* Small logo badge */}
-        <div className="pointer-events-none absolute top-8 md:top-10 left-1/2 -translate-x-1/2 opacity-25">
-          <img src={logo} alt="" className="h-5 md:h-7 brightness-0 invert" aria-hidden />
+        <div className="pointer-events-none absolute top-8 md:top-10 left-1/2 -translate-x-1/2 opacity-30">
+          <img src={logo} alt="" className="h-5 md:h-7" aria-hidden />
         </div>
 
-        <div className="relative container mx-auto px-4 sm:px-6 lg:px-16 py-20 md:py-28 lg:py-36 text-center max-w-4xl">
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-16 py-20 md:py-28 lg:py-32 text-center max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-tight mb-5 md:mb-6">
+            <p className="eyebrow mb-4">
+              <span className="hairline pb-2 text-xs md:text-sm">Start Today</span>
+            </p>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-foreground tracking-tight leading-tight mb-5">
               Ready to start your
               <br />
-              wellness journey?
+              <span className="italic text-clinic-teal">wellness journey?</span>
             </h2>
-            <p className="text-base md:text-lg text-white/80 mb-8 md:mb-10 max-w-lg mx-auto leading-relaxed px-4">
+            <p className="text-base md:text-lg text-muted-foreground mb-9 max-w-lg mx-auto leading-relaxed px-4">
               Book a comprehensive consultation with our medical team at any of our three BC locations.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 px-4 sm:px-0">
               <Link
                 to="/book"
-                className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3.5 md:py-4 rounded-full bg-white text-clinic-teal font-semibold text-xs md:text-sm uppercase tracking-widest hover:bg-white/90 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-clinic-teal text-white font-semibold text-xs md:text-sm uppercase tracking-widest hover:bg-clinic-teal-container transition-colors"
               >
                 Book Online
               </Link>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3.5 md:py-4 rounded-full border-2 border-white/30 text-white font-semibold text-xs md:text-sm uppercase tracking-widest hover:bg-white/10 transition-all"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-foreground/20 text-foreground font-semibold text-xs md:text-sm uppercase tracking-widest hover:border-foreground transition-colors"
               >
                 Contact Us
               </Link>

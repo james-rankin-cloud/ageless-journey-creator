@@ -6,6 +6,47 @@ This session focused on expanding the treatment pages and improving navigation f
 
 ---
 
+## Addendum — Final UI/UX Pass (2026-04-21)
+
+This pass closes out the client's punch list. See the matching entry at the top of `spec.md` for full component detail.
+
+### What changed, in one glance
+1. **Hero** — cleaner typography, single centered stack, explicit value-prop copy ("Look younger. Feel stronger. Live better, longer.") over the existing video.
+2. **Home-page transformation** — replaced "Ageless Effect" tab strip with a numbered four-phase journey (Skin → Hormones → Biohacking → Weight), each phase supporting before/after stills or a looping video.
+3. **Service-page transformation** — every service page now shows a three-phase client journey (Before → Mid-Protocol → Final Result) plus the existing drag slider + annotated avatar.
+4. **Slider fix + redesign** — fixed the broken `BeforeAfterSlider` stale-width bug; replaced the CSS marquee sliders in `Reviews.tsx` and `TestimonialsWall.tsx` with polished paginated sliders (arrows, dots, swipe, auto-advance, pause-on-hover).
+5. **Auth** — removed "Sign In" from the global nav. `BookNowPage` now opens an inline Sign-In / Create-Account modal only when the user clicks **Confirm Booking** without an existing session.
+6. **Shop CTA + closing CTA** — removed the full-bleed teal blocks. `VisitShopCta` copy is now "Shop our products on our online store." on a neutral background. Home-page closing CTA and stats strip are neutral with a single teal button.
+7. **Colour rule** — primary teal is restricted to buttons / interactive text / small accents. No large teal background panels.
+
+### Required client-supplied assets (action items)
+
+The new phased transformation sections are wired up with default placeholders but need real photography / video to ship. Paths are all centralised in `src/lib/placeholders.ts`.
+
+#### Home page — 4 phases
+Drop into `/public/photos/home-phases/` (prefer `.webp`, <200 KB, 4:3 or 1200×900+):
+- `skin-rejuvenation-home-before.webp` + `skin-rejuvenation-home-after.webp` (optional: `skin-rejuvenation-home.mp4`)
+- `hormone-balancing-home-before.webp` + `hormone-balancing-home-after.webp` (optional: `.mp4`)
+- `biohacking-home-before.webp` + `biohacking-home-after.webp` (optional: `.mp4`)
+- `health-weight-home-before.webp` + `health-weight-home-after.webp` (optional: `.mp4`)
+
+Then update `HOME_PHASE_MEDIA` in `src/lib/placeholders.ts`.
+
+#### Each service page — 3 phases × 11 services
+Drop into `/public/photos/<service-slug>/`:
+- `<slug>-phase1.webp` (before treatment)
+- `<slug>-phase2.webp` (mid-protocol, 1-2 weeks in)
+- `<slug>-phase3.webp` (final result)
+- Optionally an `.mp4` per phase for the most premium feel.
+
+Service slugs to deliver: `botox`, `cosmetic-dermal-filler`, `customized-ultrafacial`, `laser-ipl-bbl`, `perfect-derma-peel`, `microneedling`, `belkyra`, `dermaplaning`, `biohacking`, `hormone-balancing`, `health-weight`.
+
+Each service also still uses a `before.webp` + `after.webp` pair for the drag comparison slider — update those in `SERVICE_BEFORE_AFTER` (same file).
+
+Full checklist with suggested shot direction lives in `spec.md` under the 2026-04-21 changelog.
+
+---
+
 ## Changes Made
 
 ### 1. Code Refactoring (Per CLAUDE.md Section 18)
