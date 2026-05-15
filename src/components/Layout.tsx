@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import VisitShopCta from "./VisitShopCta";
+import NewsletterSignup from "./NewsletterSignup";
 import ChatBot from "./ChatBot";
 
 export default function Layout() {
@@ -33,6 +34,7 @@ export default function Layout() {
       <main id="main-content">
         <Outlet />
       </main>
+      <NewsletterSignup />
       <VisitShopCta />
       <Footer />
       <ChatBot />
