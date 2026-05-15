@@ -1953,3 +1953,73 @@ New global section above the footer, mounted in `Layout.tsx`:
 - `npm run build` — clean (largest gzip chunk ≈ 138 KB).
 - `npm test` — 1/1 passing.
 - `npm run lint` — 0 errors (8 pre-existing shadcn warnings).
+
+---
+
+## Performance Packages Landing — 2026-05-15
+
+A dedicated, high-converting landing page for athletic / fitness clientele
+(target: bodybuilders & competitors at events such as the BC Cup).
+
+### Route
+- `/performance-packages` — public, standalone (no Header / Newsletter /
+  Footer chrome) so the dark athletic canvas is uninterrupted. A minimal
+  fixed top bar links back to `/`.
+- `/admin` — internal marketing-tools page; not linked from public nav,
+  added to `robots.txt` disallow list.
+
+### Page composition (`src/pages/PerformancePackagesPage.tsx`)
+- Dark canvas (`bg-neutral-950`) with radial sky-blue / red-amber lighting
+  and a soft grid overlay — bridges luxury wellness with athletic edge.
+- Hero: cinematic headline ("Train hard. Recover smarter."), eyebrow
+  ribbon ("Stage-Day Protocols · BC Cup Ready") and twin CTAs.
+- Stats strip: 4 cells in a hairline-separated panel.
+- Packages: two interactive cards — **Men's Performance Package** and
+  **Women's Performance Package**. Each card features:
+  - Distinct gradient art (sky-blue for men's, pink for women's).
+  - Eyebrow / ribbon / blurb / 6 icon-prefixed highlights covering
+    hormone optimization, IV / recovery therapies, metabolic conditioning,
+    stage-prep skin and post-show endocrine reset.
+  - Hover lift + amber glow ring; "Select package" pre-fills the form
+    below and smooth-scrolls to it. "Learn more" anchor for soft commits.
+- Three-step process band (Intake → Build → Peak Week).
+- Interest form (see below).
+
+### Interest form
+- React Hook Form + Zod validation:
+  `fullName` (≥2), `email`, `phone` (≥7 digits, permissive regex),
+  `package` (`mens | womens | unsure`), optional `notes`.
+- Loading state with animated spinner, `disabled` on submit.
+- Animated success card via Framer Motion `AnimatePresence`.
+- Persistence: `savePerformanceLead()` in `src/lib/performanceLeads.ts`
+  POSTs to `/api/performance-interest` (Vercel-style reference handler
+  at `api/performance-interest.ts`) with `localStorage` fallback for dev.
+
+### QR code generator (`src/components/PerformanceQRCode.tsx`)
+- Uses `qrcode.react` (`QRCodeSVG`, error-correction level "H") so the
+  code remains scannable even when overlaid with branding.
+- URL auto-resolves to the absolute origin (`window.location.origin +
+  /performance-packages`) so the same component works in dev, preview,
+  and production without a config change.
+- One-click **PNG download** at 1024×1024 px (rasterised via offscreen
+  canvas with a white plate) for banners / flyers.
+- One-click **SVG download** for vector workflows.
+- Copy-link button for quick sharing.
+
+### Admin route (`src/pages/AdminPage.tsx`)
+- Mounted on `/admin` outside the public Layout.
+- Renders the `PerformanceQRCode` plus a live snapshot table of leads
+  captured via `listPerformanceLeads()` (localStorage fallback).
+- `<meta name="robots" content="noindex, nofollow" />` + `robots.txt`
+  disallow so search engines skip it.
+
+### SEO / config
+- `public/sitemap.xml` extended with `/performance-packages` at priority
+  0.8 / weekly.
+- `public/robots.txt` disallows `/admin`.
+- New dependency: `qrcode.react` ^4.2.0.
+
+### Verification
+- `npm run build` — clean (largest gzip chunk ≈ 151 KB).
+- `npm test` — 1/1 passing.
+- `npm run lint` — 0 errors (8 pre-existing shadcn warnings).

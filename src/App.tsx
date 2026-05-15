@@ -42,6 +42,8 @@ import DashboardPage from "@/pages/DashboardPage";
 import ExternalRedirect from "@/components/ExternalRedirect";
 import { SHOP_URL } from "@/lib/links";
 import ContactPage from "@/pages/ContactPage";
+import PerformancePackagesPage from "@/pages/PerformancePackagesPage";
+import AdminPage from "@/pages/AdminPage";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -96,6 +98,9 @@ const App = () => (
             <Route path="/journey" element={<Navigate to="/about-us" replace />} />
             <Route path="/locations" element={<Navigate to="/about-us" replace />} />
           </Route>
+          {/* Standalone (no public Layout chrome) */}
+          <Route path="/performance-packages" element={<PerformancePackagesPage />} />
+          <Route path="/admin" element={<AdminPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
