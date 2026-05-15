@@ -1876,3 +1876,80 @@ All service pages updated to use consistent cyan gradient button styling (`bg-gr
 - Manual AI-photo audit (requires visual inspection).
 - Production CSP/HSTS headers at edge.
 - Google Business Profile / Search Console / GA4 setup.
+
+---
+
+## Production Refactor — 2026-05-15
+
+A finalization pass shipped on `claude/refactor-wellness-site-rgU47` to harden
+the site for submission and deployment.
+
+### Code Cleanup
+Removed 22 unused components and 4 unused pages from the tree (all confirmed
+zero imports prior to deletion):
+
+- Components: `Booking`, `BentoBlock`, `BrandStatement`, `Contact`, `ContactBlock`,
+  `CtaBanner`, `Hero`, `HomeLocations`, `HomeTeaser`, `Journey`, `Locations`,
+  `OurTreatments`, `Products`, `PromoPopup`, `Reviews`, `ServicesPreview`,
+  `TeamSection`, `TestimonialsWall`, `Treatments`, `VideoTestimonial`,
+  `VisitUs`, `NavLink`.
+- Pages: `Index`, `JourneyPage`, `TreatmentsPage`, `LocationsPage`,
+  `ShopPage` (replaced by external redirect — see below).
+
+### Booking System UI
+Replaced the calendar-driven booking flow on `/book` with a clean, high-end
+**Contact-to-Book** UI (`src/pages/BookNowPage.tsx`). The new page:
+
+- Surfaces clinic **phone** + **email** in a single editorial card with
+  `tel:` / `mailto:` deep-links.
+- Lists clinic hours and the three BC location quick-links.
+- Drops the Jane-style calendar, slots, step machine, and auth gate that
+  previously lived on this route.
+- Centralized contact details in `src/lib/links.ts` so updates propagate
+  site-wide.
+
+### Shop Redirection
+All shop and store links now point to the external Square storefront:
+
+```
+https://ageless-living.square.site/s/shop
+```
+
+- New helper: `src/lib/links.ts` exports `SHOP_URL`.
+- New component: `src/components/ExternalRedirect.tsx` redirects via
+  `window.location.replace` and renders a graceful fallback link.
+- `/shop` route in `App.tsx` now uses `ExternalRedirect` — no local
+  e-commerce page is bundled.
+- `VisitShopCta` and `ChatBot` updated to reference `SHOP_URL` / `/shop`.
+
+### Photo Sliders — Premium Polish
+Upgraded `BeforeAfterSlider` (`src/components/BeforeAfterSlider.tsx`):
+
+- Spring-physics drag (`useMotionValue` + `useSpring`) for fluid handle
+  motion instead of raw state updates.
+- Subtle hover scale on the after image (1 → 1.02 over 700ms).
+- Refined divider (1 px crisp line + soft glow) and handle (larger shadow,
+  spring-based active scale).
+- Top-edge legibility gradient behind the Before / After chips.
+- `decoding="async"` + `will-change-transform` for buttery transitions.
+
+Used by every per-service page through `ServiceTransformationSection`.
+
+### Lead Capture / Newsletter
+New global section above the footer, mounted in `Layout.tsx`:
+
+- Copy: *"Sign up today and receive 15% off your first facial, plus
+  exclusive access to clinic promos, education, and offers."*
+- Component: `src/components/NewsletterSignup.tsx` — React Hook Form +
+  Zod validation, animated success state, premium centred layout.
+- Persistence layer: `src/lib/subscribers.ts` (`saveSubscriber()`)
+  POSTs to `/api/subscribe` and falls back to `localStorage` (so the form
+  is fully wired during dev / demo).
+- Reference serverless handler: `api/subscribe.ts` — Vercel-style
+  `POST(req: Request)` with email validation and commented-out
+  Supabase / Prisma / pg insert examples ready to swap in.
+
+### Verification
+- `npm run build` — clean (largest gzip chunk ≈ 138 KB).
+- `npm test` — 1/1 passing.
+- `npm run lint` — 0 errors (8 pre-existing shadcn warnings).

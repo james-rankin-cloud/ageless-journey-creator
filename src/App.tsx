@@ -39,7 +39,8 @@ import BookNowPage from "@/pages/BookNowPage";
 import LoginPage from "@/pages/LoginPage";
 import SignupPage from "@/pages/SignupPage";
 import DashboardPage from "@/pages/DashboardPage";
-import ShopPage from "@/pages/ShopPage";
+import ExternalRedirect from "@/components/ExternalRedirect";
+import { SHOP_URL } from "@/lib/links";
 import ContactPage from "@/pages/ContactPage";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -88,7 +89,7 @@ const App = () => (
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/shop" element={<ExternalRedirect to={SHOP_URL} />} />
             <Route path="/contact" element={<ContactPage />} />
             {/* Redirects for old routes */}
             <Route path="/treatments" element={<Navigate to="/services" replace />} />

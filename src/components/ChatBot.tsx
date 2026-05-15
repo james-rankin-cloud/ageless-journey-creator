@@ -89,7 +89,7 @@ const knowledgeBase: { keywords: string[]; answer: string }[] = [
   {
     keywords: ["shop", "bundle", "supplement", "product"],
     answer:
-      "Our curated at-home bundles (Energy Boost, Skin Renewal, Hormone Support) are on our [Shop page](/shop) via a secure Square storefront.",
+      "Our curated at-home bundles (Energy Boost, Skin Renewal, Hormone Support) are available on our [secure online store](/shop).",
   },
   {
     keywords: ["safe", "risk", "side effect"],

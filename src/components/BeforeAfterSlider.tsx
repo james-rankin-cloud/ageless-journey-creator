@@ -1,5 +1,5 @@
 import { useRef, useState, useCallback, useEffect, useLayoutEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { BEFORE_PHOTO, AFTER_PHOTO } from "@/lib/placeholders";
 
@@ -42,10 +42,17 @@ export default function BeforeAfterSlider({
   initial = 50,
   className = "",
 }: Props) {
-  const [pos, setPos] = useState(initial);
+  const target = useMotionValue(initial);
+  const pos = useSpring(target, { stiffness: 320, damping: 32, mass: 0.5 });
+  const clipLeft = useTransform(pos, (v) => `${v}%`);
+  const [posValue, setPosValue] = useState(initial);
   const [dragging, setDragging] = useState(false);
   const [width, setWidth] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    return pos.on("change", (v) => setPosValue(v));
+  }, [pos]);
 
   // Track container width so the "before" image renders at its true pixel
   // size — the old implementation read clientWidth synchronously during
@@ -64,13 +71,16 @@ export default function BeforeAfterSlider({
     };
   }, []);
 
-  const updateFromEvent = useCallback((clientX: number) => {
-    const el = containerRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const raw = ((clientX - rect.left) / rect.width) * 100;
-    setPos(Math.max(0, Math.min(100, raw)));
-  }, []);
+  const updateFromEvent = useCallback(
+    (clientX: number) => {
+      const el = containerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const raw = ((clientX - rect.left) / rect.width) * 100;
+      target.set(Math.max(0, Math.min(100, raw)));
+    },
+    [target]
+  );
 
   useEffect(() => {
     if (!dragging) return;
@@ -89,7 +99,7 @@ export default function BeforeAfterSlider({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full select-none overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_80px_-20px_rgba(15,60,74,0.25)] ring-1 ring-foreground/10 bg-secondary ${
+      className={`group relative w-full select-none overflow-hidden rounded-2xl md:rounded-[2rem] shadow-[0_30px_80px_-20px_rgba(15,60,74,0.25)] ring-1 ring-foreground/10 bg-secondary ${
         dragging ? "cursor-grabbing" : "cursor-grab"
       } ${className}`}
       style={{ aspectRatio: aspect, touchAction: "none" }}
@@ -102,11 +112,11 @@ export default function BeforeAfterSlider({
       aria-label="Before and after comparison slider"
       aria-valuemin={0}
       aria-valuemax={100}
-      aria-valuenow={Math.round(pos)}
+      aria-valuenow={Math.round(posValue)}
       tabIndex={0}
       onKeyDown={(e) => {
-        if (e.key === "ArrowLeft") setPos((p) => Math.max(0, p - 4));
-        if (e.key === "ArrowRight") setPos((p) => Math.min(100, p + 4));
+        if (e.key === "ArrowLeft") target.set(Math.max(0, target.get() - 4));
+        if (e.key === "ArrowRight") target.set(Math.min(100, target.get() + 4));
       }}
     >
       {/* AFTER image — bottom layer, always at full width */}
@@ -114,52 +124,53 @@ export default function BeforeAfterSlider({
         src={after}
         alt={`${alt} — after`}
         loading="lazy"
+        decoding="async"
         draggable={false}
-        className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+        className="absolute inset-0 h-full w-full object-cover object-center pointer-events-none will-change-transform transition-transform duration-700 group-hover:scale-[1.02]"
       />
 
-      {/* BEFORE image — clipped to handle position.
-          The inner <img> renders at the container's full width and is
-          simply revealed by the outer div's width. Using the measured
-          `width` (not a stale ref read during render) keeps the clip
-          accurate on first paint and on resize. */}
-      <div
+      {/* BEFORE image — clipped to spring-animated handle position */}
+      <motion.div
         className="absolute inset-y-0 left-0 overflow-hidden pointer-events-none"
-        style={{ width: `${pos}%` }}
+        style={{ width: clipLeft }}
       >
         <img
           src={before}
           alt={`${alt} — before`}
           loading="lazy"
+          decoding="async"
           draggable={false}
-          className="absolute inset-0 h-full object-cover max-w-none"
+          className="absolute inset-0 h-full object-cover object-center max-w-none will-change-transform"
           style={{ width: width ? `${width}px` : "100%" }}
         />
-      </div>
+      </motion.div>
+
+      {/* Soft top-fade for label legibility */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/25 to-transparent" />
 
       {/* Corner labels */}
-      <span className="absolute top-4 left-4 rounded-full bg-black/60 backdrop-blur-sm px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white pointer-events-none">
+      <span className="absolute top-4 left-4 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-white pointer-events-none">
         Before
       </span>
-      <span className="absolute top-4 right-4 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground pointer-events-none">
+      <span className="absolute top-4 right-4 rounded-full bg-white/90 backdrop-blur-md px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.22em] text-foreground pointer-events-none">
         After
       </span>
 
       {/* Divider line + handle */}
-      <div
+      <motion.div
         className="pointer-events-none absolute inset-y-0"
-        style={{ left: `${pos}%` }}
+        style={{ left: clipLeft }}
       >
-        <div className="absolute inset-y-0 -translate-x-1/2 w-0.5 bg-white/90 shadow-[0_0_10px_rgba(0,0,0,0.25)]" />
+        <div className="absolute inset-y-0 -translate-x-1/2 w-px bg-white shadow-[0_0_14px_rgba(0,0,0,0.35)]" />
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full bg-white shadow-xl ring-1 ring-foreground/10"
-          animate={{ scale: dragging ? 1.08 : 1 }}
-          transition={{ duration: 0.2 }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-full bg-white shadow-[0_8px_28px_-6px_rgba(0,0,0,0.45)] ring-1 ring-foreground/10"
+          animate={{ scale: dragging ? 1.1 : 1 }}
+          transition={{ type: "spring", stiffness: 340, damping: 22 }}
         >
-          <ChevronLeft className="h-4 w-4 text-foreground" />
-          <ChevronRight className="h-4 w-4 text-foreground" />
+          <ChevronLeft className="h-3.5 w-3.5 text-foreground" />
+          <ChevronRight className="h-3.5 w-3.5 text-foreground" />
         </motion.div>
-      </div>
+      </motion.div>
     </div>
   );
 }

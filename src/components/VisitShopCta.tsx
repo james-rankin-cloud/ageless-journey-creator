@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import shopImg from "@/assets/shop-1.jpeg";
+import { SHOP_URL } from "@/lib/links";
 
 /**
  *  <VisitShopCta />
@@ -35,7 +36,7 @@ export default function VisitShopCta() {
             </p>
             <div className="flex flex-wrap items-center gap-5">
               <a
-                href="https://ageless-store.vercel.app/"
+                href={SHOP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 rounded-full bg-clinic-teal text-white pl-7 pr-3 py-3 text-xs md:text-sm font-semibold uppercase tracking-[0.18em] transition-colors hover:bg-clinic-teal-container"
