@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { ArrowRight, ArrowUpRight, Sparkles, FlaskConical, Zap, Scale, MapPin } from "lucide-react";
 import TransformationJourney from "@/components/TransformationJourney";
 import TransformationAvatar from "@/components/TransformationAvatar";
@@ -63,7 +64,28 @@ const locations = [
   { name: "Kelowna", address: "1708 Dolphin Ave #101", city: "Kelowna, BC", href: "/locations/kelowna", img: kelownaImg },
 ];
 
+/**
+ * Decide whether to load the hero video.
+ * Skips on small viewports, on data-saver, and on reduced-motion preferences.
+ * Saves ~4 MB on mobile cold loads.
+ */
+function useShouldLoadHeroVideo() {
+  const [enabled, setEnabled] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const wide = window.matchMedia("(min-width: 768px)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    const saveData = conn?.saveData === true;
+    const slow = conn?.effectiveType === "2g" || conn?.effectiveType === "slow-2g";
+    setEnabled(wide && !reduced && !saveData && !slow);
+  }, []);
+  return enabled;
+}
+
 export default function HomePage() {
+  const loadHeroVideo = useShouldLoadHeroVideo();
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
@@ -97,18 +119,30 @@ export default function HomePage() {
           `src/lib/placeholders.ts`. Same for the still-image poster.
       */}
       <section className="relative h-screen min-h-[640px] w-full overflow-hidden bg-black">
-        {/* Video layer */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster={HERO_POSTER}
-          className="absolute inset-0 h-full w-full object-cover"
+        {/* Poster layer — shown on mobile, reduced-motion, slow connections and
+            during video buffering. Eliminates the 4 MB mp4 fetch on phones. */}
+        <img
+          src={HERO_POSTER}
+          alt=""
           aria-hidden
-        >
-          <source src={HERO_VIDEO_MP4} type="video/mp4" />
-        </video>
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        {/* Video layer — desktop, full-motion, fast connections only */}
+        {loadHeroVideo && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster={HERO_POSTER}
+            className="absolute inset-0 h-full w-full object-cover"
+            aria-hidden
+          >
+            <source src={HERO_VIDEO_MP4} type="video/mp4" />
+          </video>
+        )}
 
         {/* Single, even legibility scrim — softer than before */}
         <div className="absolute inset-0 bg-black/45" />
@@ -193,10 +227,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
             {[
-              { k: "10+", v: "Years optimising patients" },
-              { k: "200+", v: "Biomarkers tracked" },
+              { k: "10+", v: "Years in practice" },
               { k: "4.9★", v: "Patient rating" },
               { k: "3", v: "BC clinic locations" },
+              { k: "Physician-led", v: "Every protocol" },
             ].map((s, i) => (
               <motion.div
                 key={s.v}
