@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown, MapPin, User, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/lib/auth";
-import logo from "@/assets/header-logo.png";
+import BrandMark from "@/components/BrandMark";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -61,12 +61,8 @@ export default function Header() {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-3 md:py-5 px-4 md:px-6 lg:px-8">
-        <Link to="/" className="relative z-10 flex items-center">
-          <img
-            src={logo}
-            alt="Ageless Living™ Wellness Centre logo - premium wellness clinic in British Columbia"
-            className="h-12 md:h-16 lg:h-20 transition-all duration-300"
-          />
+        <Link to="/" className="relative z-10 flex items-center text-foreground">
+          <BrandMark className="h-9 md:h-10 lg:h-11 w-auto transition-all duration-300" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -282,12 +278,8 @@ export default function Header() {
           >
             {/* Mobile Header */}
             <div className="flex items-center justify-between py-4 px-5 border-b border-border shrink-0">
-              <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center">
-                <img
-                  src={logo}
-                  alt="Ageless Living™ Wellness Centre logo"
-                  className="h-12"
-                />
+              <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center text-foreground">
+                <BrandMark className="h-9 w-auto" />
               </Link>
               <button
                 onClick={() => setMobileOpen(false)}

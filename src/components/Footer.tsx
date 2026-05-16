@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Instagram, Facebook } from "lucide-react";
-import logo from "@/assets/header-logo.png";
+import BrandMark from "@/components/BrandMark";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -18,8 +18,8 @@ export default function Footer() {
         <div className="grid md:grid-cols-2 gap-10 md:gap-12 lg:gap-20 mb-12 md:mb-16">
           {/* Left: Logo + nav */}
           <div>
-            <Link to="/" className="inline-block mb-6 md:mb-8">
-              <img src={logo} alt="Ageless Living™" className="h-7 md:h-8 brightness-0 invert hover:opacity-80 transition-opacity" />
+            <Link to="/" className="inline-block mb-6 md:mb-8 text-card hover:opacity-80 transition-opacity">
+              <BrandMark className="h-8 md:h-9 w-auto" inverted />
             </Link>
             <div className="flex flex-wrap gap-x-6 md:gap-x-8 gap-y-2.5 md:gap-y-3">
               {navLinks.map((l) => (

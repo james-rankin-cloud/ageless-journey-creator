@@ -1,5 +1,48 @@
 # Ageless Living™ Website Architecture Specification
 
+## Changelog — Launch-Readiness Critical Fixes (2026-05-16)
+
+Follow-up to the brand pivot. Six audit-critical items addressed so the site can ship.
+
+### A. Static `<head>` rewritten for the new brand (`index.html`)
+- Title, description, OG and Twitter meta now match the Longevity & Vitality positioning. `theme-color` updated to the new forest (`#234b3a`).
+- OG / Twitter images repointed from a third-party Lovable preview URL to `https://agelessliving.com/og-image.webp` — drop a 1200×630 WebP at `public/og-image.webp` before deploy.
+- Site-wide JSON-LD upgraded from `Organization` to `MedicalBusiness` with description.
+- `preconnect` added for `ageless.janeapp.com` (booking flow), and the `<noscript>` message is now on-brand with a fallback prompt to call the clinics.
+
+### B. Hero video — mobile + slow-connection guard (`src/pages/HomePage.tsx`)
+- New `useShouldLoadHeroVideo()` hook gates the 4.4 MB MP4 behind a min-width 768px + non-reduced-motion + non-save-data + non-2g check. Mobile and slow-network users now see the poster only, never download the video.
+- `<video>` switched to `preload="metadata"` (was implicit `auto`).
+- Poster `<img>` is rendered eagerly with `fetchPriority="high"` so it owns the LCP slot.
+- Production prerequisite (binary, not in this commit): re-encode `no_zoom_in_or_zoom_out_create__Kling_30__00466.mp4` (4.4 MB) → ≤1.5 MB H.264 + a `.webm` sibling and rename to `hero-vitality-bc.mp4`/`.webm`. Re-export the poster as `hero-vitality-poster.webp` (≤120 KB). Update `HERO_VIDEO_MP4` / `HERO_POSTER` in `src/lib/placeholders.ts`.
+
+### C. Header / Footer logo replaced with inline SVG (`src/components/BrandMark.tsx`)
+- New `<BrandMark />` component renders a ~1 KB inline SVG wordmark (`Ageless Living` + `LONGEVITY · VITALITY` micro-line + a small leaf-arc monogram) using `currentColor`. Supports `inverted` for dark-on-light vs light-on-dark.
+- `Header.tsx` and `Footer.tsx` now import `<BrandMark />` instead of `@/assets/header-logo.png`. That 812 KB PNG no longer ships on any route.
+- `src/assets/header-logo.png` can be deleted once production photography swap-out is signed off; left on disk for now so designers can sanity-check.
+- Outstanding asset work (not code): convert `blog1.png` (1.8 MB), `blog2.png` (3.5 MB), `blog3.png` (4.7 MB), `victoria.png` (504 KB) → `.webp` at <200 KB each and update the imports.
+
+### D. Route-level code splitting (`src/App.tsx`, `src/components/Layout.tsx`)
+- Every route except `HomePage` is now `React.lazy()`-imported. `<Routes>` is wrapped in a `<Suspense>` with a minimal no-flash fallback (`min-h-screen bg-background`, `aria-busy`).
+- `ChatBot` is lazy-imported in `Layout` and mount-deferred until either (a) the user scrolls past 300 px or (b) 3.5 s of idle. Eliminates it from the initial Layout chunk.
+- Build result: initial homepage JS chunk dropped from **636 kB / 154 kB gzipped** to **228 kB / 69 kB gzipped** (-64 %). Per-route chunks land at 1–25 kB each. The `> 500 kB chunk` Vite warning is gone.
+
+### E. EvolutionTimeline — claims softened, disclaimer added (`src/components/EvolutionTimeline.tsx`)
+- Numeric biomarker deltas (`↓ 62 %`, `↑ 41 %`, `↓ 38 %`, `↑ 18 %`, `↓ 8 bpm`) replaced with qualitative descriptors (`well-controlled`, `restored ↑`, `trending ↓`, `strong ↑`, `improving ↓`). Same visual rhythm, no unsubstantiated medical claims.
+- Visible regulatory disclaimer added under the section: *"Illustrative stage descriptors based on patterns observed in our clinics. Individual results vary and depend on baseline health, protocol adherence and physician assessment. Not a treatment guarantee or substitute for personalised medical advice."* Required for medical advertising under BC College standards.
+- Homepage stats strip "200+ Biomarkers tracked" replaced with "Physician-led · Every protocol" for the same reason.
+
+### F. Skip-link colour updated to new palette (`src/components/Layout.tsx`)
+The focus-visible "Skip to main content" link uses `bg-vitality-forest` instead of the legacy `bg-clinic-teal` alias.
+
+### Outstanding (assets, not code)
+1. Produce `/public/og-image.webp` (1200×630) and `/public/hero-vitality-poster.webp` reflecting the new hero.
+2. Re-encode hero video to `<1.5 MB` H.264 + WebM sibling, rename for SEO.
+3. Convert top-five PNGs to WebP (`blog1-3.png`, `victoria.png`, leftover use of `header-logo.png` if any). Update imports.
+4. Commission single-model, three-stage real photography for the EvolutionTimeline avatar; swap `<AvatarFigure>` for stage-specific `<img>`/`<video>`.
+
+---
+
 ## Changelog — Longevity & Vitality Brand Pivot (2026-05-16)
 
 The site has been repositioned away from a "med spa" reading toward a **Longevity & Vitality Clinic** brand. Aesthetics is now framed as the *external signal* of internal cellular health rather than the headline service. Three things changed at the system level:

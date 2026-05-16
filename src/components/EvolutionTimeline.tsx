@@ -61,8 +61,8 @@ const STAGES: Stage[] = [
     biomarkers: [
       { icon: Flame, name: "Inflammation", delta: "elevated", trend: "up" },
       { icon: HeartPulse, name: "Resting HR", delta: "elevated", trend: "up" },
-      { icon: Moon, name: "Deep sleep", delta: "low", trend: "down" },
-      { icon: Sparkle, name: "Skin clarity", delta: "low", trend: "down" },
+      { icon: Moon, name: "Deep sleep", delta: "limited", trend: "down" },
+      { icon: Sparkle, name: "Skin clarity", delta: "dulled", trend: "down" },
     ],
     figure: {
       skinTone: "#C9A98F",
@@ -89,10 +89,10 @@ const STAGES: Stage[] = [
       "Steadier energy, mental clarity returning",
     ],
     biomarkers: [
-      { icon: Flame, name: "Inflammation", delta: "↓ 38%", trend: "down" },
-      { icon: HeartPulse, name: "Resting HR", delta: "↓ 8 bpm", trend: "down" },
-      { icon: Moon, name: "Deep sleep", delta: "↑ 22%", trend: "up" },
-      { icon: Dumbbell, name: "Lean mass", delta: "↑ steady", trend: "up" },
+      { icon: Flame, name: "Inflammation", delta: "trending ↓", trend: "down" },
+      { icon: HeartPulse, name: "Resting HR", delta: "improving ↓", trend: "down" },
+      { icon: Moon, name: "Deep sleep", delta: "lengthening ↑", trend: "up" },
+      { icon: Dumbbell, name: "Lean mass", delta: "rebuilding ↑", trend: "up" },
     ],
     figure: {
       skinTone: "#D9BFA8",
@@ -119,10 +119,10 @@ const STAGES: Stage[] = [
       "Sharp focus, stable mood, deep sleep",
     ],
     biomarkers: [
-      { icon: Flame, name: "Inflammation", delta: "↓ 62%", trend: "down" },
-      { icon: HeartPulse, name: "VO₂ max", delta: "↑ 18%", trend: "up" },
-      { icon: Moon, name: "Deep sleep", delta: "↑ 41%", trend: "up" },
-      { icon: Sparkle, name: "Skin elasticity", delta: "↑ measurably", trend: "up" },
+      { icon: Flame, name: "Inflammation", delta: "well-controlled", trend: "down" },
+      { icon: HeartPulse, name: "VO₂ max", delta: "strong ↑", trend: "up" },
+      { icon: Moon, name: "Deep sleep", delta: "restored ↑", trend: "up" },
+      { icon: Sparkle, name: "Skin elasticity", delta: "improved ↑", trend: "up" },
     ],
     figure: {
       skinTone: "#E8CDB3",
@@ -401,6 +401,15 @@ export default function EvolutionTimeline() {
             </AnimatePresence>
           </div>
         </div>
+
+        {/* Regulatory disclaimer — required for medical advertising in BC.
+            Stage descriptors are qualitative, not a guarantee of outcome. */}
+        <p className="mx-auto mt-12 max-w-3xl text-center text-[11px] leading-relaxed text-muted-foreground md:mt-16 md:text-xs">
+          Illustrative stage descriptors based on patterns observed in our clinics.
+          Individual results vary and depend on baseline health, protocol adherence and
+          physician assessment. Not a treatment guarantee or substitute for personalised
+          medical advice.
+        </p>
       </div>
     </section>
   );
