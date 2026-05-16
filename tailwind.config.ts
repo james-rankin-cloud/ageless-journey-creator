@@ -63,6 +63,16 @@ export default {
           "teal-light": "hsl(var(--clinic-teal-light))",
           "teal-container": "hsl(var(--clinic-teal-container))",
         },
+        vitality: {
+          forest: "hsl(var(--vitality-forest))",
+          "forest-deep": "hsl(var(--vitality-forest-deep))",
+          moss: "hsl(var(--vitality-moss))",
+          sage: "hsl(var(--vitality-sage))",
+          blue: "hsl(var(--vitality-blue))",
+          "blue-soft": "hsl(var(--vitality-blue-soft))",
+          sand: "hsl(var(--vitality-sand))",
+          glow: "hsl(var(--vitality-glow))",
+        },
         ageless: {
           blue: "hsl(var(--ageless-blue))",
           "blue-deep": "hsl(var(--ageless-blue-deep))",

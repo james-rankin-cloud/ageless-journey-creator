@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Sparkles, FlaskConical, Zap, Scale, MapPin } from "lucide-react";
 import TransformationJourney from "@/components/TransformationJourney";
 import TransformationAvatar from "@/components/TransformationAvatar";
+import EvolutionTimeline from "@/components/EvolutionTimeline";
 import { HERO_VIDEO_MP4, HERO_POSTER } from "@/lib/placeholders";
 
 import skinImg from "@/assets/services-1.jpg";
@@ -23,32 +24,36 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 const treatments = [
   {
-    icon: Sparkles,
-    title: "Skin Rejuvenation",
-    description: "Restore your natural glow with our advanced aesthetic therapies.",
-    href: "/services#skin-rejuvenation",
-    img: skinImg,
-  },
-  {
     icon: FlaskConical,
-    title: "Hormone Balancing",
-    description: "Optimize your internal harmony through clinical expertise.",
+    title: "Hormone Optimisation",
+    description:
+      "Bioidentical hormone therapy to restore the chemistry of a younger, more resilient body.",
     href: "/services#hormone-balancing",
     img: hormoneImg,
   },
   {
     icon: Zap,
-    title: "Biohacking",
-    description: "Unlock peak performance with evidence-based longevity tools.",
+    title: "Cellular Biohacking",
+    description:
+      "NAD+, IV nutrition, HBOT and red-light to fuel mitochondrial output and recovery.",
     href: "/services#biohacking",
     img: biohackingImg,
   },
   {
     icon: Scale,
-    title: "Health Weight",
-    description: "A sustainable wellness journey tailored to your unique physiology.",
+    title: "Metabolic Health",
+    description:
+      "Physician-led weight, glucose and metabolic care — the foundation of a long healthspan.",
     href: "/services#health-weight",
     img: weightImg,
+  },
+  {
+    icon: Sparkles,
+    title: "Aesthetic Signal",
+    description:
+      "Skin and tone treatments framed as the visible reflection of optimised cellular health.",
+    href: "/services#skin-rejuvenation",
+    img: skinImg,
   },
 ];
 
@@ -77,8 +82,8 @@ export default function HomePage() {
   return (
     <>
       <Helmet>
-        <title>Ageless Living™ Wellness Centre | Modern Treatments in BC</title>
-        <meta name="description" content="Discover your best self at any age. Skin rejuvenation, hormone balancing, biohacking & more across Langley, Victoria & Kelowna." />
+        <title>Ageless Living™ | Longevity & Vitality Clinic — Victoria, Langley & Kelowna</title>
+        <meta name="description" content="A physician-led longevity & vitality clinic. Hormone optimisation, cellular biohacking, metabolic health and the aesthetic signal of internal wellness — across three BC clinics." />
         <link rel="canonical" href="https://agelessliving.com" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
@@ -118,7 +123,7 @@ export default function HomePage() {
               transition={{ duration: 0.6, delay: 0.1, ease }}
               className="text-[10px] md:text-xs uppercase tracking-[0.32em] text-white/70 mb-6 md:mb-8"
             >
-              Ageless Living™ · Wellness &amp; Longevity Medicine
+              Ageless Living™ · Longevity &amp; Vitality Medicine
             </motion.p>
 
             <motion.h1
@@ -128,9 +133,9 @@ export default function HomePage() {
               className="font-display font-medium text-white leading-[1.02] tracking-tight mx-auto max-w-5xl"
               style={{ fontSize: "clamp(2.75rem, 7.5vw, 6.5rem)" }}
             >
-              Look younger. Feel stronger.
+              Add years to your life.
               <br />
-              <span className="italic font-light text-white/90">Live better, longer.</span>
+              <span className="italic font-light text-white/90">Add life to your years.</span>
             </motion.h1>
 
             <motion.p
@@ -139,8 +144,9 @@ export default function HomePage() {
               transition={{ duration: 0.9, delay: 0.2, ease }}
               className="mt-6 md:mt-8 mx-auto max-w-2xl text-base md:text-lg text-white/85 leading-relaxed"
             >
-              Physician-led skin rejuvenation, hormone balancing, biohacking and
-              weight care — across three BC clinics in Victoria, Langley &amp; Kelowna.
+              A physician-led longevity &amp; vitality clinic — optimising hormones,
+              metabolism and cellular energy so your healthspan keeps pace with your
+              lifespan. Three locations across BC.
             </motion.p>
 
             <motion.div
@@ -187,10 +193,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">
             {[
-              { k: "10+", v: "Years in BC" },
-              { k: "3", v: "Clinic locations" },
+              { k: "10+", v: "Years optimising patients" },
+              { k: "200+", v: "Biomarkers tracked" },
               { k: "4.9★", v: "Patient rating" },
-              { k: "287+", v: "Happy reviews" },
+              { k: "3", v: "BC clinic locations" },
             ].map((s, i) => (
               <motion.div
                 key={s.v}
@@ -211,6 +217,76 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ══════════════ VITALITY EVOLUTION — the avatar journey ══════════════ */}
+      <EvolutionTimeline />
+
+      {/* ══════════════ PHILOSOPHY — bridges aesthetics into longevity ══════════════ */}
+      <section className="relative bg-background py-20 md:py-28 lg:py-32 overflow-hidden border-t border-border/60">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease }}
+              className="lg:col-span-5"
+            >
+              <p className="eyebrow mb-3 md:mb-4">
+                <span className="hairline pb-2 text-xs md:text-sm">Our philosophy</span>
+              </p>
+              <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-foreground leading-[1.08]">
+                The skin tells the story
+                <br />
+                <span className="italic text-vitality-forest">of the cell.</span>
+              </h2>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1, ease }}
+              className="lg:col-span-7"
+            >
+              <p className="text-lg md:text-xl text-foreground/85 leading-relaxed">
+                We're not a med spa. We're a longevity practice that takes the
+                aesthetic outcome seriously — because puffiness, dullness and tone
+                are <em className="not-italic text-vitality-forest">readouts</em>,
+                not blemishes. Treat the inflammation, the hormones and the
+                mitochondria first, and the mirror catches up on its own.
+              </p>
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {[
+                  {
+                    k: "Internal",
+                    v: "Hormones, metabolism, mitochondria, sleep architecture.",
+                  },
+                  {
+                    k: "Structural",
+                    v: "Lean mass, posture, recovery, cardiovascular capacity.",
+                  },
+                  {
+                    k: "External",
+                    v: "Skin clarity, tone, elasticity — the visible signal.",
+                  },
+                ].map((b) => (
+                  <div
+                    key={b.k}
+                    className="rounded-2xl border border-border/70 bg-vitality-sage/50 p-5"
+                  >
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-vitality-forest">
+                      {b.k}
+                    </p>
+                    <p className="mt-2 text-sm text-foreground/80 leading-relaxed">
+                      {b.v}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ══════════════ TREATMENTS — cards with images ══════════════ */}
       <section className="relative py-16 md:py-24 lg:py-32 bg-background overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-16">
@@ -222,12 +298,12 @@ export default function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease }}
             >
-              <p className="eyebrow mb-3 md:mb-4"><span className="hairline pb-2 text-xs md:text-sm">Our Four Pillars</span></p>
+              <p className="eyebrow mb-3 md:mb-4"><span className="hairline pb-2 text-xs md:text-sm">Four pillars of healthspan</span></p>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-medium text-foreground tracking-tight mb-4 md:mb-5">
-                Our Treatments
+                Total-body optimisation
               </h2>
               <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                Picture Your Possible. Ageless Living™ brings together the best of what's possible: The guidance, tools and technologies to help you live better, longer.
+                We treat the system, not the symptom. Hormones, mitochondria, metabolism and aesthetics — sequenced as one protocol so internal health becomes visible from the outside.
               </p>
             </motion.div>
             <Link
@@ -541,12 +617,12 @@ export default function HomePage() {
               <span className="hairline pb-2 text-xs md:text-sm">Start Today</span>
             </p>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-foreground tracking-tight leading-tight mb-5">
-              Ready to start your
+              Ready to map your
               <br />
-              <span className="italic text-clinic-teal">wellness journey?</span>
+              <span className="italic text-vitality-forest">healthspan?</span>
             </h2>
             <p className="text-base md:text-lg text-muted-foreground mb-9 max-w-lg mx-auto leading-relaxed px-4">
-              Book a comprehensive consultation with our medical team at any of our three BC locations.
+              Start with a full longevity consultation — labs, biomarkers and a physician-led optimisation plan tailored to where you are right now.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 px-4 sm:px-0">
               <Link

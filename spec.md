@@ -1,5 +1,74 @@
 # Ageless Living™ Website Architecture Specification
 
+## Changelog — Longevity & Vitality Brand Pivot (2026-05-16)
+
+The site has been repositioned away from a "med spa" reading toward a **Longevity & Vitality Clinic** brand. Aesthetics is now framed as the *external signal* of internal cellular health rather than the headline service. Three things changed at the system level:
+
+### 1. Brand palette (`src/index.css`, `tailwind.config.ts`)
+- New vitality tokens layered into the existing CSS variable system. `clinic-teal` is preserved as a backwards-compat alias so legacy components instantly inherit the new brand without a sweeping refactor.
+- Tokens added (HSL on the `:root`):
+  - `--vitality-forest` (deep wellness green, primary signal) → `bg-vitality-forest`, `text-vitality-forest`
+  - `--vitality-forest-deep` for hovers / pressed states
+  - `--vitality-moss` for fills / progress
+  - `--vitality-sage` for near-white wash backgrounds
+  - `--vitality-blue` (calming clinical blue, biomarker accent) + `--vitality-blue-soft`
+  - `--vitality-sand` (warm earthy neutral)
+  - `--vitality-glow` (subtle gold for the "peak" state only — never as a flat brand colour)
+- Background neutrals shifted from pure warm cream to a bone tone with a faint green undertone (`hsl(36 30% 97%)`) so the page reads clinical-yet-warm.
+
+### 2. Homepage hero (`src/pages/HomePage.tsx`)
+- Eyebrow rewritten: **"Ageless Living™ · Longevity & Vitality Medicine"**.
+- Headline rewritten around healthspan, not aesthetics: **"Add years to your life. / Add life to your years."**
+- Sub-line repositioned around hormones, metabolism and cellular energy with healthspan/lifespan framing.
+- Stats strip updated to longevity-flavoured metrics ("Biomarkers tracked", "Years optimising patients").
+- `<Helmet>` title + description rewritten for the new positioning so SEO snippets match the brand.
+
+### 3. The Vitality Evolution — Avatar Journey (`src/components/EvolutionTimeline.tsx`) — NEW
+Self-contained, drop-in homepage section that replaces the conventional "before/after of different people" story with a **single-avatar, three-stage evolution**:
+
+- **Stage 01 · Baseline (Pre-Treatment)** — systemic inflammation, suboptimal composition, postural slump, fatigue cues.
+- **Stage 02 · Transition (Weeks 4–16)** — reduced inflammation, evening skin tone, posture lengthening, steadier energy.
+- **Stage 03 · Peak Vitality (Month 6+)** — optimised composition, clear/luminous skin, strong posture, sharp focus.
+
+Functional build:
+- **Interactive timeline rail** with three numbered stops (`01 / 02 / 03`). A gradient `forest → moss → glow` fill animates left-to-right as the user advances.
+- **Stylised SVG avatar** that morphs per stage: skin-tone gradient stops shift warmer/clearer, posture tilt animates upright, a soft halo (`radial-gradient` + blur) increases in opacity, and a gold rim-light fades in only at Peak. No real photography is required — this reads as a clinical diagram, which is exactly the longevity-clinic feel and avoids the "stock med spa model" problem.
+- **Biomarker callouts** orbit the avatar (Inflammation, Resting HR / VO₂ max, Deep sleep, Skin clarity / Lean mass). Values + trend arrows swap with the active stage so visitors instantly read "this is medicine, not aesthetics."
+- **Controls**: prev / next chevrons, a centred Play/Pause toggle, and clickable stage stops. Auto-advance every 5.5 s, pauses on hover, resumes on leave.
+- **Responsive**: figure-card and copy column stack on `<lg`, side-by-side on `lg+`. Stage rail and biomarker chips scale down via `md:` breakpoints. All controls have `aria-pressed` / `aria-label`.
+- **Data shape**: `STAGES: Stage[]` at the top of the file. To swap copy, visual cues, or biomarker values, edit that array — no other changes required. To swap the SVG silhouette for production photography later, replace the `<AvatarFigure />` JSX with `<img>` / `<video>` per stage; the surrounding rail, halo and callouts are stage-agnostic.
+
+Mounted on the homepage immediately after the stats strip, before the treatments grid, so visitors understand the proposition before they read a single service name.
+
+### 4. Philosophy bridge section (`src/pages/HomePage.tsx`)
+New section directly under the Evolution Timeline: **"The skin tells the story of the cell."** A two-column editorial block that explicitly disclaims the med-spa framing and positions aesthetics as a *readout* of internal health. Three supporting chips — Internal / Structural / External — make the systems-level approach scannable.
+
+### 5. Treatments / Four Pillars reframed (`src/pages/HomePage.tsx`)
+- Section eyebrow: "Four pillars of healthspan". Section heading: "Total-body optimisation".
+- The order and copy of the four cards is rebalanced so aesthetics is no longer first:
+  1. Hormone Optimisation
+  2. Cellular Biohacking
+  3. Metabolic Health
+  4. Aesthetic Signal (renamed from "Skin Rejuvenation"; description explicitly frames it as the visible reflection of optimised cellular health)
+- Routing hrefs are unchanged so service pages, the booking flow and the four-phase TransformationJourney section below it continue to work exactly as before.
+
+### 6. Closing CTA reframed (`src/pages/HomePage.tsx`)
+- "Ready to start your wellness journey?" → **"Ready to map your healthspan?"**, with the italic accent now using `text-vitality-forest`.
+- Sub-copy reframed around labs, biomarkers and a physician-led optimisation plan instead of a generic consultation.
+
+### 7. Imagery & SEO direction (creative brief for upcoming asset swaps)
+Production photography should target a longevity/vitality reading, not a med-spa reading:
+- **Composition**: wide, full-body or 3/4 lifestyle shots. Hands, posture, movement. Faces are calm and unstyled, not glamour-lit.
+- **Lighting**: natural daylight, soft window light, midday outdoors. Avoid hard ring-light beauty lighting and warm tungsten lounge lighting.
+- **Locations**: outdoors (forest, coast), bright minimal interiors, clinical white-on-natural-wood. No spa robes, no laser-room close-ups as hero shots.
+- **Subjects**: people in motion (hiking, training, cooking, working). Avoid clinical "patient on table" framing for hero/marketing imagery.
+- **File naming** (unchanged convention): `[concept]-[location]-[descriptor].webp`, `<200 KB`, `loading="lazy"`. Suggested concept tags going forward: `vitality`, `healthspan`, `longevity`, `biomarker`, `recovery`.
+
+### 8. Routing & data — explicitly unchanged
+No routes added or removed. No service-page slugs renamed. The existing four-phase `<TransformationJourney />` still renders below the new EvolutionTimeline; service pages, booking flow, locations and auth gate are untouched.
+
+---
+
 ## Changelog — Final UI/UX Pass: Hero, Phased Transformation, Sliders, Auth & Shop (2026-04-21)
 
 Final polish pass before hand-off. Tightens the hero, turns the home-page and service-page transformation sections into explicit phased journeys, fixes and re-designs every slider on the site, removes the standalone Sign-In entry-point in favour of a booking-time auth gate, and restricts the primary teal to buttons / accents (no more giant blue hero blocks in the shop CTA, closing CTA, or stats strip).
